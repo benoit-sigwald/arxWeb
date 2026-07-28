@@ -16,6 +16,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="#story">The story</a></li>
       <li><a href="#diagrams">Diagrams</a></li>
+      <li><a href="#platform-services">Platform services</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#phases">Phases</a></li>
     </ul>
@@ -98,6 +99,37 @@
       <h3>PaaS details</h3>
       <p>A closer look at the platform internals and how each hosted service fits in.</p>
       <img src="assets/arx-paas-details.png" alt="Arx PaaS details diagram" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section id="platform-services">
+  <div class="container">
+    <h2>Platform services, one by one</h2>
+    <p class="sub">The building blocks behind every deployed app: the deployment plane, the data layer, object storage and backups.</p>
+
+    <div class="diagram">
+      <h3>Coolify — deployment plane</h3>
+      <p>Builds from GitHub on every push, deploys Docker containers, manages environment variables and scheduled jobs — all driven through its REST API.</p>
+      <img src="assets/svc-coolify.jpg" alt="Coolify deployment plane diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Data layer — PostgreSQL + PostgREST + Oracle DB</h3>
+      <p>A self-hosted, Supabase-compatible data API with French full-text search, alongside an Oracle database. 500+ rows migrated with zero loss.</p>
+      <img src="assets/svc-data-layer.jpg" alt="Arx data layer diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>MinIO — S3-compatible object storage</h3>
+      <p>Self-hosted S3-style storage for application assets and files, behind Traefik like every other service.</p>
+      <img src="assets/svc-minio.jpg" alt="MinIO S3 storage diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Backups — automated, off-container</h3>
+      <p>Scheduled database and volume backups shipped to OCI Object Storage (10 GB free tier), tested by restore before any cutover.</p>
+      <img src="assets/svc-backups.jpg" alt="Backups architecture diagram" loading="lazy" />
     </div>
   </div>
 </section>
