@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Migration OCI — Benoît Sigwald | Arx Capital</title>
+<meta name="description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM Oracle Cloud gratuit avec Claude Code : Coolify, Docker, Traefik, PostgREST, MinIO — coût de fonctionnement nul." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index-fr.html">ARX <span>Capital</span></a>
+    <ul>
+      <li><a href="index-fr.html">Accueil</a></li>
+      <li><a href="#story">Le récit</a></li>
+      <li><a href="#diagrams">Schémas</a></li>
+      <li><a href="#platform-services">Services plateforme</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#phases">Phases</a></li>
+      <li><a class="lang-switch" href="oci-migration.html">EN</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container" style="display:block">
+    <span class="kicker">Étude de cas · Construit avec Claude Code</span>
+    <h1>La migration OCI :<br /><em>un cloud personnel à 0 €/mois.</em></h1>
+    <p class="lede">
+      En un mois, avec Claude Code en binôme, j'ai déplacé toute ma stack — sites web, applications,
+      serveurs MCP, bases de données — de Vercel, Render et Supabase vers un unique serveur ARM
+      Oracle Cloud « Always Free », piloté par une plateforme auto-hébergée façon Vercel.
+    </p>
+  </div>
+</header>
+
+<div class="stats-band">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><b>0 €</b><span>de coût de fonctionnement mensuel</span></div>
+      <div class="stat"><b>4 / 24</b><span>cœurs ARM / Go de RAM (Always Free)</span></div>
+      <div class="stat"><b>500+</b><span>lignes de base migrées, zéro perte</span></div>
+      <div class="stat"><b>1 push</b><span>= 1 déploiement en production</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="story">
+  <div class="container">
+    <span class="sec-num">01 — Le récit</span>
+    <h2>Pourquoi, et comment</h2>
+    <p class="sub">L'objectif : tout centraliser sur un serveur gratuit, sans renoncer au confort développeur de Vercel ou Render.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>1 · Les fondations</h3>
+        <p>Ubuntu 24.04 sur un OCI Ampere A1 (ARM64). Deux couches de pare-feu — Security List OCI + iptables de l'instance — sous-domaines DuckDNS avec mise à jour d'IP par cron.</p>
+      </div>
+      <div class="card">
+        <h3>2 · La plateforme</h3>
+        <p>Coolify en PaaS auto-hébergé : builds depuis GitHub, déploiements en conteneurs Docker, variables d'environnement et cron. Traefik termine le HTTPS avec certificats Let's Encrypt automatiques.</p>
+      </div>
+      <div class="card">
+        <h3>3 · Les charges applicatives</h3>
+        <p>Serveurs MCP, services web et API, chacun dans son conteneur, routés par nom d'hôte et chemin. Environnements de test et de prod, déployés par git push (webhook Coolify).</p>
+      </div>
+      <div class="card">
+        <h3>4 · Les données</h3>
+        <p>PostgreSQL/PostgREST auto-hébergé (même syntaxe d'API que Supabase — zéro changement de code) plus une base Oracle. 500+ lignes migrées avec recherche plein texte intacte ; sauvegardes automatiques vers OCI Object Storage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diagrams">
+  <div class="container">
+    <span class="sec-num">02 — Schémas</span>
+    <h2>Schémas d'architecture</h2>
+    <p class="sub">L'image complète, du flux de migration à la couche de services.</p>
+
+    <div class="diagram">
+      <h3>Vue d'ensemble de la migration</h3>
+      <p>Ce qui a bougé et d'où : les charges Vercel, Render, Supabase et locales consolidées sur le serveur OCI.</p>
+      <img src="assets/oci-migration-en.png" alt="Schéma de la migration OCI" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Architecture de l'infrastructure</h3>
+      <p>Le trafic Internet traverse deux couches de pare-feu, atteint Traefik qui termine le TLS, et est routé vers le bon conteneur. Coolify construit depuis GitHub et gère le cycle de vie.</p>
+      <img src="assets/arx-infra-architecture.png" alt="Schéma d'architecture de l'infrastructure Arx" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Flux de données entre composants</h3>
+      <p>Comment requêtes, builds et données circulent entre le proxy, les applications, les bases de données et le stockage objet.</p>
+      <img src="assets/oci-component-data-flow.png" alt="Schéma du flux de données OCI" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Couche de services PaaS</h3>
+      <p>Le plan de contrôle Coolify : builds, déploiements, variables d'environnement, tâches planifiées.</p>
+      <img src="assets/arx-paas-service-layer.png" alt="Schéma de la couche de services PaaS Arx" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Détails du PaaS</h3>
+      <p>Un regard rapproché sur les entrailles de la plateforme et la place de chaque service hébergé.</p>
+      <img src="assets/arx-paas-details.png" alt="Schéma des détails du PaaS Arx" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section id="platform-services">
+  <div class="container">
+    <span class="sec-num">03 — Services plateforme</span>
+    <h2>Les services de la plateforme, un par un</h2>
+    <p class="sub">Les briques derrière chaque application déployée : le plan de déploiement, la couche de données, le stockage objet et les sauvegardes.</p>
+
+    <div class="diagram">
+      <h3>Coolify — plan de déploiement</h3>
+      <p>Construit depuis GitHub à chaque push, déploie des conteneurs Docker, gère variables d'environnement et tâches planifiées — le tout piloté via son API REST.</p>
+      <img src="assets/svc-coolify.jpg" alt="Schéma du plan de déploiement Coolify" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Couche de données — PostgreSQL + PostgREST + base Oracle</h3>
+      <p>Une API de données auto-hébergée compatible Supabase avec recherche plein texte en français, aux côtés d'une base Oracle. 500+ lignes migrées sans perte.</p>
+      <img src="assets/svc-data-layer.jpg" alt="Schéma de la couche de données Arx" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>MinIO — stockage objet compatible S3</h3>
+      <p>Stockage type S3 auto-hébergé pour les fichiers et ressources des applications, derrière Traefik comme tous les autres services.</p>
+      <img src="assets/svc-minio.jpg" alt="Schéma du stockage S3 MinIO" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Sauvegardes — automatiques, hors conteneur</h3>
+      <p>Sauvegardes planifiées des bases et volumes expédiées vers OCI Object Storage (10 Go gratuits), testées par restauration avant toute bascule.</p>
+      <img src="assets/svc-backups.jpg" alt="Schéma de l'architecture de sauvegarde" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <span class="sec-num">04 — Stack</span>
+    <h2>La stack</h2>
+    <table>
+      <thead><tr><th>Composant</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 Go de RAM, Ubuntu 24.04 — offre Always Free</td></tr>
+        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime de toutes les charges applicatives</td></tr>
+        <tr><td style="color:var(--text)">Coolify</td><td>PaaS auto-hébergé : build, déploiement, env, cron, API REST</td></tr>
+        <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, HTTPS Let's Encrypt automatique, routage hôte/chemin</td></tr>
+        <tr><td style="color:var(--text)">PostgreSQL + PostgREST</td><td>API de données auto-hébergée compatible Supabase, recherche plein texte française</td></tr>
+        <tr><td style="color:var(--text)">MinIO</td><td>Stockage objet compatible S3</td></tr>
+        <tr><td style="color:var(--text)">OCI Object Storage</td><td>Sauvegardes automatiques hors conteneur (10 Go gratuits)</td></tr>
+        <tr><td style="color:var(--text)">DuckDNS</td><td>DNS gratuit avec mise à jour d'IP par cron</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="container">
+    <span class="sec-num">05 — Phases</span>
+    <h2>Les phases de migration</h2>
+    <p class="sub">Stratégie de bascule : l'ancien hébergeur reste actif en parallèle jusqu'à validation de la cible — aucune suppression avant validation en production, sauvegardes testées avant bascule finale.</p>
+    <table>
+      <thead><tr><th>Phase</th><th>Périmètre</th><th>État</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Fondations — Docker, pare-feu 2 couches, DNS + cron</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>1</td><td>Plateforme Coolify + admin + API REST</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>2</td><td>Première app migrée depuis le local (Node)</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>3</td><td>Serveur MCP Einstein migré depuis Vercel</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>4</td><td>Services Render + tâches planifiées</td><td>⏳ En cours</td></tr>
+        <tr><td>5</td><td>Postgres auto-hébergé + sauvegardes, sortie de Supabase</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>6</td><td>Ollama — petits modèles quantifiés ARM (optionnel)</td><td>⏳ Prévu</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <strong>Benoît Sigwald</strong> ·
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">github.com/benoit-sigwald</a>
+    </div>
+    <div><a href="index-fr.html">← Retour à l'accueil</a> · <a href="oci-migration.html">English version</a></div>
+  </div>
+</footer>
+
+<script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital-fr"></script>
+</body>
+</html>
