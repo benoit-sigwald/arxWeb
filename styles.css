@@ -31,22 +31,22 @@ body {
 /* Nav */
 nav {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(255, 255, 255, .88); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(27, 53, 77, .96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo img { height: 38px; width: auto; border-radius: 8px; display: block; }
-.logo b { font-family: var(--serif); font-weight: 600; letter-spacing: .03em; color: var(--navy); font-size: 1.05rem; }
+.logo b { font-family: var(--serif); font-weight: 600; letter-spacing: .03em; color: #ffffff; font-size: 1.05rem; }
 .logo b span { color: var(--gold); }
 nav ul { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; align-items: center; }
-nav a { color: var(--muted); text-decoration: none; font-size: .92rem; transition: color .2s; }
-nav a:hover { color: var(--navy); }
+nav a { color: #b9c4d8; text-decoration: none; font-size: .92rem; transition: color .2s; }
+nav a:hover { color: #ffffff; }
 .lang-switch {
-  border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px !important;
-  color: var(--navy) !important; font-weight: 600; font-size: .82rem !important;
+  border: 1px solid rgba(255, 255, 255, .3); border-radius: 8px; padding: 4px 10px !important;
+  color: #ffffff !important; font-weight: 600; font-size: .82rem !important;
 }
-.lang-switch:hover { border-color: var(--gold); color: var(--gold) !important; }
+.lang-switch:hover { border-color: #d8bc85; color: #d8bc85 !important; }
 
 /* Hero — light, modern, navy/gold tints */
 .hero { padding: 88px 0 64px; position: relative; overflow: hidden; background: var(--navy); }
