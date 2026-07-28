@@ -112,7 +112,7 @@ h1 em { font-style: italic; background: linear-gradient(120deg, #e8d5ae, #ae8d57
 
 .hero-portrait { text-align: center; }
 .hero-portrait img {
-  width: min(300px, 80%); border-radius: 12px; display: inline-block;
+  width: 300px; max-width: 80vw; height: auto; border-radius: 12px; display: inline-block;
   box-shadow: 0 16px 48px rgba(0, 0, 0, .35);
 }
 .hero-portrait figcaption { margin-top: 12px; font-size: .82rem; color: #b9c4d8; letter-spacing: .08em; }
