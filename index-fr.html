@@ -44,6 +44,7 @@
       <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:benoit.p.g.sigwald@gmail.com">Me contacter</a>
         <a class="btn btn-ghost" href="oci-migration-fr.html">Comment j'ai construit mon cloud →</a>
+        <a class="btn btn-ghost" href="#" id="e2e-btn">L'IA pour les nuls</a>
       </div>
     </div>
     <figure class="hero-portrait">
@@ -347,6 +348,33 @@
   </div>
 </footer>
 
+<div id="e2emodal" class="modal" hidden>
+  <div class="lb-box">
+    <button class="lb-close" id="e2e-close" aria-label="Fermer">×</button>
+    <h3>L'accompagnement IA, expliqué simplement</h3>
+    <p style="color:var(--muted);font-size:.95rem">
+      Mon métier : faire passer une entreprise de « quelques personnes jouent avec ChatGPT » à
+      « tout le monde utilise l'IA chaque jour, en sécurité, et ça se voit dans les chiffres ».
+      Voici le parcours complet, de bout en bout :
+    </p>
+    <ol class="e2e-steps">
+      <li><b>Écouter d'abord</b> Je passe les premiers jours à observer comment vos équipes travaillent vraiment — où le temps se perd, ce qui est répétitif, ce qui fait peur dans l'IA.</li>
+      <li><b>Trouver les champions</b> Dans chaque entreprise, quelques personnes tirent déjà une vraie valeur de l'IA. Je les repère et j'en fais l'exemple visible que les autres ont envie de suivre.</li>
+      <li><b>Poser des règles de sécurité simples</b> Quelles données peuvent aller dans quel outil — écrites en mots simples que tout le monde retient. Pas une politique de 50 pages que personne n'ouvre.</li>
+      <li><b>Choisir des victoires rapides</b> Deux ou trois cas d'usage visibles et sans risque, pour que toute l'entreprise voie un bénéfice en quelques semaines — comme l'analyse récurrente au Crédit Agricole devenue 60 % plus rapide.</li>
+      <li><b>Former par la pratique</b> Pas de slides, pas de théâtre de formation. Chacun s'exerce sur son propre travail réel — les débutants prennent confiance, les avancés deviennent des utilisateurs experts.</li>
+      <li><b>Mesurer ce qui compte</b> Pas les feuilles de présence : l'adoption (qui l'utilise vraiment chaque semaine) et un chiffre métier, convenu dès le départ.</li>
+    </ol>
+    <div class="e2e-why">
+      <b>Pourquoi le « hands-on » est tout le secret.</b> On n'apprend pas à nager avec un diaporama —
+      et l'IA non plus. La confiance ne vient qu'en faisant : taper le prompt soi-même, le voir échouer,
+      le corriger, le voir réussir sur <em>son propre</em> travail. C'est là que l'habitude s'installe.
+      Et je m'applique la même règle : je construis et j'exploite mes propres systèmes d'IA chaque jour —
+      mon cloud, mes agents, ce site même. Je ne recommande jamais rien que je n'aie fait de mes mains.
+      On suit un guide qui marche le chemin, pas un guide qui montre la carte.
+    </div>
+  </div>
+</div>
 <div id="lightbox" hidden>
   <div class="lb-box">
     <button class="lb-close" aria-label="Fermer">×</button>
@@ -374,7 +402,13 @@
   });
   function close(){ lb.hidden = true; document.body.style.overflow = ''; }
   lb.addEventListener('click', function(e){ if (e.target === lb || e.target.classList.contains('lb-close')) close(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  var em = document.getElementById('e2emodal');
+  function closeEm(){ em.hidden = true; document.body.style.overflow = ''; }
+  document.getElementById('e2e-btn').addEventListener('click', function(e){
+    e.preventDefault(); em.hidden = false; document.body.style.overflow = 'hidden';
+  });
+  em.addEventListener('click', function(e){ if (e.target === em || e.target.id === 'e2e-close') closeEm(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { close(); closeEm(); } });
 })();
 </script>
 <script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital-fr"></script>

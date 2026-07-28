@@ -43,6 +43,7 @@
       <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:benoit.p.g.sigwald@gmail.com">Get in touch</a>
         <a class="btn btn-ghost" href="oci-migration.html">How I built my own cloud →</a>
+        <a class="btn btn-ghost" href="#" id="e2e-btn">AI Enablement for dummies</a>
       </div>
     </div>
     <figure class="hero-portrait">
@@ -345,6 +346,32 @@
   </div>
 </footer>
 
+<div id="e2emodal" class="modal" hidden>
+  <div class="lb-box">
+    <button class="lb-close" id="e2e-close" aria-label="Close">×</button>
+    <h3>AI enablement, explained simply</h3>
+    <p style="color:var(--muted);font-size:.95rem">
+      My job: take a company from "a few people play with ChatGPT" to "everyone uses AI every day,
+      safely, and it shows in the numbers". Here is the whole journey, end to end:
+    </p>
+    <ol class="e2e-steps">
+      <li><b>Listen first</b> I spend the first days watching how your teams really work — where time is lost, what is repetitive, what people fear about AI.</li>
+      <li><b>Find the champions</b> In every company, a few people are already getting real value from AI. I find them and make them the visible example others want to follow.</li>
+      <li><b>Set simple safety rules</b> Which data may go into which tool — written in plain words everyone remembers. Not a 50-page policy nobody opens.</li>
+      <li><b>Pick quick wins</b> Two or three low-risk, highly visible use cases, so the whole company sees a benefit within weeks — like the recurring analysis at Crédit Agricole that got 60% faster.</li>
+      <li><b>Train hands-on</b> No slides, no theory theatre. Everyone practises on their own real work — beginners get confidence, advanced users become power users.</li>
+      <li><b>Measure what matters</b> Not attendance sheets: adoption (who actually uses it weekly) and one business number, agreed up front.</li>
+    </ol>
+    <div class="e2e-why">
+      <b>Why "hands-on" is the whole secret.</b> You cannot teach someone to swim with a slideshow —
+      and you cannot teach AI with one either. Confidence only comes from doing: typing the prompt yourself,
+      seeing it fail, fixing it, seeing it win on <em>your own</em> work. That's when the habit sticks.
+      And I hold myself to the same rule: I build and run my own AI systems every day — my own cloud,
+      my own agents, this very website. I never recommend anything I haven't done with my own hands.
+      People follow a guide who walks the path, not one who points at the map.
+    </div>
+  </div>
+</div>
 <div id="lightbox" hidden>
   <div class="lb-box">
     <button class="lb-close" aria-label="Close">×</button>
@@ -372,7 +399,13 @@
   });
   function close(){ lb.hidden = true; document.body.style.overflow = ''; }
   lb.addEventListener('click', function(e){ if (e.target === lb || e.target.classList.contains('lb-close')) close(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  var em = document.getElementById('e2emodal');
+  function closeEm(){ em.hidden = true; document.body.style.overflow = ''; }
+  document.getElementById('e2e-btn').addEventListener('click', function(e){
+    e.preventDefault(); em.hidden = false; document.body.style.overflow = 'hidden';
+  });
+  em.addEventListener('click', function(e){ if (e.target === em || e.target.id === 'e2e-close') closeEm(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { close(); closeEm(); } });
 })();
 </script>
 <script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital"></script>
