@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OCI Migration — Benoît Sigwald | Arx Capital</title>
+<meta name="description" content="How I migrated my entire tech stack onto a free Oracle Cloud ARM server with Claude Code: Coolify, Docker, Traefik, PostgREST, MinIO — zero running cost." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html">ARX<span>CAPITAL</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#story">The story</a></li>
+      <li><a href="#diagrams">Diagrams</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#phases">Phases</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="kicker">Case study · Built with Claude Code</span>
+    <h1>The OCI migration:<br /><em>a personal cloud at €0/month.</em></h1>
+    <p class="lede">
+      In one month, hands-on with Claude Code as my pair, I moved my entire stack — websites, apps,
+      MCP servers, databases — off Vercel, Render and Supabase onto a single Oracle Cloud
+      "Always Free" ARM server, driven by a self-hosted Vercel-style platform.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>€0</b><span>monthly running cost</span></div>
+      <div class="stat"><b>4 / 24</b><span>ARM cores / GB RAM (Always Free)</span></div>
+      <div class="stat"><b>500+</b><span>DB rows migrated, zero loss</span></div>
+      <div class="stat"><b>1 push</b><span>= 1 production deployment</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="story">
+  <div class="container">
+    <h2>Why, and how</h2>
+    <p class="sub">The goal: centralize everything on one free server, without giving up the developer experience of Vercel or Render.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>1 · Foundation</h3>
+        <p>Ubuntu 24.04 on an OCI Ampere A1 (ARM64). Two firewall layers — OCI Security List + instance iptables — DuckDNS subdomains with a cron-based IP updater.</p>
+      </div>
+      <div class="card">
+        <h3>2 · The platform</h3>
+        <p>Coolify as a self-hosted PaaS: builds from GitHub, deploys Docker containers, manages env vars and cron. Traefik terminates HTTPS with automatic Let's Encrypt certificates.</p>
+      </div>
+      <div class="card">
+        <h3>3 · The workloads</h3>
+        <p>MCP servers, web services and API servers, each in its own container, routed by hostname and path. Test and prod environments, deployed by git push (Coolify webhook).</p>
+      </div>
+      <div class="card">
+        <h3>4 · The data</h3>
+        <p>Self-hosted PostgreSQL/PostgREST (same API syntax as Supabase — zero code change) plus an Oracle DB. 500+ rows migrated with full-text search intact; automated backups to OCI Object Storage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diagrams">
+  <div class="container">
+    <h2>Architecture diagrams</h2>
+    <p class="sub">The complete picture, from migration flow to service layer.</p>
+
+    <div class="diagram">
+      <h3>Migration overview</h3>
+      <p>What moved from where: Vercel, Render, Supabase and local workloads consolidated onto the OCI server.</p>
+      <img src="assets/oci-migration-en.png" alt="OCI migration overview diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Infrastructure architecture</h3>
+      <p>Internet traffic crosses two firewall layers, reaches Traefik which terminates TLS, and is routed to the right container. Coolify builds from GitHub and manages the lifecycle.</p>
+      <img src="assets/arx-infra-architecture.png" alt="Arx infrastructure architecture diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>Component data flow</h3>
+      <p>How requests, builds and data move between the proxy, the applications, the databases and object storage.</p>
+      <img src="assets/oci-component-data-flow.png" alt="OCI component data flow diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>PaaS service layer</h3>
+      <p>The Coolify control plane: builds, deployments, environment variables, scheduled tasks.</p>
+      <img src="assets/arx-paas-service-layer.png" alt="Arx PaaS service layer diagram" loading="lazy" />
+    </div>
+
+    <div class="diagram">
+      <h3>PaaS details</h3>
+      <p>A closer look at the platform internals and how each hosted service fits in.</p>
+      <img src="assets/arx-paas-details.png" alt="Arx PaaS details diagram" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <h2>The stack</h2>
+    <table>
+      <thead><tr><th>Component</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 GB RAM, Ubuntu 24.04 — Always Free tier</td></tr>
+        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime for every workload</td></tr>
+        <tr><td style="color:var(--text)">Coolify</td><td>Self-hosted PaaS: build, deploy, env, cron, REST API</td></tr>
+        <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, automatic Let's Encrypt HTTPS, host/path routing</td></tr>
+        <tr><td style="color:var(--text)">PostgreSQL + PostgREST</td><td>Self-hosted Supabase-compatible data API, French full-text search</td></tr>
+        <tr><td style="color:var(--text)">MinIO</td><td>S3-compatible object storage</td></tr>
+        <tr><td style="color:var(--text)">OCI Object Storage</td><td>Automated off-container backups (10 GB free)</td></tr>
+        <tr><td style="color:var(--text)">DuckDNS</td><td>Free DNS with cron-based IP updates</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="container">
+    <h2>Migration phases</h2>
+    <p class="sub">Cutover strategy: the old host stays live in parallel until the target is validated — no deletion before production validation, backups tested before final cutover.</p>
+    <table>
+      <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Foundation — Docker, 2-layer firewall, DNS + cron</td><td class="ok">✅ Done</td></tr>
+        <tr><td>1</td><td>Coolify platform + admin + REST API</td><td class="ok">✅ Done</td></tr>
+        <tr><td>2</td><td>First app migrated from local (Node)</td><td class="ok">✅ Done</td></tr>
+        <tr><td>3</td><td>Einstein MCP server migrated from Vercel</td><td class="ok">✅ Done</td></tr>
+        <tr><td>4</td><td>Render services + scheduled jobs</td><td>⏳ In progress</td></tr>
+        <tr><td>5</td><td>Postgres self-hosting + backups, off Supabase</td><td class="ok">✅ Done</td></tr>
+        <tr><td>6</td><td>Ollama — small ARM-quantized models (optional)</td><td>⏳ Planned</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <strong style="color:var(--text)">Benoît Sigwald</strong> ·
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">github.com/benoit-sigwald</a>
+    </div>
+    <div><a href="index.html">← Back to home</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
