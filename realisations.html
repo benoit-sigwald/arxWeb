@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case studies &amp; platform | Arx Capital</title>
+<meta name="description" content="The systems I designed, built and run myself — and the code behind them." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"><img src="assets/logo.png" alt="Arx Capital" /><b>ARX <span>Capital</span></b></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="approche.html">About me</a></li>
+      <li><a href="oci-migration.html">OCI</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="lang-switch" href="realisations-fr.html">FR</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container" style="display:block">
+    <span class="kicker">Arx Capital</span>
+    <h1>What I've built</h1>
+    <p class="lede">The systems I designed, built and run myself — and the code behind them.</p>
+  </div>
+</header>
+
+<section id="services" data-reveal class="collapsible">
+  <div class="container">
+    <span class="sec-num">08 — In production</span>
+    <h2>Running on my platform, right now</h2>
+    <p class="sub">Every service below is designed, built and operated by me — each one containerized, deployed by git push and served over HTTPS from the OCI cloud. Click a card to open the diagram full size.</p>
+    <button class="collapse-btn" data-more="Show all" data-less="Show less">Show all</button>
+    <div class="svc-grid">
+      <div class="svc" data-title="Blackstone — trading signal engine"
+           data-desc="Multi-asset trading signal engine (forex, commodities, crypto) running four documented, literature-backed strategies on free real-time data. Phase 1 is signals-only by design — no order execution: every strategy is backtested first, every signal is journaled in the shared Oracle database and pushed to mobile via self-hosted ntfy. Hexagonal architecture: pure domain, unified signal engine, pluggable broker adapters.">
+        <img src="assets/svc-blackstone.jpg" alt="Blackstone trading AI robot architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Blackstone — trading signal engine</h3>
+          <p>Multi-asset signal engine built on documented, literature-backed strategies. Signals only by design.</p>
+        </div>
+      </div>
+      <div class="svc" data-title="Prisme — psycho-symbolism engine"
+           data-desc="A Python analysis engine exploring psychology and symbolism, exposed as an MCP server so Claude can drive it in natural language. It has its own PostgREST schema in the shared PostgreSQL database and its own path behind Traefik — the same isolation pattern as every other service on the platform.">
+        <img src="assets/svc-prisme.jpg" alt="Prisme psycho-symbolism engine architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Prisme — psycho-symbolism engine</h3>
+          <p>A Python analysis engine exploring symbolism and psychology, exposed as an API on the platform.</p>
+        </div>
+      </div>
+      <div class="svc" data-title="Immo Rapido — French real-estate MCP"
+           data-desc="An MCP server over French public real-estate data — property transactions (DVF), zoning, market signals — queryable in natural language straight from Claude. Python, deployed behind Traefik with automatic HTTPS and its own data schema, like every service on the platform.">
+        <img src="assets/svc-immo-rapido.jpg" alt="Immo Rapido architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Immo Rapido — French real-estate MCP</h3>
+          <p>An MCP server over French public real-estate data — transactions, zoning, market signals.</p>
+        </div>
+      </div>
+      <div class="svc" data-title="Chef Jason — LLM web app"
+           data-desc="A public LLM-powered web application (Node/Express) — the first workload migrated from local hosting onto the platform, and the proof-of-concept for the whole pipeline: git push, Coolify build, Docker container, Traefik HTTPS routing.">
+        <img src="assets/svc-chef-jason.jpg" alt="Chef Jason architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Chef Jason — LLM web app</h3>
+          <p>A public LLM-powered web application (Node/Express) — the first workload migrated onto the platform.</p>
+        </div>
+      </div>
+      <div class="svc" data-title="Innovat — web sites"
+           data-desc="Static and dynamic sites served through Traefik with automatic Let's Encrypt HTTPS — including the site you are reading right now. Each site is a Coolify application deployed from its own GitHub repository by git push, with test and prod environments.">
+        <img src="assets/svc-innovat.jpg" alt="Innovat web sites architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Innovat — web sites</h3>
+          <p>Static and dynamic sites served through Traefik with automatic HTTPS — including this one.</p>
+        </div>
+      </div>
+      <div class="svc" data-title="Einstein — MCP research server"
+           data-desc="An MCP research server designed, built and hosted by me: free web search (DuckDuckGo), page reading, and a persistent archive of sourced research syntheses stored in self-hosted PostgREST with French full-text search. The server contains no LLM — Claude orchestrates, Einstein provides the tools and the memory. Nearly twenty deep-research dossiers archived and searchable.">
+        <img src="assets/svc-einstein.jpg" alt="Einstein MCP research server architecture diagram" loading="lazy" />
+        <div class="svc-body">
+          <h3>Einstein — MCP research server</h3>
+          <p>Web search, page reading and a persistent archive of sourced research syntheses, driven by Claude.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="github" data-reveal class="collapsible">
+  <div class="container">
+    <span class="sec-num">07 — GitHub</span>
+    <h2>What I've been shipping</h2>
+    <p class="sub">
+      <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener" style="color:var(--navy)">github.com/benoit-sigwald</a>
+      — all built with Claude Code, most deployed on my self-hosted OCI PaaS.
+    </p>
+    <button class="collapse-btn" data-more="Show all" data-less="Show less">Show all</button>
+    <div class="grid">
+      <div class="card">
+        <h3><a href="https://github.com/benoit-sigwald/arxWeb" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">arxWeb</a></h3>
+        <p>This very site — profile landing + OCI migration case study, deployed by git push via Coolify.</p>
+        <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag alt">public</span></div>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/benoit-sigwald/arx-tracker" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">arx-tracker</a></h3>
+        <p>Self-hosted visitor tracker: JS beacon, geo-IP enrichment, Oracle ATP storage, monitoring dashboard with map.</p>
+        <div class="tag-row"><span class="tag">Node</span><span class="tag">Oracle ATP</span><span class="tag alt">public</span></div>
+      </div>
+      <div class="card">
+        <h3>einstein-mcp</h3>
+        <p>MCP research server: free web search, page reading, and a persistent archive of sourced research syntheses with French full-text search.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>blackstone-mcp</h3>
+        <p>Multi-asset trading signal engine — 4 documented strategies on real-time data, mobile alerts via ntfy, full journaling. Signals only by design.</p>
+        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>tradingview-mcp</h3>
+        <p>MCP bridge connecting Claude Code to TradingView Desktop via Chrome DevTools Protocol — AI-assisted chart analysis and Pine Script development.</p>
+        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">MCP</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>better-call-saul</h3>
+        <p>Multi-agent legal assistant producing fully sourced French litigation notes via Légifrance (OpenLegi MCP) — orchestrator + specialist research agents.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Multi-agent</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/benoit-sigwald/cv-optimizer" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">cv-optimizer</a></h3>
+        <p>Industrialises job applications: paste a job spec, get a tailored one-page DOCX CV and cover letter, with ATS keyword scoring before/after.</p>
+        <div class="tag-row"><span class="tag">Claude Code</span><span class="tag alt">public</span></div>
+      </div>
+      <div class="card">
+        <h3>cv-candidatures</h3>
+        <p>Private data companion of cv-optimizer — master CV, application history and analyses, kept out of the public repo as a submodule.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>OCI-Migration</h3>
+        <p>The migration playbook: infrastructure docs, deployment scripts and diagrams for moving every workload onto the OCI Always Free server.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">IaC</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>immo-rapido-mcp</h3>
+        <p>MCP server over French public real-estate data — transactions, zoning, market signals — queryable straight from Claude.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>prisme</h3>
+        <p>Psycho-symbolism analysis engine exposed as an MCP server, with its own PostgREST schema on the platform.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/benoit-sigwald/chef-jason" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">chef-jason</a></h3>
+        <p>LLM-powered web app (Node/Express) — the first workload migrated onto the platform and the proof of the push-to-deploy pipeline.</p>
+        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag alt">public</span></div>
+      </div>
+      <div class="card">
+        <h3>Lindenhof</h3>
+        <p>Website project hosted on the platform, deployed from its own repo with a dedicated deploy key.</p>
+        <div class="tag-row"><span class="tag">HTML</span><span class="tag alt">private</span></div>
+      </div>
+      <div class="card">
+        <h3>jiaowang</h3>
+        <p>Private TypeScript application — work in progress.</p>
+        <div class="tag-row"><span class="tag">TypeScript</span><span class="tag alt">private</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-reveal>
+  <div class="container" style="text-align:center">
+    <h2>Let's talk for 30 minutes</h2>
+    <p class="sub" style="margin:0 auto 28px">Tell me where your time goes today. If I see nothing worth doing, I'll tell you straight away.</p>
+    <a class="btn btn-primary" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+    <p class="hero-alt" style="margin-top:14px">Or call me: <a href="tel:+33613705321">+33 6 13 70 53 21</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img class="flogo" src="assets/logo.png" alt="" />
+    <div>
+      <strong>Benoît Sigwald</strong> · Mougins, France<br />
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="tel:+33613705321">+33 6 13 70 53 21</a>
+    </div>
+    <div>
+      <a href="index.html">← Back to home</a> · <a href="mentions-legales.html">Legal &amp; privacy</a>
+    </div>
+  </div>
+</footer>
+
+<div id="lightbox" hidden>
+  <div class="lb-box">
+    <button class="lb-close" aria-label="Close">×</button>
+    <h3 id="lb-title"></h3>
+    <img id="lb-img" src="" alt="" />
+    <p id="lb-desc"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle'), n = document.querySelector('nav');
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  var lb = document.getElementById('lightbox');
+  function open2(el, img){
+    document.getElementById('lb-title').textContent = el.getAttribute('data-title') || '';
+    document.getElementById('lb-desc').textContent = el.getAttribute('data-desc') || '';
+    var big = document.getElementById('lb-img');
+    big.src = img.src; big.alt = img.alt;
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  document.querySelectorAll('.svc').forEach(function(c){
+    c.addEventListener('click', function(){ open2(c, c.querySelector('img')); });
+  });
+  function close(){ lb.hidden = true; document.body.style.overflow = ''; }
+  lb.addEventListener('click', function(e){ if (e.target === lb || e.target.classList.contains('lb-close')) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+</script>
+<script defer src="/gate/t.js" data-site="arxcapital"></script>
+<script id="js-reveal">
+(function(){
+  // apparition au défilement
+  var els = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('seen'); }); }
+
+  // compteurs animés
+  function animate(el){
+    var raw = el.getAttribute('data-count'), n = parseFloat(raw), pre = el.getAttribute('data-pre') || '',
+        suf = el.getAttribute('data-suf') || '', t0 = null, dur = 1100;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var k = Math.min((ts - t0) / dur, 1), v = Math.round(n * (1 - Math.pow(1 - k, 3)));
+      el.textContent = pre + v + suf;
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); } });
+    });
+    counters.forEach(function(el){ io2.observe(el); });
+  }
+
+  // accordéons mobile
+  document.querySelectorAll('.collapse-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var sec = b.closest('.collapsible');
+      var open = sec.classList.toggle('open');
+      b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
+    });
+  });
+})();
+</script>
+</body>
+</html>
