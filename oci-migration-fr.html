@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Migration OCI — Benoît Sigwald | Arx Capital</title>
-<meta name="description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM Oracle Cloud gratuit avec Claude Code : Coolify, Docker, Traefik, PostgREST, MinIO — coût de fonctionnement nul." />
+<meta name="description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -32,11 +32,12 @@
 <header class="hero">
   <div class="container" style="display:block">
     <span class="kicker">Étude de cas · Construit avec Claude Code</span>
-    <h1>La migration OCI :<br /><em>un cloud personnel à 0 €/mois.</em></h1>
+    <h1>La migration OCI :<br /><em>12 services, une plateforme que j'exploite de bout en bout.</em></h1>
     <p class="lede">
       En un mois, avec Claude Code en binôme, j'ai déplacé toute ma stack — sites web, applications,
-      serveurs MCP, bases de données — de Vercel, Render et Supabase vers un unique serveur ARM
-      Oracle Cloud « Always Free », piloté par une plateforme auto-hébergée façon Vercel.
+      serveurs MCP, bases de données — de Vercel, Render et Supabase vers un unique serveur ARM que
+      j'exploite de bout en bout : HTTPS automatique, déploiement par git push, sauvegardes
+      automatiques et reprise après sinistre testée.
     </p>
   </div>
 </header>
@@ -44,7 +45,7 @@
 <div class="stats-band">
   <div class="container">
     <div class="stats">
-      <div class="stat"><b>0 €</b><span>de coût de fonctionnement mensuel</span></div>
+      <div class="stat"><b>24/7</b><span>en production, sauvegardé et restaurable</span></div>
       <div class="stat"><b>4 / 24</b><span>cœurs ARM / Go de RAM (Always Free)</span></div>
       <div class="stat"><b>500+</b><span>lignes de base migrées, zéro perte</span></div>
       <div class="stat"><b>1 push</b><span>= 1 déploiement en production</span></div>
@@ -155,13 +156,13 @@
     <table>
       <thead><tr><th>Composant</th><th>Rôle</th></tr></thead>
       <tbody>
-        <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 Go de RAM, Ubuntu 24.04 — offre Always Free</td></tr>
+        <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 Go de RAM, Ubuntu 24.04 — offre gratuite Oracle</td></tr>
         <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime de toutes les charges applicatives</td></tr>
         <tr><td style="color:var(--text)">Coolify</td><td>PaaS auto-hébergé : build, déploiement, env, cron, API REST</td></tr>
         <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, HTTPS Let's Encrypt automatique, routage hôte/chemin</td></tr>
         <tr><td style="color:var(--text)">PostgreSQL + PostgREST</td><td>API de données auto-hébergée compatible Supabase, recherche plein texte française</td></tr>
         <tr><td style="color:var(--text)">MinIO</td><td>Stockage objet compatible S3</td></tr>
-        <tr><td style="color:var(--text)">OCI Object Storage</td><td>Sauvegardes automatiques hors conteneur (10 Go gratuits)</td></tr>
+        <tr><td style="color:var(--text)">OCI Object Storage</td><td>Sauvegardes automatiques hors conteneur, reprise après sinistre testée</td></tr>
         <tr><td style="color:var(--text)">DuckDNS</td><td>DNS gratuit avec mise à jour d'IP par cron</td></tr>
       </tbody>
     </table>
