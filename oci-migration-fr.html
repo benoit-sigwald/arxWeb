@@ -16,6 +16,7 @@
 <nav>
   <div class="container">
     <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Capital" /><b>ARX <span>Capital</span></b></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="index-fr.html">Accueil</a></li>
       <li><a href="#story">Le récit</a></li>
@@ -199,6 +200,18 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle'), n = document.querySelector('nav');
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  n.querySelectorAll('ul a').forEach(function(a){
+    a.addEventListener('click', function(){ n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+</script>
 <script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital-fr"></script>
 </body>
 </html>

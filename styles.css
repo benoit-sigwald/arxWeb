@@ -47,6 +47,22 @@ nav a:hover { color: #ffffff; }
   color: #ffffff !important; font-weight: 600; font-size: .82rem !important;
 }
 .lang-switch:hover { border-color: #d8bc85; color: #d8bc85 !important; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: #ffffff; margin: 5px 0; border-radius: 2px; transition: transform .2s, opacity .2s; }
+nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 820px) {
+  .nav-toggle { display: block; }
+  nav ul {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: rgba(27, 53, 77, .98); flex-direction: column; gap: 0;
+    padding: 8px 24px 16px; border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
+  nav.open ul { display: flex; }
+  nav ul li { padding: 9px 0; }
+  nav ul a { font-size: 1rem; }
+}
 
 /* Hero — light, modern, navy/gold tints */
 .hero { padding: 88px 0 64px; position: relative; overflow: hidden; background: var(--navy); }
