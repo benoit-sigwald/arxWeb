@@ -34,6 +34,7 @@
     <a class="logo" href="index.html"><img src="assets/logo.png" alt="Arx Capital" /><b>ARX <span>Capital</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
+      <li><a href="#urls">Addresses</a></li>
       <li><a href="index.html">Home</a></li>
       <li><a href="approche.html">About me</a></li>
       <li><a href="oci-migration.html">OCI</a></li>
@@ -51,9 +52,38 @@
   </div>
 </header>
 
+<section id="urls" data-reveal>
+  <div class="container">
+    <span class="sec-num">01 — The addresses</span>
+    <h2>Everything running in production</h2>
+    <p class="sub">Sixteen live addresses on a single infrastructure I run end to end. Public links are clickable; the others need my approval.</p>
+    <table>
+      <thead><tr><th>Address — What it is</th><th>Description</th><th>Access</th></tr></thead>
+      <tbody>
+      <tr><td style="color:var(--text)"><b>This site</b><br><a href="https://arxcapital.duckdns.org" target="_blank" rel="noopener">arxcapital.duckdns.org</a></td><td>Arx Capital showcase, bilingual FR/EN, with built-in visit tracking.</td><td><span class="tag">Public</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Private-access offer</b><br><a href="https://arxcapital.duckdns.org/acces-prive.html" target="_blank" rel="noopener">arxcapital.duckdns.org/acces-prive.html</a></td><td>Product page for the gate + tracking service sold to agencies.</td><td><span class="tag">Public</span></td></tr>
+      <tr><td style="color:var(--text)"><b>10-rule guide</b><br><a href="https://arxcapital.duckdns.org/guide-ia-donnees.html" target="_blank" rel="noopener">arxcapital.duckdns.org/guide-ia-donnees.html</a></td><td>Free printable guide: adopting AI without exposing your data.</td><td><span class="tag">Public</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Villa d'exception, Super Cannes</b><br><span class="m">arx-sites.duckdns.org/877/</span></td><td>Sales file for a prestige property, behind the access gate.</td><td><span class="tag">Private</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Villa Rose, Cannes</b><br><span class="m">arx-sites.duckdns.org/50/</span></td><td>Belle Époque property by SAOTA, access on approval.</td><td><span class="tag">Private</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Les Cactus, Super Cannes</b><br><span class="m">arx-sites.duckdns.org/cactus/</span></td><td>Two-villa estate, sales file and building permits.</td><td><span class="tag">Private</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Prospect gate</b><br><a href="https://arx-apps.duckdns.org/gate" target="_blank" rel="noopener">arx-apps.duckdns.org/gate</a></td><td>Access form, mobile approval, one prospect database per site.</td><td><span class="tag">Public</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Prospect back-office</b><br><span class="m">arx-apps.duckdns.org/gate/admin</span></td><td>Records, named visits, conversion funnel, CSV export.</td><td><span class="tag">Protected</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Blackstone — signals</b><br><span class="m">arx-apps.duckdns.org/blackstone</span></td><td>Dashboard of the multi-asset trading signal engine.</td><td><span class="tag">Protected</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Visitor tracker</b><br><span class="m">arx-apps.duckdns.org/tracker</span></td><td>First version of the self-hosted audience tracking.</td><td><span class="tag">Protected</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Einstein — MCP server</b><br><span class="m">arx-mcp.duckdns.org/einstein</span></td><td>Web search and archive of sourced research, driven by Claude.</td><td><span class="tag">Token</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Immo Rapido — MCP server</b><br><span class="m">arx-mcp.duckdns.org/immo-rapido</span></td><td>French public real-estate data, queryable in plain language.</td><td><span class="tag">Token</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Prisme — MCP server</b><br><span class="m">arx-mcp.duckdns.org/prisme</span></td><td>Psycho-symbolism analysis engine exposed as an API.</td><td><span class="tag">Token</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Data API</b><br><span class="m">arx-mcp.duckdns.org/rest/v1</span></td><td>Self-hosted PostgREST, one isolated schema per application.</td><td><span class="tag">Token</span></td></tr>
+      <tr><td style="color:var(--text)"><b>CV dashboard</b><br><span class="m">arx-sites.duckdns.org/candidatures</span></td><td>Job-application tracking and ATS scoring.</td><td><span class="tag">Protected</span></td></tr>
+      <tr><td style="color:var(--text)"><b>Chef Jason</b><br><a href="https://bidules.duckdns.org/le-chef-jason" target="_blank" rel="noopener">bidules.duckdns.org/le-chef-jason</a></td><td>LLM-powered web app, the first workload migrated.</td><td><span class="tag">Public</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <section id="services" data-reveal class="collapsible">
   <div class="container">
-    <span class="sec-num">08 — In production</span>
+    <span class="sec-num">02 — In production</span>
     <h2>Running on my platform, right now</h2>
     <p class="sub">Every service below is designed, built and operated by me — each one containerized, deployed by git push and served over HTTPS from the OCI cloud. Click a card to open the diagram full size.</p>
     <button class="collapse-btn" data-more="Show all" data-less="Show less">Show all</button>
@@ -112,7 +142,7 @@
 
 <section id="github" data-reveal class="collapsible">
   <div class="container">
-    <span class="sec-num">07 — GitHub</span>
+    <span class="sec-num">03 — GitHub</span>
     <h2>What I've been shipping</h2>
     <p class="sub">
       <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener" style="color:var(--navy)">github.com/benoit-sigwald</a>

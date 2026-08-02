@@ -216,6 +216,19 @@ h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 600; margin-bott
 .quote blockquote { margin: 0; padding-top: 14px; color: var(--text); font-size: .95rem; font-style: italic; }
 .quote figcaption { margin-top: 14px; color: var(--gold); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
 
+/* Phrase de clôture */
+.closing {
+  margin: 40px auto 0; max-width: 620px; font-family: var(--serif); font-size: 1.35rem;
+  font-style: italic; line-height: 1.4; color: var(--navy);
+}
+.closing::before { content: ""; display: block; width: 48px; height: 2px; background: var(--gold); margin: 0 auto 22px; }
+
+/* Variantes visuelles des témoignages */
+.quote.q1 { border-left: 3px solid var(--navy); }
+.quote.q2 { border-left: 3px solid var(--gold); }
+.quote.q3 { border-left: 3px solid var(--navy-2); }
+.quote.q2 { background: var(--gold-soft); }
+
 /* Timeline */
 .timeline { border-left: 2px solid var(--navy-soft); margin-left: 8px; padding-left: 28px; }
 .tl-item { position: relative; padding-bottom: 36px; }
