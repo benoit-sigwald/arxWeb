@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About me | Arx Capital</title>
 <meta name="description" content="Where I come from, how I work, and what I keep learning." />
+<link rel="canonical" href="https://arxcapital.duckdns.org/approche.html" />
+<link rel="alternate" hreflang="en" href="https://arxcapital.duckdns.org/approche.html" />
+<link rel="alternate" hreflang="fr" href="https://arxcapital.duckdns.org/approche-fr.html" />
+<link rel="alternate" hreflang="x-default" href="https://arxcapital.duckdns.org/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Arx Capital" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://arxcapital.duckdns.org/approche.html" />
+<meta property="og:title" content="About me | Arx Capital" />
+<meta property="og:description" content="Where I come from, how I work, and what I keep learning." />
+<meta property="og:image" content="https://arxcapital.duckdns.org/assets/portrait.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="About me | Arx Capital" />
+<meta name="twitter:description" content="Where I come from, how I work, and what I keep learning." />
+<meta name="twitter:image" content="https://arxcapital.duckdns.org/assets/portrait.jpg" />
+<meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -186,6 +202,16 @@
       var sec = b.closest('.collapsible');
       var open = sec.classList.toggle('open');
       b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
+    });
+  });
+
+  // mesure des clics sur le bouton de réservation
+  document.querySelectorAll('a[href*="calendly.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try {
+        var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+      } catch(e){}
     });
   });
 })();

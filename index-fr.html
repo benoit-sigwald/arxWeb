@@ -5,11 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Benoît Sigwald — J'aide les entreprises à adopter l'IA | Arx Capital</title>
 <meta name="description" content="J'aide les entreprises à adopter l'IA en toute sécurité et à la transformer en résultats mesurables. Pour les PME, ETI et dirigeants sans DSI." />
+<link rel="canonical" href="https://arxcapital.duckdns.org/index-fr.html" />
+<link rel="alternate" hreflang="fr" href="https://arxcapital.duckdns.org/index-fr.html" />
+<link rel="alternate" hreflang="en" href="https://arxcapital.duckdns.org/index.html" />
+<link rel="alternate" hreflang="x-default" href="https://arxcapital.duckdns.org/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Arx Capital" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:url" content="https://arxcapital.duckdns.org/index-fr.html" />
+<meta property="og:title" content="Benoît Sigwald — J'aide les entreprises à adopter l'IA | Arx Capital" />
+<meta property="og:description" content="J'aide les entreprises à adopter l'IA en toute sécurité et à la transformer en résultats mesurables. Pour les PME, ETI et dirigeants sans DSI." />
+<meta property="og:image" content="https://arxcapital.duckdns.org/assets/portrait.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Benoît Sigwald — J'aide les entreprises à adopter l'IA | Arx Capital" />
+<meta name="twitter:description" content="J'aide les entreprises à adopter l'IA en toute sécurité et à la transformer en résultats mesurables. Pour les PME, ETI et dirigeants sans DSI." />
+<meta name="twitter:image" content="https://arxcapital.duckdns.org/assets/portrait.jpg" />
+<meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arx Capital",
+"description":"J'aide les entreprises à adopter l'IA en toute sécurité et à la transformer en résultats mesurables.",
+"url":"https://arxcapital.duckdns.org/index-fr.html","image":"https://arxcapital.duckdns.org/assets/portrait.jpg","telephone":"+33613705321",
+"email":"benoit.p.g.sigwald@gmail.com","founder":{"@type":"Person","name":"Benoît Sigwald","jobTitle":"Consultant en adoption de l'IA"},
+"address":{"@type":"PostalAddress","addressLocality":"Mougins","addressCountry":"FR"},
+"areaServed":"EU","knowsAbout":["adoption de l'IA","gouvernance IA","RGPD","AI Act","infrastructure cloud"]}
+</script>
 </head>
 <body>
 
@@ -238,7 +262,7 @@
         <p>Non — c'est précisément ce que j'empêche. Nous décidons ensemble quelle classe de données
         peut aller dans quel outil, je mets en place la liste des outils validés, et si nécessaire
         j'héberge l'assistant sur une infrastructure en France que j'exploite moi-même. Vos fichiers
-        ne sortent jamais du périmètre défini.</p>
+        ne sortent jamais du périmètre défini.<br /><a href="guide-ia-donnees.html"><b>Guide gratuit : les 10 règles pour adopter l'IA sans exposer ses données →</b></a></p>
       </details>
       <details>
         <summary>Au bout de combien de temps voit-on quelque chose ?</summary>
@@ -295,7 +319,7 @@
     </div>
     <div>
       Construit avec Claude Code · Hébergé sur mon propre cloud OCI<br />
-      <a href="oci-migration-fr.html">Comment c'est hébergé →</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="index.html">English version</a>
+      <a href="oci-migration-fr.html">Comment c'est hébergé →</a> · <a href="guide-ia-donnees.html">Guide gratuit</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="index.html">English version</a>
     </div>
   </div>
 </footer>
@@ -380,6 +404,16 @@
       var sec = b.closest('.collapsible');
       var open = sec.classList.toggle('open');
       b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
+    });
+  });
+
+  // mesure des clics sur le bouton de réservation
+  document.querySelectorAll('a[href*="calendly.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try {
+        var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+      } catch(e){}
     });
   });
 })();

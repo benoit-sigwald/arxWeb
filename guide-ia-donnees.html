@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adopter l'IA sans exposer ses données — 10 règles | Arx Capital</title>
+<meta name="description" content="Les 10 règles simples qui permettent à une entreprise d'utiliser l'IA sans mettre ses données confidentielles en danger. Guide gratuit, imprimable en PDF." />
+<link rel="canonical" href="https://arxcapital.duckdns.org/guide-ia-donnees.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Arx Capital" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:url" content="https://arxcapital.duckdns.org/guide-ia-donnees.html" />
+<meta property="og:title" content="Adopter l'IA sans exposer ses données — 10 règles" />
+<meta property="og:description" content="Les 10 règles simples qui permettent à une entreprise d'utiliser l'IA sans mettre ses données confidentielles en danger." />
+<meta property="og:image" content="https://arxcapital.duckdns.org/assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+.guide { max-width: 780px; }
+.rule { border-left: 3px solid var(--gold); padding: 0 0 0 22px; margin-bottom: 30px; }
+.rule h3 { font-family: var(--serif); font-size: 1.15rem; color: var(--navy); margin-bottom: 8px; }
+.rule p { color: var(--muted); font-size: .96rem; }
+.rule .num { display: block; font-size: .74rem; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+.rule .todo { margin-top: 10px; padding: 12px 16px; background: var(--gold-soft); border-radius: 8px; color: #6b5638; font-size: .9rem; }
+.print-btn { margin-top: 6px; }
+@media print {
+  nav, footer, .hero-cta, .print-btn, #contact { display: none !important; }
+  body { background: #fff; }
+  .hero { background: #fff !important; padding: 0 0 20px; }
+  .hero h1, .hero .lede, .kicker { color: #14202e !important; }
+  .hero h1 em { -webkit-text-fill-color: #ae8d57; }
+  .rule { break-inside: avoid; }
+  section { padding: 12px 0; border: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Capital" /><b>ARX <span>Capital</span></b></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul>
+      <li><a href="index-fr.html">Accueil</a></li>
+      <li><a href="realisations-fr.html">Réalisations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container" style="display:block">
+    <span class="kicker">Guide gratuit · 10 règles</span>
+    <h1>Adopter l'IA <em>sans exposer ses données</em></h1>
+    <p class="lede">
+      Vos équipes utilisent déjà l'IA, avec ou sans votre accord. Voici les dix règles qui permettent
+      d'en tirer profit sans qu'un copier-coller malheureux ne devienne un incident RGPD. Écrites pour
+      des dirigeants, pas pour des informaticiens.
+    </p>
+    <div class="hero-cta print-btn">
+      <a class="btn btn-primary" href="#" onclick="window.print();return false;">Imprimer ou enregistrer en PDF</a>
+    </div>
+  </div>
+</header>
+
+<section data-reveal>
+  <div class="container guide">
+    <span class="sec-num">Les règles</span>
+    <h2>Dix règles, dix minutes de lecture</h2>
+
+    <div class="rule">
+      <span class="num">Règle 1</span>
+      <h3>Classez vos données avant de classer vos outils</h3>
+      <p>Trois catégories suffisent : public, interne, confidentiel. Tant que cette liste n'existe pas,
+      aucune règle d'usage n'est applicable, parce que personne ne sait de quoi on parle.</p>
+      <div class="todo">À faire : une page, trois colonnes, validée par la direction. Une heure de travail.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 2</span>
+      <h3>Un outil autorisé par catégorie, pas un outil par personne</h3>
+      <p>Le vrai risque n'est pas l'IA : c'est la multiplication d'outils gratuits ouverts par chacun
+      dans son coin. Choisissez un outil pour le public, un pour l'interne, un pour le confidentiel —
+      et dites-le clairement.</p>
+      <div class="todo">À faire : afficher la liste des outils validés là où les gens travaillent, pas dans un intranet.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 3</span>
+      <h3>Vérifiez si vos données servent à entraîner le modèle</h3>
+      <p>C'est la seule question technique qui compte vraiment. Les offres grand public apprennent
+      souvent de vos saisies ; les offres entreprise ne le font pas. La différence coûte quelques euros
+      par mois et par personne.</p>
+      <div class="todo">À faire : passer les comptes gratuits en comptes entreprise pour tout ce qui touche l'interne.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 4</span>
+      <h3>Interdisez ce qui doit l'être — et rien d'autre</h3>
+      <p>Une politique qui interdit tout est une politique que personne n'applique. Trois interdits
+      clairs (données nominatives de clients, données de santé, secrets contractuels) valent mieux que
+      cinquante pages de précautions.</p>
+      <div class="todo">À faire : réduire votre règlement d'usage à une page qu'on lit en deux minutes.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 5</span>
+      <h3>Gardez un humain sur tout ce qui sort de l'entreprise</h3>
+      <p>Un texte généré peut être faux avec une assurance parfaite. Tout ce qui part vers un client,
+      un juge, un actionnaire ou le public passe par une relecture humaine — sans exception.</p>
+      <div class="todo">À faire : écrire cette règle noir sur blanc, et l'appliquer d'abord à vous-même.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 6</span>
+      <h3>Traitez toute réponse d'IA comme un brouillon</h3>
+      <p>C'est le changement culturel le plus utile et le moins coûteux. L'IA fait gagner du temps sur
+      la première version, pas sur la validation. Les équipes qui l'intègrent gagnent réellement des
+      heures ; les autres accumulent des erreurs.</p>
+      <div class="todo">À faire : le dire à chaque formation, et le répéter.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 7</span>
+      <h3>Sachez où vos données sont hébergées</h3>
+      <p>Hébergement en Europe, sous-traitants identifiés, durée de conservation connue : ce sont les
+      trois questions que posera votre client, votre assureur ou votre auditeur. Mieux vaut avoir la
+      réponse avant qu'eux.</p>
+      <div class="todo">À faire : demander à chaque fournisseur son lieu d'hébergement, par écrit.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 8</span>
+      <h3>Documentez vos usages : l'AI Act arrive</h3>
+      <p>Le règlement européen sur l'IA impose de savoir quels systèmes vous utilisez et pour quoi.
+      Un tableau de dix lignes tenu à jour suffit aujourd'hui, et vous évitera une reconstitution
+      douloureuse plus tard.</p>
+      <div class="todo">À faire : ouvrir ce tableau maintenant, même incomplet.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 9</span>
+      <h3>Formez sur de vrais dossiers, jamais sur des exemples</h3>
+      <p>Une formation avec des cas fictifs ne change aucun comportement. Faites travailler chacun sur
+      son propre dossier de la semaine : c'est le seul format où l'usage survit à la formation.</p>
+      <div class="todo">À faire : remplacer votre prochaine session de slides par un atelier sur vos vrais fichiers.</div>
+    </div>
+
+    <div class="rule">
+      <span class="num">Règle 10</span>
+      <h3>Mesurez un chiffre métier, pas des présences</h3>
+      <p>Choisissez avant de commencer : temps d'un processus, délai de réponse, volume traité. Sans
+      ce chiffre, vous ne saurez jamais si l'IA vous rapporte — et vous ne pourrez pas défendre le
+      budget suivant.</p>
+      <div class="todo">À faire : décider ce chiffre avec la direction, avant le premier atelier.</div>
+    </div>
+
+    <p class="sub" style="margin-top:36px">
+      Ces dix règles sont celles que j'applique chez mes clients en secteurs régulés. Elles tiennent en
+      une page une fois adaptées à votre contexte — c'est exactement ce que produit un diagnostic.
+    </p>
+  </div>
+</section>
+
+<section id="contact" data-reveal>
+  <div class="container" style="text-align:center">
+    <h2>Vous voulez l'adapter à votre entreprise ?</h2>
+    <p class="sub" style="margin:0 auto 28px">
+      Trente minutes suffisent pour savoir par où commencer chez vous, et si le jeu en vaut la chandelle.
+    </p>
+    <a class="btn btn-primary" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Réserver 30 minutes</a>
+    <p class="hero-alt" style="margin-top:14px">Ou appelez-moi : <a href="tel:+33613705321">+33 6 13 70 53 21</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img class="flogo" src="assets/logo.png" alt="" />
+    <div>
+      <strong>Benoît Sigwald</strong> · Mougins, France<br />
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="tel:+33613705321">+33 6 13 70 53 21</a>
+    </div>
+    <div>
+      <a href="index-fr.html">← Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle'), n = document.querySelector('nav');
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  var els = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('seen'); }); }
+
+  // mesure des clics sur le bouton de réservation
+  document.querySelectorAll('a[href*="calendly.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try {
+        var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+      } catch(e){}
+    });
+  });
+})();
+</script>
+<script defer src="/gate/t.js" data-site="arxcapital"></script>
+</body>
+</html>

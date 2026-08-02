@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /classic.html
+Disallow: /classic-oci.html
+Disallow: /mentions-legales.html
+
+Sitemap: https://arxcapital.duckdns.org/sitemap.xml
