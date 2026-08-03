@@ -82,7 +82,7 @@
       <a class="stat" href="approche-fr.html" title="Qui je suis — Découvrir mon parcours"><b>30 ans</b><span>de conduite du changement tech</span></a>
       <div class="stat"><b>−60%</b><span>de temps d'analyse au Crédit Agricole</span></div>
       <div class="stat"><b data-count="240">240</b><span>plus grande équipe dirigée (Oracle)</span></div>
-      <div class="stat"><b>Souveraineté</b><span>données hébergées en France sur ma propre infrastructure, hors cloud américain</span></div>
+      <a class="stat stat-sovereign" href="oci-migration-fr.html" title="Souveraineté — Découvrir l'architecture OCI en France"><b>Souveraineté</b><span>données hébergées en France sur ma propre infrastructure, hors cloud américain</span></a>
     </div>
   </div>
 </div>
@@ -503,15 +503,19 @@
     });
   })();
 
-  // Animation de roulement 3D au clic sur la carte 30 ans
+  // Animation au clic sur les cartes d'en-tête (30 ans: roll 3D, Souveraineté: big bounce)
   document.querySelectorAll('a.stat').forEach(function(card){
     card.addEventListener('click', function(e){
       e.preventDefault();
       var targetUrl = this.href;
-      this.classList.add('stat-rolling');
+      if (this.classList.contains('stat-sovereign')) {
+        this.classList.add('stat-bouncing');
+      } else {
+        this.classList.add('stat-rolling');
+      }
       setTimeout(function(){
         window.location.href = targetUrl;
-      }, 450);
+      }, 480);
     });
   });
 })();

@@ -82,7 +82,7 @@
       <a class="stat" href="approche.html" title="About me — Learn more about my background"><b>30 yrs</b><span>leading tech &amp; change</span></a>
       <div class="stat"><b>−60%</b><span>analysis time at Crédit Agricole</span></div>
       <div class="stat"><b data-count="240">240</b><span>largest team led (Oracle)</span></div>
-      <div class="stat"><b>Sovereign</b><span>data hosted in France on my own infrastructure, no US cloud</span></div>
+      <a class="stat stat-sovereign" href="oci-migration.html" title="Sovereign Infrastructure — Discover OCI Architecture in France"><b>Sovereign</b><span>data hosted in France on my own infrastructure, no US cloud</span></a>
     </div>
   </div>
 </div>
@@ -493,15 +493,19 @@
     });
   })();
 
-  // 3D card rolling animation on click before navigation
+  // Header card click animations (30 yrs: 3D roll, Sovereign: big bounce)
   document.querySelectorAll('a.stat').forEach(function(card){
     card.addEventListener('click', function(e){
       e.preventDefault();
       var targetUrl = this.href;
-      this.classList.add('stat-rolling');
+      if (this.classList.contains('stat-sovereign')) {
+        this.classList.add('stat-bouncing');
+      } else {
+        this.classList.add('stat-rolling');
+      }
       setTimeout(function(){
         window.location.href = targetUrl;
-      }, 450);
+      }, 480);
     });
   });
 })();

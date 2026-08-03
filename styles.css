@@ -171,6 +171,19 @@ a.stat:hover { transform: translateY(-3px); border-color: var(--gold); box-shado
   animation: cardRoll 0.45s cubic-bezier(0.2, 0.85, 0.35, 1) forwards !important;
   pointer-events: none;
 }
+@keyframes cardBigBounce {
+  0% { transform: scale(1) translateY(0); }
+  25% { transform: scale(1.18) translateY(-16px); border-color: var(--gold); box-shadow: 0 20px 48px rgba(216, 188, 131, 0.5); }
+  50% { transform: scale(0.92) translateY(6px); }
+  75% { transform: scale(1.08) translateY(-6px); }
+  100% { transform: scale(1) translateY(0); border-color: var(--gold); }
+}
+.stat-bouncing {
+  animation: cardBigBounce 0.48s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
+  pointer-events: none;
+  position: relative;
+  z-index: 100;
+}
 .stat b { display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 600; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat span { color: var(--muted); font-size: .88rem; text-decoration: none !important; }
 
