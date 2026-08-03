@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
   <g fill="none" fill-rule="evenodd">
-    <!-- CA Symbol -->
-    <path fill="#008375" d="M12 20h42v42H12z"/>
-    <path fill="#00584D" d="M30 38h42v42H30z"/>
-    <path fill="#E2001A" d="M48 20l24 24H48z"/>
+    <!-- CA Emblem -->
+    <path fill="#00A389" d="M10 12h36v36H10z"/>
+    <path fill="#006752" d="M26 28h36v36H26z"/>
+    <path fill="#FF334B" d="M42 12l20 20H42z"/>
     <!-- Text -->
-    <text x="88" y="48" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#00584D" letter-spacing="1">CRÉDIT</text>
-    <text x="88" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#00584D" letter-spacing="1">AGRICOLE</text>
+    <text x="76" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="24" fill="#00A389" letter-spacing="1.5">CRÉDIT</text>
+    <text x="76" y="62" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="24" fill="#00A389" letter-spacing="1.5">AGRICOLE</text>
   </g>
 </svg>

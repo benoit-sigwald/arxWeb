@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70" width="260" height="70">
   <g fill="none" fill-rule="evenodd">
-    <!-- CMA CGM Logo -->
-    <text x="10" y="56" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="44" fill="#002766" letter-spacing="-1">CMA CGM</text>
-    <path fill="#E30613" d="M255 18l35 18-35 18z"/>
+    <text x="5" y="48" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="38" fill="#1E50A2" letter-spacing="-0.5">CMA CGM</text>
+    <path fill="#FF2A3B" d="M210 14l38 18-38 18z"/>
   </g>
 </svg>
