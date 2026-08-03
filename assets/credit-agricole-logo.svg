@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <g fill="none" fill-rule="evenodd">
+    <!-- CA Symbol -->
+    <path fill="#008375" d="M12 20h42v42H12z"/>
+    <path fill="#00584D" d="M30 38h42v42H30z"/>
+    <path fill="#E2001A" d="M48 20l24 24H48z"/>
+    <!-- Text -->
+    <text x="88" y="48" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#00584D" letter-spacing="1">CRÉDIT</text>
+    <text x="88" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#00584D" letter-spacing="1">AGRICOLE</text>
+  </g>
+</svg>

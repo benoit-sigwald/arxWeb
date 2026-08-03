@@ -275,6 +275,13 @@ h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin-bott
 }
 .quote blockquote { margin: 0; padding-top: 14px; color: var(--text); font-size: .95rem; font-style: italic; }
 .quote figcaption { margin-top: 14px; color: var(--gold); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+.quote-logo {
+  height: 30px;
+  max-width: 130px;
+  object-fit: contain;
+  margin-top: 12px;
+  display: block;
+}
 
 /* Phrase de clôture */
 .closing {
