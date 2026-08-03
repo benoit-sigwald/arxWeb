@@ -7,7 +7,7 @@
 <meta name="description" content="Découvrez nos formules d'accompagnement IA, Fractional Head of AI et instances IA hébergées en France. Transparence et ROI métier." />
 <link rel="canonical" href="https://arxcapital.duckdns.org/tarifs-fr.html" />
 <link rel="alternate" hreflang="fr" href="https://arxcapital.duckdns.org/tarifs-fr.html" />
-<link rel="alternate" hreflang="en" href="https://arxcapital.duckdns.org/tarifs-fr.html" />
+<link rel="alternate" hreflang="en" href="https://arxcapital.duckdns.org/pricing.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Arx Capital" />
 <meta property="og:locale" content="fr_FR" />
@@ -31,7 +31,7 @@
     <ul>
       <li><a href="index-fr.html#pains">Votre situation</a></li>
       <li><a href="index-fr.html#offers">Services</a></li>
-      <li><a href="tarifs-fr.html" class="active" style="color:var(--gold,#d4af37);font-weight:600">Tarifs</a></li>
+      <li><a href="tarifs-fr.html" style="color:#ffffff;font-weight:700">Tarifs</a></li>
       <li><a href="index-fr.html#whyme">Pourquoi moi</a></li>
       <li><a href="index-fr.html#method">Méthode</a></li>
       <li><a href="realisations-fr.html">Réalisations</a></li>
@@ -59,7 +59,7 @@
   </div>
 </header>
 
-<section id="offers" data-reveal>
+<section id="offers">
   <div class="container">
     <span class="sec-num">01 — Nos Formules</span>
     <h2>Quatre offres, quatre niveaux d'accompagnement</h2>
@@ -68,15 +68,17 @@
     <div class="grid">
 
       <div class="card">
-        <h3>Diagnostic &amp; Feuille de Route IA</h3>
+        <span class="tag">Diagnostic &amp; Feuille de Route</span>
+        <h3>Diagnostic IA &amp; Données</h3>
         <p><b>Forfait :</b> 3 900 € HT (Atelier dirigeants + 2 semaines d'audit)<br />
         <b>Vous obtenez :</b> la cartographie des gains de temps possibles, la matrice des risques RGPD/AI Act, et la feuille de route priorisée avec ROI chiffré.<br />
         <b>Pour qui :</b> les entreprises qui veulent savoir exactement par où commencer sans risquer leurs données.</p>
         <p style="margin-top:16px"><a class="btn btn-ghost" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Lancer le diagnostic →</a></p>
       </div>
 
-      <div class="card" style="border:2px solid var(--gold,#d4af37)">
-        <h3>Fractional Head of AI <span style="font-size:0.75rem;background:var(--gold,#d4af37);color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle;margin-left:6px">Phare</span></h3>
+      <div class="card" style="border:2px solid var(--gold);background:var(--bg-soft)">
+        <span class="tag alt">Formule Phare</span>
+        <h3>Fractional Head of AI</h3>
         <p><b>Abonnement :</b> 4 900 € HT / mois (2 jours/mois + suivi continu)<br />
         <b>Vous obtenez :</b> un directeur IA senior dédié à votre entreprise à temps partagé, sans payer le coût d'un exécutif à plein temps (200k€+).<br />
         <b>Pour qui :</b> les PME et ETI souhaitant piloter leur stratégie IA et former leurs champions internes chaque mois.</p>
@@ -84,7 +86,8 @@
       </div>
 
       <div class="card">
-        <h3>Assistants IA Hébergés &amp; Souverains</h3>
+        <span class="tag">Cloud Privé &amp; Souverain</span>
+        <h3>Assistants IA Hébergés</h3>
         <p><b>Abonnement :</b> 1 200 € HT / mois par instance managée<br />
         <b>Vous obtenez :</b> vos assistants IA hébergés sur une infrastructure privée en France (OCI/Coolify), exploités 24/7, sauvegardés et restaurables.<br />
         <b>Pour qui :</b> les entreprises ayant des contraintes fortes de confidentialité et de souveraineté des données.</p>
@@ -92,6 +95,7 @@
       </div>
 
       <div class="card">
+        <span class="tag">Expertise Sur-Mesure</span>
         <h3>Conseil &amp; Intervention Commando</h3>
         <p><b>Tarif journalier (TJM) :</b> 1 500 € HT / jour<br />
         <b>Vous obtenez :</b> une intervention de haute expertise sur vos cas d'usage complexes, la formation commando de vos équipes sur leurs vrais dossiers.<br />
@@ -103,7 +107,7 @@
   </div>
 </section>
 
-<section id="whyme" data-reveal>
+<section id="whyme">
   <div class="container">
     <span class="sec-num">02 — Engagement &amp; Transparence</span>
     <h2>Notre charte de transparence tarifaire</h2>
@@ -125,7 +129,7 @@
   </div>
 </section>
 
-<section id="contact" data-reveal>
+<section id="contact">
   <div class="container" style="text-align:center">
     <span class="sec-num">03 — Prochaine étape</span>
     <h2>Parlons de votre projet</h2>
@@ -161,16 +165,6 @@
       navList.classList.toggle('open');
     });
   }
-
-  // Scroll reveal animation matching index-fr.html
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

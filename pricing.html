@@ -31,7 +31,7 @@
     <ul>
       <li><a href="index.html#pains">Your situation</a></li>
       <li><a href="index.html#offers">Services</a></li>
-      <li><a href="pricing.html" class="active" style="color:var(--gold,#d4af37);font-weight:600">Pricing</a></li>
+      <li><a href="pricing.html" style="color:#ffffff;font-weight:700">Pricing</a></li>
       <li><a href="index.html#whyme">Why me</a></li>
       <li><a href="index.html#method">How I work</a></li>
       <li><a href="realisations.html">Case studies</a></li>
@@ -59,7 +59,7 @@
   </div>
 </header>
 
-<section id="offers" data-reveal>
+<section id="offers">
   <div class="container">
     <span class="sec-num">01 — Packages &amp; Retainers</span>
     <h2>Four packages tailored to your AI maturity level</h2>
@@ -68,6 +68,7 @@
     <div class="grid">
 
       <div class="card">
+        <span class="tag">Diagnostic &amp; Roadmap</span>
         <h3>AI Diagnostic &amp; Roadmap</h3>
         <p><b>Fixed Fee:</b> €3,900 ex. VAT (Executive workshop + 2-week audit)<br />
         <b>What you get:</b> Time-savings mapping, GDPR &amp; AI Act risk matrix, and a prioritized roadmap with quantified ROI.<br />
@@ -75,8 +76,9 @@
         <p style="margin-top:16px"><a class="btn btn-ghost" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Start diagnostic →</a></p>
       </div>
 
-      <div class="card" style="border:2px solid var(--gold,#d4af37)">
-        <h3>Fractional Head of AI <span style="font-size:0.75rem;background:var(--gold,#d4af37);color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle;margin-left:6px">Featured</span></h3>
+      <div class="card" style="border:2px solid var(--gold);background:var(--bg-soft)">
+        <span class="tag alt">Featured</span>
+        <h3>Fractional Head of AI</h3>
         <p><b>Retainer:</b> €4,900 ex. VAT / month (2 days/mo + ongoing availability)<br />
         <b>What you get:</b> A dedicated senior Chief AI Officer for your business part-time, without paying full-time executive salary (€200k+).<br />
         <b>For whom:</b> Mid-market companies looking to steer their AI strategy and coach internal champions monthly.</p>
@@ -84,6 +86,7 @@
       </div>
 
       <div class="card">
+        <span class="tag">Private Sovereign Cloud</span>
         <h3>Sovereign Managed AI Assistants</h3>
         <p><b>Subscription:</b> €1,200 ex. VAT / month per managed instance<br />
         <b>What you get:</b> Your custom AI assistants hosted on private infrastructure in France (OCI/Coolify), operated 24/7 with daily backups &amp; DR.<br />
@@ -92,6 +95,7 @@
       </div>
 
       <div class="card">
+        <span class="tag">Custom Advisory</span>
         <h3>Advisory &amp; Custom Engagement</h3>
         <p><b>Day Rate (TJM):</b> €1,500 ex. VAT / day<br />
         <b>What you get:</b> Senior hands-on expertise to unblock complex AI projects, train teams on real files, and design custom architecture.<br />
@@ -103,7 +107,7 @@
   </div>
 </section>
 
-<section id="whyme" data-reveal>
+<section id="whyme">
   <div class="container">
     <span class="sec-num">02 — Transparency &amp; Value</span>
     <h2>Our transparency commitment</h2>
@@ -125,7 +129,7 @@
   </div>
 </section>
 
-<section id="contact" data-reveal>
+<section id="contact">
   <div class="container" style="text-align:center">
     <span class="sec-num">03 — Next steps</span>
     <h2>Let's talk.</h2>
@@ -161,15 +165,6 @@
       navList.classList.toggle('open');
     });
   }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
