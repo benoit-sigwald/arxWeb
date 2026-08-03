@@ -445,6 +445,15 @@
         var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
         if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
       } catch(e){}
+  // Animation de roulement 3D au clic sur la carte 30 ans
+  document.querySelectorAll('a.stat').forEach(function(card){
+    card.addEventListener('click', function(e){
+      e.preventDefault();
+      var targetUrl = this.href;
+      this.classList.add('stat-rolling');
+      setTimeout(function(){
+        window.location.href = targetUrl;
+      }, 750);
     });
   });
 })();

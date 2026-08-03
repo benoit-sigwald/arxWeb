@@ -433,6 +433,15 @@
         var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
         if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
       } catch(e){}
+  // 3D card rolling animation on click before navigation
+  document.querySelectorAll('a.stat').forEach(function(card){
+    card.addEventListener('click', function(e){
+      e.preventDefault();
+      var targetUrl = this.href;
+      this.classList.add('stat-rolling');
+      setTimeout(function(){
+        window.location.href = targetUrl;
+      }, 750);
     });
   });
 })();

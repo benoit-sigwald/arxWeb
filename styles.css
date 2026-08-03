@@ -154,8 +154,17 @@ h1 em { font-style: italic; background: linear-gradient(120deg, #e8d5ae, #ae8d57
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; padding: 28px 0; }
 .stat { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
 a.stat, a.stat:hover, a.stat:visited, a.stat:focus, a.stat * { text-decoration: none !important; }
-a.stat { display: block; transition: transform .2s, border-color .2s, box-shadow .2s; cursor: pointer; color: inherit; }
+a.stat { display: block; transition: transform .2s, border-color .2s, box-shadow .2s; cursor: pointer; color: inherit; transform-style: preserve-3d; }
 a.stat:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 10px 24px rgba(27,53,77,.12); }
+@keyframes cardRoll {
+  0% { transform: perspective(600px) rotateY(0deg) scale(1); }
+  50% { transform: perspective(600px) rotateY(360deg) scale(1.06); border-color: var(--gold); box-shadow: 0 12px 32px rgba(174,141,87,.25); }
+  100% { transform: perspective(600px) rotateY(720deg) scale(1); border-color: var(--gold); }
+}
+.stat-rolling {
+  animation: cardRoll 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  pointer-events: none;
+}
 .stat b { display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 600; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat span { color: var(--muted); font-size: .88rem; text-decoration: none !important; }
 
