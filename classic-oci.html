@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="styles-classic.css" />
   <link rel="preconnect" href="https://calendly.com" />
   <link rel="dns-prefetch" href="https://calendly.com" />
+  <!-- Official Calendly Engine for Instant Popup -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
 
@@ -187,52 +190,22 @@
 </footer>
 
 <script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital">
-  // Modal Popup Calendly Instantané (Pre-loaded)
-  (function initCalendlyModal() {
-    if (!document.getElementById('calendly-modal')) {
-      var modalHTML = '<div id="calendly-modal" class="calendly-modal-overlay" aria-hidden="true">' +
-        '<div class="calendly-modal-container">' +
-          '<button class="calendly-modal-close" aria-label="Fermer">&times;</button>' +
-          '<iframe class="calendly-modal-iframe" src="https://calendly.com/arx-capital-eu/30min" title="Réserver un rendez-vous" loading="eager"></iframe>' +
-        '</div>' +
-      '</div>';
-      document.body.insertAdjacentHTML('beforeend', modalHTML);
-    }
-    var modal = document.getElementById('calendly-modal');
-    var iframe = modal.querySelector('.calendly-modal-iframe');
-    var closeBtn = modal.querySelector('.calendly-modal-close');
-
-    function openModal() {
-      if (!iframe.src || iframe.src === 'about:blank') {
-        iframe.src = 'https://calendly.com/arx-capital-eu/30min';
+  // Official Instant Calendly Popup Interceptor
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="calendly.com"]');
+    if (link) {
+      e.preventDefault();
+      try {
+        var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+      } catch(err){}
+      if (window.Calendly) {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
+      } else {
+        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
       }
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
     }
-
-    function closeModal() {
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
-
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a[href*="calendly.com"]');
-      if (link) {
-        e.preventDefault();
-        try {
-          var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-          if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
-        } catch(err){}
-        openModal();
-      }
-    });
-  })();
+  });
 </script>
 </body>
 </html>
