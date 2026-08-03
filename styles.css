@@ -431,9 +431,9 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 25, 41, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(10, 25, 41, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 99999;
   display: flex;
   align-items: center;
@@ -450,17 +450,20 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
 
 .calendly-modal-container {
   position: relative;
-  width: 92%;
-  max-width: 940px;
-  height: 88vh;
-  max-height: 780px;
-  background: #0d1e2d;
-  border: 1px solid rgba(216, 188, 131, 0.35);
-  border-radius: 14px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  width: 95%;
+  max-width: 1060px;
+  height: 92vh;
+  max-height: 880px;
+  min-height: 640px;
+  background: #ffffff;
+  border: 1px solid rgba(216, 188, 131, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8);
   overflow: hidden;
-  transform: scale(0.94);
+  transform: scale(0.95);
   transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.35, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .calendly-modal-overlay.active .calendly-modal-container {
@@ -469,12 +472,12 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
 
 .calendly-modal-close {
   position: absolute;
-  top: 12px;
+  top: 14px;
   right: 16px;
-  width: 38px;
-  height: 38px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(216, 188, 131, 0.4);
+  width: 40px;
+  height: 40px;
+  background: #1b354d;
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   color: #d8bc85;
   font-size: 24px;
@@ -482,7 +485,8 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
   line-height: 36px;
   text-align: center;
   cursor: pointer;
-  z-index: 20;
+  z-index: 99;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
 }
 
@@ -496,4 +500,5 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
   width: 100%;
   height: 100%;
   border: none;
+  background: #ffffff;
 }
