@@ -172,17 +172,37 @@ a.stat:hover { transform: translateY(-3px); border-color: var(--gold); box-shado
   pointer-events: none;
 }
 @keyframes cardBigBounce {
-  0% { transform: scale(1) translateY(0); }
-  25% { transform: scale(1.18) translateY(-16px); border-color: var(--gold); box-shadow: 0 20px 48px rgba(216, 188, 131, 0.5); }
-  50% { transform: scale(0.92) translateY(6px); }
-  75% { transform: scale(1.08) translateY(-6px); }
-  100% { transform: scale(1) translateY(0); border-color: var(--gold); }
+  0% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  25% {
+    transform: scale(1.36) translateY(-32px) rotate(-1.5deg);
+    border-color: #f3e5ab !important;
+    box-shadow: 0 28px 64px rgba(216, 188, 131, 0.75), 0 0 32px rgba(216, 188, 131, 0.5);
+  }
+  45% {
+    transform: scale(0.85) translateY(10px) rotate(1deg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  68% {
+    transform: scale(1.15) translateY(-12px) rotate(-0.5deg);
+    box-shadow: 0 18px 42px rgba(216, 188, 131, 0.5);
+  }
+  85% {
+    transform: scale(0.96) translateY(4px);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+    border-color: var(--gold) !important;
+    box-shadow: 0 8px 24px rgba(216, 188, 131, 0.4);
+  }
 }
 .stat-bouncing {
-  animation: cardBigBounce 0.48s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
+  animation: cardBigBounce 0.55s cubic-bezier(0.28, 0.84, 0.42, 1.25) forwards !important;
   pointer-events: none;
   position: relative;
-  z-index: 100;
+  z-index: 999;
 }
 .stat b { display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 600; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat span { color: var(--muted); font-size: .88rem; text-decoration: none !important; }

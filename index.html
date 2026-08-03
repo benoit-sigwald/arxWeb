@@ -497,9 +497,10 @@
       } else {
         this.classList.add('stat-rolling');
       }
+      var delay = this.classList.contains('stat-sovereign') ? 540 : 450;
       setTimeout(function(){
         window.location.href = targetUrl;
-      }, 480);
+      }, delay);
     });
   });
 })();
