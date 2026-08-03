@@ -175,10 +175,61 @@ a.stat:hover { transform: translateY(-3px); border-color: var(--gold); box-shado
 .stat span { color: var(--muted); font-size: .88rem; text-decoration: none !important; }
 
 /* Sections */
-section { padding: 72px 0; border-top: 1px solid var(--border); }
+section { padding: 92px 0; border-top: 1px solid var(--border); }
 .sec-num { font-size: .76rem; letter-spacing: .22em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 8px; }
-h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 600; margin-bottom: 10px; color: var(--navy); }
-.sub { color: var(--muted); margin-bottom: 36px; max-width: 680px; }
+h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin-bottom: 12px; color: var(--navy); }
+.sub { color: var(--muted); margin-bottom: 40px; max-width: 720px; font-size: 1.02rem; line-height: 1.6; }
+
+/* Vision & Storytelling block */
+.vision-section {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 88px 0;
+  border-top: 1px solid rgba(216,188,133,.2);
+  border-bottom: 1px solid rgba(216,188,133,.2);
+}
+.vision-card {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+.vision-card blockquote {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  line-height: 1.65;
+  font-style: italic;
+  color: #f2f5f9;
+  margin-bottom: 32px;
+  position: relative;
+}
+.vision-card blockquote em {
+  color: #d8bc85;
+  font-style: normal;
+  font-weight: 600;
+}
+.vision-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+.vision-author img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+}
+.vision-author div strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1.02rem;
+}
+.vision-author div span {
+  display: block;
+  color: #b9c4d8;
+  font-size: .85rem;
+}
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
 .card {
   background: var(--card); border: 1px solid var(--border); border-radius: 14px;
