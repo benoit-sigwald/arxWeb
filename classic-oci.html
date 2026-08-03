@@ -6,6 +6,8 @@
 <title>OCI Migration — Benoît Sigwald | Arx Consulting</title>
 <meta name="description" content="How I migrated my entire tech stack onto a free Oracle Cloud ARM server with Claude Code: Coolify, Docker, Traefik, PostgREST, MinIO — zero running cost." />
 <link rel="stylesheet" href="styles-classic.css" />
+  <link rel="preconnect" href="https://calendly.com" />
+  <link rel="dns-prefetch" href="https://calendly.com" />
 </head>
 <body>
 
@@ -185,13 +187,13 @@
 </footer>
 
 <script defer src="https://arx-apps.duckdns.org/tracker/t.js" data-site="arxcapital">
-  // Modal Popup Calendly universel
+  // Modal Popup Calendly Instantané (Pre-loaded)
   (function initCalendlyModal() {
     if (!document.getElementById('calendly-modal')) {
       var modalHTML = '<div id="calendly-modal" class="calendly-modal-overlay" aria-hidden="true">' +
         '<div class="calendly-modal-container">' +
           '<button class="calendly-modal-close" aria-label="Fermer">&times;</button>' +
-          '<iframe class="calendly-modal-iframe" src="" title="Réserver un rendez-vous"></iframe>' +
+          '<iframe class="calendly-modal-iframe" src="https://calendly.com/arx-capital-eu/30min" title="Réserver un rendez-vous" loading="eager"></iframe>' +
         '</div>' +
       '</div>';
       document.body.insertAdjacentHTML('beforeend', modalHTML);
@@ -200,8 +202,10 @@
     var iframe = modal.querySelector('.calendly-modal-iframe');
     var closeBtn = modal.querySelector('.calendly-modal-close');
 
-    function openModal(url) {
-      iframe.src = url || 'https://calendly.com/arx-capital-eu/30min';
+    function openModal() {
+      if (!iframe.src || iframe.src === 'about:blank') {
+        iframe.src = 'https://calendly.com/arx-capital-eu/30min';
+      }
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -211,7 +215,6 @@
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      setTimeout(function() { iframe.src = ''; }, 300);
     }
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -226,7 +229,7 @@
           var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
           if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
         } catch(err){}
-        openModal(link.href);
+        openModal();
       }
     });
   })();
