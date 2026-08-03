@@ -423,3 +423,77 @@ footer .flogo { height: 56px; border-radius: 10px; display: block; }
   .collapse-btn:hover { border-color: var(--gold); color: var(--gold); }
 }
 @media (min-width: 761px) { .collapse-btn { display: none; } }
+
+/* Executive Calendly Modal Overlay */
+.calendly-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 25, 41, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.calendly-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.calendly-modal-container {
+  position: relative;
+  width: 92%;
+  max-width: 940px;
+  height: 88vh;
+  max-height: 780px;
+  background: #0d1e2d;
+  border: 1px solid rgba(216, 188, 131, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transform: scale(0.94);
+  transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.35, 1);
+}
+
+.calendly-modal-overlay.active .calendly-modal-container {
+  transform: scale(1);
+}
+
+.calendly-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(216, 188, 131, 0.4);
+  border-radius: 50%;
+  color: #d8bc85;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 36px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+.calendly-modal-close:hover {
+  background: #d8bc85;
+  color: #0a1929;
+  transform: scale(1.1);
+}
+
+.calendly-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
