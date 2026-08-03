@@ -156,12 +156,18 @@ h1 em { font-style: italic; background: linear-gradient(120deg, #e8d5ae, #ae8d57
 a.stat, a.stat:hover, a.stat:visited, a.stat:focus, a.stat * { text-decoration: none !important; }
 a.stat { display: block; transition: transform .2s, border-color .2s, box-shadow .2s; cursor: pointer; color: inherit; transform-style: preserve-3d; }
 a.stat:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 10px 24px rgba(27,53,77,.12); }
+@-webkit-keyframes cardRoll {
+  0% { -webkit-transform: perspective(600px) rotateY(0deg) scale(1); transform: perspective(600px) rotateY(0deg) scale(1); }
+  50% { -webkit-transform: perspective(600px) rotateY(360deg) scale(1.06); transform: perspective(600px) rotateY(360deg) scale(1.06); border-color: var(--gold); box-shadow: 0 12px 32px rgba(174,141,87,.25); }
+  100% { -webkit-transform: perspective(600px) rotateY(720deg) scale(1); transform: perspective(600px) rotateY(720deg) scale(1); border-color: var(--gold); }
+}
 @keyframes cardRoll {
-  0% { transform: perspective(600px) rotateY(0deg) scale(1); }
-  50% { transform: perspective(600px) rotateY(360deg) scale(1.06); border-color: var(--gold); box-shadow: 0 12px 32px rgba(174,141,87,.25); }
-  100% { transform: perspective(600px) rotateY(720deg) scale(1); border-color: var(--gold); }
+  0% { -webkit-transform: perspective(600px) rotateY(0deg) scale(1); transform: perspective(600px) rotateY(0deg) scale(1); }
+  50% { -webkit-transform: perspective(600px) rotateY(360deg) scale(1.06); transform: perspective(600px) rotateY(360deg) scale(1.06); border-color: var(--gold); box-shadow: 0 12px 32px rgba(174,141,87,.25); }
+  100% { -webkit-transform: perspective(600px) rotateY(720deg) scale(1); transform: perspective(600px) rotateY(720deg) scale(1); border-color: var(--gold); }
 }
 .stat-rolling {
+  -webkit-animation: cardRoll 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
   animation: cardRoll 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
   pointer-events: none;
 }
