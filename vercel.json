@@ -1,10 +1,9 @@
 {
-  "cleanUrls": false,
-  "rewrites": [
-    { "source": "/nice", "destination": "/nice.html" },
-    { "source": "/nice/", "destination": "/nice.html" },
-    { "source": "/Nice", "destination": "/nice.html" },
-    { "source": "/Nice/", "destination": "/nice.html" },
-    { "source": "/Nice.html", "destination": "/nice.html" }
+  "redirects": [
+    { "source": "/nice", "destination": "https://arx-consulting.com/Nice/", "permanent": true },
+    { "source": "/nice/", "destination": "https://arx-consulting.com/Nice/", "permanent": true },
+    { "source": "/Nice", "destination": "https://arx-consulting.com/Nice/", "permanent": true },
+    { "source": "/nice.html", "destination": "https://arx-consulting.com/Nice/", "permanent": true },
+    { "source": "/Nice.html", "destination": "https://arx-consulting.com/Nice/", "permanent": true }
   ]
 }
