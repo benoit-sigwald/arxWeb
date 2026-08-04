@@ -1,11 +1,6 @@
 {
-  "cleanUrls": false,
-  "rewrites": [
-    { "source": "/nice", "destination": "/Nice/index.html" },
-    { "source": "/nice/", "destination": "/Nice/index.html" },
-    { "source": "/Nice", "destination": "/Nice/index.html" },
-    { "source": "/Nice/", "destination": "/Nice/index.html" },
-    { "source": "/nice.html", "destination": "/Nice/index.html" },
-    { "source": "/Nice.html", "destination": "/Nice/index.html" }
+  "routes": [
+    { "src": "/(?i)nice/?$", "dest": "/Nice/index.html" },
+    { "src": "/(?i)nice\\.html$", "dest": "/Nice/index.html" }
   ]
 }
