@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/nice", "destination": "/Nice.html" },
-    { "source": "/nice/", "destination": "/Nice/index.html" },
-    { "source": "/Nice", "destination": "/Nice.html" }
+    { "source": "/nice/", "destination": "/Nice.html" },
+    { "source": "/Nice", "destination": "/Nice.html" },
+    { "source": "/Nice/", "destination": "/Nice.html" }
   ]
 }
