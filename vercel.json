@@ -1,6 +1,6 @@
 {
-  "routes": [
-    { "src": "/(?i)nice/?$", "dest": "/Nice/index.html" },
-    { "src": "/(?i)nice\\.html$", "dest": "/Nice/index.html" }
+  "redirects": [
+    { "source": "/nice", "destination": "/Nice/", "permanent": true },
+    { "source": "/nice.html", "destination": "/Nice.html", "permanent": true }
   ]
 }
