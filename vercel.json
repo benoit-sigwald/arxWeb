@@ -1,6 +1,11 @@
 {
-  "redirects": [
-    { "source": "/nice", "destination": "/Nice.html", "permanent": true },
-    { "source": "/nice/", "destination": "/Nice.html", "permanent": true }
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/nice", "destination": "/Nice/index.html" },
+    { "source": "/nice/", "destination": "/Nice/index.html" },
+    { "source": "/Nice", "destination": "/Nice/index.html" },
+    { "source": "/Nice/", "destination": "/Nice/index.html" },
+    { "source": "/nice.html", "destination": "/Nice/index.html" },
+    { "source": "/Nice.html", "destination": "/Nice/index.html" }
   ]
 }
