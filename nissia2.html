@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Pacte Nice IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-navy { background-color: #0b1a2d; }
+        .text-teal { color: #38bdf8; }
+        .bg-teal { background-color: #0ea5e9; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="absolute w-full z-10 top-0 left-0 flex items-center justify-between px-8 py-6 text-white">
+        <div class="flex items-center space-x-2">
+            <!-- Mockup Logo Placeholder -->
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <span class="text-xl font-semibold tracking-widest">NICE IA <br><span class="text-xs font-light tracking-normal">LE PACTE</span></span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <a href="#" class="hover:text-teal transition">Vision</a>
+            <a href="#" class="hover:text-teal transition">Pillars</a>
+            <a href="#" class="hover:text-teal transition">Impact</a>
+            <a href="#" class="hover:text-teal transition">Monaco Partnership</a>
+            <a href="#" class="hover:text-teal transition">Roadmap</a>
+            <a href="#" class="hover:text-teal transition">Documents</a>
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="#" class="bg-teal hover:bg-sky-500 text-white px-5 py-2 rounded-full text-sm font-medium transition">Contact</a>
+            <span class="text-sm cursor-pointer">EN ⏷</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Split Layout) -->
+    <header class="relative flex flex-col md:flex-row min-h-screen">
+        <!-- Left Side: Hero Image & Text -->
+        <div class="relative w-full md:w-2/3 bg-navy text-white flex flex-col justify-center px-12 py-32 bg-cover bg-center" style="background-image: linear-gradient(rgba(11, 26, 45, 0.8), rgba(11, 26, 45, 0.8)), url('https://images.unsplash.com/photo-1596272875886-f6313ed6c99f?q=80&w=2000&auto=format&fit=crop');">
+            <h1 class="text-5xl md:text-7xl font-serif leading-tight mb-6">
+                Building <br>
+                <span class="italic text-teal">the intelligent</span> <br>
+                future of <span class="text-teal">Nice</span>
+            </h1>
+            <p class="max-w-md text-lg text-gray-300 mb-10 leading-relaxed">
+                Le Pacte Nice IA is a strategic initiative to transform public services, enhance safety, boost efficiency and improve the daily life of citizens through responsible AI[cite: 1].
+            </p>
+            <div class="flex space-x-4">
+                <a href="#" class="border border-teal text-teal hover:bg-teal hover:text-white px-6 py-3 rounded-full text-sm font-medium uppercase tracking-wider transition">Discover the Vision &rarr;</a>
+                <a href="#" class="border border-gray-400 text-gray-300 hover:text-white hover:border-white px-6 py-3 rounded-full text-sm font-medium uppercase tracking-wider transition">View the Pacte (PDF) &darr;</a>
+            </div>
+        </div>
+
+        <!-- Right Side: 5 Pillars Overlay -->
+        <div class="w-full md:w-1/3 bg-gray-50 flex flex-col pt-32 px-10 relative">
+            <h2 class="text-3xl font-serif text-gray-900 mb-8">The <span class="text-teal">5</span> Pillars <br>of Le Pacte</h2>
+            
+            <div class="space-y-6 flex-grow">
+                <div class="flex items-start">
+                    <div class="text-teal mr-4 mt-1">🛡️</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm">Public Safety & Security</h4>
+                        <p class="text-xs text-gray-500 mt-1">AI for prevention, real-time monitoring and coordinated response.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-teal mr-4 mt-1">⚙️</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm">Efficient Administration</h4>
+                        <p class="text-xs text-gray-500 mt-1">Automation, intelligent workflows and better resource management.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-teal mr-4 mt-1">👤</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm">Citizen Experience</h4>
+                        <p class="text-xs text-gray-500 mt-1">Simpler, faster and personalised services for everyone.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-teal mr-4 mt-1">🔒</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm">Cybersecurity & Sovereignty</h4>
+                        <p class="text-xs text-gray-500 mt-1">Protecting data, systems and critical infrastructures.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-teal mr-4 mt-1">📈</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm">Innovation & Economy</h4>
+                        <p class="text-xs text-gray-500 mt-1">Attracting talent, investment and building a strong AI ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Quote Card -->
+            <div class="mt-8 mb-8 bg-navy text-white p-6 rounded-lg shadow-lg relative overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(rgba(11, 26, 45, 0.7), rgba(11, 26, 45, 0.9)), url('https://images.unsplash.com/photo-1596272875886-f6313ed6c99f?q=80&w=600&auto=format&fit=crop');">
+                <p class="font-serif italic text-sm">"Our ambition is simple: to use AI to serve people and build a stronger, <span class="font-bold">more sovereign Nice.</span>"</p>
+                <div class="w-8 h-1 bg-teal mt-4"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Our Purpose Section -->
+    <section class="py-24 px-8 text-center bg-white">
+        <h5 class="text-teal uppercase tracking-widest text-xs font-semibold mb-4">Our Purpose</h5>
+        <h2 class="text-4xl font-serif text-gray-900 mb-16">Using AI for a more efficient,<br><span class="italic text-teal">safer</span> and more human city.</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-4 text-teal">🛡️</div>
+                <h4 class="font-semibold text-sm">Safer City</h4>
+                <p class="text-xs text-gray-500 mt-2">Protecting people and public spaces.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-4 text-teal">⚙️</div>
+                <h4 class="font-semibold text-sm">Efficient Services</h4>
+                <p class="text-xs text-gray-500 mt-2">Smarter administration, lower costs.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-4 text-teal">👤</div>
+                <h4 class="font-semibold text-sm">Better Experience</h4>
+                <p class="text-xs text-gray-500 mt-2">Simpler, faster and more accessible services.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-4 text-teal">🌱</div>
+                <h4 class="font-semibold text-sm">Sustainable Future</h4>
+                <p class="text-xs text-gray-500 mt-2">Data-driven decisions for a greener city.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-4 text-teal">🔒</div>
+                <h4 class="font-semibold text-sm">Secure & Sovereign</h4>
+                <p class="text-xs text-gray-500 mt-2">Cybersecurity and data sovereignty by design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact & Vision Section -->
+    <section class="py-24 px-8 bg-navy text-white relative overflow-hidden" style="background-image: linear-gradient(to right, rgba(11, 26, 45, 1) 40%, rgba(11, 26, 45, 0.4)), url('https://images.unsplash.com/photo-1552554700-1123a35a6431?q=80&w=2000&auto=format&fit=crop'); bg-size: cover; background-position: center right;">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2 pr-12 z-10">
+                <h2 class="text-4xl font-serif mb-6">A vision for Nice,<br><span class="italic text-gray-400">driven by innovation</span></h2>
+                <p class="text-gray-300 text-sm leading-relaxed mb-12">
+                    Le Pacte Nice IA sets a clear path toward an AI-powered public administration that delivers real results for citizens, agents and the territory.
+                </p>
+                
+                <div class="grid grid-cols-3 gap-6 mb-10">
+                    <div>
+                        <div class="text-3xl font-light mb-1">€</div>
+                        <h3 class="text-3xl font-bold">2.5 M€</h3>
+                        <p class="text-xs text-gray-400 mt-1">annual savings by 2030[cite: 1]</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-light mb-1">📉</div>
+                        <h3 class="text-3xl font-bold">-65%</h3>
+                        <p class="text-xs text-gray-400 mt-1">incivilities in targeted areas by 2030[cite: 1]</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-light mb-1">☁️</div>
+                        <h3 class="text-3xl font-bold">8-12 M€</h3>
+                        <p class="text-xs text-gray-400 mt-1">CAPEX avoided by 2030[cite: 1]</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="inline-block border border-gray-500 text-white hover:bg-white hover:text-navy px-6 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition">See all impacts &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Partnership -->
+    <section class="py-24 px-8 bg-gray-100 flex justify-center">
+        <div class="max-w-5xl w-full bg-navy rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2 p-12 text-white flex flex-col justify-center">
+                <h5 class="text-teal uppercase tracking-widest text-xs font-semibold mb-4">Strategic Partnership</h5>
+                <h2 class="text-3xl font-serif mb-6">The Nice-Monaco axis:<br>a unique opportunity</h2>
+                <p class="text-gray-300 text-sm leading-relaxed mb-8">
+                    Together with the Principality of Monaco, we create a cross-border digital ecosystem to accelerate innovation, security and economic growth[cite: 1].
+                </p>
+                
+                <div class="space-y-6 mb-10">
+                    <div class="flex items-center">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">☁️</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Monaco Cloud</h4>
+                            <p class="text-xs text-gray-400">A sovereign & secure cloud infrastructure[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">🏢</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Free Zone Monaco</h4>
+                            <p class="text-xs text-gray-400">A competitive environment for digital and AI companies.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-gray-800 p-3 rounded-lg mr-4">📈</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Investment & Innovation</h4>
+                            <p class="text-xs text-gray-400">Venture capital, talent and international partnerships.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="inline-block bg-teal text-white px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase text-center w-max hover:bg-sky-500 transition">Discover the partnership &rarr;</a>
+            </div>
+            <div class="w-full md:w-1/2 bg-cover bg-center min-h-[400px]" style="background-image: url('https://images.unsplash.com/photo-1541334860472-a4f63c87e8cb?q=80&w=1000&auto=format&fit=crop');">
+                <!-- Image of Monaco/Coast -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="py-24 px-8 bg-white text-center">
+        <h5 class="text-teal uppercase tracking-widest text-xs font-semibold mb-4">Our Roadmap</h5>
+        <h2 class="text-4xl font-serif text-gray-900 mb-16">A clear path forward</h2>
+        
+        <div class="max-w-4xl mx-auto relative">
+            <!-- Timeline Line -->
+            <div class="absolute top-6 left-0 w-full h-0.5 bg-gray-200 -z-10"></div>
+            
+            <div class="grid grid-cols-4 gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white border-2 border-teal rounded-full flex items-center justify-center text-teal font-bold mb-4 shadow-sm">01</div>
+                    <h4 class="font-bold text-gray-900 text-sm">2025<br><span class="font-normal text-teal">Foundation</span></h4>
+                    <p class="text-xs text-gray-500 mt-2 px-2">Secure the basics, launch key pilots.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-400 font-bold mb-4 shadow-sm">02</div>
+                    <h4 class="font-bold text-gray-900 text-sm">2026<br><span class="font-normal text-teal">Acceleration</span></h4>
+                    <p class="text-xs text-gray-500 mt-2 px-2">Scale successful solutions, expand partnerships.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-400 font-bold mb-4 shadow-sm">03</div>
+                    <h4 class="font-bold text-gray-900 text-sm">2027<br><span class="font-normal text-teal">Integration</span></h4>
+                    <p class="text-xs text-gray-500 mt-2 px-2">AI becomes the engine of public performance.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-400 font-bold mb-4 shadow-sm">04</div>
+                    <h4 class="font-bold text-gray-900 text-sm">2028+<br><span class="font-normal text-teal">Leadership</span></h4>
+                    <p class="text-xs text-gray-500 mt-2 px-2">Nice becomes a European reference for AI cities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA / Values -->
+    <section class="grid grid-cols-1 md:grid-cols-2">
+        <div class="p-16 bg-gray-50 flex flex-col justify-center">
+            <h5 class="text-teal uppercase tracking-widest text-xs font-semibold mb-4">Our Values</h5>
+            <h2 class="text-3xl font-serif text-gray-900 mb-10">Human. <span class="text-teal">Ethical.</span> Transparent. Sovereign.</h2>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <div class="text-teal text-2xl mb-2">👥</div>
+                    <h4 class="font-bold text-sm mb-1">Human-Centered</h4>
+                    <p class="text-xs text-gray-500">AI is a tool to serve people, not the other way around.</p>
+                </div>
+                <div>
+                    <div class="text-teal text-2xl mb-2">❤️</div>
+                    <h4 class="font-bold text-sm mb-1">Ethical</h4>
+                    <p class="text-xs text-gray-500">Responsible AI, by design and by governance.</p>
+                </div>
+                <div>
+                    <div class="text-teal text-2xl mb-2">👁️</div>
+                    <h4 class="font-bold text-sm mb-1">Transparent</h4>
+                    <p class="text-xs text-gray-500">Clear decisions, explainable results, public trust.</p>
+                </div>
+                <div>
+                    <div class="text-teal text-2xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-sm mb-1">Sovereign</h4>
+                    <p class="text-xs text-gray-500">Our data, our rules, our digital independence.</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-navy text-white p-16 flex flex-col justify-center relative bg-cover bg-center" style="background-image: linear-gradient(rgba(11, 26, 45, 0.7), rgba(11, 26, 45, 0.8)), url('https://images.unsplash.com/photo-1549429440-2804c8f52b61?q=80&w=1000&auto=format&fit=crop');">
+            <h2 class="text-4xl font-serif mb-4">Let's build the future<br>of Nice, together.</h2>
+            <p class="text-gray-300 text-sm mb-8">For a city that is safer, smarter<br>and better for everyone.</p>
+            <a href="#" class="bg-white text-navy px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase text-center w-max hover:bg-gray-200 transition shadow-lg">Join the movement &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <span class="text-lg font-semibold tracking-widest">NICE IA</span>
+                </div>
+                <p class="text-xs text-gray-400 mb-6 max-w-xs">
+                    Le Pacte Nice IA is a strategic initiative for the future of Nice and its metropolitan area, formulated by Benoît SIGWALD[cite: 1].
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center hover:border-white transition">in</a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center hover:border-white transition">X</a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center hover:border-white transition">▶</a>
+                </div>
+            </div>
+            
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-wider mb-4">Explore</h5>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Vision</a></li>
+                    <li><a href="#" class="hover:text-white transition">Pillars</a></li>
+                    <li><a href="#" class="hover:text-white transition">Impact</a></li>
+                    <li><a href="#" class="hover:text-white transition">Roadmap</a></li>
+                </ul>
+            </div>
+            
+            <div class="flex space-x-12">
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-wider mb-4">Partnership</h5>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Monaco Cloud</a></li>
+                        <li><a href="#" class="hover:text-white transition">Free Zone</a></li>
+                        <li><a href="#" class="hover:text-white transition">Invest & Innovate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-wider mb-4">Resources</h5>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Documents</a></li>
+                        <li><a href="#" class="hover:text-white transition">News</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <p>&copy; 2025 Le Pacte Nice IA</p>
+            <div class="space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy</a>
+                <span>&bull;</span>
+                <a href="#" class="hover:text-white transition">Legal</a>
+                <span>&bull;</span>
+                <a href="#" class="hover:text-white transition">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
