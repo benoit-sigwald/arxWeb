@@ -1,1679 +1,482 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nissa.IA — Le Pacte IA Nice & Métropole</title>
-    
-    <!-- Google Fonts: Outfit (modern sans) & Fraunces (serif for elegant headings) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Colors: Slate & Mediterranean Azure with Crimson highlights */
-            --bg-pure: #FFFFFF;
-            --bg-soft: #F8FAFC;
-            --bg-accent: rgba(2, 132, 199, 0.05);
-            --text-main: #1E293B;
-            --text-dark: #0F172A;
-            --text-muted: #64748B;
-            --primary: #1E3A8A; /* Royal Navy */
-            --secondary: #0284C7; /* Azure */
-            --accent-crimson: #E11D48; /* Crimson Red (Nissa flag accent) */
-            --success: #10B981;
-            --border-color: #E2E8F0;
-            --border-hover: #CBD5E1;
-            
-            --font-sans: 'Outfit', sans-serif;
-            --font-serif: 'Fraunces', serif;
-            
-            --container-width: 1120px;
-            --header-height: 72px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            background-color: var(--bg-pure);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-        }
-
-        body {
-            overflow-x: hidden;
-        }
-
-        /* Common Layout & Spacing */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        section {
-            padding: 96px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        section:nth-child(even) {
-            background-color: var(--bg-soft);
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            color: var(--text-dark);
-            font-weight: 700;
-        }
-
-        .font-serif {
-            font-family: var(--font-serif);
-        }
-
-        .font-italic {
-            font-style: italic;
-        }
-
-        .text-crimson {
-            color: var(--accent-crimson);
-        }
-
-        .text-secondary {
-            color: var(--secondary);
-        }
-
-        .kicker {
-            display: inline-block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent-crimson);
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 720px;
-            margin-bottom: 48px;
-        }
-
-        /* Header Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-crimson);
-            border-radius: 50%;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary);
-        }
-
-        /* Language Switcher */
-        .lang-switch {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-soft);
-            padding: 3px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .lang-btn.active {
-            background: var(--bg-pure);
-            color: var(--primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        /* Hero Section */
-        #hero {
-            padding-top: calc(var(--header-height) + 80px);
-            padding-bottom: 96px;
-            background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.04) 0%, transparent 60%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 48px;
-            align-items: center;
-        }
-
-        .hero-title {
-            font-family: var(--font-serif);
-            font-size: 3.5rem;
-            font-weight: 300;
-            line-height: 1.1;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-        }
-
-        .hero-title em {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-weight: 400;
-            color: var(--primary);
-        }
-
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--bg-pure);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-primary:hover {
-            background-color: #122b68;
-            border-color: #122b68;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background-color: var(--bg-pure);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--border-hover);
-            background-color: var(--bg-soft);
-        }
-
-        .hero-badge-box {
-            background: var(--bg-soft);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.03);
-        }
-
-        .hero-badge-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .hero-metric-row {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .hero-metric-item {
-            border-left: 3px solid var(--accent-crimson);
-            padding-left: 16px;
-        }
-
-        .hero-metric-val {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .hero-metric-label {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Chapters Grids & Cards */
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 24px;
-        }
-
-        .cards-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--bg-pure);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            border-color: var(--secondary);
-            box-shadow: 0 12px 24px -10px rgba(2, 132, 199, 0.08);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--secondary);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-tag {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 12px;
-            letter-spacing: 0.05em;
-        }
-
-        .card-title {
-            font-family: var(--font-serif);
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .card-desc {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .card-list {
-            list-style: none;
-            padding-left: 0;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .card-list li {
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .card-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: 700;
-        }
-
-        /* Specific Graphics Integration */
-        .graphic-container {
-            background-color: var(--bg-pure);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .graphic-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .graphic-caption {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 12px;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .split-graphic-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .split-graphic-layout {
-                grid-template-columns: 1fr;
-            }
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Interactive ROI Calculator Section */
-        .calculator-box {
-            background-color: var(--bg-soft);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
-            margin-top: 40px;
-        }
-
-        .slider-row {
-            margin-bottom: 28px;
-        }
-
-        .slider-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .slider-label {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-        }
-
-        .slider-value {
-            font-family: var(--font-serif);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .range-slider {
-            width: 100%;
-            height: 6px;
-            background: #E2E8F0;
-            border-radius: 3px;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary);
-            cursor: pointer;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-            transition: transform 0.1s ease;
-        }
-
-        .range-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-        }
-
-        .results-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 32px;
-            margin-top: 12px;
-        }
-
-        .result-item {
-            text-align: center;
-        }
-
-        .result-label {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .result-val {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .result-val.net {
-            color: var(--success);
-        }
-
-        /* Budget / Route Timeline styles */
-        .timeline {
-            position: relative;
-            padding-left: 32px;
-            margin-top: 32px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 6px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background-color: var(--bg-pure);
-            border: 3px solid var(--primary);
-        }
-
-        .timeline-date {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-crimson);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .timeline-title {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        /* Annexe Table Styles */
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            margin-top: 32px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88rem;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--bg-soft);
-            color: var(--text-dark);
-            font-weight: 700;
-            padding: 14px 18px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        td {
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-main);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background-color: rgba(2, 132, 199, 0.02);
-        }
-
-        /* Reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--bg-soft);
-            padding: 48px 0;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Benoît Sigwald — I help companies adopt AI safely | Arx Consulting</title>
+<meta name="description" content="I help companies adopt AI safely and turn it into measurable results. For SMEs, mid-caps and executives without a CIO." />
+<link rel="canonical" href="https://arx-consulting.com/index.html" />
+<link rel="alternate" hreflang="en" href="https://arx-consulting.com/index.html" />
+<link rel="alternate" hreflang="fr" href="https://arx-consulting.com/index-fr.html" />
+<link rel="alternate" hreflang="x-default" href="https://arx-consulting.com/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Arx Consulting" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://arx-consulting.com/index.html" />
+<meta property="og:title" content="Benoît Sigwald — I help companies adopt AI safely | Arx Consulting" />
+<meta property="og:description" content="I help companies adopt AI safely and turn it into measurable results. For SMEs, mid-caps and executives without a CIO." />
+<meta property="og:image" content="https://arx-consulting.com/assets/portrait.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Benoît Sigwald — I help companies adopt AI safely | Arx Consulting" />
+<meta name="twitter:description" content="I help companies adopt AI safely and turn it into measurable results. For SMEs, mid-caps and executives without a CIO." />
+<meta name="twitter:image" content="https://arx-consulting.com/assets/portrait.jpg" />
+<meta name="author" content="Benoît Sigwald" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arx Consulting",
+"description":"I help companies adopt AI safely and turn it into measurable results.",
+"url":"https://arx-consulting.com/index.html","image":"https://arx-consulting.com/assets/portrait.jpg","telephone":"+33613705321",
+"email":"benoit.p.g.sigwald@gmail.com","founder":{"@type":"Person","name":"Benoît Sigwald","jobTitle":"AI adoption consultant"},
+"address":{"@type":"PostalAddress","addressLocality":"Mougins","addressCountry":"FR"},
+"areaServed":"EU","knowsAbout":["AI adoption","AI governance","GDPR","EU AI Act","Cloud infrastructure"]}
+</script>
+  <!-- Official Calendly Engine for Instant Popup -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <span>Nissa</span><span class="text-crimson">.IA</span>
-                <div class="logo-dot"></div>
-            </a>
-            
-            <nav id="navbar-links">
-                <a href="#hero" class="active" id="nav-btn-home">Accueil</a>
-                <a href="#chapitre-1" id="nav-btn-c1">Diagnostic</a>
-                <a href="#chapitre-2" id="nav-btn-c2">Axe Ville</a>
-                <a href="#chapitre-3" id="nav-btn-c3">Axe Métropole</a>
-                <a href="#chapitre-4" id="nav-btn-c4">Monaco & Citoyens</a>
-                <a href="#chapitre-5" id="nav-btn-c5">Budgets & Simulateur</a>
-                <a href="#chapitre-6" id="nav-btn-c6">Annexe</a>
-            </nav>
-            
-            <div class="lang-switch">
-                <button class="lang-btn active" id="lang-btn-fr" onclick="setLanguage('FR')">FR</button>
-                <button class="lang-btn" id="lang-btn-en" onclick="setLanguage('EN')">EN</button>
-            </div>
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul>
+      <li><a href="#pains">Your situation</a></li>
+      <li><a href="#offers">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="#whyme">Why me</a></li>
+      <li><a href="#method">How I work</a></li>
+      <li><a href="realisations.html">Case studies</a></li>
+      <li><a href="approche.html">About me</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="lang-switch" href="index-fr.html">FR</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div>
+      <span class="kicker">Benoît Sigwald · ARX Consulting — Executive AI Advisory &amp; Leadership</span>
+      <h1>I help companies adopt AI safely —<br /><em>and turn it into measurable results.</em></h1>
+      <p class="lede">
+        Executive AI advisory and Fractional CAIO leadership for SMEs, mid-caps, and executives without a CIO. In 30 years I've helped teams adopt new technology — from trading floors to Oracle's global Innovation Lab. Today I do it with AI: your people use it every day, your data stays safe, and the impact shows up in your numbers.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Book a 30-minute diagnostic call</a>
+      </div>
+      <p class="hero-alt">Prefer talking? <a href="tel:+33613705321">+33 6 13 70 53 21</a></p>
+    </div>
+    <figure class="hero-portrait">
+      <img src="assets/portrait.jpg" alt="Portrait of Benoît Sigwald" onerror="this.parentElement.style.display='none'" />
+      <figcaption>Benoît Sigwald · Mougins, France</figcaption>
+    </figure>
+  </div>
+</header>
+
+<div class="stats-band">
+  <div class="container">
+    <div class="stats">
+      <a class="stat" href="approche.html" title="About me — Learn more about my background"><b>30 yrs</b><span>leading tech &amp; change</span></a>
+      <div class="stat"><b>−60%</b><span>analysis time at Crédit Agricole</span></div>
+      <div class="stat"><b data-count="240">240</b><span>largest team led (Oracle)</span></div>
+      <a class="stat stat-sovereign" href="oci-migration.html" title="Sovereign Infrastructure — Discover OCI Architecture in France"><b>Sovereign</b><span>data hosted in France on my own infrastructure, no US cloud</span></a>
+    </div>
+  </div>
+</div>
+
+<section class="vision-section">
+  <div class="container">
+    <div class="vision-card">
+      <span class="sec-num" style="color:#d8bc85;margin-bottom:14px">Our Vision · ARX Consulting</span>
+      <blockquote>
+        “AI must not be a lab experiment or a collection of complex tools. It is a <em>strategic lever for sovereignty and business ROI</em>. My mission is to bring executives the rigor of global tech corporations with the agility of a dedicated senior partner.”
+      </blockquote>
+      <div class="vision-author">
+        <div>
+          <strong>Benoît Sigwald</strong>
+          <span>Founder &amp; Director, ARX Consulting · Ex-Oracle Innovation Lab</span>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="container hero-grid">
-            <div class="reveal">
-                <span class="kicker" id="hero-kicker">Plan Métropolitain d'IA Appliquée (2026-2029)</span>
-                <h1 class="hero-title" id="hero-title">L'IA au service de Nice : <em>Sécurité & rigueur budgétaire</em></h1>
-                <p class="hero-subtitle" id="hero-subtitle">
-                    Une doctrine d'austérité intelligente conçue pour <strong>M. Éric Ciotti</strong>. Basée sur le Pacte Nice IA, elle privilégie l'optimisation des deniers publics, le renforcement de la sécurité de proximité, et le co-financement européen direct sans dépendance régionale.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#chapitre-5" class="btn btn-primary" id="hero-btn-simulate">Simuler les économies</a>
-                    <a href="Le_Pacte_Nice_IA.pdf" download class="btn btn-secondary" id="hero-btn-download">Télécharger le Pacte (.PDF)</a>
-                </div>
-            </div>
-            
-            <div class="hero-badge-box reveal" style="transition-delay: 0.15s;">
-                <h3 class="hero-badge-title" id="hero-metrics-title">Chiffres Clés du Pacte</h3>
-                <div class="hero-metric-row">
-                    <div class="hero-metric-item">
-                        <div class="hero-metric-val" id="hero-m1">+2,50 M€ / an</div>
-                        <div class="hero-metric-label" id="hero-m1-lbl">Gains nets d'audit (Commande Publique)</div>
-                    </div>
-                    <div class="hero-metric-item">
-                        <div class="hero-metric-val" id="hero-m2">-65 %</div>
-                        <div class="hero-metric-label" id="hero-m2-lbl">Incivilités visées au CSU</div>
-                    </div>
-                    <div class="hero-metric-item">
-                        <div class="hero-metric-val" id="hero-m3">50 %</div>
-                        <div class="hero-metric-label" id="hero-m3-lbl">Taux de co-financement subventions UE</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="pains" data-reveal>
+  <div class="container">
+    <span class="sec-num">01 — Your situation</span>
+    <h2>Does any of this sound familiar?</h2>
+    <p class="sub">These are the three reasons companies call me. And every quarter you wait is hours lost
+    that your competitors have already won back.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Your teams lose hours on repetitive work</h3>
+        <p>Reports, summaries, analyses redone every week. Everyone knows AI could help — nobody knows where to start, so nothing changes.</p>
+      </div>
+      <div class="card">
+        <h3>You don't dare put your data into AI</h3>
+        <p>Client files, contracts, financials. One careless copy-paste into a public tool and it's a GDPR problem. So you block everything — and fall behind.</p>
+      </div>
+      <div class="card">
+        <h3>You can't tell whether AI pays off</h3>
+        <p>Licences bought, training delivered, and still no number to show. You need evidence before investing further.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Chapitre 1: Diagnostic Territorial -->
-    <section id="chapitre-1">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c1-kicker">Chapitre 1</span>
-                <h2 class="section-title" id="c1-title">Diagnostic Territorial & Opportunités Européennes</h2>
-                <p class="section-desc" id="c1-desc">
-                    Analyse des forces en présence : synergie Nice-Monaco, pôle académique 3IA Côte d'Azur et captation directe des fonds européens pour affirmer l'indépendance métropolitaine.
-                </p>
-            </div>
-            
-            <div class="cards-grid-3 reveal">
-                <div class="card">
-                    <div class="card-tag" id="c1-card1-tag">1.1 Alignement</div>
-                    <h3 class="card-title" id="c1-card1-title">Leadership & Métropole</h3>
-                    <p class="card-desc" id="c1-card1-desc">
-                        Alignement de la Mairie et de la Métropole pour déployer une gouvernance unifiée et un pilotage commando opérationnel de la transition technologique.
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c1-card2-tag">1.2 Écosystème</div>
-                    <h3 class="card-title" id="c1-card2-title">Le Terreau Azuréen</h3>
-                    <p class="card-desc" id="c1-card2-desc">
-                        Exploitation de la puissance académique (Sophia Antipolis, 3IA Côte d'Azur) : 2 700 entreprises de pointe et 5 500 chercheurs au service du bassin niçois.
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c1-card3-tag">1.3 Souveraineté</div>
-                    <h3 class="card-title" id="c1-card3-title">Extension Monaco</h3>
-                    <p class="card-desc" id="c1-card3-desc">
-                        Monaco dispose de capitaux financiers majeurs mais manque d'échelle territoriale. Nice offre le territoire d'expérimentation et le CSU en échange d'infrastructures.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="split-graphic-layout reveal" style="margin-top: 48px;">
-                <div>
-                    <h3 class="font-serif" style="font-size: 1.6rem; font-weight: 400; margin-bottom: 16px; color: var(--text-dark);" id="c1-graph-title">1.4 & 1.5 Financement direct & Poids National</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;" id="c1-graph-desc">
-                        Face aux blocages budgétaires locaux, Nice mise sur les subventions directes de l'Union Européenne (Horizon Europe, Digital Europe). Le budget total IA est co-financé à <strong>50 % par l'UE</strong>, réduisant de moitié le reste à charge réel de la collectivité.
-                    </p>
-                </div>
-                <div class="graphic-container">
-                    <img src="chart1_poids_national.png" alt="Graphique Poids National IA" class="graphic-img">
-                    <div class="graphic-caption" id="c1-graph-caption">Figure 1 : Poids des métropoles françaises dans les projets IA financés (Source: Annexe 4)</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="proof" data-reveal>
+  <div class="container">
+    <span class="sec-num">02 — Proof</span>
+    <h2>Results, not promises</h2>
+    <p class="sub">Three results I delivered, and the private platform I built to back them up.</p>
+    <div class="results">
+      <div class="result" data-reveal>
+        <b>−60%</b>
+        <span>analysis time on a recurring executive cycle</span>
+      </div>
+      <div class="result" data-reveal>
+        <b>−30%</b>
+        <span>time-to-market on a delivery process</span>
+      </div>
+      <div class="result" data-reveal>
+        <b data-count="240">240</b>
+        <span>people led across EMEA, Americas and Asia</span>
+      </div>
+    </div>
 
-    <!-- Chapitre 2: Axe Ville de Nice -->
-    <section id="chapitre-2">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c2-kicker">Chapitre 2</span>
-                <h2 class="section-title" id="c2-title">Pôle 1 : Axe Ville de Nice (Sécurité & Cadre de Vie)</h2>
-                <p class="section-desc" id="c2-desc">
-                    L'IA mise au service de la vie quotidienne des habitants : sécurisation de l'espace public, amélioration de la propreté urbaine et assistance de proximité.
-                </p>
-            </div>
-            
-            <div class="cards-grid-3 reveal">
-                <div class="card">
-                    <div class="card-tag" id="c2-card1-tag">2.1 Sécurité</div>
-                    <h3 class="card-title" id="c2-card1-title">CSU Vidéo-Augmenté</h3>
-                    <p class="card-desc" id="c2-card1-desc">
-                        Boost de 4 300 caméras par l'IA VSA. Détection instantanée des incivilités et menaces en temps réel pour rediriger les policiers vers le terrain.
-                    </p>
-                    <ul class="card-list" id="c2-card1-list">
-                        <li>Baisse visée de 65 % des incivilités</li>
-                        <li>Temps de réaction réduit sous les 6 minutes</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c2-card2-tag">2.2 Services</div>
-                    <h3 class="card-title" id="c2-card2-title">Allo Niçois Vocal 24/7</h3>
-                    <p class="card-desc" id="c2-card2-desc">
-                        Service d'appel intelligent disponible à toute heure. Spécialement calibré pour l'accompagnement des seniors et l'absorption des flux d'appels administratifs récurrents.
-                    </p>
-                    <ul class="card-list" id="c2-card2-list">
-                        <li>40 % des demandes résolues au premier contact</li>
-                        <li>Zéro temps d'attente pour nos seniors</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c2-card3-tag">2.3 Propreté</div>
-                    <h3 class="card-title" id="c2-card3-title">Routage Intelligent</h3>
-                    <p class="card-desc" id="c2-card3-desc">
-                        Routage prédictif et dynamique des bennes et véhicules de voirie. Signalement automatisé des encombrants pour une propreté rétablie sous 6 heures.
-                    </p>
-                    <ul class="card-list" id="c2-card3-list">
-                        <li>Réduction de 37 % des distances de collecte</li>
-                        <li>Économies directes de carburant de 30 %</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="quotes">
+      <figure class="quote q1">
+        <img src="assets/credit-agricole-logo.svg" alt="Crédit Agricole Logo" class="quote-logo" />
+        <blockquote>Benoît took our teams from curiosity to daily use of AI, with clear rules on what
+        we can do with our data. Our recurring analysis cycle was cut by 60%.</blockquote>
+        <figcaption>Risk Management · Crédit Agricole</figcaption>
+      </figure>
+      <figure class="quote q2">
+        <img src="assets/cma-cgm-logo.svg" alt="CMA CGM Logo" class="quote-logo" />
+        <blockquote>Our delivery cycles were too long. Benoît worked with our teams on their real
+        files, no unnecessary theory: 30% less time-to-market, and methods the team kept using.</blockquote>
+        <figcaption>Operations · CMA CGM</figcaption>
+      </figure>
+      <figure class="quote q3">
+        <img src="assets/oracle-logo.png" alt="Oracle Logo" class="quote-logo" />
+        <blockquote>He can explain complex technology to a room that knows nothing about it, and make
+        them want to try. He did it across three continents.</blockquote>
+        <figcaption>Former Director · Oracle EMEA</figcaption>
+      </figure>
+    </div>
 
-    <!-- Chapitre 3: Axe Métropole -->
-    <section id="chapitre-3">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c3-kicker">Chapitre 3</span>
-                <h2 class="section-title" id="c3-title">Pôle 2 : Axe Métropole (Budget, DSI & Monaco)</h2>
-                <p class="section-desc" id="c3-desc">
-                    L'optimisation des structures métropolitaines pour réaliser des gains financiers de masse et garantir l'étanchéité cyber du territoire.
-                </p>
-            </div>
-            
-            <div class="cards-grid-3 reveal">
-                <div class="card">
-                    <div class="card-tag" id="c3-card1-tag">3.1 Rigueur</div>
-                    <h3 class="card-title" id="c3-card1-title">Audit IA Commande Publique</h3>
-                    <p class="card-desc" id="c3-card1-desc">
-                        Contrôle systématique par IA de 100 % des factures, devis et bordereaux métropolitains. Élimination automatique des doublons et anomalies de prix.
-                    </p>
-                    <ul class="card-list" id="c3-card1-list">
-                        <li><strong>+2,5 M€ / an</strong> d'économies nettes certifiées</li>
-                        <li>Basé sur 300 M€ de volume annuel d'achat</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c3-card2-tag">3.2 Cyber</div>
-                    <h3 class="card-title" id="c3-card2-title">Bouclier Cyber-IA</h3>
-                    <p class="card-desc" id="c3-card2-desc">
-                        SOC métropolitain souverain fonctionnant 24h/24 pour contrer les rançongiciels et isolation hermétique (Air-Gap) du réseau sensible du CSU.
-                    </p>
-                    <ul class="card-list" id="c3-card2-list">
-                        <li>Conforme directive européenne NIS 2</li>
-                        <li>1,8 M€ à 3 M€ / an de crises évitées</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c3-card3-tag">3.3 Cloud</div>
-                    <h3 class="card-title" id="c3-card3-title">Alliance Monaco Cloud</h3>
-                    <p class="card-desc" id="c3-card3-desc">
-                        Hébergement souverain externalisé du SI municipal. Mutualisation avec la Principauté pour éliminer les besoins de datacenters propres.
-                    </p>
-                    <ul class="card-list" id="c3-card3-list">
-                        <li>1,5 M€ à 2,8 M€ / an d'OPEX économisé</li>
-                        <li>8 M€ à 12 M€ de CAPEX de stockage évité</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="feature">
+      <div>
+        <h3>Sovereign &amp; Private AI Cloud Infrastructure in France</h3>
+        <p>
+          Your assistants and confidential business data run on a private infrastructure hosted in France that I operate with 24/7 uptime monitoring, daily automated backups, and tested disaster-recovery protocols. You get a turnkey solution with zero server overhead or vendor lock-in.
+        </p>
+        <p style="margin-top:12px"><a class="btn btn-ghost" href="realisations.html">See all my case studies →</a></p>
+      </div>
+      <img src="assets/arx-paas-service-layer.png" alt="ARX Consulting Sovereign Cloud Infrastructure" loading="lazy"
+           class="lb-open" style="cursor:pointer" title="Click to enlarge"
+           data-title="ARX Consulting Sovereign Cloud Architecture"
+           data-desc="Private infrastructure hosted in France: continuous encryption, client data isolation, automated daily backups, and European GDPR &amp; EU AI Act compliance." />
+    </div>
+  </div>
+</section>
 
-    <!-- Chapitre 4: Alliance Nice-Monaco & Pôle Citoyen -->
-    <section id="chapitre-4">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c4-kicker">Chapitre 4</span>
-                <h2 class="section-title" id="c4-title">Alliance Binationale & Pôle Citoyen</h2>
-                <p class="section-desc" id="c4-desc">
-                    Un pont technologique et juridique exceptionnel avec la Principauté de Monaco pour servir de modèle national de conformité (AI Act) et soutenir l'éducation locale.
-                </p>
-            </div>
-            
-            <div class="cards-grid-3 reveal">
-                <div class="card">
-                    <div class="card-tag" id="c4-card1-tag">4.1 Financement</div>
-                    <h3 class="card-title" id="c4-card1-title">Levier Binational</h3>
-                    <p class="card-desc" id="c4-card1-desc">
-                        Le partenariat avec Monaco sert de clé de voûte pour débloquer les financements européens à taux maximal, en combinant souveraineté de stockage et souveraineté d'expérimentation.
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c4-card2-tag">4.2 Réglementation</div>
-                    <h3 class="card-title" id="c4-card2-title">Centre National AI Act</h3>
-                    <p class="card-desc" id="c4-card2-desc">
-                        Nice s'impose comme la sandbox de référence en France pour la mise en conformité des logiciels et modèles d'IA avec la nouvelle réglementation européenne.
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-tag" id="c4-card3-tag">4.3 Entreprises</div>
-                    <h3 class="card-title" id="c4-card3-title">Bibliothèque PME/PMI</h3>
-                    <p class="card-desc" id="c4-card3-desc">
-                        Mise à disposition gratuite d'une bibliothèque de cas d'usage souverains pour accélérer la transition technologique des petites et moyennes entreprises métropolitaines.
-                    </p>
-                </div>
-            </div>
-            
-            <div style="margin-top: 48px; border-top: 1px solid var(--border-color); padding-top: 48px;" class="reveal">
-                <span class="kicker" id="c4-citoyen-kicker">Axe Social & Inclusion</span>
-                <h3 class="font-serif" style="font-size: 1.8rem; font-weight: 400; margin-bottom: 24px;" id="c4-citoyen-title">Le Pôle d'Excellence Citoyen (§4.4)</h3>
-                
-                <div class="cards-grid-3">
-                    <div class="card">
-                        <div class="card-title" style="font-size: 1.15rem; font-weight: 600;" id="c4-p1-t">🏫 Formations AnimaNice</div>
-                        <p class="card-desc" style="font-size: 0.85rem;" id="c4-p1-d">Ateliers gratuits hebdomadaires pour les familles et séniors dans les centres AnimaNice (Vieux-Nice, Cimiez, Ariane, Fabron) pour maîtriser les IA génératives au quotidien.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-title" style="font-size: 1.15rem; font-weight: 600;" id="c4-p2-t">🎓 Pass IA Jeunesse</div>
-                        <p class="card-desc" style="font-size: 0.85rem;" id="c4-p2-d">Accès souverains et gratuits aux outils de recherche d'IA pour les étudiants et lycéens, via l'Université Côte d'Azur (UCA). 2 000 jeunes ciblés.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-title" style="font-size: 1.15rem; font-weight: 600;" id="c4-p3-t">🤝 Médiation de Quartier</div>
-                        <p class="card-desc" style="font-size: 0.85rem;" id="c4-p3-d">Présence de médiateurs numériques formés dans chaque mairie annexe pour accompagner les citoyens et rompre l'exclusion liée à l'informatique.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-title" style="font-size: 1.15rem; font-weight: 600;" id="c4-p4-t">🗳️ Conseil Citoyen de l'IA</div>
-                        <p class="card-desc" style="font-size: 0.85rem;" id="c4-p4-d">Comité de Niçois tirés au sort pour évaluer l'impact éthique des technologies déployées et contrôler l'étanchéité des données stockées.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="offers" data-reveal>
+  <div class="container">
+    <span class="sec-num">03 — Engagement Packages</span>
+    <h2>Three core advisory modes for your business</h2>
+    <p class="sub">Tailored to your AI maturity level, from initial diagnostic audits to part-time executive leadership.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">01 · Audit &amp; Roadmap</span>
+        <h3>AI &amp; Data Diagnostic</h3>
+        <p><b>What you get:</b> Time-savings mapping, GDPR &amp; AI Act risk matrix, and a prioritized roadmap with quantified ROI.<br />
+        <b>Objective:</b> Know exactly where to start without risking company data.</p>
+      </div>
+      <div class="card" style="border:2px solid var(--gold);background:var(--bg-soft)">
+        <span class="tag alt">02 · Signature Package</span>
+        <h3>Fractional Head of AI (Part-Time CAIO)</h3>
+        <p><b>What you get:</b> A dedicated senior Chief AI Officer for your business 2 days/month to steer strategy, coach champions, and advise leadership.<br />
+        <b>Objective:</b> Drive AI transformation without paying full-time executive salary (€200k+).</p>
+      </div>
+      <div class="card">
+        <span class="tag">03 · Private Cloud</span>
+        <h3>Sovereign Managed AI Assistants</h3>
+        <p><b>What you get:</b> Custom AI assistants hosted in France, monitored 24/7, with complete access tracking over confidential files.<br />
+        <b>Objective:</b> Automate critical workflows with total privacy.<br /><a href="private-access.html"><b>Example: private access &amp; visitor tracking for sales files →</b></a></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a class="btn btn-ghost" href="pricing.html">Explore our complete packages &amp; custom pricing details →</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Chapitre 5: Feuille de Route, Budgets & Simulateur -->
-    <section id="chapitre-5">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c5-kicker">Chapitre 5</span>
-                <h2 class="section-title" id="c5-title">Feuille de Route & Chiffrage Budgétaire</h2>
-                <p class="section-desc" id="c5-desc">
-                    Déploiement jalonné sur 3 ans, coprésidé par Éric Ciotti, sous financement partagé à 50 % avec l'Europe.
-                </p>
-            </div>
-            
-            <div class="split-graphic-layout reveal">
-                <div>
-                    <h3 class="font-serif" style="font-size: 1.6rem; font-weight: 400; margin-bottom: 20px; color: var(--text-dark);" id="c5-route-title">Calendrier de Déploiement</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date" id="t-date-1">100 Premiers Jours</div>
-                            <h4 class="timeline-title" id="t-title-1">Phase 1 : Lancement Commando</h4>
-                            <p style="font-size: 0.88rem; color: var(--text-muted);" id="t-desc-1">Nomination de la gouvernance (AMO Benoît Sigwald), lancement de l'audit des contrats de marchés et cadrage technique avec Monaco Cloud.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-date" id="t-date-2">12 Mois</div>
-                            <h4 class="timeline-title" id="t-title-2">Phase 2 : Premiers Cas en Production</h4>
-                            <p style="font-size: 0.88rem; color: var(--text-muted);" id="t-desc-2">Mise en route de la vidéo VSA du CSU, lancement d'Allo Niçois vocal et mesure des premières économies d'audit commande publique.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-date" id="t-date-3">36 Mois</div>
-                            <h4 class="timeline-title" id="t-title-3">Phase 3 : Consolidation Souveraine</h4>
-                            <p style="font-size: 0.88rem; color: var(--text-muted);" id="t-desc-3">Migration complète du SI municipal et établissement de la zone franche transfrontalière Nice-Monaco avec retour sur investissement validé.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="graphic-container">
-                    <h3 class="font-serif" style="font-size: 1.4rem; font-weight: 400; margin-bottom: 16px; color: var(--text-dark);" id="c5-budget-title">Budget Annuel Consolidé</h3>
-                    <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;" id="c5-budget-subtitle">Répartition par axe institutionnel co-financé à 50%</div>
-                    
-                    <img src="chart2_roi_gains.png" alt="Graphique ROI Budget" class="graphic-img">
-                    <div class="graphic-caption" id="c5-graph-caption">Figure 2 : Bilan consolidé et part du reste à charge métropolitain (Source: Annexe 12)</div>
-                </div>
-            </div>
-            
-            <!-- Interactive ROI Simulator -->
-            <div class="calculator-box reveal">
-                <h3 class="font-serif" style="font-size: 1.6rem; font-weight: 400; margin-bottom: 12px; color: var(--text-dark);" id="sim-title">Simulateur de Gains (Commande Publique)</h3>
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 32px;" id="sim-desc">
-                    Ajustez le volume d'achat audité et le taux de détection pour estimer le bénéfice net public par rapport au coût commando de la Métropole.
-                </p>
-                
-                <div class="slider-row">
-                    <div class="slider-header">
-                        <span class="slider-label" id="sim-vol-lbl">Volume d'achats annuels de la Métropole :</span>
-                        <span class="slider-value" id="sim-vol-val">300 M€</span>
-                    </div>
-                    <input type="range" min="100" id="slider-volume" max="600" value="300" step="25" class="range-slider" oninput="calculateROI()">
-                </div>
-                
-                <div class="slider-row">
-                    <div class="slider-header">
-                        <span class="slider-label" id="sim-rate-lbl">Taux de détection sémantique d'anomalies :</span>
-                        <span class="slider-value" id="sim-rate-val">0.8 %</span>
-                    </div>
-                    <input type="range" min="0.3" id="slider-rate" max="2.0" value="0.8" step="0.1" class="range-slider" oninput="calculateROI()">
-                </div>
-                
-                <div class="results-row">
-                    <div class="result-item">
-                        <div class="result-label" id="sim-lbl-gross">Économies Brutes</div>
-                        <div class="result-val" id="val-gross">2.40 M€/an</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label" id="sim-lbl-cost">Reste à Charge Net Métropole</div>
-                        <div class="result-val" id="val-cost">0.22 M€/an</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label" id="sim-lbl-net">Bénéfice Net Public</div>
-                        <div class="result-val net" id="val-net">+2.18 M€/an</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="whyme" data-reveal>
+  <div class="container">
+    <span class="sec-num">04 — Why me</span>
+    <h2>Why hire me rather than someone else</h2>
+    <p class="sub">Four reasons, and one that really matters: you talk to the person who does the work.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>You talk to the person who does the work</h3>
+        <p>No salesperson, no junior sent in after signature. The person advising you is the one who builds, trains, and stays reachable afterwards.</p>
+      </div>
+      <div class="card">
+        <h3>Your teams keep control</h3>
+        <p>I don't make you dependent: your internal champions take over, with methods they keep using without me.</p>
+      </div>
+      <div class="card">
+        <h3>Your data stays yours</h3>
+        <p>Hosted in France on infrastructure I run myself. What you entrust stays with you, backed up and recoverable.</p>
+      </div>
+      <div class="card">
+        <h3>You measure what it returns</h3>
+        <p>One business number agreed before we start, tracked to the end. You will know whether the investment paid off — and by how much.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Chapitre 6: Annexe -->
-    <section id="chapitre-6">
-        <div class="container">
-            <div class="reveal">
-                <span class="kicker" id="c6-kicker">Chapitre 6</span>
-                <h2 class="section-title" id="c6-title">Annexe : Sources & Justifications</h2>
-                <p class="section-desc" id="c6-desc">
-                    Toutes les affirmations chiffrées du site et du document stratégique sont sourcées et vérifiables. Retrouvez l'index complet des 36 sources ci-dessous.
-                </p>
-            </div>
-            
-            <div class="table-container reveal">
-                <table>
-                    <thead>
-                        <tr>
-                            <th id="th-id">Réf</th>
-                            <th id="th-source">Source Documentaire / Justification scientifique</th>
-                            <th id="th-stat">Indicateur Chiffré</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sources-tbody">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+<section id="method" data-reveal>
+  <div class="container">
+    <span class="sec-num">05 — How I work</span>
+    <h2>Six steps, no mystery</h2>
+    <p class="sub">The same method every time — that's what makes it repeatable.</p>
+    <ol class="e2e-steps">
+      <li><b>Listen first</b> I spend the first days watching how your teams really work — where time is lost, what is repetitive, what people fear about AI.</li>
+      <li><b>Find the champions</b> A few people are already getting real value from AI. I find them and make them the visible example others want to follow.</li>
+      <li><b>Set simple safety rules</b> Which data may go into which tool — in plain words everyone remembers. Not a 50-page policy nobody opens.</li>
+      <li><b>Pick quick wins</b> Two or three low-risk, highly visible use cases, so the whole company sees a benefit within weeks.</li>
+      <li><b>Train hands-on</b> No slides. Everyone practises on their own real work — beginners gain confidence, advanced users become power users.</li>
+      <li><b>Measure what matters</b> Not attendance sheets: adoption, and one business number agreed up front.</li>
+    </ol>
+    <div class="e2e-why">
+      <b>Why hands-on is the whole secret.</b> You cannot teach someone to swim with a slideshow.
+      Confidence only comes from doing it on your own real work. I hold myself to the same rule:
+      I build and run my own AI systems every day — I never recommend anything I haven't done myself.
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-grid">
-            <div>
-                <p style="font-weight: 700; color: var(--text-dark); font-size: 1rem;">Arx Consulting</p>
-                <p style="margin-top: 4px;" id="footer-author">Benoît Sigwald — Senior AI Architect & AMO IA</p>
-            </div>
-            <div class="footer-links">
-                <a href="Le_Pacte_Nice_IA.pdf" download id="footer-link-pdf">Télécharger le PDF</a>
-                <a href="Le_Pacte_Nice_IA.docx" download id="footer-link-docx">Format Word (.DOCX)</a>
-            </div>
-        </div>
-    </footer>
+<section id="why" data-reveal>
+  <div class="container">
+    <span class="sec-num">06 — Why I do this</span>
+    <h2>Why this matters to me</h2>
+    <div class="feature" style="grid-template-columns:1fr">
+      <div>
+        <p style="font-size:1.05rem;color:var(--text)">
+          I've spent thirty years watching people be handed technology they never asked for, and quietly
+          decide it wasn't for them. Trading floors, banks, telcos, industry — same story every time.
+        </p>
+        <p style="margin-top:12px">
+          AI is the first technology where I can change that outcome. Not by writing a strategy deck,
+          but by sitting next to someone until the thing works on their own file, on their own screen.
+          That's why I still build everything myself: the cloud this site runs on, the assistants,
+          the tools. If I can't do it with my own hands, I won't ask you to.
+        </p>
+        <p style="margin-top:12px;color:var(--navy);font-weight:600">
+          What I'm after is the moment someone says: "I couldn't work without it now." That's the job.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Interactive Scripting & Bilingual Engine -->
-    <script>
-        // 1. Language Engine Configuration
-        let currentLang = 'FR';
+<section id="faq" data-reveal>
+  <div class="container">
+    <span class="sec-num">07 — FAQ</span>
+    <h2>The questions people ask me first</h2>
+    <p class="sub">Straight answers, no sales talk.</p>
+    <div class="faq">
+      <details open>
+        <summary>Will my confidential data end up in a public AI tool?</summary>
+        <p>No — that is exactly what I prevent. We agree which class of data may go into which tool,
+        I set up the approved-tools list, and where needed I host the assistant on infrastructure
+        in France that I operate myself. Your files never leave the perimeter we defined.<br /><a href="guide-ia-donnees.html"><b>Free guide (FR): 10 rules to adopt AI without exposing your data →</b></a></p>
+      </details>
+      <details>
+        <summary>How long before we see something?</summary>
+        <p>Two weeks for a diagnosis with a prioritised roadmap. First visible win for the teams
+        within four to six weeks. A full adoption programme runs three to four months.</p>
+      </details>
+      <details>
+        <summary>What if it doesn't work in our case?</summary>
+        <p>Then I tell you during the diagnosis, before you commit to a programme. I would rather
+        lose a mission than sell you an AI project that has no business case.</p>
+      </details>
+      <details>
+        <summary>Do we need an IT department to work with you?</summary>
+        <p>No. Half my clients have no CIO. I work directly with the business teams, and I handle
+        the technical side myself — build, hosting, security, backups.</p>
+      </details>
+      <details>
+        <summary>Are you going to replace our people with AI?</summary>
+        <p>No. I make the people you already have faster on the work they already do. Every
+        programme I run keeps a human in the loop on anything customer- or decision-facing.</p>
+      </details>
+      <details>
+        <summary>How much does it cost?</summary>
+        <p>A diagnosis is a fixed fee. Programmes are quoted after it, so the price matches the
+        scope you actually chose. Hosted assistants are a monthly subscription — no servers to buy.<br /><a href="pricing.html"><b>View our full pricing and package details →</b></a></p>
+      </details>
+    </div>
+  </div>
+</section>
 
-        const i18nData = {
-            FR: {
-                navBtnHome: "Accueil",
-                navBtnC1: "Diagnostic",
-                navBtnC2: "Axe Ville",
-                navBtnC3: "Axe Métropole",
-                navBtnC4: "Monaco & Citoyens",
-                navBtnC5: "Budgets & Simulateur",
-                navBtnC6: "Annexe",
-                
-                heroKicker: "Plan Métropolitain d'IA Appliquée (2026-2029)",
-                heroTitle: "L'IA au service de Nice : <em>Sécurité & rigueur budgétaire</em>",
-                heroSubtitle: "Une doctrine d'austérité intelligente conçue pour <strong>M. Éric Ciotti</strong>. Basée sur le Pacte Nice IA, elle privilégie l'optimisation des deniers publics, le renforcement de la sécurité de proximité, et le co-financement européen direct sans dépendance régionale.",
-                heroBtnSimulate: "Simuler les économies",
-                heroBtnDownload: "Télécharger le Pacte (.PDF)",
-                heroMetricsTitle: "Chiffres Clés du Pacte",
-                heroM1: "+2,50 M€ / an",
-                heroM1Lbl: "Gains nets d'audit (Commande Publique)",
-                heroM2: "-65 %",
-                heroM2Lbl: "Incivilités visées au CSU",
-                heroM3: "50 %",
-                heroM3Lbl: "Taux de co-financement subventions UE",
-                
-                c1Kicker: "Chapitre 1",
-                c1Title: "Diagnostic Territorial & Opportunités Européennes",
-                c1Desc: "Analyse des forces en présence : synergie Nice-Monaco, pôle académique 3IA Côte d'Azur et captation directe des fonds européens pour affirmer l'indépendance métropolitaine.",
-                c1Card1Tag: "1.1 Alignement",
-                c1Card1Title: "Leadership & Métropole",
-                c1Card1Desc: "Alignement de la Mairie et de la Métropole pour déployer une gouvernance unifiée et un pilotage commando opérationnel de la transition technologique.",
-                c1Card2Tag: "1.2 Écosystème",
-                c1Card2Title: "Le Terreau Azuréen",
-                c1Card2Desc: "Exploitation de la puissance académique (Sophia Antipolis, 3IA Côte d'Azur) : 2 700 entreprises de pointe et 5 500 chercheurs au service du bassin niçois.",
-                c1Card3Tag: "1.3 Souveraineté",
-                c1Card3Title: "Extension Monaco",
-                c1Card3Desc: "Monaco dispose de capitaux financiers majeurs mais manque d'échelle territoriale. Nice offre le territoire d'expérimentation et le CSU en échange d'infrastructures.",
-                c1GraphTitle: "1.4 & 1.5 Financement direct & Poids National",
-                c1GraphDesc: "Face aux blocages budgétaires locaux, Nice mise sur les subventions directes de l'Union Européenne (Horizon Europe, Digital Europe). Le budget total IA est co-financé à <strong>50 % par l'UE</strong>, réduisant de moitié le reste à charge réel de la collectivité.",
-                c1GraphCaption: "Figure 1 : Poids des métropoles françaises dans les projets IA financés (Source: Annexe 4)",
-                
-                c2Kicker: "Chapitre 2",
-                c2Title: "Pôle 1 : Axe Ville de Nice (Sécurité & Cadre de Vie)",
-                c2Desc: "L'IA mise au service de la vie quotidienne des habitants : sécurisation de l'espace public, amélioration de la propreté urbaine et assistance de proximité.",
-                c2Card1Tag: "2.1 Securité",
-                c2Card1Title: "CSU Vidéo-Augmenté",
-                c2Card1Desc: "Boost de 4 300 caméras par l'IA VSA. Détection instantanée des incivilités et menaces en temps réel pour rediriger les policiers vers le terrain.",
-                c2Card1List: "<li>Baisse visée de 65 % des incivilités</li><li>Temps de réaction réduit sous les 6 minutes</li>",
-                c2Card2Tag: "2.2 Services",
-                c2Card2Title: "Allo Niçois Vocal 24/7",
-                c2Card2Desc: "Service d'appel intelligent disponible à toute heure. Spécialement calibré pour l'accompagnement des seniors et l'absorption des flux d'appels administratifs récurrents.",
-                c2Card2List: "<li>40 % des demandes résolues au premier contact</li><li>Zéro temps d'attente pour nos seniors</li>",
-                c2Card3Tag: "2.3 Propreté",
-                c2Card3Title: "Routage Intelligent",
-                c2Card3Desc: "Routage prédictif et dynamique des bennes et véhicules de voirie. Signalement automatisé des encombrants pour une propreté rétablie sous 6 heures.",
-                c2Card3List: "<li>Réduction de 37 % des distances de collecte</li><li>Économies directes de carburant de 30 %</li>",
-                
-                c3Kicker: "Chapitre 3",
-                c3Title: "Pôle 2 : Axe Métropole (Budget, DSI & Monaco)",
-                c3Desc: "L'optimisation des structures métropolitaines pour réaliser des gains financiers de masse et garantir l'étanchéité cyber du territoire.",
-                c3Card1Tag: "3.1 Rigueur",
-                c3Card1Title: "Audit IA Commande Publique",
-                c3Card1Desc: "Contrôle systématique par IA de 100 % des factures, devis et bordereaux métropolitains. Élimination automatique des doublons et anomalies de prix.",
-                c3Card1List: "<li><strong>+2,5 M€ / an</strong> d'économies nettes certifiées</li><li>Basé sur 300 M€ de volume annuel d'achat</li>",
-                c3Card2Tag: "3.2 Cyber",
-                c3Card2Title: "Bouclier Cyber-IA",
-                c3Card2Desc: "SOC métropolitain souverain fonctionnant 24h/24 pour contrer les rançongiciels et isolation hermétique (Air-Gap) du réseau sensible du CSU.",
-                c3Card2List: "<li>Conforme directive européenne NIS 2</li><li>1,8 M€ à 3 M€ / an de crises évitées</li>",
-                c3Card3Tag: "3.3 Cloud",
-                c3Card3Title: "Alliance Monaco Cloud",
-                c3Card3Desc: "Hébergement souverain externalisé du SI municipal. Mutualisation avec la Principauté pour éliminer les besoins de datacenters propres.",
-                c3Card3List: "<li>1,5 M€ à 2,8 M€ / an d'OPEX économisé</li><li>8 M€ à 12 M€ de CAPEX de stockage évité</li>",
-                
-                c4Kicker: "Chapitre 4",
-                c4Title: "Alliance Binationale & Pôle Citoyen",
-                c4Desc: "Un pont technologique et juridique exceptionnel avec la Principauté de Monaco pour servir de modèle national de conformité (AI Act) et soutenir l'éducation locale.",
-                c4Card1Tag: "4.1 Financement",
-                c4Card1Title: "Levier Binational",
-                c4Card1Desc: "Le partenariat avec Monaco sert de clé de voûte pour débloquer les financements européens à taux maximal, en combinant souveraineté de stockage et souveraineté d'expérimentation.",
-                c4Card2Tag: "4.2 Réglementation",
-                c4Card2Title: "Centre National AI Act",
-                c4Card2Desc: "Nice s'impose comme la sandbox de référence en France pour la mise en conformité des logiciels et modèles d'IA avec la nouvelle réglementation européenne.",
-                c4Card3Tag: "4.3 Entreprises",
-                c4Card3Title: "Bibliothèque PME/PMI",
-                c4Card3Desc: "Mise à disposition gratuite d'une bibliothèque de cas d'usage souverains pour accélérer la transition technologique des petites et moyennes entreprises métropolitaines.",
-                c4CitoyenKicker: "Axe Social & Inclusion",
-                c4CitoyenTitle: "Le Pôle d'Excellence Citoyen (§4.4)",
-                c4P1T: "🏫 Formations AnimaNice",
-                c4P1D: "Ateliers gratuits hebdomadaires pour les familles et séniors dans les centres AnimaNice (Vieux-Nice, Cimiez, Ariane, Fabron) pour maîtriser les IA génératives au quotidien.",
-                c4P2T: "🎓 Pass IA Jeunesse",
-                c4P2D: "Accès souverains et gratuits aux outils de recherche d'IA pour les étudiants et lycéens, via l'Université Côte d'Azur (UCA). 2 000 jeunes ciblés.",
-                c4P3T: "🤝 Médiation de Quartier",
-                c4P3D: "Présence de médiateurs numériques formés dans chaque mairie annexe pour accompagner les citoyens et rompre l'exclusion liée à l'informatique.",
-                c4P4T: "🗳️ Conseil Citoyen de l'IA",
-                c4P4D: "Comité de Niçois tirés au sort pour évaluer l'impact éthique des technologies déployées et contrôler l'étanchéité des données stockées.",
-                
-                c5Kicker: "Chapitre 5",
-                c5Title: "Feuille de Route & Chiffrage Budgétaire",
-                c5Desc: "Déploiement jalonné sur 3 ans, coprésidé par Éric Ciotti, sous financement partagé à 50 % avec l'Europe.",
-                c5RouteTitle: "Calendrier de Déploiement",
-                tDate1: "100 Premiers Jours",
-                tTitle1: "Phase 1 : Lancement Commando",
-                tDesc1: "Nomination de la gouvernance (AMO Benoît Sigwald), lancement de l'audit des contrats de marchés et cadrage technique avec Monaco Cloud.",
-                tDate2: "12 Mois",
-                tTitle2: "Phase 2 : Premiers Cas en Production",
-                tDesc2: "Mise en route de la vidéo VSA du CSU, lancement d'Allo Niçois vocal et mesure des premières économies d'audit commande publique.",
-                tDate3: "36 Mois",
-                tTitle3: "Phase 3 : Consolidation Souveraine",
-                tDesc3: "Migration complète du SI municipal et établissement de la zone franche transfrontalière Nice-Monaco avec retour sur investissement validé.",
-                c5BudgetTitle: "Budget Annuel Consolidé",
-                c5BudgetSubtitle: "Répartition par axe institutionnel co-financé à 50%",
-                c5GraphCaption: "Figure 2 : Bilan consolidé et part du reste à charge métropolitain (Source: Annexe 12)",
-                
-                simTitle: "Simulateur de Gains (Commande Publique)",
-                simDesc: "Ajustez le volume d'achat audité et le taux de détection pour estimer le bénéfice net public par rapport au coût commando de la Métropole.",
-                simVolLbl: "Volume d'achats annuels de la Métropole :",
-                simRateLbl: "Taux de détection sémantique d'anomalies :",
-                simLblGross: "Économies Brutes",
-                simLblCost: "Reste à Charge Net Métropole",
-                simLblNet: "Bénéfice Net Public",
-                
-                c6Kicker: "Chapitre 6",
-                c6Title: "Annexe : Sources & Justifications",
-                c6Desc: "Toutes les affirmations chiffrées du site et du document stratégique sont sourcées et vérifiables. Retrouvez l'index complet des 36 sources ci-dessous.",
-                thId: "Ref",
-                thSource: "Source Documentaire / Justification scientifique",
-                thStat: "Indicateur Chiffré",
-                
-                footerAuthor: "Benoît Sigwald — Senior AI Architect & AMO IA",
-                footerLinkPdf: "Télécharger le PDF",
-                footerLinkDocx: "Format Word (.DOCX)"
-            },
-            EN: {
-                navBtnHome: "Home",
-                navBtnC1: "Diagnostics",
-                navBtnC2: "City Axis",
-                navBtnC3: "Metropolis Axis",
-                navBtnC4: "Monaco & Citizens",
-                navBtnC5: "Budgets & Simulator",
-                navBtnC6: "Appendix",
-                
-                heroKicker: "Metropolitan Plan for Applied AI (2026-2029)",
-                heroTitle: "AI serving Nice: <em>Security & budgetary rigor</em>",
-                heroSubtitle: "A doctrine of intelligent austerity designed for <strong>Mr. Éric Ciotti</strong>. Based on the Nice AI Pact, it prioritizes public funds optimization, increased local safety, and direct EU co-financing without regional dependency.",
-                heroBtnSimulate: "Simulate savings",
-                heroBtnDownload: "Download the Pact (.PDF)",
-                heroMetricsTitle: "Pact Key Figures",
-                heroM1: "+€2.50M / year",
-                heroM1Lbl: "Net audit savings (Public Procurement)",
-                heroM2: "-65 %",
-                heroM2Lbl: "Targeted incivilities at CSU",
-                heroM3: "50 %",
-                heroM3Lbl: "EU subventions co-financing rate",
-                
-                c1Kicker: "Chapter 1",
-                c1Title: "Territorial Diagnostics & European Opportunities",
-                c1Desc: "Analysis of regional assets: Nice-Monaco synergy, 3IA Côte d'Azur academic hub and direct capture of European funds to assert metropolitan independence.",
-                c1Card1Tag: "1.1 Alignment",
-                c1Card1Title: "Leadership & Metropolis",
-                c1Card1Desc: "Alignment of the City and the Metropolis to deploy a unified governance and operational commando project management.",
-                c1Card2Tag: "1.2 Ecosystem",
-                c1Card2Title: "The Azorean Soil",
-                c1Card2Desc: "Exploiting academic power (Sophia Antipolis, 3IA Côte d'Azur): 2,700 advanced companies and 5,500 researchers serving the Nice area.",
-                c1Card3Tag: "1.3 Sovereignty",
-                c1Card3Title: "Monaco Extension",
-                c1Card3Desc: "Monaco has significant financial capital but lacks spatial scale. Nice offers the experimental territory and CSU in exchange for infrastructure.",
-                c1GraphTitle: "1.4 & 1.5 Direct Funding & National Weight",
-                c1GraphDesc: "Faced with local budget deadlocks, Nice targets direct grants from the European Union (Horizon Europe, Digital Europe). The total AI budget is <strong>50% co-financed by the EU</strong>, halving the actual cost for the city.",
-                c1GraphCaption: "Figure 1: Weight of French metropolises in funded AI projects (Source: Appendix 4)",
-                
-                c2Kicker: "Chapter 2",
-                c2Title: "Axis 1: City of Nice (Safety & Living Environment)",
-                c2Desc: "AI at the service of everyday citizen life: public space security, improved urban cleanliness and local support.",
-                c2Card1Tag: "2.1 Safety",
-                c2Card1Title: "Video-Augmented CSU",
-                c2Card1Desc: "Enhancing 4,300 cameras with VSA AI. Instant detection of incivilities and real-time threats to redirect police forces to the field.",
-                c2Card1List: "<li>65% reduction in incivilities</li><li>Response time cut below 6 minutes</li>",
-                c2Card2Tag: "2.2 Services",
-                c2Card2Title: "Allo Niçois Voice 24/7",
-                c2Card2Desc: "Smart call service available 24/7. Specially calibrated for seniors' support and absorption of recurring administrative call flows.",
-                c2Card2List: "<li>40% of queries resolved at first contact</li><li>Zero waiting time for our seniors</li>",
-                c2Card3Tag: "2.3 Cleanliness",
-                c2Card3Title: "Smart Routing",
-                c2Card3Desc: "Predictive and dynamic routing of waste trucks and street cleaning. Automated bulky waste reporting for cleanup under 6 hours.",
-                c2Card3List: "<li>37% reduction in collection mileage</li><li>30% direct fuel savings</li>",
-                
-                c3Kicker: "Chapter 3",
-                c3Title: "Axis 2: Metropolis (Budget, IT & Monaco)",
-                c3Desc: "Optimizing metropolitan structures to achieve mass financial gains and guarantee the territory's cyber security.",
-                c3Card1Tag: "3.1 Rigor",
-                c3Card1Title: "Public Order AI Audit",
-                c3Card1Desc: "Systematic control by AI of 100% of metropolitan invoices, quotes and price slips. Automatic elimination of duplicates and price anomalies.",
-                c3Card1List: "<li><strong>+€2.5M / year</strong> in certified net savings</li><li>Based on €300M annual purchasing volume</li>",
-                c3Card2Tag: "3.2 Cyber",
-                c3Card2Title: "Cyber-AI Shield",
-                c3Card2Desc: "24/7 sovereign metropolitan SOC to counter ransomwares and hermetic isolation (Air-Gap) of the sensitive CSU network.",
-                c3Card2List: "<li>Compliant with European NIS 2 directive</li><li>€1.8M to €3M / year in crises avoided</li>",
-                c3Card3Tag: "3.3 Cloud",
-                c3Card3Title: "Monaco Cloud Alliance",
-                c3Card3Desc: "Sovereign external hosting of the municipal IT. Pooling with the Principality to eliminate local datacenters dependencies.",
-                c3Card3List: "<li>€1.5M to €2.8M / year OPEX saved</li><li>€8M to €12M datacenter CAPEX avoided</li>",
-                
-                c4Kicker: "Chapter 4",
-                c4Title: "Cross-Border Alliance & Citizen Hub",
-                c4Desc: "An exceptional technological and legal bridge with the Principality of Monaco to serve as a national compliance model (AI Act) and support local education.",
-                c4Card1Tag: "4.1 Funding",
-                c4Card1Title: "Binational Lever",
-                c4Card1Desc: "The partnership with Monaco serves as the cornerstone to unlock EU subventions at maximum rate, combining storage and experimental sovereignty.",
-                c4Card2Tag: "4.2 Regulation",
-                c4Card2Title: "National AI Act Hub",
-                c4Card2Desc: "Nice stands out as the reference sandbox in France for AI software and model compliance with the new European regulation.",
-                c4Card3Tag: "4.3 Business",
-                c4Card3Title: "SME/SMI Library",
-                c4Card3Desc: "Free access to a library of sovereign use cases to accelerate the technological transition of metropolitan small and medium enterprises.",
-                c4CitoyenKicker: "Social Axis & Inclusion",
-                c4CitoyenTitle: "The Citizen Excellence Hub (§4.4)",
-                c4P1T: "🏫 AnimaNice Trainings",
-                c4P1D: "Weekly free workshops for families and seniors in AnimaNice community centers (Vieux-Nice, Cimiez, Ariane, Fabron) to master generative AI.",
-                c4P2T: "🎓 Youth AI Pass",
-                c4P2D: "Sovereign and free access to AI research tools for students and high schoolers, via Université Côte d'Azur (UCA). Target: 2,000 youth.",
-                c4P3T: "🤝 Local Mediation",
-                c4P3D: "Presence of trained digital mediators in every town hall annex to assist citizens and bridge the digital divide.",
-                c4P4T: "🗳️ AI Citizen Council",
-                c4P4D: "Committee of Nice citizens drawn by lot to evaluate the ethical impact of deployed technologies and audit data protection.",
-                
-                c5Kicker: "Chapter 5",
-                c5Title: "Feuille de Route & Chiffrage Budgétaire",
-                c5Desc: "Phased deployment over 3 years, co-presided by Éric Ciotti, under 50% shared funding with Europe.",
-                c5RouteTitle: "Deployment Timeline",
-                tDate1: "First 100 Days",
-                tTitle1: "Phase 1: Commando Launch",
-                tDesc1: "Appointment of governance (AMO Benoît Sigwald), launch of purchasing contracts audit and technical mapping with Monaco Cloud.",
-                tDate2: "12 Months",
-                tTitle2: "Phase 2: First Production Deployments",
-                tDesc2: "Activation of CSU VSA video, launch of voice Allo Niçois and evaluation of first public procurement audit savings.",
-                tDate3: "36 Months",
-                tTitle3: "Phase 3: Sovereign Consolidation",
-                tDesc3: "Complete migration of municipal IT and establishment of the Nice-Monaco transborder free zone with validated ROI.",
-                c5BudgetTitle: "Consolidated Annual Budget",
-                c5BudgetSubtitle: "Distribution by institutional axis, co-financed at 50%",
-                c5GraphCaption: "Figure 2: Consolidated balance sheet and metropolitan cost share (Source: Appendix 12)",
-                
-                simTitle: "Savings Simulator (Public Procurement)",
-                simDesc: "Adjust the audited purchasing volume and detection rate to estimate the net public benefit compared to the Metropole commando cost.",
-                simVolLbl: "Metropole Annual Purchasing Volume:",
-                simRateLbl: "Semantic Anomalies Detection Rate:",
-                simLblGross: "Gross Savings",
-                simLblCost: "Metropole Remaining Net Cost",
-                simLblNet: "Net Public Benefit",
-                
-                c6Kicker: "Appendix",
-                c6Title: "Appendix: Sources & Justifications",
-                c6Desc: "All numerical assertions on the site and in the strategic document are sourced and verifiable. Find the complete index of 36 sources below.",
-                thId: "Ref",
-                thSource: "Documentary Source / Scientific Justification",
-                thStat: "Numerical Indicator",
-                
-                footerAuthor: "Benoît Sigwald — Senior AI Architect & AI AMO",
-                footerLinkPdf: "Download PDF",
-                footerLinkDocx: "Word Format (.DOCX)"
-            }
-        };
+<section id="contact" data-reveal>
+  <div class="container" style="text-align:center">
+    <span class="sec-num">08 — Next step</span>
+    <h2>Let's talk.</h2>
+    <p class="sub" style="margin:0 auto 28px">
+      Thirty minutes to look together at what slows your teams down. You leave with two or three concrete
+      leads and a ballpark figure — whether we work together or not. No sales pitch: if I don't think I can
+      create real value for you, I'll say so honestly.
+    </p>
+    <a class="btn btn-primary" href="https://calendly.com/arx-capital-eu/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+    <p class="hero-alt" style="margin-top:14px">Or call me: <a href="tel:+33613705321">+33 6 13 70 53 21</a></p>
+    <p class="closing">Technology has never failed on its own.<br />It's the people we forgot to bring along.</p>
+  </div>
+</section>
 
-        // 2. Annexe Data: The 36 exact sources of Le Pacte Nice IA
-        const sourcesData = {
-            FR: [
-                { id: "A1", source: "Rapport national de l'Insee (2025) sur le vieillissement de la population azuréenne", stat: "+18% seniors d'ici 2030" },
-                { id: "A2", source: "Audit interne de la DSI de la Mairie de Nice sur la volumétrie des appels récurrents", stat: "42% d'appels administratifs répétitifs" },
-                { id: "A3", source: "Statistiques de Sophia Antipolis (Syndicat Mixte de la technopole, 2025)", stat: "2 700 entreprises, 5 500 chercheurs" },
-                { id: "A4", source: "Rapport de la Commission Européenne sur les subventions Directes numériques", stat: "30 Md€ disponibles sans transit Région" },
-                { id: "A5", source: "Étude comparative du Clusir PACA sur les menaces de ransomware en collectivité", stat: "Hausses de 120% des attaques depuis 2023" },
-                { id: "A6", source: "Rapport annuel de la Police Municipale de Nice sur les interventions physiques", stat: "12 000 interventions liées aux incivilités" },
-                { id: "A7", source: "Statistiques du CSU de Nice sur l'efficacité de la VSA (Vidéoprotection Assistée)", stat: "Détection accélérée, incivilités -65%" },
-                { id: "A8", source: "Chiffres de l'Ademe sur le coût de la gestion des décharges sauvages à Nice", stat: "450 t d'encombrants sauvages par an" },
-                { id: "A9", source: "Bilan carbone de la Métropole NCA sur les flottes logistiques", stat: "3 200 t CO2 rejetées / an" },
-                { id: "A10", source: "Rapport d'activité 2025 d'Extended Monaco (Secrétariat d'État au Numérique)", stat: "100% démarches numérisées" },
-                { id: "A11", source: "Fiche technique souveraineté de Monaco Cloud (Norme haute sécurité AMSN)", stat: "AMSN, HDS, ISO 27001" },
-                { id: "A12", source: "Budget primitif 2026 de la Métropole Nice Côte d'Azur", stat: "Axe Ville 155k€, Métropole 160k€, Monaco 120k€" },
-                { id: "A13", source: "Règlement européen AI Act (Parlement Européen, 2024)", stat: "Classification des systèmes à haut risque" },
-                { id: "A14", source: "Enquête d'opinion métropolitaine sur la perception de l'IA (Nice, Janvier 2026)", stat: "74% favorables sous contrôle éthique local" },
-                { id: "A15", source: "Rapport de l'Alliance Binationale Nice-Monaco sur les pendulaires", stat: "45 000 passages journaliers" },
-                { id: "A16", source: "Étude d'impact financier de l'audit de commande publique (Benchmark US Cities)", stat: "0,5% à 2% d'erreurs de facturation" },
-                { id: "A17", source: "Rapport d'activité des centres de médiation numérique de Nice (2025)", stat: "15 000 Niçois accompagnés" },
-                { id: "A18", source: "Université Côte d'Azur (UCA) - Statistiques d'accès aux ressources IA", stat: "2 000 licences ciblées pour les étudiants" },
-                { id: "A19", source: "Bilan annuel Open Data Nice Côte d'Azur (2025)", stat: "320 jeux de données accessibles" },
-                { id: "A20", source: "Directive Européenne NIS 2 (Cybersecurity Act)", stat: "Sanctions financières et obligation de SOC" },
-                { id: "A21", source: "Rapport d'évaluation de la plateforme d'apprentissage AnimaNice", stat: "85% de satisfaction des seniors formés" },
-                { id: "A22", source: "Fonds Européen de Développement Régional (FEDER) - Taux de subvention direct", stat: "Co-financement garanti à 50%" },
-                { id: "A23", source: "Étude de trafic de la Plaine du Var (Métropole NCA, 2025)", stat: "Baisse de 45 min de temps de trajet visée" },
-                { id: "A24", source: "Bilan financier de la DSI Nice - Économies de licences logicielles", stat: "300 k€/an économisés via mutualisation" },
-                { id: "A25", source: "Rapport de la DGFiP sur la commande publique métropolitaine", stat: "300 M€ de volume annuel d'achats" },
-                { id: "A26", source: "Statistiques d'utilisation d'Allo Mairie Nice (2025)", stat: "350 000 appels annuels" },
-                { id: "A27", source: "Évaluation technique de l'isolation du réseau (Air-gap) du CSU", stat: "Zéro intrusion sur flux vidéo" },
-                { id: "A28", source: "Rapport de la Commission d'éthique locale sur l'IA (Nice, 2025)", stat: "Zéro stockage hors Monaco Cloud" },
-                { id: "A29", source: "Décret municipal portant création du Conseil Citoyen de l'IA (Février 2026)", stat: "15 membres tirés au sort" },
-                { id: "A30", source: "Bilan d'audit sémantique pilote sur les factures d'énergie de la Métropole", stat: "+2,5 M€ d'économies annuelles" },
-                { id: "A31", source: "Rapport national de l'ANSSI sur la résilience des collectivités territoriales", stat: "1,8 M€ à 3 M€ évités par cyber-bouclier" },
-                { id: "A32", source: "Rapport de cadrage d'externalisation du SI municipal sur Monaco Cloud", stat: "1,5-2,8 M€ d'OPEX économisé, 8-12 M€ CAPEX" },
-                { id: "A33", source: "Statistiques de fréquentation des mairies annexes de Nice", stat: "12 mairies annexes équipées de médiateurs" },
-                { id: "A34", source: "Rapport annuel de la Zone Franche Transfrontalière IA", stat: "50 PME accompagnées dès l'Année 1" },
-                { id: "A35", source: "Convention-cadre Ville de Nice et Université Côte d'Azur sur le Pass IA", stat: "Coût de 100k€ financé à 50% par l'Europe" },
-                { id: "A36", source: "Baromètre du numérique en milieu urbain (Arx Consulting, 2026)", stat: "Nice classée première en souveraineté locale" }
-            ],
-            EN: [
-                { id: "A1", source: "National Insee report (2025) on the aging of the Azorean population", stat: "+18% seniors by 2030" },
-                { id: "A2", source: "Internal audit of the Nice IT Department on recurring call volume", stat: "42% repetitive administrative calls" },
-                { id: "A3", source: "Sophia Antipolis statistics (Technopole Joint Union, 2025)", stat: "2,700 companies, 5,500 researchers" },
-                { id: "A4", source: "European Commission report on Direct digital subventions", stat: "€30B available without Region transit" },
-                { id: "A5", source: "PACA Clusir comparative study on ransomware threats in municipalities", stat: "120% increase in attacks since 2023" },
-                { id: "A6", source: "Nice Municipal Police annual report on physical interventions", stat: "12,000 interventions related to incivilities" },
-                { id: "A7", source: "Nice CSU statistics on VSA efficiency (Assisted Videoprotection)", stat: "Accelerated detection, incivilities -65%" },
-                { id: "A8", source: "Ademe figures on the cost of managing illegal dumps in Nice", stat: "450 tons of illegal bulk waste per year" },
-                { id: "A9", source: "Metropolis NCA carbon assessment on logistics fleets", stat: "3,200 t CO2 emitted / year" },
-                { id: "A10", source: "Extended Monaco annual report (State Secretariat for Digital Affairs, 2025)", stat: "100% digitalized procedures" },
-                { id: "A11", source: "Technical sheet on Monaco Cloud sovereignty (AMSN high security standard)", stat: "AMSN, HDS, ISO 27001" },
-                { id: "A12", source: "2026 Nice Côte d'Azur Metropolis primitive budget", stat: "City axis €155k, Metropolis €160k, Monaco €120k" },
-                { id: "A13", source: "European AI Act Regulation (European Parliament, 2024)", stat: "Classification of high-risk systems" },
-                { id: "A14", source: "Metropolitan opinion poll on AI perception (Nice, January 2026)", stat: "74% in favor under local control" },
-                { id: "A15", source: "Nice-Monaco Binational Alliance report on commuting flows", stat: "45,000 daily crossings" },
-                { id: "A16", source: "Financial impact study of procurement audit (US Cities Benchmark)", stat: "0.5% to 2% billing errors detected" },
-                { id: "A17", source: "Activity report of digital mediation centers in Nice (2025)", stat: "15,000 citizens assisted" },
-                { id: "A18", source: "Université Côte d'Azur (UCA) - AI resource access statistics", stat: "2,000 student licenses targeted" },
-                { id: "A19", source: "Open Data Nice Côte d'Azur annual assessment (2025)", stat: "320 open datasets accessible" },
-                { id: "A20", source: "European Directive NIS 2 (Cybersecurity Act)", stat: "Financial penalties and SOC obligation" },
-                { id: "A21", source: "Evaluation report of the AnimaNice training platform", stat: "85% satisfaction rate among trained seniors" },
-                { id: "A22", source: "European Regional Development Fund (ERDF) - Direct subvention rate", stat: "50% co-financing guaranteed" },
-                { id: "A23", source: "Plaine du Var traffic study (Metropolis NCA, 2025)", stat: "Targeted 45-minute travel time reduction" },
-                { id: "A24", source: "DSI Nice financial assessment - Software license savings", stat: "€300k/year saved through pooling" },
-                { id: "A25", source: "DGFiP report on metropolitan public procurement", stat: "€300M annual purchasing volume" },
-                { id: "A26", source: "Usage statistics for Allo Mairie Nice (2025)", stat: "350,000 annual calls" },
-                { id: "A27", source: "Technical evaluation of CSU network isolation (Air-gap)", stat: "Zero intrusions on video streams" },
-                { id: "A28", source: "Local ethics committee report on AI (Nice, 2025)", stat: "Zero storage outside Monaco Cloud" },
-                { id: "A29", source: "Municipal decree establishing the AI Citizen Council (February 2026)", stat: "15 members drawn by lot" },
-                { id: "A30", source: "Pilot semantic audit results on Metropolis energy invoices", stat: "+€2.5M annual savings" },
-                { id: "A31", source: "ANSSI national report on local authorities cyber resilience", stat: "€1.8M to €3M prevented by cyber-shield" },
-                { id: "A32", source: "Monaco Cloud municipal IT outsourcing scoping report", stat: "€1.5-2.8M OPEX saved, €8-12M CAPEX avoided" },
-                { id: "A33", source: "Attendance statistics for Nice annex town halls", stat: "12 annex town halls equipped with mediators" },
-                { id: "A34", source: "Cross-Border AI Free Zone annual report", stat: "50 SMEs supported from Year 1" },
-                { id: "A35", source: "Framework agreement between City of Nice and UCA on AI Pass", stat: "€100k cost 50% financed by Europe" },
-                { id: "A36", source: "Digital indicator in urban environment (Arx Consulting, 2026)", stat: "Nice ranked first in local sovereignty" }
-            ]
-        };
+<footer>
+  <div class="container">
+    <img class="flogo" src="assets/logo.png" alt="" />
+    <div>
+      <strong>Benoît Sigwald</strong> · Mougins, France · EU remote / contract<br />
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">github.com/benoit-sigwald</a>
+    </div>
+    <div>
+      Built with Claude Code · Hosted on my own OCI cloud<br />
+      <a href="oci-migration.html">How it's hosted →</a> · <a href="guide-ia-donnees.html">Free guide</a> · <a href="mentions-legales.html">Legal &amp; privacy</a> · <a href="index-fr.html">Version française</a>
+    </div>
+  </div>
+</footer>
 
-        function setLanguage(lang) {
-            currentLang = lang;
-            const data = i18nData[currentLang];
+<div id="lightbox" hidden>
+  <div class="lb-box">
+    <button class="lb-close" aria-label="Close">×</button>
+    <h3 id="lb-title"></h3>
+    <img id="lb-img" src="" alt="" />
+    <p id="lb-desc"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  function open(el, img){
+    document.getElementById('lb-title').textContent = el.getAttribute('data-title');
+    document.getElementById('lb-desc').textContent = el.getAttribute('data-desc');
+    var big = document.getElementById('lb-img');
+    big.src = img.src; big.alt = img.alt;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  document.querySelectorAll('.svc').forEach(function(card){
+    card.addEventListener('click', function(){ open(card, card.querySelector('img')); });
+  });
+  document.querySelectorAll('img.lb-open').forEach(function(img){
+    img.addEventListener('click', function(){ open(img, img); });
+  });
+  function close(){ lb.hidden = true; document.body.style.overflow = ''; }
+  lb.addEventListener('click', function(e){ if (e.target === lb || e.target.classList.contains('lb-close')) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+</script>
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle'), n = document.querySelector('nav');
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  n.querySelectorAll('ul a').forEach(function(a){
+    a.addEventListener('click', function(){ n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+</script>
+<script defer src="/gate/t.js" data-site="arxcapital"></script>
+<script id="js-reveal">
+(function(){
+  // apparition au défilement
+  var els = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('seen'); }); }
 
-            // Set active states on buttons
-            if (currentLang === 'FR') {
-                document.getElementById('lang-btn-fr').classList.add('active');
-                document.getElementById('lang-btn-en').classList.remove('active');
-            } else {
-                document.getElementById('lang-btn-fr').classList.remove('active');
-                document.getElementById('lang-btn-en').classList.add('active');
-            }
+  // compteurs animés
+  function animate(el){
+    var raw = el.getAttribute('data-count'), n = parseFloat(raw), pre = el.getAttribute('data-pre') || '',
+        suf = el.getAttribute('data-suf') || '', t0 = null, dur = 1100;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var k = Math.min((ts - t0) / dur, 1), v = Math.round(n * (1 - Math.pow(1 - k, 3)));
+      el.textContent = pre + v + suf;
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); } });
+    });
+    counters.forEach(function(el){ io2.observe(el); });
+  }
 
-            // Translate navbar links
-            document.getElementById('nav-btn-home').innerText = data.navBtnHome;
-            document.getElementById('nav-btn-c1').innerText = data.navBtnC1;
-            document.getElementById('nav-btn-c2').innerText = data.navBtnC2;
-            document.getElementById('nav-btn-c3').innerText = data.navBtnC3;
-            document.getElementById('nav-btn-c4').innerText = data.navBtnC4;
-            document.getElementById('nav-btn-c5').innerText = data.navBtnC5;
-            document.getElementById('nav-btn-c6').innerText = data.navBtnC6;
+  // accordéons mobile
+  document.querySelectorAll('.collapse-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var sec = b.closest('.collapsible');
+      var open = sec.classList.toggle('open');
+      b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
+    });
+  });
 
-            // Translate Hero
-            document.getElementById('hero-kicker').innerText = data.heroKicker;
-            document.getElementById('hero-title').innerHTML = data.heroTitle;
-            document.getElementById('hero-subtitle').innerHTML = data.heroSubtitle;
-            document.getElementById('hero-btn-simulate').innerText = data.heroBtnSimulate;
-            document.getElementById('hero-btn-download').innerText = data.heroBtnDownload;
-            document.getElementById('hero-metrics-title').innerText = data.heroMetricsTitle;
-            document.getElementById('hero-m1').innerText = data.heroM1;
-            document.getElementById('hero-m1-lbl').innerText = data.heroM1Lbl;
-            document.getElementById('hero-m2').innerText = data.heroM2;
-            document.getElementById('hero-m2-lbl').innerText = data.heroM2Lbl;
-            document.getElementById('hero-m3').innerText = data.heroM3;
-            document.getElementById('hero-m3-lbl').innerText = data.heroM3Lbl;
+  // Official Instant Calendly Popup Interceptor
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="calendly.com"]');
+    if (link) {
+      e.preventDefault();
+      try {
+        var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+      } catch(err){}
+      if (window.Calendly) {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
+      } else {
+        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
+      }
+    }
+  });
 
-            // Translate Chapter 1
-            document.getElementById('c1-kicker').innerText = data.c1Kicker;
-            document.getElementById('c1-title').innerText = data.c1Title;
-            document.getElementById('c1-desc').innerText = data.c1Desc;
-            document.getElementById('c1-card1-tag').innerText = data.c1Card1Tag;
-            document.getElementById('c1-card1-title').innerText = data.c1Card1Title;
-            document.getElementById('c1-card1-desc').innerText = data.c1Card1Desc;
-            document.getElementById('c1-card2-tag').innerText = data.c1Card2Tag;
-            document.getElementById('c1-card2-title').innerText = data.c1Card2Title;
-            document.getElementById('c1-card2-desc').innerText = data.c1Card2Desc;
-            document.getElementById('c1-card3-tag').innerText = data.c1Card3Tag;
-            document.getElementById('c1-card3-title').innerText = data.c1Card3Title;
-            document.getElementById('c1-card3-desc').innerText = data.c1Card3Desc;
-            document.getElementById('c1-graph-title').innerText = data.c1GraphTitle;
-            document.getElementById('c1-graph-desc').innerHTML = data.c1GraphDesc;
-            document.getElementById('c1-graph-caption').innerText = data.c1GraphCaption;
-
-            // Translate Chapter 2
-            document.getElementById('c2-kicker').innerText = data.c2Kicker;
-            document.getElementById('c2-title').innerText = data.c2Title;
-            document.getElementById('c2-desc').innerText = data.c2Desc;
-            document.getElementById('c2-card1-tag').innerText = data.c2Card1Tag;
-            document.getElementById('c2-card1-title').innerText = data.c2Card1Title;
-            document.getElementById('c2-card1-desc').innerText = data.c2Card1Desc;
-            document.getElementById('c2-card1-list').innerHTML = data.c2Card1List;
-            document.getElementById('c2-card2-tag').innerText = data.c2Card2Tag;
-            document.getElementById('c2-card2-title').innerText = data.c2Card2Title;
-            document.getElementById('c2-card2-desc').innerText = data.c2Card2Desc;
-            document.getElementById('c2-card2-list').innerHTML = data.c2Card2List;
-            document.getElementById('c2-card3-tag').innerText = data.c2Card3Tag;
-            document.getElementById('c2-card3-title').innerText = data.c2Card3Title;
-            document.getElementById('c2-card3-desc').innerText = data.c2Card3Desc;
-            document.getElementById('c2-card3-list').innerHTML = data.c2Card3List;
-
-            // Translate Chapter 3
-            document.getElementById('c3-kicker').innerText = data.c3Kicker;
-            document.getElementById('c3-title').innerText = data.c3Title;
-            document.getElementById('c3-desc').innerText = data.c3Desc;
-            document.getElementById('c3-card1-tag').innerText = data.c3Card1Tag;
-            document.getElementById('c3-card1-title').innerText = data.c3Card1Title;
-            document.getElementById('c3-card1-desc').innerText = data.c3Card1Desc;
-            document.getElementById('c3-card1-list').innerHTML = data.c3Card1List;
-            document.getElementById('c3-card2-tag').innerText = data.c3Card2Tag;
-            document.getElementById('c3-card2-title').innerText = data.c3Card2Title;
-            document.getElementById('c3-card2-desc').innerText = data.c3Card2Desc;
-            document.getElementById('c3-card2-list').innerHTML = data.c3Card2List;
-            document.getElementById('c3-card3-tag').innerText = data.c3Card3Tag;
-            document.getElementById('c3-card3-title').innerText = data.c3Card3Title;
-            document.getElementById('c3-card3-desc').innerText = data.c3Card3Desc;
-            document.getElementById('c3-card3-list').innerHTML = data.c3Card3List;
-
-            // Translate Chapter 4
-            document.getElementById('c4-kicker').innerText = data.c4Kicker;
-            document.getElementById('c4-title').innerText = data.c4Title;
-            document.getElementById('c4-desc').innerText = data.c4Desc;
-            document.getElementById('c4-card1-tag').innerText = data.c4Card1Tag;
-            document.getElementById('c4-card1-title').innerText = data.c4Card1Title;
-            document.getElementById('c4-card1-desc').innerText = data.c4Card1Desc;
-            document.getElementById('c4-card2-tag').innerText = data.c4Card2Tag;
-            document.getElementById('c4-card2-title').innerText = data.c4Card2Title;
-            document.getElementById('c4-card2-desc').innerText = data.c4Card2Desc;
-            document.getElementById('c4-card3-tag').innerText = data.c4Card3Tag;
-            document.getElementById('c4-card3-title').innerText = data.c4Card3Title;
-            document.getElementById('c4-card3-desc').innerText = data.c4Card3Desc;
-            document.getElementById('c4-citoyen-kicker').innerText = data.c4CitoyenKicker;
-            document.getElementById('c4-citoyen-title').innerText = data.c4CitoyenTitle;
-            document.getElementById('c4-p1-t').innerText = data.c4P1T;
-            document.getElementById('c4-p1-d').innerText = data.c4P1D;
-            document.getElementById('c4-p2-t').innerText = data.c4P2T;
-            document.getElementById('c4-p2-d').innerText = data.c4P2D;
-            document.getElementById('c4-p3-t').innerText = data.c4P3T;
-            document.getElementById('c4-p3-d').innerText = data.c4P3D;
-            document.getElementById('c4-p4-t').innerText = data.c4P4T;
-            document.getElementById('c4-p4-d').innerText = data.c4P4D;
-
-            // Translate Chapter 5
-            document.getElementById('c5-kicker').innerText = data.c5Kicker;
-            document.getElementById('c5-title').innerText = data.c5Title;
-            document.getElementById('c5-desc').innerText = data.c5Desc;
-            document.getElementById('c5-route-title').innerText = data.c5RouteTitle;
-            document.getElementById('t-date-1').innerText = data.tDate1;
-            document.getElementById('t-title-1').innerText = data.tTitle1;
-            document.getElementById('t-desc-1').innerText = data.tDesc1;
-            document.getElementById('t-date-2').innerText = data.tDate2;
-            document.getElementById('t-title-2').innerText = data.tTitle2;
-            document.getElementById('t-desc-2').innerText = data.tDesc2;
-            document.getElementById('t-date-3').innerText = data.tDate3;
-            document.getElementById('t-title-3').innerText = data.tTitle3;
-            document.getElementById('t-desc-3').innerText = data.tDesc3;
-            document.getElementById('c5-budget-title').innerText = data.c5BudgetTitle;
-            document.getElementById('c5-budget-subtitle').innerText = data.c5BudgetSubtitle;
-            document.getElementById('c5-graph-caption').innerText = data.c5GraphCaption;
-
-            // Translate Simulator
-            document.getElementById('sim-title').innerText = data.simTitle;
-            document.getElementById('sim-desc').innerText = data.simDesc;
-            document.getElementById('sim-vol-lbl').innerText = data.simVolLbl;
-            document.getElementById('sim-rate-lbl').innerText = data.simRateLbl;
-            document.getElementById('sim-lbl-gross').innerText = data.simLblGross;
-            document.getElementById('sim-lbl-cost').innerText = data.simLblCost;
-            document.getElementById('sim-lbl-net').innerText = data.simLblNet;
-
-            // Translate Chapter 6
-            document.getElementById('c6-kicker').innerText = data.c6Kicker;
-            document.getElementById('c6-title').innerText = data.c6Title;
-            document.getElementById('c6-desc').innerText = data.c6Desc;
-            document.getElementById('th-id').innerText = data.thId;
-            document.getElementById('th-source').innerText = data.thSource;
-            document.getElementById('th-stat').innerText = data.thStat;
-
-            // Footer
-            document.getElementById('footer-author').innerText = data.footerAuthor;
-            document.getElementById('footer-link-pdf').innerText = data.footerLinkPdf;
-            document.getElementById('footer-link-docx').innerText = data.footerLinkDocx;
-
-            // Re-run simulator calculation to adjust currency formatting/units
-            calculateROI();
-            
-            // Re-populate sources table in correct language
-            populateSourcesTable();
-        }
-
-        // 3. Populate Appendix / Sources Table dynamically
-        function populateSourcesTable() {
-            const tbody = document.getElementById('sources-tbody');
-            tbody.innerHTML = '';
-            
-            const list = sourcesData[currentLang];
-            list.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight: 700; color: var(--accent-crimson); width: 60px;">${row.id}</td>
-                    <td>${row.source}</td>
-                    <td style="font-weight: 600; color: var(--primary); width: 180px; text-align: right;">${row.stat}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // 4. Interactive ROI Calculator Logic
-        function calculateROI() {
-            const volume = parseFloat(document.getElementById('slider-volume').value);
-            const rate = parseFloat(document.getElementById('slider-rate').value);
-
-            document.getElementById('sim-vol-val').innerText = volume + ' M€';
-            document.getElementById('sim-rate-val').innerText = rate.toFixed(1) + ' %';
-
-            const gross = volume * (rate / 100);
-            const cost = 0.2175; // Reste à charge net (50% de 435k€/an brut)
-            const net = gross - cost;
-
-            const unitStr = currentLang === 'FR' ? ' M€ / an' : ' M€ / yr';
-
-            document.getElementById('val-gross').innerText = gross.toFixed(2) + unitStr;
-            document.getElementById('val-cost').innerText = cost.toFixed(3) + unitStr;
-            document.getElementById('val-net').innerText = (net >= 0 ? '+' : '') + net.toFixed(2) + unitStr;
-            
-            if (net >= 0) {
-                document.getElementById('val-net').style.color = 'var(--success)';
-            } else {
-                document.getElementById('val-net').style.color = 'var(--accent-crimson)';
-            }
-        }
-
-        // 5. Scroll Spy & Scroll Reveal Intersection Observer
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initial call
-            setLanguage('FR');
-
-            // Scroll Reveal Observer
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Reveal once
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
-
-            // Scroll Spy for Nav links active state
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-
-            window.addEventListener('scroll', () => {
-                let currentSection = '';
-                const scrollPos = window.scrollY + 100;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
+  // Header card click animations (30 yrs: 3D roll, Sovereign: big bounce)
+  document.querySelectorAll('a.stat').forEach(function(card){
+    card.addEventListener('click', function(e){
+      e.preventDefault();
+      var targetUrl = this.href;
+      if (this.classList.contains('stat-sovereign')) {
+        this.classList.add('stat-bouncing');
+      } else {
+        this.classList.add('stat-rolling');
+      }
+      var delay = this.classList.contains('stat-sovereign') ? 540 : 450;
+      setTimeout(function(){
+        window.location.href = targetUrl;
+      }, delay);
+    });
+  });
+})();
+</script>
 </body>
 </html>
