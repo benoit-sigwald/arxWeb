@@ -1,3 +1,6 @@
+
+/* width/height des <img> = hints de presentation : sans ceci l'image est deformee */
+img{height:auto}
 :root {
   --bg: #ffffff;
   --bg-soft: #f6f8fb;
