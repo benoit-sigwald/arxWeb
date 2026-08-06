@@ -15,26 +15,35 @@
 <meta property="og:url" content="https://arx-consulting.com/oci-migration-fr.html" />
 <meta property="og:title" content="Migration OCI — Benoît Sigwald | Arx Consulting" />
 <meta property="og:description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
-<meta property="og:image" content="https://arx-consulting.com/assets/oci-migration-en.png" />
+<meta property="og:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Migration OCI — Benoît Sigwald | Arx Consulting" />
 <meta name="twitter:description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
-<meta name="twitter:image" content="https://arx-consulting.com/assets/oci-migration-en.png" />
+<meta name="twitter:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
-  <!-- Official Calendly Engine for Instant Popup -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <a class="logo" href="index-fr.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="186" decoding="async"><b>ARX <span>Consulting</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="index-fr.html">Accueil</a></li>
@@ -107,31 +116,31 @@
     <div class="diagram">
       <h3>Vue d'ensemble de la migration</h3>
       <p>Ce qui a bougé et d'où : les charges Vercel, Render, Supabase et locales consolidées sur le serveur OCI.</p>
-      <img src="assets/oci-migration-en.png" alt="Schéma de la migration OCI" loading="lazy" />
+      <img src="assets/oci-migration-en.webp" alt="Schéma de la migration OCI" width="1024" height="1536" decoding="async" fetchpriority="high">
     </div>
 
     <div class="diagram">
       <h3>Architecture de l'infrastructure</h3>
       <p>Le trafic Internet traverse deux couches de pare-feu, atteint Traefik qui termine le TLS, et est routé vers le bon conteneur. Coolify construit depuis GitHub et gère le cycle de vie.</p>
-      <img src="assets/arx-infra-architecture.png" alt="Schéma d'architecture de l'infrastructure Arx" loading="lazy" />
+      <img src="assets/arx-infra-architecture.webp" alt="Schéma d'architecture de l'infrastructure Arx" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Flux de données entre composants</h3>
       <p>Comment requêtes, builds et données circulent entre le proxy, les applications, les bases de données et le stockage objet.</p>
-      <img src="assets/oci-component-data-flow.png" alt="Schéma du flux de données OCI" loading="lazy" />
+      <img src="assets/oci-component-data-flow.webp" alt="Schéma du flux de données OCI" loading="lazy" width="1536" height="1024" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Couche de services PaaS</h3>
       <p>Le plan de contrôle Coolify : builds, déploiements, variables d'environnement, tâches planifiées.</p>
-      <img src="assets/arx-paas-service-layer.png" alt="Schéma de la couche de services PaaS Arx" loading="lazy" />
+      <img src="assets/arx-paas-service-layer.webp" alt="Schéma de la couche de services PaaS Arx" loading="lazy" width="1536" height="1024" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Détails du PaaS</h3>
       <p>Un regard rapproché sur les entrailles de la plateforme et la place de chaque service hébergé.</p>
-      <img src="assets/arx-paas-details.png" alt="Schéma des détails du PaaS Arx" loading="lazy" />
+      <img src="assets/arx-paas-details.webp" alt="Schéma des détails du PaaS Arx" loading="lazy" width="1600" height="873" decoding="async">
     </div>
   </div>
 </section>
@@ -145,25 +154,25 @@
     <div class="diagram">
       <h3>Coolify — plan de déploiement</h3>
       <p>Construit depuis GitHub à chaque push, déploie des conteneurs Docker, gère variables d'environnement et tâches planifiées — le tout piloté via son API REST.</p>
-      <img src="assets/svc-coolify.jpg" alt="Schéma du plan de déploiement Coolify" loading="lazy" />
+      <img src="assets/svc-coolify.webp" alt="Schéma du plan de déploiement Coolify" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Couche de données — PostgreSQL + PostgREST + base Oracle</h3>
       <p>Une API de données auto-hébergée compatible Supabase avec recherche plein texte en français, aux côtés d'une base Oracle. 500+ lignes migrées sans perte.</p>
-      <img src="assets/svc-data-layer.jpg" alt="Schéma de la couche de données Arx" loading="lazy" />
+      <img src="assets/svc-data-layer.webp" alt="Schéma de la couche de données Arx" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>MinIO — stockage objet compatible S3</h3>
       <p>Stockage type S3 auto-hébergé pour les fichiers et ressources des applications, derrière Traefik comme tous les autres services.</p>
-      <img src="assets/svc-minio.jpg" alt="Schéma du stockage S3 MinIO" loading="lazy" />
+      <img src="assets/svc-minio.webp" alt="Schéma du stockage S3 MinIO" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Sauvegardes — automatiques, hors conteneur</h3>
       <p>Sauvegardes planifiées des bases et volumes expédiées vers OCI Object Storage (10 Go gratuits), testées par restauration avant toute bascule.</p>
-      <img src="assets/svc-backups.jpg" alt="Schéma de l'architecture de sauvegarde" loading="lazy" />
+      <img src="assets/svc-backups.webp" alt="Schéma de l'architecture de sauvegarde" loading="lazy" width="1600" height="893" decoding="async">
     </div>
   </div>
 </section>
@@ -210,7 +219,7 @@
 
 <footer>
   <div class="container">
-    <img class="flogo" src="assets/logo.png" alt="" />
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="186" loading="lazy" decoding="async">
     <div>
       <strong>Benoît Sigwald</strong> ·
       <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
@@ -232,7 +241,7 @@
   });
 })();
 </script>
-<script defer src="/gate/t.js" data-site="arxcapital">
+<script defer src="https://arx-apps.duckdns.org/gate/t.js" data-site="arxcapital">
   // Official Instant Calendly Popup Interceptor
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href*="calendly.com"]');
@@ -240,13 +249,9 @@
       e.preventDefault();
       try {
         var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
-      if (window.Calendly) {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
-      } else {
-        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
-      }
+      window.arxCalendly();
     }
   });
 </script>

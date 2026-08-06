@@ -34,25 +34,29 @@
 "address":{"@type":"PostalAddress","addressLocality":"Mougins","addressCountry":"FR"},
 "areaServed":"EU","knowsAbout":["adoption de l'IA","gouvernance IA","RGPD","AI Act","infrastructure cloud"]}
 </script>
-  <!-- Official Calendly Engine for Instant Popup -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <a class="logo" href="index-fr.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="186" decoding="async"><b>ARX <span>Consulting</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
-      <li><a href="#pains">Votre situation</a></li>
-      <li><a href="#offers">Services</a></li>
       <li><a href="tarifs-fr.html">Tarifs</a></li>
-      <li><a href="#whyme">Pourquoi moi</a></li>
-      <li><a href="#method">Méthode</a></li>
       <li><a href="realisations-fr.html">Réalisations</a></li>
-      <li><a href="approche-fr.html">Qui je suis</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="oci-migration-fr.html">Migration OCI</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a class="lang-switch" href="index.html">EN</a></li>
     </ul>
@@ -73,7 +77,7 @@
       <p class="hero-alt">Vous préférez appeler ? <a href="tel:+33613705321">+33 6 13 70 53 21</a></p>
     </div>
     <figure class="hero-portrait">
-      <img src="assets/portrait.jpg" alt="Portrait de Benoît Sigwald" onerror="this.parentElement.style.display='none'" />
+      <img src="assets/portrait.jpg" alt="Portrait de Benoît Sigwald" onerror="this.parentElement.style.display='none'" width="900" height="1352" decoding="async" fetchpriority="high">
       <figcaption>Benoît Sigwald · Mougins, France</figcaption>
     </figure>
   </div>
@@ -152,21 +156,21 @@
 
     <div class="quotes">
       <figure class="quote q1">
-        <img src="assets/credit-agricole-logo.svg" alt="Logo Crédit Agricole" class="quote-logo" />
+        <img src="assets/credit-agricole-logo.svg" alt="Logo Crédit Agricole" class="quote-logo" loading="lazy" decoding="async">
         <blockquote>Benoît a fait passer nos équipes de la curiosité à un usage quotidien de l'IA,
         avec des règles claires sur ce qu'on peut faire de nos données. Notre cycle d'analyse récurrent
         a été réduit de 60 %.</blockquote>
         <figcaption>Direction des risques · Crédit Agricole</figcaption>
       </figure>
       <figure class="quote q2">
-        <img src="assets/cma-cgm-logo.svg" alt="Logo CMA CGM" class="quote-logo" />
+        <img src="assets/cma-cgm-logo.svg" alt="Logo CMA CGM" class="quote-logo" loading="lazy" decoding="async">
         <blockquote>Nous avions des cycles de livraison trop longs. Benoît a travaillé avec nos équipes
         sur leurs vrais dossiers, sans théorie inutile : 30 % de time-to-market en moins, et des méthodes
         que l'équipe a gardées.</blockquote>
         <figcaption>Direction des opérations · CMA CGM</figcaption>
       </figure>
       <figure class="quote q3">
-        <img src="assets/oracle-logo.png" alt="Logo Oracle" class="quote-logo" />
+        <img src="assets/oracle-logo.webp" alt="Logo Oracle" class="quote-logo" width="187" height="42" loading="lazy" decoding="async">
         <blockquote>Il sait expliquer une technologie complexe à une salle qui n'y connaît rien,
         et lui donner envie d'essayer. Il l'a fait à l'échelle de trois continents.</blockquote>
         <figcaption>Ancien directeur · Oracle EMEA</figcaption>
@@ -181,10 +185,10 @@
         </p>
         <p style="margin-top:12px"><a class="btn btn-ghost" href="realisations-fr.html">Voir toutes mes études de cas →</a></p>
       </div>
-      <img src="assets/arx-paas-service-layer.png" alt="Infrastructure cloud souveraine ARX Consulting" loading="lazy"
+      <img src="assets/arx-paas-service-layer.webp" alt="Infrastructure cloud souveraine ARX Consulting" loading="lazy"
            class="lb-open" style="cursor:pointer" title="Cliquer pour agrandir"
            data-title="Architecture Cloud Souveraine ARX Consulting"
-           data-desc="Infrastructure privée hébergée en France : chiffrement continu, isolation des données clients, sauvegardes quotidiennes et souveraineté européenne conforme RGPD et AI Act." />
+           data-desc="Infrastructure privée hébergée en France : chiffrement continu, isolation des données clients, sauvegardes quotidiennes et souveraineté européenne conforme RGPD et AI Act." width="1536" height="1024" decoding="async">
     </div>
   </div>
 </section>
@@ -357,7 +361,7 @@
 
 <footer>
   <div class="container">
-    <img class="flogo" src="assets/logo.png" alt="" />
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="186" loading="lazy" decoding="async">
     <div>
       <strong>Benoît Sigwald</strong> · Mougins, France · UE remote / contrat<br />
       <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
@@ -412,7 +416,7 @@
   });
 })();
 </script>
-<script defer src="/gate/t.js" data-site="arxcapital"></script>
+<script defer src="https://arx-apps.duckdns.org/gate/t.js" data-site="arxcapital"></script>
 <script id="js-reveal">
 (function(){
   // apparition au défilement
@@ -460,13 +464,9 @@
       e.preventDefault();
       try {
         var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
-      if (window.Calendly) {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
-      } else {
-        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
-      }
+      window.arxCalendly();
     }
   });
 

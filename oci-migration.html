@@ -15,26 +15,35 @@
 <meta property="og:url" content="https://arx-consulting.com/oci-migration.html" />
 <meta property="og:title" content="OCI Migration — Benoît Sigwald | Arx Consulting" />
 <meta property="og:description" content="How I migrated my entire tech stack onto an ARM server I operate end to end: Coolify, Docker, Traefik, PostgREST, MinIO — automatic HTTPS, backups and tested disaster recovery." />
-<meta property="og:image" content="https://arx-consulting.com/assets/oci-migration-en.png" />
+<meta property="og:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="OCI Migration — Benoît Sigwald | Arx Consulting" />
 <meta name="twitter:description" content="How I migrated my entire tech stack onto an ARM server I operate end to end: Coolify, Docker, Traefik, PostgREST, MinIO — automatic HTTPS, backups and tested disaster recovery." />
-<meta name="twitter:image" content="https://arx-consulting.com/assets/oci-migration-en.png" />
+<meta name="twitter:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
-  <!-- Official Calendly Engine for Instant Popup -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a class="logo" href="index.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <a class="logo" href="index.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="186" decoding="async"><b>ARX <span>Consulting</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -105,31 +114,31 @@
     <div class="diagram">
       <h3>Migration overview</h3>
       <p>What moved from where: Vercel, Render, Supabase and local workloads consolidated onto the OCI server.</p>
-      <img src="assets/oci-migration-en.png" alt="OCI migration overview diagram" loading="lazy" />
+      <img src="assets/oci-migration-en.webp" alt="OCI migration overview diagram" width="1024" height="1536" decoding="async" fetchpriority="high">
     </div>
 
     <div class="diagram">
       <h3>Infrastructure architecture</h3>
       <p>Internet traffic crosses two firewall layers, reaches Traefik which terminates TLS, and is routed to the right container. Coolify builds from GitHub and manages the lifecycle.</p>
-      <img src="assets/arx-infra-architecture.png" alt="Arx infrastructure architecture diagram" loading="lazy" />
+      <img src="assets/arx-infra-architecture.webp" alt="Arx infrastructure architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Component data flow</h3>
       <p>How requests, builds and data move between the proxy, the applications, the databases and object storage.</p>
-      <img src="assets/oci-component-data-flow.png" alt="OCI component data flow diagram" loading="lazy" />
+      <img src="assets/oci-component-data-flow.webp" alt="OCI component data flow diagram" loading="lazy" width="1536" height="1024" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>PaaS service layer</h3>
       <p>The Coolify control plane: builds, deployments, environment variables, scheduled tasks.</p>
-      <img src="assets/arx-paas-service-layer.png" alt="Arx PaaS service layer diagram" loading="lazy" />
+      <img src="assets/arx-paas-service-layer.webp" alt="Arx PaaS service layer diagram" loading="lazy" width="1536" height="1024" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>PaaS details</h3>
       <p>A closer look at the platform internals and how each hosted service fits in.</p>
-      <img src="assets/arx-paas-details.png" alt="Arx PaaS details diagram" loading="lazy" />
+      <img src="assets/arx-paas-details.webp" alt="Arx PaaS details diagram" loading="lazy" width="1600" height="873" decoding="async">
     </div>
   </div>
 </section>
@@ -142,25 +151,25 @@
     <div class="diagram">
       <h3>Coolify — deployment plane</h3>
       <p>Builds from GitHub on every push, deploys Docker containers, manages environment variables and scheduled jobs — all driven through its REST API.</p>
-      <img src="assets/svc-coolify.jpg" alt="Coolify deployment plane diagram" loading="lazy" />
+      <img src="assets/svc-coolify.webp" alt="Coolify deployment plane diagram" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Data layer — PostgreSQL + PostgREST + Oracle DB</h3>
       <p>A self-hosted, Supabase-compatible data API with French full-text search, alongside an Oracle database. 500+ rows migrated with zero loss.</p>
-      <img src="assets/svc-data-layer.jpg" alt="Arx data layer diagram" loading="lazy" />
+      <img src="assets/svc-data-layer.webp" alt="Arx data layer diagram" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>MinIO — S3-compatible object storage</h3>
       <p>Self-hosted S3-style storage for application assets and files, behind Traefik like every other service.</p>
-      <img src="assets/svc-minio.jpg" alt="MinIO S3 storage diagram" loading="lazy" />
+      <img src="assets/svc-minio.webp" alt="MinIO S3 storage diagram" loading="lazy" width="1600" height="893" decoding="async">
     </div>
 
     <div class="diagram">
       <h3>Backups — automated, off-container</h3>
       <p>Scheduled database and volume backups shipped to OCI Object Storage (10 GB free tier), tested by restore before any cutover.</p>
-      <img src="assets/svc-backups.jpg" alt="Backups architecture diagram" loading="lazy" />
+      <img src="assets/svc-backups.webp" alt="Backups architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
     </div>
   </div>
 </section>
@@ -205,7 +214,7 @@
 
 <footer>
   <div class="container">
-    <img class="flogo" src="assets/logo.png" alt="" />
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="186" loading="lazy" decoding="async">
     <div>
       <strong>Benoît Sigwald</strong> ·
       <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
@@ -227,7 +236,7 @@
   });
 })();
 </script>
-<script defer src="/gate/t.js" data-site="arxcapital">
+<script defer src="https://arx-apps.duckdns.org/gate/t.js" data-site="arxcapital">
   // Official Instant Calendly Popup Interceptor
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href*="calendly.com"]');
@@ -235,13 +244,9 @@
       e.preventDefault();
       try {
         var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
-      if (window.Calendly) {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
-      } else {
-        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
-      }
+      window.arxCalendly();
     }
   });
 </script>

@@ -12,21 +12,30 @@
 <meta property="og:url" content="https://arx-consulting.com/acces-prive.html" />
 <meta property="og:title" content="Accès privé &amp; suivi des visiteurs pour vos dossiers" />
 <meta property="og:description" content="Vos dossiers ne circulent plus par email. Vous savez qui les consulte, quand, et combien de fois." />
-<meta property="og:image" content="https://arx-consulting.com/assets/logo.png" />
+<meta property="og:image" content="https://arx-consulting.com/assets/og-logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
-  <!-- Official Calendly Engine for Instant Popup -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <a class="logo" href="index-fr.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="186" decoding="async"><b>ARX <span>Consulting</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="#probleme">Le problème</a></li>
@@ -138,7 +147,7 @@
 
 <footer>
   <div class="container">
-    <img class="flogo" src="assets/logo.png" alt="" />
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="186" loading="lazy" decoding="async">
     <div>
       <strong>Benoît Sigwald</strong> · Mougins, France<br />
       <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
@@ -168,13 +177,13 @@
     a.addEventListener('click', function(){
       try {
         var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(e){}
     });
   });
 })();
 </script>
-<script defer src="/gate/t.js" data-site="arxcapital">
+<script defer src="https://arx-apps.duckdns.org/gate/t.js" data-site="arxcapital">
   // Official Instant Calendly Popup Interceptor
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href*="calendly.com"]');
@@ -182,13 +191,9 @@
       e.preventDefault();
       try {
         var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
-      if (window.Calendly) {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
-      } else {
-        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
-      }
+      window.arxCalendly();
     }
   });
 </script>

@@ -15,26 +15,35 @@
 <meta property="og:url" content="https://arx-consulting.com/realisations.html" />
 <meta property="og:title" content="Case studies &amp; platform | Arx Consulting" />
 <meta property="og:description" content="The systems I designed, built and run myself — and the code behind them." />
-<meta property="og:image" content="https://arx-consulting.com/assets/arx-paas-service-layer.png" />
+<meta property="og:image" content="https://arx-consulting.com/assets/og-arx-paas-service-layer.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Case studies &amp; platform | Arx Consulting" />
 <meta name="twitter:description" content="The systems I designed, built and run myself — and the code behind them." />
-<meta name="twitter:image" content="https://arx-consulting.com/assets/arx-paas-service-layer.png" />
+<meta name="twitter:image" content="https://arx-consulting.com/assets/og-arx-paas-service-layer.jpg" />
 <meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
-  <!-- Official Calendly Engine for Instant Popup -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a class="logo" href="index.html"><img src="assets/logo.png" alt="Arx Consulting" /><b>ARX <span>Consulting</span></b></a>
+    <a class="logo" href="index.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="186" decoding="async"><b>ARX <span>Consulting</span></b></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="#urls">Addresses</a></li>
@@ -94,7 +103,7 @@
     <div class="svc-grid">
       <div class="svc" data-title="Blackstone — trading signal engine"
            data-desc="Multi-asset trading signal engine (forex, commodities, crypto) running four documented, literature-backed strategies on free real-time data. Phase 1 is signals-only by design — no order execution: every strategy is backtested first, every signal is journaled in the shared Oracle database and pushed to mobile via self-hosted ntfy. Hexagonal architecture: pure domain, unified signal engine, pluggable broker adapters.">
-        <img src="assets/svc-blackstone.jpg" alt="Blackstone trading AI robot architecture diagram" loading="lazy" />
+        <img src="assets/svc-blackstone.webp" alt="Blackstone trading AI robot architecture diagram" width="1600" height="893" decoding="async" fetchpriority="high">
         <div class="svc-body">
           <h3>Blackstone — trading signal engine</h3>
           <p>Multi-asset signal engine built on documented, literature-backed strategies. Signals only by design.</p>
@@ -102,7 +111,7 @@
       </div>
       <div class="svc" data-title="Prisme — psycho-symbolism engine"
            data-desc="A Python analysis engine exploring psychology and symbolism, exposed as an MCP server so Claude can drive it in natural language. It has its own PostgREST schema in the shared PostgreSQL database and its own path behind Traefik — the same isolation pattern as every other service on the platform.">
-        <img src="assets/svc-prisme.jpg" alt="Prisme psycho-symbolism engine architecture diagram" loading="lazy" />
+        <img src="assets/svc-prisme.webp" alt="Prisme psycho-symbolism engine architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
         <div class="svc-body">
           <h3>Prisme — psycho-symbolism engine</h3>
           <p>A Python analysis engine exploring symbolism and psychology, exposed as an API on the platform.</p>
@@ -110,7 +119,7 @@
       </div>
       <div class="svc" data-title="Immo Rapido — French real-estate MCP"
            data-desc="An MCP server over French public real-estate data — property transactions (DVF), zoning, market signals — queryable in natural language straight from Claude. Python, deployed behind Traefik with automatic HTTPS and its own data schema, like every service on the platform.">
-        <img src="assets/svc-immo-rapido.jpg" alt="Immo Rapido architecture diagram" loading="lazy" />
+        <img src="assets/svc-immo-rapido.webp" alt="Immo Rapido architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
         <div class="svc-body">
           <h3>Immo Rapido — French real-estate MCP</h3>
           <p>An MCP server over French public real-estate data — transactions, zoning, market signals.</p>
@@ -118,7 +127,7 @@
       </div>
       <div class="svc" data-title="Chef Jason — LLM web app"
            data-desc="A public LLM-powered web application (Node/Express) — the first workload migrated from local hosting onto the platform, and the proof-of-concept for the whole pipeline: git push, Coolify build, Docker container, Traefik HTTPS routing.">
-        <img src="assets/svc-chef-jason.jpg" alt="Chef Jason architecture diagram" loading="lazy" />
+        <img src="assets/svc-chef-jason.webp" alt="Chef Jason architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
         <div class="svc-body">
           <h3>Chef Jason — LLM web app</h3>
           <p>A public LLM-powered web application (Node/Express) — the first workload migrated onto the platform.</p>
@@ -126,7 +135,7 @@
       </div>
       <div class="svc" data-title="Innovat — web sites"
            data-desc="Static and dynamic sites served through Traefik with automatic Let's Encrypt HTTPS — including the site you are reading right now. Each site is a Coolify application deployed from its own GitHub repository by git push, with test and prod environments.">
-        <img src="assets/svc-innovat.jpg" alt="Innovat web sites architecture diagram" loading="lazy" />
+        <img src="assets/svc-innovat.webp" alt="Innovat web sites architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
         <div class="svc-body">
           <h3>Innovat — web sites</h3>
           <p>Static and dynamic sites served through Traefik with automatic HTTPS — including this one.</p>
@@ -134,7 +143,7 @@
       </div>
       <div class="svc" data-title="Einstein — MCP research server"
            data-desc="An MCP research server designed, built and hosted by me: free web search (DuckDuckGo), page reading, and a persistent archive of sourced research syntheses stored in self-hosted PostgREST with French full-text search. The server contains no LLM — Claude orchestrates, Einstein provides the tools and the memory. Nearly twenty deep-research dossiers archived and searchable.">
-        <img src="assets/svc-einstein.jpg" alt="Einstein MCP research server architecture diagram" loading="lazy" />
+        <img src="assets/svc-einstein.webp" alt="Einstein MCP research server architecture diagram" loading="lazy" width="1600" height="872" decoding="async">
         <div class="svc-body">
           <h3>Einstein — MCP research server</h3>
           <p>Web search, page reading and a persistent archive of sourced research syntheses, driven by Claude.</p>
@@ -244,7 +253,7 @@
 
 <footer>
   <div class="container">
-    <img class="flogo" src="assets/logo.png" alt="" />
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="186" loading="lazy" decoding="async">
     <div>
       <strong>Benoît Sigwald</strong> · Mougins, France<br />
       <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
@@ -287,7 +296,7 @@
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
 })();
 </script>
-<script defer src="/gate/t.js" data-site="arxcapital"></script>
+<script defer src="https://arx-apps.duckdns.org/gate/t.js" data-site="arxcapital"></script>
 <script id="js-reveal">
 (function(){
   // apparition au défilement
@@ -335,13 +344,9 @@
       e.preventDefault();
       try {
         var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
-        if (navigator.sendBeacon) navigator.sendBeacon('/gate/t', p);
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
-      if (window.Calendly) {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/arx-capital-eu/30min' });
-      } else {
-        window.open(link.href || 'https://calendly.com/arx-capital-eu/30min', '_blank');
-      }
+      window.arxCalendly();
     }
   });
 })();
