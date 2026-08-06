@@ -270,6 +270,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     <button class="lb-close" aria-label="Close">×</button>
     <h3 id="lb-title"></h3>
     <img id="lb-img" src="" alt="" />
+    <a id="lb-full" class="lb-full" target="_blank" rel="noopener">Ouvrir le schéma en taille réelle ↗</a>
     <p id="lb-desc"></p>
   </div>
 </div>
@@ -286,6 +287,9 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     document.getElementById('lb-desc').textContent = el.getAttribute('data-desc') || '';
     var big = document.getElementById('lb-img');
     big.src = img.src; big.alt = img.alt;
+    var full = document.getElementById('lb-full');
+    full.href = img.getAttribute('src');
+    big.onclick = function(){ window.open(img.getAttribute('src'), '_blank'); };
     lb.hidden = false; document.body.style.overflow = 'hidden';
   }
   document.querySelectorAll('.svc').forEach(function(c){
