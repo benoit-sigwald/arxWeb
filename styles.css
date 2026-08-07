@@ -39,7 +39,7 @@ nav {
 }
 nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo img { height: 38px; width: auto; border-radius: 8px; display: block; }
+.logo img { height: 38px; width: auto; display: block; }
 .logo b { font-family: var(--serif); font-weight: 600; letter-spacing: .03em; color: #ffffff; font-size: 1.05rem; }
 .logo b span { color: var(--gold); }
 nav ul { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; align-items: center; }
@@ -453,7 +453,7 @@ footer strong { color: #ffffff !important; }
 footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center; }
 footer a { text-decoration: underline; text-decoration-color: rgba(185, 196, 216, .35); }
 footer a:hover { color: #ffffff; }
-footer .flogo { height: 56px; width: auto; border-radius: 10px; display: block; }
+footer .flogo { height: 56px; width: auto; display: block; }
 
 
 /* Apparition au défilement */
