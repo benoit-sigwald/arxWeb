@@ -190,7 +190,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     if (link) {
       e.preventDefault();
       try {
-        var p = JSON.stringify({site:'arxconsulting', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
         if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
       } catch(err){}
       window.arxCalendly();
