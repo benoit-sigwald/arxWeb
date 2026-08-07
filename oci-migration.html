@@ -119,25 +119,25 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     <div class="diagram">
       <h3>Infrastructure architecture</h3>
       <p>Internet traffic crosses two firewall layers, reaches Traefik which terminates TLS, and is routed to the right container. Coolify builds from GitHub and manages the lifecycle.</p>
-      <img src="assets/arx-infra-architecture.webp" alt="Arx infrastructure architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
+      <img src="assets/arx-infra-architecture.webp" alt="Arx infrastructure architecture diagram" loading="lazy" width="1600" height="893" decoding="async" srcset="assets/arx-infra-architecture-800.webp 800w, assets/arx-infra-architecture.webp 1600w" sizes="(max-width: 820px) 92vw, 1000px">
     </div>
 
     <div class="diagram">
       <h3>Component data flow</h3>
       <p>How requests, builds and data move between the proxy, the applications, the databases and object storage.</p>
-      <img src="assets/oci-component-data-flow.webp" alt="OCI component data flow diagram" loading="lazy" width="1536" height="1024" decoding="async">
+      <img src="assets/oci-component-data-flow.webp" alt="OCI component data flow diagram" loading="lazy" width="1536" height="1024" decoding="async" srcset="assets/oci-component-data-flow-800.webp 800w, assets/oci-component-data-flow.webp 1536w" sizes="(max-width: 820px) 92vw, 1000px">
     </div>
 
     <div class="diagram">
       <h3>PaaS service layer</h3>
       <p>The Coolify control plane: builds, deployments, environment variables, scheduled tasks.</p>
-      <img src="assets/arx-paas-service-layer.webp" alt="Arx PaaS service layer diagram" loading="lazy" width="1536" height="1024" decoding="async">
+      <img src="assets/arx-paas-service-layer.webp" alt="Arx PaaS service layer diagram" loading="lazy" width="1536" height="1024" decoding="async" srcset="assets/arx-paas-service-layer-800.webp 800w, assets/arx-paas-service-layer.webp 1536w" sizes="(max-width: 820px) 92vw, 1000px">
     </div>
 
     <div class="diagram">
       <h3>PaaS details</h3>
       <p>A closer look at the platform internals and how each hosted service fits in.</p>
-      <img src="assets/arx-paas-details.webp" alt="Arx PaaS details diagram" loading="lazy" width="1600" height="873" decoding="async">
+      <img src="assets/arx-paas-details.webp" alt="Arx PaaS details diagram" loading="lazy" width="1600" height="873" decoding="async" srcset="assets/arx-paas-details-800.webp 800w, assets/arx-paas-details.webp 1600w" sizes="(max-width: 820px) 92vw, 1000px">
     </div>
   </div>
 </section>
@@ -150,25 +150,25 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     <div class="diagram">
       <h3>Coolify — deployment plane</h3>
       <p>Builds from GitHub on every push, deploys Docker containers, manages environment variables and scheduled jobs — all driven through its REST API.</p>
-      <img src="assets/svc-coolify.webp" alt="Coolify deployment plane diagram" loading="lazy" width="1600" height="893" decoding="async">
+      <img src="assets/svc-coolify.webp" alt="Coolify deployment plane diagram" loading="lazy" width="1600" height="893" decoding="async" srcset="assets/svc-coolify-660.webp 660w, assets/svc-coolify.webp 1600w" sizes="(max-width: 820px) 92vw, 33vw">
     </div>
 
     <div class="diagram">
       <h3>Data layer — PostgreSQL + PostgREST + Oracle DB</h3>
       <p>A self-hosted, Supabase-compatible data API with French full-text search, alongside an Oracle database. 500+ rows migrated with zero loss.</p>
-      <img src="assets/svc-data-layer.webp" alt="Arx data layer diagram" loading="lazy" width="1600" height="893" decoding="async">
+      <img src="assets/svc-data-layer.webp" alt="Arx data layer diagram" loading="lazy" width="1600" height="893" decoding="async" srcset="assets/svc-data-layer-660.webp 660w, assets/svc-data-layer.webp 1600w" sizes="(max-width: 820px) 92vw, 33vw">
     </div>
 
     <div class="diagram">
       <h3>MinIO — S3-compatible object storage</h3>
       <p>Self-hosted S3-style storage for application assets and files, behind Traefik like every other service.</p>
-      <img src="assets/svc-minio.webp" alt="MinIO S3 storage diagram" loading="lazy" width="1600" height="893" decoding="async">
+      <img src="assets/svc-minio.webp" alt="MinIO S3 storage diagram" loading="lazy" width="1600" height="893" decoding="async" srcset="assets/svc-minio-660.webp 660w, assets/svc-minio.webp 1600w" sizes="(max-width: 820px) 92vw, 33vw">
     </div>
 
     <div class="diagram">
       <h3>Backups — automated, off-container</h3>
       <p>Scheduled database and volume backups shipped to OCI Object Storage (10 GB free tier), tested by restore before any cutover.</p>
-      <img src="assets/svc-backups.webp" alt="Backups architecture diagram" loading="lazy" width="1600" height="893" decoding="async">
+      <img src="assets/svc-backups.webp" alt="Backups architecture diagram" loading="lazy" width="1600" height="893" decoding="async" srcset="assets/svc-backups-660.webp 660w, assets/svc-backups.webp 1600w" sizes="(max-width: 820px) 92vw, 33vw">
     </div>
   </div>
 </section>
