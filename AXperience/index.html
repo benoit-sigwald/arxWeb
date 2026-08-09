@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AXperience — Vous avez un projet. Nous avons l'expérience.</title>
+<meta name="description" content="Support de présentation d'AXperience, association niçoise de bénévolat de compétences : ce que vous obtenez, comment ça se passe, et le volet IA.">
+<meta name="theme-color" content="#fbfbfd">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --text:#1d1d1f;
+    --text-2:#6e6e73;
+    --bg:#fbfbfd;
+    --bg-alt:#f5f5f7;
+    --white:#ffffff;
+    --blue:#0071e3;
+    --blue-dark:#0077ed;
+    --hair:#d2d2d7;
+    --radius:18px;
+    --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:var(--sf);font-size:17px;line-height:1.47;letter-spacing:-.022em;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;height:52px;
+    background:rgba(251,251,253,.72);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .nav .wrap{display:flex;align-items:center;height:100%;gap:26px}
+  .brand{font-size:21px;font-weight:600;letter-spacing:-.02em;text-decoration:none;color:var(--text);white-space:nowrap}
+  .nav-links{margin-left:auto;display:flex;gap:24px;align-items:center}
+  .nav-links a{font-size:12px;color:var(--text);text-decoration:none;opacity:.85;white-space:nowrap}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{
+    font-size:12px;font-weight:500;background:var(--blue);color:#fff!important;opacity:1!important;
+    padding:6px 14px;border-radius:980px;transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--blue-dark)}
+  @media(max-width:640px){.nav-links{gap:12px}.nav-links a{font-size:11px}.brand{font-size:17px}.nav-cta{padding:5px 11px}}
+  @media(max-width:560px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- bandeau brouillon ---------- */
+  .draft{
+    background:#1d1d1f;color:#f5f5f7;font-size:13px;line-height:1.4;
+    padding:10px 0;text-align:center;letter-spacing:-.01em;
+  }
+  .draft b{font-weight:600;color:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{text-align:center;padding:88px 0 64px}
+  .hero .eyebrow{font-size:19px;color:var(--blue);font-weight:600;margin:0 0 6px;letter-spacing:-.02em}
+  h1{font-size:clamp(38px,6.6vw,68px);line-height:1.06;font-weight:600;letter-spacing:-.015em;margin:0 0 18px}
+  .lead{font-size:clamp(19px,2.4vw,24px);line-height:1.38;color:var(--text-2);max-width:660px;margin:0 auto 26px;font-weight:400}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-block;background:var(--blue);color:#fff;text-decoration:none;
+    font-size:17px;line-height:1.2;padding:12px 22px;border-radius:980px;
+    border:1px solid var(--blue);transition:background .2s;
+  }
+  .btn:hover{background:var(--blue-dark)}
+  .btn.ghost{background:transparent;color:var(--blue);border-color:transparent;padding:12px 6px}
+  .btn.ghost::after{content:" ›"}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+
+  /* ---------- sections ---------- */
+  section{padding:72px 0}
+  section.alt{background:var(--bg-alt)}
+  .sec-head{text-align:center;max-width:700px;margin:0 auto 44px}
+  h2{font-size:clamp(30px,4.4vw,48px);line-height:1.08;font-weight:600;letter-spacing:-.015em;margin:0 0 12px}
+  .sec-head p{font-size:19px;color:var(--text-2);margin:0}
+  .kicker{font-size:15px;color:var(--text-2);margin:0 0 8px;font-weight:400}
+
+  /* ---------- publics ---------- */
+  .publics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px}
+  .pub{
+    background:var(--white);border-radius:var(--radius);padding:26px 24px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);display:flex;flex-direction:column;gap:8px;
+  }
+  .pub .who{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:0}
+  .pub h3{font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.02em;margin:0}
+  .pub p{font-size:15px;color:var(--text-2);margin:0}
+
+  /* ---------- livrables ---------- */
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}
+  .card{background:var(--white);border-radius:var(--radius);padding:28px 26px;box-shadow:0 2px 12px rgba(0,0,0,.045)}
+  .card h3{font-size:21px;font-weight:600;letter-spacing:-.02em;margin:0 0 14px}
+  .card ul{margin:0;padding:0;list-style:none}
+  .card li{font-size:16px;color:var(--text-2);padding:7px 0 7px 26px;position:relative}
+  .card li::before{
+    content:"";position:absolute;left:2px;top:14px;width:9px;height:9px;
+    border-radius:50%;background:var(--blue);opacity:.85;
+  }
+
+  /* ---------- étapes ---------- */
+  .steps{counter-reset:s;display:grid;gap:12px;max-width:760px;margin:0 auto}
+  .step{
+    background:var(--white);border-radius:var(--radius);padding:22px 24px 22px 74px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);position:relative;
+  }
+  .step::before{
+    counter-increment:s;content:counter(s);
+    position:absolute;left:24px;top:22px;
+    width:30px;height:30px;border-radius:50%;background:var(--bg-alt);
+    color:var(--blue);font-size:14px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin:0 0 4px}
+  .step p{font-size:15px;color:var(--text-2);margin:0}
+  @media(max-width:560px){.step{padding:56px 22px 22px}.step::before{top:18px}}
+
+  /* ---------- différence ---------- */
+  .diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:8px}
+  .d{background:var(--white);border-radius:var(--radius);padding:24px 22px;box-shadow:0 2px 12px rgba(0,0,0,.045)}
+  .d b{display:block;font-size:17px;font-weight:600;margin-bottom:6px}
+  .d p{margin:0;font-size:15px;color:var(--text-2)}
+
+  /* ---------- chiffres ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:16px}
+  .stat{background:var(--white);border-radius:var(--radius);padding:26px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.045)}
+  .stat .n{display:block;font-size:clamp(34px,5vw,46px);font-weight:600;color:var(--blue);letter-spacing:-.02em;line-height:1}
+  .stat p{margin:8px 0 0;font-size:14px;color:var(--text-2)}
+
+  /* ---------- IA ---------- */
+  .ia-lead{
+    background:var(--white);border-radius:var(--radius);padding:30px 30px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);border-left:4px solid var(--blue);margin-bottom:20px;
+  }
+  .ia-lead p{margin:0;font-size:17px;color:var(--text-2)}
+  .ia-lead p + p{margin-top:10px}
+  .ia-lead b{color:var(--text);font-weight:600}
+
+  /* ---------- coût ---------- */
+  .free{text-align:center;max-width:700px;margin:0 auto}
+  .free .big{font-size:clamp(56px,10vw,110px);font-weight:600;color:var(--blue);letter-spacing:-.03em;line-height:1;margin:0 0 14px}
+  .free p{font-size:18px;color:var(--text-2);margin:0 auto 10px;max-width:600px}
+
+  /* ---------- contact ---------- */
+  .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
+  .contact a{
+    background:var(--white);border-radius:var(--radius);padding:26px;text-decoration:none;
+    color:var(--text);box-shadow:0 2px 12px rgba(0,0,0,.045);display:block;transition:transform .2s;
+  }
+  .contact a:hover{transform:translateY(-2px)}
+  .contact h3{margin:0 0 6px;font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .contact p{margin:0;font-size:15px;color:var(--text-2)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--bg-alt);border-top:1px solid var(--hair);padding:34px 0;font-size:12px;color:var(--text-2)}
+  footer p{margin:0 0 8px}
+  footer a{color:var(--text-2)}
+  footer img{height:34px;width:auto;display:block;margin-bottom:14px;opacity:.7}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="draft">
+  <div class="wrap">
+    <b>Support de proposition — document de travail.</b>
+    Préparé par un bénévole du pôle Entreprises. Ce n'est pas le site officiel d'AXperience et l'association n'a pas validé ce contenu.
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">AXperience</a>
+    <div class="nav-links">
+      <a href="#vous">Vous êtes</a>
+      <a href="#obtenez">Ce que vous obtenez</a>
+      <a href="#deroule">Comment ça se passe</a>
+      <a href="#ia">Le volet IA</a>
+      <a class="nav-cta" href="#contact">Demander un accompagnement</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Association niçoise de bénévolat de compétences</p>
+    <h1>Vous avez un projet.<br>Nous avons déjà fait le chemin.</h1>
+    <p class="lead">Trente-cinq anciens dirigeants, cadres et experts vous accompagnent — gratuitement, aussi longtemps qu'il faut. Nous ne faisons pas à votre place. Nous faisons en sorte que vous décidiez juste.</p>
+    <div class="cta-row">
+      <a class="btn" href="#contact">Parler de mon projet</a>
+      <a class="btn ghost" href="#obtenez">Ce que vous obtenez</a>
+    </div>
+  </div>
+</header>
+
+<section id="vous" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Vous êtes ici quelque part.</h2>
+      <p>Cinq pôles, cinq façons d'entrer. Vous n'avez pas à savoir lequel : dites-nous votre situation, on vous oriente.</p>
+    </div>
+    <div class="publics">
+      <div class="pub reveal">
+        <span class="who">Entreprises</span>
+        <h3>Vous créez, vous reprenez, vous démarrez</h3>
+        <p>Porteur d'idée, créateur en cours d'immatriculation, repreneur, entrepreneur des premières années, ou en reconversion. Vous avancez seul et vous doutez sur des choix qui engagent.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Associations</span>
+        <h3>Vous faites tourner une association</h3>
+        <p>Un projet plus gros que vos moyens, une gouvernance à structurer, un dossier à monter. Vous n'avez pas de budget pour un cabinet — et vous n'avez pas à en avoir.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Communes</span>
+        <h3>Vous dirigez une petite commune ou une intercommunalité</h3>
+        <p>Peu ou pas de services techniques, des sujets qui demandent une compétence que vous n'avez pas en interne, et pas de ligne budgétaire pour l'acheter.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Générations</span>
+        <h3>Vous travaillez sur le lien entre générations</h3>
+        <p>Missions interactives entre les âges, transmission, renforcement des liens sociaux — y compris auprès des EHPAD et des publics isolés.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Justice</span>
+        <h3>Vous accompagnez une réinsertion</h3>
+        <p>Réinsertion professionnelle des personnes détenues et travail sur la citoyenneté, en lien avec les acteurs du champ judiciaire.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Insertion</span>
+        <h3>Vous cherchez un emploi et vous êtes seul face au marché</h3>
+        <p>Un regard de quelqu'un qui a recruté, dirigé, licencié et embauché — plutôt qu'un modèle de lettre de motivation trouvé en ligne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="obtenez">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Ce que vous obtenez vraiment.</h2>
+      <p>Pas des conseils en l'air. Des documents que vous pouvez présenter à un banquier, un partenaire ou votre conseil d'administration.</p>
+    </div>
+    <div class="cols">
+      <div class="card reveal">
+        <h3>Sur votre projet</h3>
+        <ul>
+          <li>Une étude de marché qui tient debout</li>
+          <li>Une proposition de valeur formulée</li>
+          <li>Un modèle économique cohérent</li>
+          <li>Un prévisionnel financier retravaillé, autant de fois qu'il le faut</li>
+          <li>Le choix du statut juridique, argumenté</li>
+          <li>Une stratégie commerciale et marketing</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Sur votre financement</h3>
+        <ul>
+          <li>Un dossier de demande de prêt d'honneur</li>
+          <li>La préparation des rendez-vous bancaires</li>
+          <li>La lecture et la compréhension de vos documents financiers</li>
+          <li>Un plan d'action opérationnel daté</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Sur la durée</h3>
+        <ul>
+          <li>Un référent bénévole dédié, une seule personne qui connaît votre dossier</li>
+          <li>Des rendez-vous réguliers, pas trois séances comptées</li>
+          <li>Les points de vigilance identifiés avant qu'ils vous coûtent</li>
+          <li>Un ajustement de trajectoire quand le projet bouge</li>
+          <li>Un suivi après la création, pas seulement avant</li>
+          <li>Du soutien quand vous doutez — c'est le moment où on perd le plus de gens</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="deroule">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Comment ça se passe.</h2>
+      <p>Cinq étapes, aucune surprise. Rien ne commence sans une convention écrite.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Vous nous écrivez ou vous appelez</h3>
+        <p>Un mail, un appel. Vous n'avez pas besoin d'un dossier : votre situation en quelques phrases suffit.</p>
+      </div>
+      <div class="step reveal">
+        <h3>On se rencontre</h3>
+        <p>Un ou plusieurs bénévoles, pour préciser vos attentes et vérifier honnêtement que nous savons y répondre. Si ce n'est pas le cas, nous vous le disons et nous vous orientons.</p>
+      </div>
+      <div class="step reveal">
+        <h3>On signe une convention</h3>
+        <p>Objet de la mission, référent, équipe, durée. Écrit, signé. Vous savez ce que vous obtenez et nous savons ce que nous nous engageons à faire.</p>
+      </div>
+      <div class="step reveal">
+        <h3>On travaille</h3>
+        <p>Sur vos vrais dossiers, à votre rythme. Nous accompagnons ; les décisions restent les vôtres, et vous en restez responsable.</p>
+      </div>
+      <div class="step reveal">
+        <h3>On reste là après</h3>
+        <p>Le suivi ne s'arrête pas à la création. Certains dossiers nous occupent plusieurs années — c'est prévu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="difference">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Ce que vous ne trouverez pas ailleurs.</h2>
+      <p>Nous ne remplaçons ni votre expert-comptable, ni votre avocat, ni les réseaux qui financent. Nous faisons ce que personne ne fait.</p>
+    </div>
+    <div class="diff">
+      <div class="d reveal">
+        <b>Gratuit, sans astérisque</b>
+        <p>Aucune indemnité de mission, contrairement aux autres associations de bénévolat de compétences. Seuls les frais de déplacement des bénévoles sont remboursés, au tarif fiscal.</p>
+      </div>
+      <div class="d reveal">
+        <b>Le temps qu'il faudra</b>
+        <p>Un projet de réhabilitation que nous avons accompagné pendant près de trois ans. Aucun forfait, aucun compteur de séances.</p>
+      </div>
+      <div class="d reveal">
+        <b>Des gens qui l'ont fait</b>
+        <p>Anciens dirigeants, directeurs financiers, DRH, architectes, ingénieurs, directrices de projet. Ils ont tenu ces postes, ils ne les ont pas étudiés.</p>
+      </div>
+      <div class="d reveal">
+        <b>Personne à qui rendre des comptes</b>
+        <p>Ni subvention, ni don : l'association ne vit que des cotisations de ses adhérents. Ce que nous vous disons n'est influencé par aucun financeur.</p>
+      </div>
+      <div class="d reveal">
+        <b>Nous vous préparons, ils vous financent</b>
+        <p>Le prêt d'honneur se demande à Initiative, à l'Adie, à Réseau Entreprendre ou à France Active. Notre travail, c'est que votre dossier passe.</p>
+      </div>
+      <div class="d reveal">
+        <b>Sur le territoire, et rien qu'ici</b>
+        <p>Les Alpes-Maritimes uniquement. Nous connaissons les acteurs, les circuits et les délais parce que nous y vivons.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>L'association en bref.</h2>
+      <p>Créée à Nice en 2015 par douze cadres retraités. Association loi 1901, indépendante.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><span class="n">35</span><p>bénévoles</p></div>
+      <div class="stat reveal"><span class="n">30</span><p>expertises professionnelles</p></div>
+      <div class="stat reveal"><span class="n">5</span><p>pôles d'intervention</p></div>
+      <div class="stat reveal"><span class="n">2015</span><p>année de création, à Nice</p></div>
+    </div>
+    <p class="kicker" style="text-align:center;margin-top:22px">
+      Le nombre de projets accompagnés et le devenir des structures suivies sont en cours de recensement. Ils seront publiés ici, datés, plutôt qu'estimés.
+    </p>
+  </div>
+</section>
+
+<section id="ia">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Le volet IA.</h2>
+      <p>Depuis 2026, l'accompagnement inclut l'intelligence artificielle — gratuitement, comme le reste.</p>
+    </div>
+
+    <div class="ia-lead">
+      <p><b>Le constat.</b> Les petites structures — associations, communes, TPE — passent un temps considérable sur des tâches que l'IA traite en quelques minutes : comptes rendus, dossiers de subvention, courriers, synthèses de documents longs, mise en forme de données. Elles le savent. Elles ne savent pas par où commencer, et personne ne vient le leur montrer gratuitement.</p>
+      <p><b>Ce que nous faisons.</b> Un parcours court, sans théorie et sans jargon, où chaque séance se termine par un document réel que le participant a produit lui-même sur son propre dossier. Pas de quiz : une démonstration finale, avec le temps gagné mesuré avant et après.</p>
+      <p><b>Ce que ça change pour vous.</b> Une obligation européenne existe depuis février 2025 : toute organisation qui déploie un système d'IA — un simple assistant conversationnel suffit — doit garantir un niveau suffisant de maîtrise de l'IA à son personnel. Les autorités peuvent contrôler à partir d'août 2026. Le parcours délivre une attestation qui constitue la trace de cette formation.</p>
+    </div>
+
+    <div class="cols">
+      <div class="card reveal">
+        <h3>Pour votre structure</h3>
+        <ul>
+          <li>Écrire une demande qui donne un résultat exploitable</li>
+          <li>Faire lire un contrat ou un rapport de 40 pages et en tirer les vraies questions</li>
+          <li>Transformer un export brut en tableau présentable</li>
+          <li>Exploiter un courrier papier ou une capture d'écran</li>
+          <li>Vérifier avant d'envoyer : chiffres, noms, dates, citations</li>
+          <li>Savoir ce qu'on ne colle jamais dans un outil d'IA</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Le cadre</h3>
+        <ul>
+          <li>Douze séances courtes, de quinze à vingt minutes chacune</li>
+          <li>Aucun prérequis technique, aucun vocabulaire d'informaticien</li>
+          <li>Vous venez avec un vrai dossier de votre travail, sinon la séance ne sert à rien</li>
+          <li>Feuille d'émargement et attestation de fin de parcours</li>
+          <li>Un parcours avancé pour ceux qui veulent aller vers les agents et les connecteurs</li>
+          <li>Animé bénévolement, sans coût pour votre structure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-row" style="margin-top:30px">
+      <a class="btn" href="/AITraining/" target="_blank" rel="noopener">Voir le programme complet</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="free">
+      <p class="big">0 €</p>
+      <p>L'accompagnement est gratuit. Il n'y a ni honoraires, ni indemnité de mission, ni facture à la fin.</p>
+      <p class="kicker">Seuls les frais de déplacement des bénévoles sont remboursés, au tarif fiscal du bénévolat. L'association ne perçoit ni subvention ni don : elle ne vit que des cotisations de ses adhérents.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Parlez-nous de votre projet.</h2>
+      <p>Quelques phrases suffisent pour commencer. Nous vous dirons franchement si nous savons vous aider.</p>
+    </div>
+    <div class="contact">
+      <a href="mailto:contact@axperience.org">
+        <h3>Par mail</h3>
+        <p>contact@axperience.org</p>
+      </a>
+      <a href="tel:+33610813080">
+        <h3>Par téléphone</h3>
+        <p>06 10 81 30 80</p>
+      </a>
+      <a href="https://www.axperience.org/" target="_blank" rel="noopener">
+        <h3>Le site de l'association</h3>
+        <p>axperience.org</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="arx-logo.png" alt="" width="242" height="264" loading="lazy" decoding="async">
+    <p><b>Support de proposition, document de travail.</b> Cette page a été préparée par un bénévole du pôle Entreprises pour discussion interne. Elle n'est pas le site officiel d'AXperience, n'engage pas l'association et n'a pas été validée par son bureau. Le site officiel est <a href="https://www.axperience.org/" target="_blank" rel="noopener">axperience.org</a>.</p>
+    <p>Contenu établi à partir des pages publiques d'AXperience (accueil, pôle Entreprises, FAQ) en août 2026. Les chiffres sont ceux publiés par l'association ; le nombre de projets accompagnés est en cours de recensement et volontairement non affiché.</p>
+    <p>Le volet IA s'appuie sur un programme de formation indépendant. Le rappel réglementaire porte sur l'article 4 du règlement (UE) 2024/1689 ; il est fourni à titre d'information et ne constitue pas un conseil juridique. Page hébergée par <a href="https://arx-consulting.com/index-fr.html">Arx Consulting</a>, qui en assure l'hébergement à titre bénévole.</p>
+  </div>
+</footer>
+
+<script>
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){
+  document.querySelectorAll(".reveal").forEach(e=>e.classList.add("in"));
+}else{
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.08});
+  document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
+}
+</script>
+</body>
+</html>
