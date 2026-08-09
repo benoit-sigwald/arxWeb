@@ -49,13 +49,6 @@
   @media(max-width:640px){.nav-links{gap:12px}.nav-links a{font-size:11px}.brand{font-size:17px}.nav-cta{padding:5px 11px}}
   @media(max-width:560px){.nav-links a:not(.nav-cta){display:none}}
 
-  /* ---------- bandeau brouillon ---------- */
-  .draft{
-    background:#1d1d1f;color:#f5f5f7;font-size:13px;line-height:1.4;
-    padding:10px 0;text-align:center;letter-spacing:-.01em;
-  }
-  .draft b{font-weight:600;color:#fff}
-
   /* ---------- hero ---------- */
   .hero{text-align:center;padding:88px 0 64px}
   .hero .eyebrow{font-size:19px;color:var(--blue);font-weight:600;margin:0 0 6px;letter-spacing:-.02em}
@@ -130,14 +123,25 @@
   .stat .n{display:block;font-size:clamp(34px,5vw,46px);font-weight:600;color:var(--blue);letter-spacing:-.02em;line-height:1}
   .stat p{margin:8px 0 0;font-size:14px;color:var(--text-2)}
 
-  /* ---------- IA ---------- */
-  .ia-lead{
-    background:var(--white);border-radius:var(--radius);padding:30px 30px;
-    box-shadow:0 2px 12px rgba(0,0,0,.045);border-left:4px solid var(--blue);margin-bottom:20px;
+  /* ---------- métiers ---------- */
+  .metiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+  .m{
+    background:var(--white);border-radius:var(--radius);padding:24px 22px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);display:flex;flex-direction:column;gap:8px;
   }
-  .ia-lead p{margin:0;font-size:17px;color:var(--text-2)}
-  .ia-lead p + p{margin-top:10px}
-  .ia-lead b{color:var(--text);font-weight:600}
+  .m .fam{font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+  .m h3{font-size:19px;line-height:1.22;font-weight:600;letter-spacing:-.02em;margin:0}
+  .m p{font-size:15px;color:var(--text-2);margin:0}
+  .m .ex{
+    margin-top:auto;padding-top:12px;font-size:14px;color:var(--text);
+    border-top:1px solid var(--hair);
+  }
+  .m .ex b{font-weight:600}
+  .note{
+    background:var(--white);border-radius:var(--radius);padding:22px 24px;margin-top:20px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);border-left:4px solid var(--blue);
+  }
+  .note p{margin:0;font-size:15px;color:var(--text-2)}
 
   /* ---------- coût ---------- */
   .free{text-align:center;max-width:700px;margin:0 auto}
@@ -158,7 +162,6 @@
   footer{background:var(--bg-alt);border-top:1px solid var(--hair);padding:34px 0;font-size:12px;color:var(--text-2)}
   footer p{margin:0 0 8px}
   footer a{color:var(--text-2)}
-  footer img{height:34px;width:auto;display:block;margin-bottom:14px;opacity:.7}
 
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
@@ -171,13 +174,6 @@
 </head>
 <body>
 
-<div class="draft">
-  <div class="wrap">
-    <b>Support de proposition — document de travail.</b>
-    Préparé par un bénévole du pôle Entreprises. Ce n'est pas le site officiel d'AXperience et l'association n'a pas validé ce contenu.
-  </div>
-</div>
-
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="#top">AXperience</a>
@@ -185,7 +181,7 @@
       <a href="#vous">Vous êtes</a>
       <a href="#obtenez">Ce que vous obtenez</a>
       <a href="#deroule">Comment ça se passe</a>
-      <a href="#ia">Le volet IA</a>
+      <a href="#metiers">Les métiers</a>
       <a class="nav-cta" href="#contact">Demander un accompagnement</a>
     </div>
   </div>
@@ -370,46 +366,159 @@
   </div>
 </section>
 
-<section id="ia">
+<section id="metiers">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Le volet IA.</h2>
-      <p>Depuis 2026, l'accompagnement inclut l'intelligence artificielle — gratuitement, comme le reste.</p>
+      <h2>Les métiers autour de la table.</h2>
+      <p>Une trentaine d'expertises professionnelles. Vous n'avez pas à savoir laquelle vous concerne — dites votre problème, on vous met en face de la bonne personne.</p>
     </div>
 
-    <div class="ia-lead">
-      <p><b>Le constat.</b> Les petites structures — associations, communes, TPE — passent un temps considérable sur des tâches que l'IA traite en quelques minutes : comptes rendus, dossiers de subvention, courriers, synthèses de documents longs, mise en forme de données. Elles le savent. Elles ne savent pas par où commencer, et personne ne vient le leur montrer gratuitement.</p>
-      <p><b>Ce que nous faisons.</b> Un parcours court, sans théorie et sans jargon, où chaque séance se termine par un document réel que le participant a produit lui-même sur son propre dossier. Pas de quiz : une démonstration finale, avec le temps gagné mesuré avant et après.</p>
-      <p><b>Ce que ça change pour vous.</b> Une obligation européenne existe depuis février 2025 : toute organisation qui déploie un système d'IA — un simple assistant conversationnel suffit — doit garantir un niveau suffisant de maîtrise de l'IA à son personnel. Les autorités peuvent contrôler à partir d'août 2026. Le parcours délivre une attestation qui constitue la trace de cette formation.</p>
-    </div>
+    <div class="metiers">
 
-    <div class="cols">
-      <div class="card reveal">
-        <h3>Pour votre structure</h3>
-        <ul>
-          <li>Écrire une demande qui donne un résultat exploitable</li>
-          <li>Faire lire un contrat ou un rapport de 40 pages et en tirer les vraies questions</li>
-          <li>Transformer un export brut en tableau présentable</li>
-          <li>Exploiter un courrier papier ou une capture d'écran</li>
-          <li>Vérifier avant d'envoyer : chiffres, noms, dates, citations</li>
-          <li>Savoir ce qu'on ne colle jamais dans un outil d'IA</li>
-        </ul>
+      <div class="m reveal">
+        <span class="fam">Chiffres</span>
+        <h3>Finance &amp; comptabilité</h3>
+        <p>Prévisionnel, compte de résultat, trésorerie, seuil de rentabilité. Le document est retravaillé autant de fois qu'il le faut avant d'être montrable.</p>
+        <p class="ex"><b>Concrètement —</b> un prévisionnel repris jusqu'à sa sixième version, puis présenté au banquier.</p>
       </div>
-      <div class="card reveal">
-        <h3>Le cadre</h3>
-        <ul>
-          <li>Douze séances courtes, de quinze à vingt minutes chacune</li>
-          <li>Aucun prérequis technique, aucun vocabulaire d'informaticien</li>
-          <li>Vous venez avec un vrai dossier de votre travail, sinon la séance ne sert à rien</li>
-          <li>Feuille d'émargement et attestation de fin de parcours</li>
-          <li>Un parcours avancé pour ceux qui veulent aller vers les agents et les connecteurs</li>
-          <li>Animé bénévolement, sans coût pour votre structure</li>
-        </ul>
+
+      <div class="m reveal">
+        <span class="fam">Chiffres</span>
+        <h3>Contrôle de gestion &amp; pilotage</h3>
+        <p>Savoir où part l'argent et sur quoi décider. Coûts de revient, marges par activité, tableau de bord tenable par une personne.</p>
+        <p class="ex"><b>Concrètement —</b> distinguer l'activité qui fait du volume de celle qui fait du résultat.</p>
       </div>
+
+      <div class="m reveal">
+        <span class="fam">Direction</span>
+        <h3>Direction générale &amp; stratégie</h3>
+        <p>Des gens qui ont dirigé, arbitré et parfois échoué. Priorisation, choix de développement, moment où il faut renoncer.</p>
+        <p class="ex"><b>Concrètement —</b> trancher entre trois pistes de croissance quand on n'a les moyens que d'une.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Direction</span>
+        <h3>Gestion de projet</h3>
+        <p>Jalons, budget, planning, dépendances. Ce qui doit être fini avant quoi, et ce qui peut attendre sans conséquence.</p>
+        <p class="ex"><b>Concrètement —</b> un plan d'action daté, avec un responsable par ligne.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Numérique</span>
+        <h3>Systèmes d'information</h3>
+        <p>Choisir un logiciel sans se faire enfermer, faire dialoguer des outils qui s'ignorent, reprendre un existant mal fichu. Sauvegardes, accès, réversibilité : ce qu'un prestataire ne vous dira pas spontanément.</p>
+        <p class="ex"><b>Concrètement —</b> relire un devis d'intégrateur et repérer ce qui vous rendra dépendant.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Numérique</span>
+        <h3>Intelligence artificielle</h3>
+        <p>Les usages qui font gagner du temps dès la première heure — courriers, comptes rendus, dossiers de subvention, lecture d'un document de quarante pages. Et surtout ce qu'on ne colle jamais dans un outil d'IA, et comment vérifier avant d'envoyer.</p>
+        <p class="ex"><b>Concrètement —</b> une obligation européenne de maîtrise de l'IA s'applique depuis février 2025 à toute structure qui utilise un assistant, sans seuil de taille.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Numérique</span>
+        <h3>Données &amp; décisionnel</h3>
+        <p>Passer d'un export brut à un tableau lisible, choisir les trois indicateurs qui comptent, arrêter de refaire le même fichier chaque mois.</p>
+        <p class="ex"><b>Concrètement —</b> un tableau de bord d'une page que votre conseil d'administration comprend.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Numérique</span>
+        <h3>Communication &amp; présence en ligne</h3>
+        <p>Un site qui dit ce qu'on fait, une identité cohérente, des réseaux tenus sans y passer ses soirées.</p>
+        <p class="ex"><b>Concrètement —</b> réécrire une page d'accueil qui parle du visiteur plutôt que de vous.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Humain</span>
+        <h3>Ressources humaines</h3>
+        <p>Premier recrutement, contrats, rémunération, entretiens, conflits. Le moment où l'on passe de seul à deux est celui qui se rate le plus.</p>
+        <p class="ex"><b>Concrètement —</b> arbitrer entre un stagiaire, un apprenti et un commercial indépendant.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Humain</span>
+        <h3>Insertion &amp; recherche d'emploi</h3>
+        <p>Un regard de gens qui ont recruté pour de vrai : CV, entretien, reconversion, retour à l'emploi après une rupture.</p>
+        <p class="ex"><b>Concrètement —</b> une simulation d'entretien menée par quelqu'un qui en a fait passer des centaines.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Cadre</span>
+        <h3>Juridique &amp; statuts</h3>
+        <p>Forme juridique, associés, répartition, conditions générales, protection du nom. Ce qui se décide au départ et se paie cher ensuite.</p>
+        <p class="ex"><b>Concrètement —</b> vérifier l'antériorité d'une marque avant de commander un logo et un nom de domaine.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Cadre</span>
+        <h3>Sécurité &amp; conformité</h3>
+        <p>Recevoir du public, assurer, protéger des données personnelles, respecter des normes qu'on découvre trop tard.</p>
+        <p class="ex"><b>Concrètement —</b> la liste des obligations d'un local recevant du public, avant la signature du bail.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Marché</span>
+        <h3>Commercial &amp; marketing</h3>
+        <p>À qui on vend, à quel prix, avec quel argument. Prospection, offre, préparation des rendez-vous décisifs.</p>
+        <p class="ex"><b>Concrètement —</b> un argumentaire tenu en trois phrases, testé sur quelqu'un qui ne connaît pas le projet.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Marché</span>
+        <h3>International &amp; export</h3>
+        <p>Partenaires étrangers, marchés hors de France, différences culturelles de négociation, travail en anglais.</p>
+        <p class="ex"><b>Concrètement —</b> préparer une négociation avec un interlocuteur qui n'a pas les mêmes codes.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Bâti</span>
+        <h3>Architecture &amp; travaux</h3>
+        <p>Faisabilité, permis, maîtrise d'ouvrage, lecture de devis d'entreprise, suivi de chantier.</p>
+        <p class="ex"><b>Concrètement —</b> savoir si un local peut accueillir votre activité avant d'engager les travaux.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Bâti</span>
+        <h3>Architecture d'intérieur &amp; décoration</h3>
+        <p>Aménager un lieu pour qu'il fonctionne : circulation, lumière, ambiance, coût au mètre carré.</p>
+        <p class="ex"><b>Concrètement —</b> l'agencement d'un salon de thé où l'on veut aussi animer des ateliers.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Bâti</span>
+        <h3>Urbanisme &amp; ingénierie</h3>
+        <p>Réglementation locale, occupation du domaine public, dialogue avec les services techniques d'une commune.</p>
+        <p class="ex"><b>Concrètement —</b> obtenir la bonne autorisation avant d'exploiter, pas après le refus.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Terrain</span>
+        <h3>Hôtellerie, restauration &amp; commerce</h3>
+        <p>Ouvrir et tenir un lieu : normes, fournisseurs, flux, saisonnalité, gestion des heures creuses.</p>
+        <p class="ex"><b>Concrètement —</b> calibrer une carte et des horaires sur la fréquentation réelle du quartier.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Terrain</span>
+        <h3>Vie associative &amp; collectivités</h3>
+        <p>Gouvernance, statuts, dossiers de subvention, relation avec une mairie ou une intercommunalité.</p>
+        <p class="ex"><b>Concrètement —</b> monter un dossier qui passe, plutôt qu'un dossier qui revient.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Innovation</span>
+        <h3>Innovation &amp; transfert de technologie</h3>
+        <p>Projets de recherche, laboratoires publics, brevets et antériorité, crédit impôt recherche, incubation, thèses en entreprise.</p>
+        <p class="ex"><b>Concrètement —</b> structurer un dossier assez solide pour qu'un laboratoire signe une lettre d'intention.</p>
+      </div>
+
     </div>
 
-    <div class="cta-row" style="margin-top:30px">
-      <a class="btn" href="/AITraining/" target="_blank" rel="noopener">Voir le programme complet</a>
+    <div class="note">
+      <p>Liste illustrative, pas un catalogue fermé. L'association réunit une trentaine d'expertises et sa composition évolue avec ses bénévoles — certaines compétences arrivent, d'autres partent. Si la vôtre n'apparaît pas, posez quand même la question : soit quelqu'un la couvre, soit nous vous dirons franchement que non et vers qui vous tourner.</p>
     </div>
   </div>
 </section>
@@ -449,10 +558,9 @@
 
 <footer>
   <div class="wrap">
-    <img src="arx-logo.png" alt="" width="242" height="264" loading="lazy" decoding="async">
-    <p><b>Support de proposition, document de travail.</b> Cette page a été préparée par un bénévole du pôle Entreprises pour discussion interne. Elle n'est pas le site officiel d'AXperience, n'engage pas l'association et n'a pas été validée par son bureau. Le site officiel est <a href="https://www.axperience.org/" target="_blank" rel="noopener">axperience.org</a>.</p>
-    <p>Contenu établi à partir des pages publiques d'AXperience (accueil, pôle Entreprises, FAQ) en août 2026. Les chiffres sont ceux publiés par l'association ; le nombre de projets accompagnés est en cours de recensement et volontairement non affiché.</p>
-    <p>Le volet IA s'appuie sur un programme de formation indépendant. Le rappel réglementaire porte sur l'article 4 du règlement (UE) 2024/1689 ; il est fourni à titre d'information et ne constitue pas un conseil juridique. Page hébergée par <a href="https://arx-consulting.com/index-fr.html">Arx Consulting</a>, qui en assure l'hébergement à titre bénévole.</p>
+    <p>AXperience · association loi 1901 de bénévolat de compétences · Nice, Alpes-Maritimes · site officiel <a href="https://www.axperience.org/" target="_blank" rel="noopener">axperience.org</a></p>
+    <p>Document de travail. Cette page n'engage pas l'association et n'a pas été validée par son bureau.</p>
+    <p>Contenu établi à partir des pages publiques d'AXperience (accueil, pôle Entreprises, FAQ) en août 2026. Les chiffres sont ceux publiés par l'association ; le nombre de projets accompagnés est en cours de recensement et volontairement non affiché. La liste des métiers est illustrative. Le rappel réglementaire porte sur l'article 4 du règlement (UE) 2024/1689 ; il est fourni à titre d'information et ne constitue pas un conseil juridique.</p>
   </div>
 </footer>
 
