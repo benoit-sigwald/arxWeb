@@ -148,6 +148,22 @@
   .free .big{font-size:clamp(56px,10vw,110px);font-weight:600;color:var(--blue);letter-spacing:-.03em;line-height:1;margin:0 0 14px}
   .free p{font-size:18px;color:var(--text-2);margin:0 auto 10px;max-width:600px}
 
+  /* ---------- QR ---------- */
+  .qr{
+    background:var(--white);border-radius:var(--radius);padding:30px 26px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);margin-top:20px;
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;text-align:left;
+  }
+  .qr svg{
+    width:150px;height:150px;display:block;flex:none;
+    shape-rendering:crispEdges;image-rendering:pixelated;
+  }
+  .qr .t{max-width:420px}
+  .qr h3{margin:0 0 6px;font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .qr p{margin:0;font-size:15px;color:var(--text-2)}
+  .qr .u{margin-top:8px;font-size:14px;color:var(--blue);word-break:break-all}
+  @media(max-width:560px){.qr{text-align:center}.qr .t{max-width:none}}
+
   /* ---------- contact ---------- */
   .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
   .contact a{
@@ -191,7 +207,7 @@
   <div class="wrap">
     <p class="eyebrow">Association niçoise de bénévolat de compétences</p>
     <h1>Vous avez un projet.<br>Nous avons déjà fait le chemin.</h1>
-    <p class="lead">Trente-cinq anciens dirigeants, cadres et experts vous accompagnent — gratuitement, aussi longtemps qu'il faut. Nous ne faisons pas à votre place. Nous faisons en sorte que vous décidiez juste.</p>
+    <p class="lead">Trente-cinq cadres, dirigeants et étudiants — en poste ou retraités — vous accompagnent gratuitement, aussi longtemps qu'il faut. Nous ne faisons pas à votre place. Nous faisons en sorte que vous décidiez juste.</p>
     <div class="cta-row">
       <a class="btn" href="#contact">Parler de mon projet</a>
       <a class="btn ghost" href="#obtenez">Ce que vous obtenez</a>
@@ -230,6 +246,11 @@
         <span class="who">Justice</span>
         <h3>Vous accompagnez une réinsertion</h3>
         <p>Réinsertion professionnelle des personnes détenues et travail sur la citoyenneté, en lien avec les acteurs du champ judiciaire.</p>
+      </div>
+      <div class="pub reveal">
+        <span class="who">Bénévoles</span>
+        <h3>Vous avez une compétence et un peu de temps</h3>
+        <p>En poste, en reconversion, à la retraite ou étudiant : on « bénévole » au rythme qu'on peut tenir, y compris à distance. Ce sont les missions qui s'adaptent, pas l'inverse.</p>
       </div>
       <div class="pub reveal">
         <span class="who">Insertion</span>
@@ -330,7 +351,7 @@
       </div>
       <div class="d reveal">
         <b>Des gens qui l'ont fait</b>
-        <p>Anciens dirigeants, directeurs financiers, DRH, architectes, ingénieurs, directrices de projet. Ils ont tenu ces postes, ils ne les ont pas étudiés.</p>
+        <p>Dirigeants, directeurs financiers, DRH, architectes, ingénieurs, directrices de projet. Une partie encore en poste, une partie retraitée, et des étudiants. Ils ont tenu ces fonctions, ils ne les ont pas seulement étudiées.</p>
       </div>
       <div class="d reveal">
         <b>Personne à qui rendre des comptes</b>
@@ -352,7 +373,7 @@
   <div class="wrap">
     <div class="sec-head">
       <h2>L'association en bref.</h2>
-      <p>Créée à Nice en 2015 par douze cadres retraités. Association loi 1901, indépendante.</p>
+      <p>Créée à Nice en 2015. Association loi 1901, indépendante. Aujourd'hui : des cadres en activité, des retraités et des étudiants — pas seulement des retraités.</p>
     </div>
     <div class="stats">
       <div class="stat reveal"><span class="n">35</span><p>bénévoles</p></div>
@@ -363,6 +384,11 @@
     <p class="kicker" style="text-align:center;margin-top:22px">
       Le nombre de projets accompagnés et le devenir des structures suivies sont en cours de recensement. Ils seront publiés ici, datés, plutôt qu'estimés.
     </p>
+
+    <div class="note" style="margin-top:26px">
+      <p><b style="color:var(--text)">Une association qui n'est pas un club de retraités.</b> C'est une précision qui compte, y compris pour celles et ceux qui envisagent de nous rejoindre : l'équipe réunit des cadres en activité, des retraités et des étudiants du supérieur, chacun au rythme qu'il peut tenir. Le télé-bénévolat permet d'en faire depuis chez soi.</p>
+      <p style="margin-top:10px">Cette composition suit ce qu'on observe partout : d'après le baromètre France&nbsp;Bénévolat / IFOP de mars 2025, l'engagement associatif des 65&nbsp;ans et plus est tombé à <b style="color:var(--text)">24&nbsp;%</b>, contre 38&nbsp;% en 2010, tandis que celui des 15-34&nbsp;ans est monté à <b style="color:var(--text)">23&nbsp;%</b>, contre 16&nbsp;%. Les deux générations sont désormais à égalité. Et sur 12&nbsp;millions de bénévoles, seuls 1,5&nbsp;million s'engagent au moins un jour par semaine : la souplesse n'est plus un confort, c'est la condition.</p>
+    </div>
   </div>
 </section>
 
@@ -376,14 +402,14 @@
     <div class="metiers">
 
       <div class="m reveal">
-        <span class="fam">Chiffres</span>
+        <span class="fam">Le nerf de la guerre</span>
         <h3>Finance &amp; comptabilité</h3>
         <p>Prévisionnel, compte de résultat, trésorerie, seuil de rentabilité. Le document est retravaillé autant de fois qu'il le faut avant d'être montrable.</p>
         <p class="ex"><b>Concrètement —</b> un prévisionnel repris jusqu'à sa sixième version, puis présenté au banquier.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Chiffres</span>
+        <span class="fam">Le nerf de la guerre</span>
         <h3>Contrôle de gestion &amp; pilotage</h3>
         <p>Savoir où part l'argent et sur quoi décider. Coûts de revient, marges par activité, tableau de bord tenable par une personne.</p>
         <p class="ex"><b>Concrètement —</b> distinguer l'activité qui fait du volume de celle qui fait du résultat.</p>
@@ -406,7 +432,7 @@
       <div class="m reveal">
         <span class="fam">Numérique</span>
         <h3>Systèmes d'information</h3>
-        <p>Choisir un logiciel sans se faire enfermer, faire dialoguer des outils qui s'ignorent, reprendre un existant mal fichu. Sauvegardes, accès, réversibilité : ce qu'un prestataire ne vous dira pas spontanément.</p>
+        <p>Choisir un logiciel sans se faire enfermer, faire dialoguer des outils qui s'ignorent, reprendre un existant mal fichu. Sauvegardes, accès, réversibilité : ce qu'un prestataire ne vous dira pas spontanément. Et, en bout de chaîne, sortir de vos outils un tableau de bord d'une page au lieu de refaire le même fichier chaque mois.</p>
         <p class="ex"><b>Concrètement —</b> relire un devis d'intégrateur et repérer ce qui vous rendra dépendant.</p>
       </div>
 
@@ -415,20 +441,6 @@
         <h3>Intelligence artificielle</h3>
         <p>Les usages qui font gagner du temps dès la première heure — courriers, comptes rendus, dossiers de subvention, lecture d'un document de quarante pages. Et surtout ce qu'on ne colle jamais dans un outil d'IA, et comment vérifier avant d'envoyer.</p>
         <p class="ex"><b>Concrètement —</b> une obligation européenne de maîtrise de l'IA s'applique depuis février 2025 à toute structure qui utilise un assistant, sans seuil de taille.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Numérique</span>
-        <h3>Données &amp; décisionnel</h3>
-        <p>Passer d'un export brut à un tableau lisible, choisir les trois indicateurs qui comptent, arrêter de refaire le même fichier chaque mois.</p>
-        <p class="ex"><b>Concrètement —</b> un tableau de bord d'une page que votre conseil d'administration comprend.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Numérique</span>
-        <h3>Communication &amp; présence en ligne</h3>
-        <p>Un site qui dit ce qu'on fait, une identité cohérente, des réseaux tenus sans y passer ses soirées.</p>
-        <p class="ex"><b>Concrètement —</b> réécrire une page d'accueil qui parle du visiteur plutôt que de vous.</p>
       </div>
 
       <div class="m reveal">
@@ -464,6 +476,13 @@
         <h3>Commercial &amp; marketing</h3>
         <p>À qui on vend, à quel prix, avec quel argument. Prospection, offre, préparation des rendez-vous décisifs.</p>
         <p class="ex"><b>Concrètement —</b> un argumentaire tenu en trois phrases, testé sur quelqu'un qui ne connaît pas le projet.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Marché</span>
+        <h3>Communication &amp; présence en ligne</h3>
+        <p>Un site qui dit ce qu'on fait, une identité cohérente, des réseaux tenus sans y passer ses soirées.</p>
+        <p class="ex"><b>Concrètement —</b> réécrire une page d'accueil qui parle du visiteur plutôt que de vous.</p>
       </div>
 
       <div class="m reveal">
@@ -552,6 +571,15 @@
         <h3>Le site de l'association</h3>
         <p>axperience.org</p>
       </a>
+    </div>
+
+    <div class="qr">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" role="img" aria-label="QR code vers la page AXperience"><path stroke="#1d1d1f" d="M2 2.5h7m2 0h1m1 0h1m2 0h2m1 0h4m1 0h7m-29 1h1m5 0h1m2 0h4m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h7m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m3 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m7 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h2m3 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h1m2 0h1m1 0h1m2 0h4m-21 1h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m-24 1h3m2 0h1m1 0h1m2 0h1m1 0h2m2 0h1m3 0h3m2 0h1m2 0h1m-26 1h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h1m3 0h5m-28 1h3m4 0h1m3 0h1m1 0h4m1 0h3m1 0h3m1 0h2m-28 1h4m2 0h1m1 0h2m4 0h1m1 0h2m1 0h4m2 0h1m1 0h2m-24 1h1m4 0h1m2 0h1m5 0h3m1 0h1m-24 1h4m2 0h5m1 0h3m2 0h1m3 0h1m1 0h6m-29 1h2m2 0h2m2 0h1m3 0h1m2 0h1m1 0h4m1 0h4m1 0h1m-28 1h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m-27 1h1m1 0h3m1 0h5m1 0h2m1 0h2m3 0h3m1 0h1m2 0h1m-29 1h1m3 0h3m4 0h2m1 0h1m1 0h2m2 0h2m5 0h2m-26 1h3m1 0h1m1 0h1m4 0h1m1 0h3m1 0h2m1 0h1m3 0h2m-29 1h1m1 0h1m2 0h2m1 0h1m8 0h1m1 0h6m1 0h1m-19 1h2m4 0h1m1 0h2m1 0h2m3 0h1m1 0h3m-29 1h7m2 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m-28 1h1m5 0h1m1 0h1m2 0h1m2 0h3m1 0h1m1 0h1m3 0h5m-29 1h1m1 0h3m1 0h1m2 0h4m3 0h1m3 0h5m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m6 0h2m2 0h1m1 0h4m-28 1h1m1 0h3m1 0h1m3 0h2m1 0h2m1 0h4m1 0h1m2 0h3m1 0h1m-29 1h1m5 0h1m2 0h2m2 0h3m1 0h1m2 0h2m5 0h1m-28 1h7m1 0h2m4 0h1m1 0h2m2 0h3m1 0h2m1 0h1"/></svg>
+      <div class="t">
+        <h3>Emportez cette page</h3>
+        <p>Scannez pour retrouver la liste des métiers, le déroulé d'un accompagnement et les coordonnées, depuis votre téléphone.</p>
+        <p class="u">arx-consulting.com/AXperience/</p>
+      </div>
     </div>
   </div>
 </section>
