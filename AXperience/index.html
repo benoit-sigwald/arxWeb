@@ -132,11 +132,19 @@
   .m .fam{font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
   .m h3{font-size:19px;line-height:1.22;font-weight:600;letter-spacing:-.02em;margin:0}
   .m p{font-size:15px;color:var(--text-2);margin:0}
+  .metiers{align-items:stretch}
+  .m .liste{
+    margin-top:auto;padding-top:12px;font-size:13px;color:var(--text-2);
+    border-top:1px solid var(--hair);line-height:1.7;
+  }
+  .m .liste b{color:var(--text);font-weight:600;display:block;margin-bottom:5px;font-size:12px;
+    text-transform:uppercase;letter-spacing:.05em}
   .m .ex{
     margin-top:auto;padding-top:12px;font-size:14px;color:var(--text);
     border-top:1px solid var(--hair);
   }
   .m .ex b{font-weight:600}
+  .m .liste + .ex{margin-top:0;border-top:0;padding-top:10px}
   .note{
     background:var(--white);border-radius:var(--radius);padding:22px 24px;margin-top:20px;
     box-shadow:0 2px 12px rgba(0,0,0,.045);border-left:4px solid var(--blue);
@@ -148,21 +156,39 @@
   .free .big{font-size:clamp(56px,10vw,110px);font-weight:600;color:var(--blue);letter-spacing:-.03em;line-height:1;margin:0 0 14px}
   .free p{font-size:18px;color:var(--text-2);margin:0 auto 10px;max-width:600px}
 
-  /* ---------- QR ---------- */
-  .qr{
-    background:var(--white);border-radius:var(--radius);padding:30px 26px;
-    box-shadow:0 2px 12px rgba(0,0,0,.045);margin-top:20px;
-    display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;text-align:left;
+  /* ---------- QR flottant ---------- */
+  .qr-float{
+    position:fixed;top:62px;right:14px;z-index:60;
+    background:rgba(255,255,255,.92);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    backdrop-filter:saturate(180%) blur(12px);
+    border:1px solid rgba(0,0,0,.08);border-radius:12px;
+    padding:6px 6px 4px;box-shadow:0 4px 16px rgba(0,0,0,.10);
+    text-align:center;line-height:1;
   }
-  .qr svg{
-    width:150px;height:150px;display:block;flex:none;
-    shape-rendering:crispEdges;image-rendering:pixelated;
+  .qr-float svg{width:54px;height:54px;display:block;shape-rendering:crispEdges}
+  .qr-float span{display:block;font-size:8px;color:var(--text-2);margin-top:3px;letter-spacing:.02em}
+  @media(max-width:640px){
+    .qr-float{top:58px;right:8px;padding:5px 5px 3px}
+    .qr-float svg{width:42px;height:42px}
+    .qr-float span{font-size:7px}
   }
-  .qr .t{max-width:420px}
-  .qr h3{margin:0 0 6px;font-size:19px;font-weight:600;letter-spacing:-.02em}
-  .qr p{margin:0;font-size:15px;color:var(--text-2)}
-  .qr .u{margin-top:8px;font-size:14px;color:var(--blue);word-break:break-all}
-  @media(max-width:560px){.qr{text-align:center}.qr .t{max-width:none}}
+
+  /* ---------- missions ---------- */
+  .missions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;align-items:stretch}
+  .mi{
+    background:var(--white);border-radius:var(--radius);padding:26px 24px;
+    box-shadow:0 2px 12px rgba(0,0,0,.045);display:flex;flex-direction:column;gap:10px;
+  }
+  .mi .tag{
+    align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.02em;
+    padding:4px 11px;border-radius:980px;background:var(--bg-alt);color:var(--text-2);
+  }
+  .mi .tag.go{background:rgba(0,113,227,.10);color:var(--blue)}
+  .mi h3{font-size:20px;line-height:1.22;font-weight:600;letter-spacing:-.02em;margin:0}
+  .mi p{font-size:15px;color:var(--text-2);margin:0}
+  .mi .pole{margin-top:auto;padding-top:12px;border-top:1px solid var(--hair);font-size:13px;color:var(--text-2)}
+  .mi .pole b{color:var(--text);font-weight:600}
 
   /* ---------- contact ---------- */
   .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
@@ -190,6 +216,11 @@
 </head>
 <body>
 
+<a class="qr-float" href="https://arx-consulting.com/AXperience/" aria-label="Ouvrir cette page sur mobile — arx-consulting.com/AXperience">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" role="img" aria-hidden="true"><path stroke="#1d1d1f" d="M2 2.5h7m2 0h1m1 0h1m2 0h2m1 0h4m1 0h7m-29 1h1m5 0h1m2 0h4m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h7m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m3 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m7 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h2m3 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h1m2 0h1m1 0h1m2 0h4m-21 1h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m-24 1h3m2 0h1m1 0h1m2 0h1m1 0h2m2 0h1m3 0h3m2 0h1m2 0h1m-26 1h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h1m3 0h5m-28 1h3m4 0h1m3 0h1m1 0h4m1 0h3m1 0h3m1 0h2m-28 1h4m2 0h1m1 0h2m4 0h1m1 0h2m1 0h4m2 0h1m1 0h2m-24 1h1m4 0h1m2 0h1m5 0h3m1 0h1m-24 1h4m2 0h5m1 0h3m2 0h1m3 0h1m1 0h6m-29 1h2m2 0h2m2 0h1m3 0h1m2 0h1m1 0h4m1 0h4m1 0h1m-28 1h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m-27 1h1m1 0h3m1 0h5m1 0h2m1 0h2m3 0h3m1 0h1m2 0h1m-29 1h1m3 0h3m4 0h2m1 0h1m1 0h2m2 0h2m5 0h2m-26 1h3m1 0h1m1 0h1m4 0h1m1 0h3m1 0h2m1 0h1m3 0h2m-29 1h1m1 0h1m2 0h2m1 0h1m8 0h1m1 0h6m1 0h1m-19 1h2m4 0h1m1 0h2m1 0h2m3 0h1m1 0h3m-29 1h7m2 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m-28 1h1m5 0h1m1 0h1m2 0h1m2 0h3m1 0h1m1 0h1m3 0h5m-29 1h1m1 0h3m1 0h1m2 0h4m3 0h1m3 0h5m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m6 0h2m2 0h1m1 0h4m-28 1h1m1 0h3m1 0h1m3 0h2m1 0h2m1 0h4m1 0h1m2 0h3m1 0h1m-29 1h1m5 0h1m2 0h2m2 0h3m1 0h1m2 0h2m5 0h1m-28 1h7m1 0h2m4 0h1m1 0h2m2 0h3m1 0h2m1 0h1"/></svg>
+  <span>Scannez</span>
+</a>
+
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="#top">AXperience</a>
@@ -198,6 +229,7 @@
       <a href="#obtenez">Ce que vous obtenez</a>
       <a href="#deroule">Comment ça se passe</a>
       <a href="#metiers">Les métiers</a>
+      <a href="#missions">Missions en cours</a>
       <a class="nav-cta" href="#contact">Demander un accompagnement</a>
     </div>
   </div>
@@ -377,16 +409,22 @@
     </div>
     <div class="stats">
       <div class="stat reveal"><span class="n">35</span><p>bénévoles</p></div>
-      <div class="stat reveal"><span class="n">30</span><p>expertises professionnelles</p></div>
+      <div class="stat reveal"><span class="n">32</span><p>expertises professionnelles</p></div>
       <div class="stat reveal"><span class="n">5</span><p>pôles d'intervention</p></div>
       <div class="stat reveal"><span class="n">2015</span><p>année de création, à Nice</p></div>
+    </div>
+
+    <div class="stats" style="margin-top:16px">
+      <div class="stat reveal"><span class="n">45 %</span><p>de cadres en activité professionnelle</p></div>
+      <div class="stat reveal"><span class="n">55 %</span><p>de cadres retraités</p></div>
+      <div class="stat reveal"><span class="n">5 %</span><p>d'étudiants</p></div>
     </div>
     <p class="kicker" style="text-align:center;margin-top:22px">
       Le nombre de projets accompagnés et le devenir des structures suivies sont en cours de recensement. Ils seront publiés ici, datés, plutôt qu'estimés.
     </p>
 
     <div class="note" style="margin-top:26px">
-      <p><b style="color:var(--text)">Une association qui n'est pas un club de retraités.</b> C'est une précision qui compte, y compris pour celles et ceux qui envisagent de nous rejoindre : l'équipe réunit des cadres en activité, des retraités et des étudiants du supérieur, chacun au rythme qu'il peut tenir. Le télé-bénévolat permet d'en faire depuis chez soi.</p>
+      <p><b style="color:var(--text)">Une association qui n'est pas un club de retraités.</b> <b style="color:var(--text)">45 %</b> des bénévoles sont des cadres <b style="color:var(--text)">en activité professionnelle</b>, aux côtés de 55 % de retraités et de 5 % d'étudiants. C'est une précision qui compte pour celles et ceux qui envisagent de nous rejoindre : chacun « bénévole » au rythme qu'il peut tenir, et le télé-bénévolat permet d'agir depuis chez soi.</p>
       <p style="margin-top:10px">Cette composition suit ce qu'on observe partout : d'après le baromètre France&nbsp;Bénévolat / IFOP de mars 2025, l'engagement associatif des 65&nbsp;ans et plus est tombé à <b style="color:var(--text)">24&nbsp;%</b>, contre 38&nbsp;% en 2010, tandis que celui des 15-34&nbsp;ans est monté à <b style="color:var(--text)">23&nbsp;%</b>, contre 16&nbsp;%. Les deux générations sont désormais à égalité. Et sur 12&nbsp;millions de bénévoles, seuls 1,5&nbsp;million s'engagent au moins un jour par semaine : la souplesse n'est plus un confort, c'est la condition.</p>
     </div>
   </div>
@@ -403,36 +441,25 @@
 
       <div class="m reveal">
         <span class="fam">Le nerf de la guerre</span>
-        <h3>Finance &amp; comptabilité</h3>
-        <p>Prévisionnel, compte de résultat, trésorerie, seuil de rentabilité. Le document est retravaillé autant de fois qu'il le faut avant d'être montrable.</p>
+        <h3>Argent, comptes &amp; fiscalité</h3>
+        <p>Prévisionnel, compte de résultat, trésorerie, seuil de rentabilité, préparation d'un rendez-vous bancaire. Le document est retravaillé autant de fois qu'il le faut avant d'être montrable.</p>
+        <p class="liste"><b>Expertises</b>Direction financière · Expertise comptable · Fiscalité · Gestion des comptes · Cadre bancaire · Audit des entreprises</p>
         <p class="ex"><b>Concrètement —</b> un prévisionnel repris jusqu'à sa sixième version, puis présenté au banquier.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Le nerf de la guerre</span>
-        <h3>Contrôle de gestion &amp; pilotage</h3>
-        <p>Savoir où part l'argent et sur quoi décider. Coûts de revient, marges par activité, tableau de bord tenable par une personne.</p>
-        <p class="ex"><b>Concrètement —</b> distinguer l'activité qui fait du volume de celle qui fait du résultat.</p>
-      </div>
-
-      <div class="m reveal">
         <span class="fam">Direction</span>
-        <h3>Direction générale &amp; stratégie</h3>
-        <p>Des gens qui ont dirigé, arbitré et parfois échoué. Priorisation, choix de développement, moment où il faut renoncer.</p>
+        <h3>Diriger, piloter, arbitrer</h3>
+        <p>Des gens qui ont dirigé, arbitré et parfois échoué. Priorisation, jalons, budget, qualité, moment où il faut renoncer à une piste pour en tenir une seule.</p>
+        <p class="liste"><b>Expertises</b>Chef d'entreprise · Chef de projet · Conseil &amp; management qualité · Management industriel · Groupement d'entreprises</p>
         <p class="ex"><b>Concrètement —</b> trancher entre trois pistes de croissance quand on n'a les moyens que d'une.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Direction</span>
-        <h3>Gestion de projet</h3>
-        <p>Jalons, budget, planning, dépendances. Ce qui doit être fini avant quoi, et ce qui peut attendre sans conséquence.</p>
-        <p class="ex"><b>Concrètement —</b> un plan d'action daté, avec un responsable par ligne.</p>
-      </div>
-
-      <div class="m reveal">
         <span class="fam">Numérique</span>
-        <h3>Systèmes d'information</h3>
-        <p>Choisir un logiciel sans se faire enfermer, faire dialoguer des outils qui s'ignorent, reprendre un existant mal fichu. Sauvegardes, accès, réversibilité : ce qu'un prestataire ne vous dira pas spontanément. Et, en bout de chaîne, sortir de vos outils un tableau de bord d'une page au lieu de refaire le même fichier chaque mois.</p>
+        <h3>Systèmes d'information &amp; digital</h3>
+        <p>Choisir un logiciel sans se faire enfermer, faire dialoguer des outils qui s'ignorent, reprendre un existant mal fichu. Sauvegardes, accès, réversibilité : ce qu'un prestataire ne dit pas spontanément. Et sortir de vos outils un tableau de bord d'une page.</p>
+        <p class="liste"><b>Expertises</b>Gestion de projet IT · Digital · Marketing digital</p>
         <p class="ex"><b>Concrètement —</b> relire un devis d'intégrateur et repérer ce qui vous rendra dépendant.</p>
       </div>
 
@@ -440,104 +467,136 @@
         <span class="fam">Numérique</span>
         <h3>Intelligence artificielle</h3>
         <p>Les usages qui font gagner du temps dès la première heure — courriers, comptes rendus, dossiers de subvention, lecture d'un document de quarante pages. Et surtout ce qu'on ne colle jamais dans un outil d'IA, et comment vérifier avant d'envoyer.</p>
-        <p class="ex"><b>Concrètement —</b> une obligation européenne de maîtrise de l'IA s'applique depuis février 2025 à toute structure qui utilise un assistant, sans seuil de taille.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Humain</span>
-        <h3>Ressources humaines</h3>
-        <p>Premier recrutement, contrats, rémunération, entretiens, conflits. Le moment où l'on passe de seul à deux est celui qui se rate le plus.</p>
-        <p class="ex"><b>Concrètement —</b> arbitrer entre un stagiaire, un apprenti et un commercial indépendant.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Humain</span>
-        <h3>Insertion &amp; recherche d'emploi</h3>
-        <p>Un regard de gens qui ont recruté pour de vrai : CV, entretien, reconversion, retour à l'emploi après une rupture.</p>
-        <p class="ex"><b>Concrètement —</b> une simulation d'entretien menée par quelqu'un qui en a fait passer des centaines.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Cadre</span>
-        <h3>Juridique &amp; statuts</h3>
-        <p>Forme juridique, associés, répartition, conditions générales, protection du nom. Ce qui se décide au départ et se paie cher ensuite.</p>
-        <p class="ex"><b>Concrètement —</b> vérifier l'antériorité d'une marque avant de commander un logo et un nom de domaine.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Cadre</span>
-        <h3>Sécurité &amp; conformité</h3>
-        <p>Recevoir du public, assurer, protéger des données personnelles, respecter des normes qu'on découvre trop tard.</p>
-        <p class="ex"><b>Concrètement —</b> la liste des obligations d'un local recevant du public, avant la signature du bail.</p>
+        <p class="liste"><b>Expertise en cours de constitution</b>Une obligation européenne de maîtrise de l'IA s'applique depuis février 2025 à toute structure qui utilise un assistant, sans seuil de taille.</p>
+        <p class="ex"><b>Concrètement —</b> repartir d'une séance avec un document réel produit sur son propre dossier.</p>
       </div>
 
       <div class="m reveal">
         <span class="fam">Marché</span>
-        <h3>Commercial &amp; marketing</h3>
-        <p>À qui on vend, à quel prix, avec quel argument. Prospection, offre, préparation des rendez-vous décisifs.</p>
+        <h3>Vendre &amp; se faire connaître</h3>
+        <p>À qui on vend, à quel prix, avec quel argument. Prospection, offre, identité, site, réseaux tenus sans y passer ses soirées.</p>
+        <p class="liste"><b>Expertises</b>Direction commerciale · Commercial vente · Communication et marketing graphisme · Marketing digital</p>
         <p class="ex"><b>Concrètement —</b> un argumentaire tenu en trois phrases, testé sur quelqu'un qui ne connaît pas le projet.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Marché</span>
-        <h3>Communication &amp; présence en ligne</h3>
-        <p>Un site qui dit ce qu'on fait, une identité cohérente, des réseaux tenus sans y passer ses soirées.</p>
-        <p class="ex"><b>Concrètement —</b> réécrire une page d'accueil qui parle du visiteur plutôt que de vous.</p>
+        <span class="fam">Créer</span>
+        <h3>Créer ou reprendre une entreprise</h3>
+        <p>Forme juridique, associés, immatriculation, valorisation d'une affaire à racheter, négociation avec le cédant, premiers mois d'exploitation.</p>
+        <p class="liste"><b>Expertises</b>Auto-entreprises · Reprise d'entreprises · Chef d'entreprise · Audit des entreprises</p>
+        <p class="ex"><b>Concrètement —</b> savoir ce qu'on achète vraiment avant de signer une reprise.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Marché</span>
-        <h3>International &amp; export</h3>
-        <p>Partenaires étrangers, marchés hors de France, différences culturelles de négociation, travail en anglais.</p>
-        <p class="ex"><b>Concrètement —</b> préparer une négociation avec un interlocuteur qui n'a pas les mêmes codes.</p>
+        <span class="fam">Humain</span>
+        <h3>Recruter, encadrer, tenir</h3>
+        <p>Premier recrutement, contrats, rémunération, entretiens, conflits. Et le facteur humain : fatigue, doute, associés qui ne s'entendent plus. Le passage de seul à deux est ce qui se rate le plus.</p>
+        <p class="liste"><b>Expertises</b>Ressources humaines · Psychologie · Éducation nationale</p>
+        <p class="ex"><b>Concrètement —</b> arbitrer entre un stagiaire, un apprenti et un commercial indépendant.</p>
+      </div>
+
+      <div class="m reveal">
+        <span class="fam">Achats</span>
+        <h3>Acheter &amp; produire</h3>
+        <p>Fournisseurs, négociation, chaîne d'approvisionnement, organisation d'un atelier ou d'une production, coûts de revient industriels.</p>
+        <p class="liste"><b>Expertises</b>Direction des achats · Management industriel · Produits pétroliers · Groupement d'entreprises</p>
+        <p class="ex"><b>Concrètement —</b> renégocier un contrat fournisseur qui pèse sur la marge.</p>
       </div>
 
       <div class="m reveal">
         <span class="fam">Bâti</span>
-        <h3>Architecture &amp; travaux</h3>
-        <p>Faisabilité, permis, maîtrise d'ouvrage, lecture de devis d'entreprise, suivi de chantier.</p>
+        <h3>Locaux, travaux &amp; aménagement</h3>
+        <p>Faisabilité, devis d'entreprise, suivi de chantier, agencement d'un lieu pour qu'il fonctionne : circulation, lumière, coût au mètre carré.</p>
+        <p class="liste"><b>Expertises</b>Entreprise BTP · Architecture d'intérieur · Hôtellerie</p>
         <p class="ex"><b>Concrètement —</b> savoir si un local peut accueillir votre activité avant d'engager les travaux.</p>
       </div>
 
       <div class="m reveal">
-        <span class="fam">Bâti</span>
-        <h3>Architecture d'intérieur &amp; décoration</h3>
-        <p>Aménager un lieu pour qu'il fonctionne : circulation, lumière, ambiance, coût au mètre carré.</p>
-        <p class="ex"><b>Concrètement —</b> l'agencement d'un salon de thé où l'on veut aussi animer des ateliers.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Bâti</span>
-        <h3>Urbanisme &amp; ingénierie</h3>
-        <p>Réglementation locale, occupation du domaine public, dialogue avec les services techniques d'une commune.</p>
+        <span class="fam">Territoire</span>
+        <h3>Voirie, mobilité &amp; environnement</h3>
+        <p>Occupation du domaine public, circulation, stationnement, infrastructures et déchets, mobilité solidaire. Le dialogue avec les services techniques d'une commune.</p>
+        <p class="liste"><b>Expertises</b>Circulation / stationnement · Infrastructures routières et déchets · Transport solidaire</p>
         <p class="ex"><b>Concrètement —</b> obtenir la bonne autorisation avant d'exploiter, pas après le refus.</p>
       </div>
 
       <div class="m reveal">
+        <span class="fam">Sécurité</span>
+        <h3>Sécurité publique &amp; civile</h3>
+        <p>Recevoir du public, sûreté d'un site ou d'un événement, relation avec les forces de l'ordre municipales, prévention et gestion de crise.</p>
+        <p class="liste"><b>Expertises</b>Sécurité publique et civile · Polices municipales</p>
+        <p class="ex"><b>Concrètement —</b> la liste des obligations d'un local recevant du public, avant la signature du bail.</p>
+      </div>
+
+      <div class="m reveal">
         <span class="fam">Terrain</span>
-        <h3>Hôtellerie, restauration &amp; commerce</h3>
-        <p>Ouvrir et tenir un lieu : normes, fournisseurs, flux, saisonnalité, gestion des heures creuses.</p>
+        <h3>Accueil, restauration &amp; commerce</h3>
+        <p>Ouvrir et tenir un lieu : normes, fournisseurs, flux, saisonnalité, gestion des heures creuses. Un métier où l'expérience évite des erreurs coûteuses.</p>
+        <p class="liste"><b>Expertises</b>Hôtellerie · Commercial vente · Direction des achats</p>
         <p class="ex"><b>Concrètement —</b> calibrer une carte et des horaires sur la fréquentation réelle du quartier.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Terrain</span>
-        <h3>Vie associative &amp; collectivités</h3>
-        <p>Gouvernance, statuts, dossiers de subvention, relation avec une mairie ou une intercommunalité.</p>
-        <p class="ex"><b>Concrètement —</b> monter un dossier qui passe, plutôt qu'un dossier qui revient.</p>
-      </div>
-
-      <div class="m reveal">
-        <span class="fam">Innovation</span>
-        <h3>Innovation &amp; transfert de technologie</h3>
-        <p>Projets de recherche, laboratoires publics, brevets et antériorité, crédit impôt recherche, incubation, thèses en entreprise.</p>
-        <p class="ex"><b>Concrètement —</b> structurer un dossier assez solide pour qu'un laboratoire signe une lettre d'intention.</p>
       </div>
 
     </div>
 
     <div class="note">
-      <p>Liste illustrative, pas un catalogue fermé. L'association réunit une trentaine d'expertises et sa composition évolue avec ses bénévoles — certaines compétences arrivent, d'autres partent. Si la vôtre n'apparaît pas, posez quand même la question : soit quelqu'un la couvre, soit nous vous dirons franchement que non et vers qui vous tourner.</p>
+      <p>Les expertises listées sont celles réellement présentes dans l'équipe. Elles sont susceptibles d'évoluer en fonction des adhérents : certaines compétences arrivent, d'autres partent. Si la vôtre n'apparaît pas, posez quand même la question — soit quelqu'un la couvre, soit nous vous le dirons franchement et nous vous orienterons.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="missions">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Ce sur quoi nous travaillons en ce moment.</h2>
+      <p>Un aperçu des missions suivies par le pôle Entreprises. Les porteurs de projet ne sont pas nommés — le contenu de leurs dossiers reste confidentiel.</p>
+    </div>
+    <div class="missions">
+
+      <div class="mi reveal">
+        <span class="tag go">Ouverture en préparation</span>
+        <h3>Salon de thé et ateliers créatifs</h3>
+        <p>Un lieu qui mêle salon de thé et ateliers manuels — reliure, tapisserie. Local identifié, négociation du bail et des travaux en cours, prévisionnel financier retravaillé jusqu'à sa sixième version, préparation du passage devant les banques.</p>
+        <p class="pole"><b>Nous apportons —</b> direction financière, expertise comptable, architecture d'intérieur, préparation du rendez-vous bancaire.</p>
+      </div>
+
+      <div class="mi reveal">
+        <span class="tag go">Lancement imminent</span>
+        <h3>Nettoyage écologique de véhicules de loisir</h3>
+        <p>Un service mobile de nettoyage par cryogénie pour camping-cars et vans, sans eau — un argument dans une région soumise aux restrictions. Véhicule et matériel achetés sur fonds propres, recherche d'un local de stockage, extension possible aux motos et bateaux.</p>
+        <p class="pole"><b>Nous apportons —</b> prévisionnel financier, modèle économique, statut du créateur.</p>
+      </div>
+
+      <div class="mi reveal">
+        <span class="tag">Validation réglementaire</span>
+        <h3>Visites touristiques insolites en véhicule électrique</h3>
+        <p>Des visites guidées de Nice en voiture électrique, positionnées sur une offre différenciée avec l'Office du Tourisme. Le projet est suspendu à une autorisation d'usage de la voie publique avec passagers, et à une vérification d'antériorité de marque avant de figer le nom.</p>
+        <p class="pole"><b>Nous apportons —</b> cadre juridique, propriété industrielle, mise en relation institutionnelle.</p>
+      </div>
+
+      <div class="mi reveal">
+        <span class="tag">Recherche &amp; développement</span>
+        <h3>Absorption thermique pour data centers</h3>
+        <p>Un système de matériaux à changement de phase pour absorber les pics de chaleur des batteries de stockage d'énergie et réduire la facture de climatisation. Contacts engagés avec un organisme public de recherche, qui attend un dossier de financement finalisé et une étude d'antériorité de brevet.</p>
+        <p class="pole"><b>Nous apportons —</b> structuration du dossier, pistes de financement de la recherche, mise en relation.</p>
+      </div>
+
+      <div class="mi reveal">
+        <span class="tag go">En exploitation</span>
+        <h3>Soirées de réseautage ludifiées</h3>
+        <p>Une entreprise déjà en activité qui remplace le réseautage classique par des soirées jouées — enquêtes, jeux de rôle. Le produit est validé par ses clients ; l'enjeu est désormais le passage à l'échelle : offre entreprise, délégation commerciale, développement hors du département.</p>
+        <p class="pole"><b>Nous apportons —</b> direction commerciale, ressources humaines, structuration de la croissance.</p>
+      </div>
+
+      <div class="mi reveal">
+        <span class="tag">Mission close</span>
+        <h3>Un projet que nous avons arrêté</h3>
+        <p>Un café céramique, porté par deux jeunes diplômés partis chercher des financements à l'étranger. Plusieurs établissements comparables ont ouvert entre-temps dans la région : le concept avait perdu son caractère différenciant. Nous le disons aussi quand c'est le cas.</p>
+        <p class="pole"><b>Ce que ça montre —</b> nous n'accompagnons pas un projet jusqu'au bout par principe. La lucidité fait partie du service.</p>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <p>Et sur la durée : l'association a accompagné pendant près de trois ans la réhabilitation d'un ancien château en lieu d'accueil et de répit pour des familles fragilisées par la maladie — travaux publics, décoration, hôtellerie-restauration, sécurité. C'est le format de mission le plus long que nous ayons mené.</p>
     </div>
   </div>
 </section>
@@ -573,14 +632,6 @@
       </a>
     </div>
 
-    <div class="qr">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" role="img" aria-label="QR code vers la page AXperience"><path stroke="#1d1d1f" d="M2 2.5h7m2 0h1m1 0h1m2 0h2m1 0h4m1 0h7m-29 1h1m5 0h1m2 0h4m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h7m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m3 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m7 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h2m3 0h1m1 0h1m1 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h1m2 0h1m1 0h1m2 0h4m-21 1h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m-24 1h3m2 0h1m1 0h1m2 0h1m1 0h2m2 0h1m3 0h3m2 0h1m2 0h1m-26 1h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h1m3 0h5m-28 1h3m4 0h1m3 0h1m1 0h4m1 0h3m1 0h3m1 0h2m-28 1h4m2 0h1m1 0h2m4 0h1m1 0h2m1 0h4m2 0h1m1 0h2m-24 1h1m4 0h1m2 0h1m5 0h3m1 0h1m-24 1h4m2 0h5m1 0h3m2 0h1m3 0h1m1 0h6m-29 1h2m2 0h2m2 0h1m3 0h1m2 0h1m1 0h4m1 0h4m1 0h1m-28 1h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m-27 1h1m1 0h3m1 0h5m1 0h2m1 0h2m3 0h3m1 0h1m2 0h1m-29 1h1m3 0h3m4 0h2m1 0h1m1 0h2m2 0h2m5 0h2m-26 1h3m1 0h1m1 0h1m4 0h1m1 0h3m1 0h2m1 0h1m3 0h2m-29 1h1m1 0h1m2 0h2m1 0h1m8 0h1m1 0h6m1 0h1m-19 1h2m4 0h1m1 0h2m1 0h2m3 0h1m1 0h3m-29 1h7m2 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m-28 1h1m5 0h1m1 0h1m2 0h1m2 0h3m1 0h1m1 0h1m3 0h5m-29 1h1m1 0h3m1 0h1m2 0h4m3 0h1m3 0h5m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m6 0h2m2 0h1m1 0h4m-28 1h1m1 0h3m1 0h1m3 0h2m1 0h2m1 0h4m1 0h1m2 0h3m1 0h1m-29 1h1m5 0h1m2 0h2m2 0h3m1 0h1m2 0h2m5 0h1m-28 1h7m1 0h2m4 0h1m1 0h2m2 0h3m1 0h2m1 0h1"/></svg>
-      <div class="t">
-        <h3>Emportez cette page</h3>
-        <p>Scannez pour retrouver la liste des métiers, le déroulé d'un accompagnement et les coordonnées, depuis votre téléphone.</p>
-        <p class="u">arx-consulting.com/AXperience/</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -593,12 +644,57 @@
 </footer>
 
 <script>
-if(matchMedia("(prefers-reduced-motion: reduce)").matches){
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(REDUCED){
   document.querySelectorAll(".reveal").forEach(e=>e.classList.add("in"));
 }else{
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.08});
   document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
 }
+
+/* Défilement automatique, une section toutes les 15 s, en boucle.
+   Conçu pour un écran de stand. Toute interaction met en pause 45 s. */
+(function(){
+  if(REDUCED) return;
+
+  const INTERVAL = 15000;    // 15 s par section
+  const RESUME   = 45000;    // reprise 45 s apres une interaction
+  const stops = [document.getElementById("top"), ...document.querySelectorAll("section")];
+  if(stops.length < 2) return;
+
+  let i = 0, timer = null, resumeTimer = null, auto = false;
+
+  function currentIndex(){
+    const y = window.pageYOffset + 80;
+    let idx = 0;
+    stops.forEach((s, n) => { if(s.offsetTop <= y) idx = n; });
+    return idx;
+  }
+
+  function advance(){
+    i = (currentIndex() + 1) % stops.length;
+    auto = true;
+    window.scrollTo({ top: i === 0 ? 0 : stops[i].offsetTop - 52, behavior: "smooth" });
+    setTimeout(() => { auto = false; }, 1200);
+  }
+
+  function start(){ clearInterval(timer); timer = setInterval(advance, INTERVAL); }
+  function pause(){
+    clearInterval(timer);
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(start, RESUME);
+  }
+
+  ["wheel","touchstart","keydown","pointerdown"].forEach(ev =>
+    window.addEventListener(ev, pause, { passive: true }));
+
+  document.addEventListener("visibilitychange", () => {
+    if(document.hidden){ clearInterval(timer); clearTimeout(resumeTimer); } else { start(); }
+  });
+
+  start();
+})();
 </script>
 </body>
 </html>
