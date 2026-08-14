@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AXperience — Synthèse exécutive | Arx Consulting</title>
+<meta name="description" content="Synthèse exécutive en deux pages : ce qui est solide, ce qui est fragile, les écarts face aux réseaux voisins et le plan en trois phases pour AXperience.">
+<link rel="canonical" href="https://arx-consulting.com/AXperience/synthese.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arx Consulting">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://arx-consulting.com/AXperience/synthese.html">
+<meta property="og:title" content="AXperience — Synthèse exécutive">
+<meta property="og:description" content="Deux pages : le constat, les écarts face aux réseaux voisins, le plan en trois phases et les indicateurs à suivre.">
+<meta property="og:image" content="https://arx-consulting.com/assets/og-logo.jpg">
+<meta name="author" content="Benoît Sigwald">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<style>
+  :root{
+    --text:#1d1d1f; --text-2:#6e6e73; --bg:#f5f5f7; --white:#ffffff;
+    --blue:#0071e3; --blue-dark:#0077ed; --hair:#d2d2d7; --radius:18px;
+    --green:#1d7a4f; --amber:#8a6d3b;
+    --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased;margin:0;padding:0}
+  body{font-family:var(--sf);color:var(--text);background:var(--bg);line-height:1.47;letter-spacing:-.01em}
+  img{height:auto}
+
+  /* barre de navigation, identique au sous-site */
+  .nav{position:sticky;top:0;z-index:50;height:52px;background:rgba(251,251,253,.72);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.08)}
+  .nav .wrap{display:flex;align-items:center;height:100%;gap:26px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+  .brand{font-size:21px;font-weight:600;letter-spacing:-.02em;text-decoration:none;color:var(--text);white-space:nowrap}
+  .nav-links{margin-left:auto;display:flex;gap:22px;align-items:center}
+  .nav-links a{font-size:12px;color:var(--text);text-decoration:none;opacity:.85;white-space:nowrap}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{font-size:12px;font-weight:500;background:var(--blue);color:#fff!important;opacity:1!important;
+    padding:6px 14px;border-radius:980px;transition:background .2s}
+  .nav-cta:hover{background:var(--blue-dark)}
+  @media(max-width:560px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* les deux pages */
+  .sheets{padding:34px 0 60px}
+  .sheet{background:var(--white);max-width:820px;margin:0 auto 30px;padding:46px 52px 40px;
+    border-radius:var(--radius);box-shadow:0 6px 30px rgba(0,0,0,.07)}
+  .folio{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:11px;color:var(--text-2);border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:26px}
+  h1{font-size:33px;line-height:1.1;letter-spacing:-.025em;font-weight:600;margin-bottom:10px}
+  .sub{color:var(--text-2);font-size:15px;margin-bottom:26px;max-width:62ch}
+  h2{font-size:20px;letter-spacing:-.02em;font-weight:600;margin:30px 0 12px}
+  h2:first-of-type{margin-top:0}
+  h3{font-size:14px;font-weight:600;margin:18px 0 6px}
+  p{font-size:14px;color:var(--text-2);margin-bottom:10px;max-width:74ch}
+  .lead{font-size:15px;color:var(--text)}
+  ul{list-style:none;margin:0 0 6px}
+  li{font-size:14px;color:var(--text-2);padding-left:20px;position:relative;margin-bottom:7px}
+  li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--hair)}
+  li.up::before{background:var(--green)}
+  li.down::before{background:var(--amber)}
+  li b{color:var(--text);font-weight:600}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:720px){.cols{grid-template-columns:1fr}.sheet{padding:30px 24px}
+    table{display:block;overflow-x:auto;max-width:100%}}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 4px}
+  th{text-align:left;font-weight:600;color:var(--text);border-bottom:1px solid var(--hair);padding:7px 8px 7px 0;font-size:11px;
+    text-transform:uppercase;letter-spacing:.06em}
+  td{padding:7px 8px 7px 0;border-bottom:1px solid #ececed;color:var(--text-2);vertical-align:top}
+  td b{color:var(--text);font-weight:600}
+  .card{background:var(--bg);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .card p{margin-bottom:0}
+  .tag{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--blue);border:1px solid rgba(0,113,227,.35);border-radius:980px;padding:2px 9px;margin-bottom:14px}
+  .phase{border-left:2px solid var(--blue);padding-left:16px;margin:16px 0}
+  .phase h3{margin-top:0}
+  .foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--hair);font-size:11.5px;color:var(--text-2)}
+  .foot a{color:var(--blue);text-decoration:none}
+  .actions{max-width:820px;margin:0 auto 34px;display:flex;gap:12px;flex-wrap:wrap;padding:0 22px}
+  .btn{font-size:13px;font-weight:500;background:var(--blue);color:#fff;border:none;border-radius:980px;
+    padding:9px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn.ghost{background:transparent;color:var(--blue);border:1px solid rgba(0,113,227,.4)}
+
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff}
+    .nav,.actions{display:none}
+    .sheets{padding:0}
+    .sheet{box-shadow:none;border-radius:0;margin:0;padding:0;max-width:none;page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+    h1{font-size:26px}h2{font-size:16px}
+    p,li,td{font-size:11px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">AXperience</a>
+    <div class="nav-links">
+      <a href="index.html#obtenez">Ce que vous obtenez</a>
+      <a href="index.html#deroule">Comment ça se passe</a>
+      <a href="index.html#missions">Missions en cours</a>
+      <a class="nav-cta" href="index.html#contact">Demander un accompagnement</a>
+    </div>
+  </div>
+</nav>
+
+<div class="actions">
+  <a class="btn" href="#" onclick="window.print();return false;">Imprimer les deux pages</a>
+  <a class="btn ghost" href="index.html">← Retour au site AXperience</a>
+</div>
+
+<div class="sheets">
+
+<!-- ============================ PAGE 1 ============================ -->
+<section class="sheet">
+  <div class="folio"><span>AXperience — Synthèse exécutive</span><span>Page 1 / 2 · août 2026</span></div>
+
+  <span class="tag">Constat</span>
+  <h1>Une association qui fait mieux<br>que ce qu'elle montre.</h1>
+  <p class="sub lead">AXperience accompagne gratuitement, dans la durée, des porteurs de projet des Alpes-Maritimes. La qualité de l'accompagnement n'est pas en cause. Ce qui manque, c'est la preuve : onze ans d'activité, aucun résultat publié. Cette page dit où se situe l'écart ; la suivante, comment le combler.</p>
+
+  <div class="card">
+    <p><b>En bref.</b> Association loi 1901 créée à Nice en 2015 par douze cadres retraités · 35 bénévoles · 5 pôles (Associations, Communes, Générations, Entreprises, Justice) · Alpes-Maritimes · gratuité totale, aucune indemnité de mission · financée par les seules cotisations, sans subvention ni don · accompagnement jusqu'à trois ans sur un même dossier, sous convention écrite.</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>Ce qui est solide</h2>
+      <ul>
+        <li class="up">Un <b>vivier de compétences seniors</b> rare, confirmé par les profils réels du pôle Entreprises.</li>
+        <li class="up">Un <b>cadre déontologique clair</b> — les experts accompagnent, ils ne font pas — et une gouvernance saine.</li>
+        <li class="up">Un <b>processus formalisé avec convention écrite</b>, au-dessus du standard du secteur.</li>
+        <li class="up">Une <b>gratuité réellement totale</b>, différenciante face aux grandes associations comparables qui facturent une indemnité journalière.</li>
+        <li class="up">Un <b>référent dédié dans la durée</b>, jusqu'à trois ans sur un même dossier.</li>
+        <li class="up">Une <b>activité réelle supérieure</b> à ce que le site laisse croire.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ce qui est fragile</h2>
+      <ul>
+        <li class="down"><b>La preuve n'existe pas.</b> Aucun indicateur de résultat publiable après onze ans. C'est le point de rupture.</li>
+        <li class="down"><b>Le compteur du site est périmé</b> : « 9 années » pour une création en 2015, « 50 projets » figés — soit 4,5 par an affichés, très en dessous de l'activité constatée.</li>
+        <li class="down"><b>Le modèle plafonne la structure</b> : sans subvention ni don, ni permanent, ni budget d'outillage ou de communication.</li>
+        <li class="down"><b>La capacité est le goulot</b> — l'association le dit elle-même : « victime de son succès, nous recrutons ».</li>
+        <li class="down"><b>Le risque de continuité est concret</b> : base majoritairement retraitée, sans binôme systématique sur les missions.</li>
+        <li class="down"><b>Aucune offre sur le sujet n°1 des TPE/PME en 2026, l'IA</b>, alors que le conseil est déjà donné informellement en séance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Face aux réseaux voisins</h2>
+  <table>
+    <thead><tr><th>Structure</th><th>Échelle</th><th>Ce qu'elle apporte en plus</th></tr></thead>
+    <tbody>
+      <tr><td><b>AXperience</b></td><td>35 bénévoles, 06 uniquement</td><td>Gratuité totale, référent dédié, durée</td></tr>
+      <tr><td>ECTI</td><td>~2 000 adhérents, +1 200 missions/an</td><td>Antériorité, utilité publique, couverture nationale</td></tr>
+      <tr><td>Initiative France</td><td>Réseau national</td><td><b>Prêt d'honneur</b> — de l'argent</td></tr>
+      <tr><td>Adie</td><td>National, utilité publique</td><td><b>Microcrédit</b> — de l'argent</td></tr>
+      <tr><td>Réseau Entreprendre</td><td>National</td><td>Prêt d'honneur + réseau de dirigeants</td></tr>
+      <tr><td>BGE / CCI / CMA</td><td>Départemental</td><td>Volume, agréments, formations certifiées</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Les quatre écarts qui décident</h3>
+  <ul>
+    <li><b>Pas d'argent à donner, et c'est structurel.</b> Les réseaux financeurs sont appelés en premier parce qu'ils adossent le conseil à du capital. AXperience se place en amont : elle prépare le dossier de prêt d'honneur que ces réseaux financent ensuite. C'est une position <b>complémentaire, pas concurrente</b> — et elle n'est énoncée nulle part.</li>
+    <li><b>Sur la gratuité, AXperience gagne.</b> Aucune indemnité de mission demandée, là où les associations comparables en facturent une. L'argument n'existe que dans une FAQ.</li>
+    <li><b>Sur la preuve, AXperience perd contre tout le monde.</b> Les autres publient volumes, taux de pérennité et financements débloqués. À qualité égale, l'association perd l'arbitrage du créateur qui compare trois sites en dix minutes.</li>
+    <li><b>La petite taille est une force non jouée.</b> 35 bénévoles sur un seul département, c'est ce qui permet un référent dédié pendant trois ans — aucun réseau national ne peut le promettre.</li>
+  </ul>
+</section>
+
+<!-- ============================ PAGE 2 ============================ -->
+<section class="sheet">
+  <div class="folio"><span>AXperience — Synthèse exécutive</span><span>Page 2 / 2 · août 2026</span></div>
+
+  <span class="tag">Plan</span>
+  <h1>Douze écarts, trois phases,<br>six indicateurs.</h1>
+  <p class="sub lead">Rien dans ce plan ne suppose un budget, une subvention ou un salarié. Les gains les plus lourds — mesurer les résultats, corriger le compteur, énoncer la complémentarité — coûtent des heures, pas des euros.</p>
+
+  <h2>Les écarts, par rapport effort / impact</h2>
+  <table>
+    <thead><tr><th>Écart</th><th>Aujourd'hui</th><th>Cible à 12 mois</th><th>Effort</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td><b>Mesure d'impact</b></td><td>Aucune métrique</td><td>Pérennité à 3 ans, emplois créés, financements débloqués</td><td>Moyen</td><td><b>Très fort</b></td></tr>
+      <tr><td><b>Comptage de l'activité</b></td><td>« 50 projets », figé</td><td>Compteur exact, daté, revu chaque trimestre</td><td><b>Faible</b></td><td><b>Fort</b></td></tr>
+      <tr><td><b>Hiérarchie des arguments</b></td><td>« Gratuit » en tête</td><td>« Un référent dédié, aussi longtemps qu'il faut, gratuitement »</td><td>Faible</td><td>Fort</td></tr>
+      <tr><td><b>Positionnement</b></td><td>Absent</td><td>« Nous vous préparons, ils vous financent » + partenariats explicites</td><td>Faible</td><td>Fort</td></tr>
+      <tr><td><b>Preuve sociale</b></td><td>1 cas, 0 témoignage</td><td>6 cas chiffrés, 6 témoignages nommés</td><td>Moyen</td><td>Fort</td></tr>
+      <tr><td><b>Qualification amont</b></td><td>Implicite</td><td>Grille d'éligibilité publiée + cadrage 30 min</td><td>Faible</td><td>Moyen</td></tr>
+      <tr><td><b>Continuité</b></td><td>Dépendance individuelle</td><td>Binôme systématique sur chaque mission</td><td>Faible</td><td>Moyen</td></tr>
+      <tr><td><b>Compétence IA</b></td><td>Informelle</td><td>Expertise au catalogue + littératie IA</td><td>Moyen</td><td><b>Très fort</b></td></tr>
+      <tr><td><b>Site</b></td><td>Compteur périmé, fautes, FR seul</td><td>Corrigé, preuves, prise de RDV en ligne, version EN</td><td>Faible</td><td>Fort</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Le plan</h2>
+
+  <div class="phase">
+    <h3>Phase 0 — 45 jours, à coût nul</h3>
+    <ul>
+      <li>Appeler dix bénéficiaires passés du pôle Entreprises. Trois questions : l'entreprise existe-t-elle encore, combien d'emplois, qu'est-ce qui a le plus aidé. <b>Une page chiffrée en sortie</b> — c'est le livrable qui manque depuis onze ans.</li>
+      <li>Recompter les projets depuis 2015 et corriger le bloc de chiffres du site.</li>
+      <li>Corriger les fautes visibles en production et réécrire l'accroche autour du bénéfice.</li>
+      <li>Énoncer la complémentarité avec les réseaux financeurs, en toutes lettres, sur la page d'accueil.</li>
+      <li>Publier une grille d'éligibilité pour filtrer en entrée et cesser de consommer du temps bénévole sur des projets non viables.</li>
+      <li>Instaurer le binôme sur chaque mission — coût nul, réponse directe au risque de continuité.</li>
+      <li>Préparer le stand de la Journée des associations : chiffres réels, formulaire de recrutement, démonstration IA.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <h3>Phase 1 — octobre à décembre 2026</h3>
+    <ul>
+      <li>Suivi de missions partagé, alimenté par les cinq pôles : le comptage devient automatique.</li>
+      <li>Formation des bénévoles à l'IA, parcours découverte.</li>
+      <li>Version anglaise des trois pages principales.</li>
+      <li>Bilan à trois mois du stand : bénévoles recrutés, demandes entrées.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <h3>Phase 2 — premier semestre 2027</h3>
+    <ul>
+      <li>Expertise IA déclarée au catalogue, animée par au moins trois bénévoles.</li>
+      <li>Premier rapport d'activité publié : taux de pérennité, bénévolat valorisé en heures et en euros.</li>
+      <li>Objectif 50 bénévoles actifs, profils élargis au-delà des retraités.</li>
+      <li>Mécénat de compétences d'entreprises locales, en nature uniquement, sans toucher au principe de non-subvention.</li>
+    </ul>
+  </div>
+
+  <h2>Les six indicateurs à suivre</h2>
+  <table>
+    <thead><tr><th>Indicateur</th><th>Aujourd'hui</th><th>Cible 12 mois</th></tr></thead>
+    <tbody>
+      <tr><td>Projets accompagnés par an</td><td>Inconnu (affiché : 4,5)</td><td>Mesuré et publié</td></tr>
+      <tr><td>Taux de pérennité à 3 ans</td><td>Inconnu</td><td>Mesuré et publié</td></tr>
+      <tr><td>Bénévoles actifs</td><td>35</td><td>50</td></tr>
+      <tr><td>Délai premier contact → premier RDV</td><td>Inconnu</td><td>&lt; 10 jours, publié</td></tr>
+      <tr><td>Bénéficiaires formés à l'IA</td><td>0</td><td>40</td></tr>
+      <tr><td>Missions en binôme</td><td>Ponctuel</td><td>100 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    <b>Méthode.</b> Analyse conduite en août 2026 à partir des pages publiques d'axperience.org, du portail des associations de Nice Côte d'Azur et des réseaux comparables (ECTI, Initiative France, Adie, Réseau Entreprendre, BGE). Aucun rapport annuel, compte publié, taux de survie ni donnée d'audience n'étant accessibles, tout ce qui relève du résultat est signalé comme inconnu plutôt qu'estimé.<br>
+    Document préparé par <b>Benoît Sigwald</b> — Arx Consulting · <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> · <a href="https://arx-consulting.com/index-fr.html">arx-consulting.com</a>
+  </div>
+</section>
+
+</div>
+
+<script defer src="/gate/t.js" data-site="arxcapital"></script>
+</body>
+</html>
