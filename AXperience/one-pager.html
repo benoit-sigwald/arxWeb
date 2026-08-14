@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AXperience — Pourquoi se faire accompagner</title>
+<meta name="description" content="Une page : ce que vous obtenez, ce que ça coûte, combien de temps ça dure, et avec qui. Accompagnement gratuit de porteurs de projet dans les Alpes-Maritimes.">
+<link rel="canonical" href="https://arx-consulting.com/AXperience/one-pager.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://arx-consulting.com/AXperience/one-pager.html">
+<meta property="og:title" content="AXperience — Pourquoi se faire accompagner">
+<meta property="og:description" content="Zéro euro, un référent dédié, jusqu'à trois ans. 35 bénévoles, 32 expertises, 5 pôles.">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<style>
+  :root{
+    --text:#1d1d1f; --text-2:#6e6e73; --bg:#f5f5f7; --white:#fff;
+    --blue:#0071e3; --blue-dark:#0077ed; --hair:#d2d2d7; --ink:#0b2136;
+    --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--sf);color:var(--text);background:var(--bg);line-height:1.4;letter-spacing:-.01em}
+
+  .bar{max-width:1180px;margin:0 auto;padding:16px 22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .bar .sp{margin-left:auto}
+  .btn{font-size:13px;font-weight:500;background:var(--blue);color:#fff;border:none;border-radius:980px;
+    padding:9px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn.ghost{background:transparent;color:var(--blue);border:1px solid rgba(0,113,227,.4)}
+
+  /* la feuille : A4 paysage, ratio 297 x 210 */
+  .sheet{max-width:1180px;margin:0 auto 40px;background:var(--white);border-radius:18px;
+    box-shadow:0 6px 30px rgba(0,0,0,.07);padding:34px 40px 30px}
+
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    border-bottom:1px solid var(--hair);padding-bottom:14px;margin-bottom:22px}
+  .brand{font-size:24px;font-weight:600;letter-spacing:-.02em}
+  .brand span{color:var(--blue)}
+  .head .meta{font-size:11.5px;color:var(--text-2);text-align:right;line-height:1.5}
+
+  h1{font-size:38px;line-height:1.05;letter-spacing:-.03em;font-weight:600;max-width:16ch}
+  h1 em{font-style:normal;color:var(--blue)}
+  .lede{font-size:16px;color:var(--text-2);margin-top:12px;max-width:46ch}
+
+  .top{display:grid;grid-template-columns:1.15fr 1fr;gap:34px;align-items:start}
+
+  .figs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .fig{background:var(--bg);border-radius:12px;padding:12px 12px 11px;text-align:center}
+  .fig b{display:block;font-size:26px;font-weight:600;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
+  .fig span{display:block;font-size:10.5px;color:var(--text-2);margin-top:3px;line-height:1.3}
+  .fig.hi{background:var(--blue)}
+  .fig.hi b,.fig.hi span{color:#fff}
+
+  .msgs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:26px 0 22px}
+  .msg h2{font-size:17px;letter-spacing:-.02em;font-weight:600;margin-bottom:6px}
+  .msg h2 .n{color:var(--blue);margin-right:6px}
+  .msg p{font-size:12.5px;color:var(--text-2)}
+
+  .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:30px;border-top:1px solid var(--hair);padding-top:20px}
+  h3{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-2);font-weight:600;margin-bottom:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:11.5px;background:var(--bg);border-radius:980px;padding:5px 11px;color:var(--text)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
+  .step{font-size:11.5px;color:var(--text-2);border-top:2px solid var(--blue);padding-top:7px}
+  .step b{display:block;color:var(--text);font-size:12.5px;font-weight:600;margin-bottom:2px}
+
+  .quote{background:var(--ink);color:#fff;border-radius:14px;padding:18px 20px;margin-top:18px}
+  .quote b{display:block;font-size:15px;font-weight:600;margin-bottom:5px;letter-spacing:-.01em}
+  .quote p{font-size:12px;color:#c8d4e0}
+
+  .foot{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;
+    border-top:1px solid var(--hair);margin-top:20px;padding-top:12px;font-size:11px;color:var(--text-2)}
+  .foot a{color:var(--blue);text-decoration:none}
+  .cta{font-size:14px;font-weight:600;color:#fff;background:var(--blue);border-radius:980px;padding:10px 20px;
+    text-decoration:none;white-space:nowrap}
+
+  @media(max-width:900px){
+    .top,.cols{grid-template-columns:1fr}
+    .msgs{grid-template-columns:1fr}
+    .figs{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:30px}
+    .sheet{padding:26px 22px}
+  }
+
+  @media print{
+    @page{size:A4 landscape;margin:9mm}
+    body{background:#fff}
+    .bar{display:none}
+    .sheet{box-shadow:none;border-radius:0;margin:0;padding:0;max-width:none}
+    h1{font-size:30px}.lede{font-size:13px}
+    .msg h2{font-size:14px}.msg p,.chip,.step,.quote p{font-size:10px}
+    .fig b{font-size:21px}.fig span{font-size:9px}
+    .quote b{font-size:12.5px}
+    .msgs{margin:18px 0 16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <a class="btn" href="#" onclick="window.print();return false;">Imprimer en paysage</a>
+  <a class="btn ghost" href="index.html">Le site AXperience</a>
+  <span class="sp"></span>
+  <a class="btn ghost" href="index.html#contact">Demander un accompagnement</a>
+</div>
+
+<section class="sheet">
+
+  <div class="head">
+    <div class="brand">AX<span>perience</span></div>
+    <div class="meta">
+      Bénévolat de compétences · Alpes-Maritimes<br>
+      Association loi 1901 créée à Nice en 2015
+    </div>
+  </div>
+
+  <div class="top">
+    <div>
+      <h1>Votre projet mérite mieux qu'un <em>conseil de vingt minutes</em>.</h1>
+      <p class="lede">Des cadres en activité et d'anciens dirigeants s'assoient à votre table, aussi longtemps qu'il le faut, et ne vous facturent rien. Ni adhésion, ni honoraires, ni indemnité de mission.</p>
+    </div>
+    <div class="figs">
+      <div class="fig hi"><b>0 €</b><span>du premier rendez-vous au dernier</span></div>
+      <div class="fig"><b>3 ans</b><span>d'accompagnement possible sur un même projet</span></div>
+      <div class="fig"><b>35</b><span>bénévoles dans les Alpes-Maritimes</span></div>
+      <div class="fig"><b>32</b><span>expertises professionnelles autour de la table</span></div>
+      <div class="fig"><b>2015</b><span>année de création, à Nice</span></div>
+      <div class="fig"><b>5</b><span>pôles : entreprises, associations, communes, générations, justice</span></div>
+      <div class="fig"><b>45 %</b><span>de cadres en activité, pas seulement des retraités</span></div>
+      <div class="fig"><b>1</b><span>référent dédié, le même du début à la fin</span></div>
+    </div>
+  </div>
+
+  <div class="msgs">
+    <div class="msg">
+      <h2><span class="n">1.</span>Zéro euro, vraiment.</h2>
+      <p>Beaucoup d'associations de bénévolat de compétences facturent une indemnité journalière de mission. Pas ici : seuls les frais de déplacement sont remboursés, au barème fiscal du bénévolat. Votre trésorerie n'entre pas dans l'équation.</p>
+    </div>
+    <div class="msg">
+      <h2><span class="n">2.</span>Un référent, pas un guichet.</h2>
+      <p>La même personne vous suit du premier café jusqu'à la fin du projet, sous une convention écrite qui fixe l'objet, le pilote, l'équipe et la durée. Aucun réseau national ne peut promettre ça — nous le pouvons parce que nous sommes petits et locaux.</p>
+    </div>
+    <div class="msg">
+      <h2><span class="n">3.</span>Nous préparons, ils financent.</h2>
+      <p>Nous ne prêtons pas d'argent, et nous ne le cachons pas. Nous construisons le dossier qui convainc Initiative, l'Adie ou Réseau Entreprendre — dossier de prêt d'honneur compris. Nous intervenons avant eux, pas contre eux.</p>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3>Ce avec quoi vous repartez</h3>
+      <div class="chips">
+        <span class="chip">Étude de marché</span>
+        <span class="chip">Proposition de valeur</span>
+        <span class="chip">Business model</span>
+        <span class="chip">Prévisionnel financier</span>
+        <span class="chip">Choix du statut juridique</span>
+        <span class="chip">Stratégie commerciale</span>
+        <span class="chip">Préparation des rendez-vous bancaires</span>
+        <span class="chip">Dossier de prêt d'honneur</span>
+        <span class="chip">Suivi après la création</span>
+      </div>
+
+      <h3 style="margin-top:18px">Comment ça se passe</h3>
+      <div class="steps">
+        <div class="step"><b>1 · Vous écrivez</b>Un mail, un appel, quelques lignes sur votre projet.</div>
+        <div class="step"><b>2 · On se rencontre</b>Un premier échange pour cadrer et vérifier qu'on est utiles.</div>
+        <div class="step"><b>3 · On signe</b>Une convention : objet, pilote, équipe, durée.</div>
+        <div class="step"><b>4 · On travaille</b>Et on reste là après, une fois le projet lancé.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>À qui ça s'adresse</h3>
+      <div class="chips">
+        <span class="chip">Vous créez une entreprise</span>
+        <span class="chip">Vous reprenez une activité</span>
+        <span class="chip">Vous démarrez et vous doutez</span>
+        <span class="chip">Vous êtes en reconversion</span>
+        <span class="chip">Vous faites tourner une association</span>
+        <span class="chip">Vous dirigez une petite commune</span>
+      </div>
+      <div class="quote">
+        <b>« Les experts accompagnent, ils ne font pas. »</b>
+        <p>C'est la règle de la maison. Vous gardez la main sur votre projet et sur vos décisions : nous apportons l'expérience, les questions qui dérangent et le carnet d'adresses. Nous ne concurrençons aucun professionnel du secteur marchand.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>
+      Le nombre de projets accompagnés et le devenir des structures suivies sont <b>en cours de recensement</b> : ils seront publiés ici, datés, plutôt qu'estimés.<br>
+      AXperience · Nice, Alpes-Maritimes · <a href="index.html">le site</a>
+    </div>
+    <a class="cta" href="index.html#contact">Parlez-nous de votre projet →</a>
+  </div>
+
+</section>
+
+<script defer src="/gate/t.js" data-site="arxcapital"></script>
+</body>
+</html>
