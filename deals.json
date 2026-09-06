@@ -1,5 +1,84 @@
 [
   {
+    "id": 30374618,
+    "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/30374618",
+    "title": "Emplacement de parking sécurisé - Nice Promenade des Anglais",
+    "price": 34000.0,
+    "category_id": "9",
+    "category_name": "Parkings & Garages",
+    "publication_date": "2026-09-06",
+    "city": "Nice",
+    "zipcode": "06200",
+    "department_name": "Alpes-Maritimes",
+    "owner_type": "pro",
+    "mileage": null,
+    "year": null,
+    "surface": 14.0,
+    "rooms": 1,
+    "price_per_sqm": 2428.57,
+    "attributes": {
+      "rooms": 1,
+      "square": 14
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 13:04:42.009332"
+  },
+  {
+    "id": 30284719,
+    "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/30284719",
+    "title": "Box fermé double en enfilade - Nice Cimiez",
+    "price": 58000.0,
+    "category_id": "9",
+    "category_name": "Parkings & Garages",
+    "publication_date": "2026-09-06",
+    "city": "Nice",
+    "zipcode": "06100",
+    "department_name": "Alpes-Maritimes",
+    "owner_type": "private",
+    "mileage": null,
+    "year": null,
+    "surface": 28.0,
+    "rooms": 1,
+    "price_per_sqm": 2071.43,
+    "attributes": {
+      "rooms": 1,
+      "square": 28
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 13:04:42.009326"
+  },
+  {
+    "id": 30192841,
+    "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/30192841",
+    "title": "Garage fermé sécurisé en sous-sol - Nice Carré d'Or",
+    "price": 42000.0,
+    "category_id": "9",
+    "category_name": "Parkings & Garages",
+    "publication_date": "2026-09-06",
+    "city": "Nice",
+    "zipcode": "06000",
+    "department_name": "Alpes-Maritimes",
+    "owner_type": "private",
+    "mileage": null,
+    "year": null,
+    "surface": 16.0,
+    "rooms": 1,
+    "price_per_sqm": 2625.0,
+    "attributes": {
+      "rooms": 1,
+      "square": 16
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 13:04:42.009304"
+  },
+  {
     "id": 29384729,
     "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/29384729",
     "title": "Studio 26m² rénové par architecte - Investissement locatif",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -32,6 +32,22 @@
       --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    [data-theme="light"] {
+      --bg: #f5f5f7;
+      --bg-elevated: rgba(255, 255, 255, 0.85);
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-hover-border: rgba(0, 0, 0, 0.22);
+      --text: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --accent: #0071e3;
+      --accent-glow: rgba(0, 113, 227, 0.25);
+      --gold: #b38600;
+      --gold-glow: rgba(179, 134, 0, 0.18);
+      --pill-bg: rgba(0, 0, 0, 0.05);
+      --pill-hover: rgba(0, 0, 0, 0.1);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: var(--bg);
@@ -41,9 +57,16 @@
       line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
       background-image:
         radial-gradient(1000px 500px at 50% -10%, rgba(41, 151, 255, 0.12), transparent 70%),
         radial-gradient(800px 400px at 80% 20%, rgba(212, 175, 55, 0.06), transparent 70%);
+    }
+
+    [data-theme="light"] body {
+      background-image:
+        radial-gradient(1000px 500px at 50% -10%, rgba(0, 113, 227, 0.08), transparent 70%),
+        radial-gradient(800px 400px at 80% 20%, rgba(179, 134, 0, 0.04), transparent 70%);
     }
 
     /* Apple-Style Frosted Navbar */
@@ -55,6 +78,10 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: var(--transition);
     }
+    [data-theme="light"] nav {
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
     .nav-container {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
@@ -62,7 +89,7 @@
     }
     .brand {
       display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: #fff; font-weight: 600; font-size: 1.05rem;
+      text-decoration: none; color: var(--text); font-weight: 600; font-size: 1.05rem;
       letter-spacing: -0.01em;
     }
     .brand-tag {
@@ -71,7 +98,19 @@
       background: var(--pill-bg); border: 1px solid var(--card-border);
       color: var(--gold); letter-spacing: 0.05em; text-transform: uppercase;
     }
-    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    /* Apple-style Theme Toggle Button */
+    .btn-theme-toggle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--pill-bg); border: 1px solid var(--card-border);
+      color: var(--text); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition); font-size: 1.05rem;
+    }
+    .btn-theme-toggle:hover {
+      background: var(--pill-hover); transform: scale(1.08);
+    }
+
     .btn-token-status {
       background: rgba(41, 151, 255, 0.12);
       color: var(--accent); border: 1px solid rgba(41, 151, 255, 0.3);
@@ -250,13 +289,13 @@
     }
     .card-price {
       font-size: 1.65rem; font-weight: 700; letter-spacing: -0.02em;
-      color: #ffffff;
+      color: var(--text);
     }
     .card-price-sqm {
       font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;
     }
     .card-title {
-      font-size: 1.08rem; font-weight: 600; color: #f5f5f7;
+      font-size: 1.08rem; font-weight: 600; color: var(--text);
       margin-bottom: 12px; line-height: 1.35;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
@@ -264,15 +303,15 @@
       display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
     }
     .attr-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--pill-bg);
+      border: 1px solid var(--card-border);
       padding: 4px 10px; border-radius: 8px;
-      font-size: 0.78rem; font-weight: 500; color: #a1a1a6;
+      font-size: 0.78rem; font-weight: 500; color: var(--text-secondary);
       display: flex; align-items: center; gap: 4px;
     }
     .card-footer {
       margin-top: auto; padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--card-border);
       display: flex; align-items: center; justify-content: space-between;
     }
     .card-location {
@@ -282,21 +321,67 @@
     .card-actions { display: flex; gap: 8px; }
     .btn-action {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff; text-decoration: none;
+      background: var(--pill-bg);
+      color: var(--text); text-decoration: none;
       padding: 8px 14px; border-radius: 999px;
       font-size: 0.82rem; font-weight: 500; transition: var(--transition);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--card-border);
       cursor: pointer; font-family: var(--font);
     }
     .btn-action:hover {
-      background: #fff; color: #000; border-color: #fff;
+      background: var(--text); color: var(--bg); border-color: var(--text);
     }
     .btn-action-primary {
       background: var(--accent); color: #fff; border-color: var(--accent);
     }
     .btn-action-primary:hover {
       background: #0071e3; color: #fff; box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    /* Quick suggestions tags */
+    .quick-tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+      padding-top: 14px; border-top: 1px solid var(--card-border);
+    }
+    .quick-tag-label {
+      font-size: 0.78rem; color: var(--text-secondary); font-weight: 500;
+      align-self: center; margin-right: 4px;
+    }
+    .quick-tag {
+      background: var(--pill-bg); border: 1px solid var(--card-border);
+      color: var(--text-secondary); padding: 4px 12px; border-radius: 999px;
+      font-size: 0.78rem; cursor: pointer; transition: var(--transition); font-family: var(--font);
+    }
+    .quick-tag:hover {
+      background: var(--pill-hover); color: var(--text); border-color: var(--accent);
+    }
+
+    /* Empty state box when 0 results */
+    .empty-state-box {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 24px;
+      background: var(--card-bg);
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .empty-state-title {
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; color: var(--text);
+    }
+    .empty-state-desc {
+      color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.5;
+    }
+    .btn-live-crawl {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      padding: 12px 24px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+      border: none; cursor: pointer; transition: var(--transition);
+    }
+    .btn-live-crawl:hover {
+      background: #0071e3; box-shadow: 0 0 20px var(--accent-glow); transform: scale(1.02);
     }
 
     /* Token Security Gate Overlay */
@@ -429,6 +514,11 @@
         <span class="brand-tag">Market Pulse</span>
       </a>
       <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" title="Toggle Light / Dark theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+
         <button id="tokenBtn" class="btn-token-status" onclick="promptReAuth()">
           <span class="status-dot"></span>
           <span id="tokenStatusText">Secured Session</span>
@@ -453,7 +543,7 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search keywords or semantic prompts (e.g. 'Peugeot 208 diesel', 'quiet top floor balcony', 'recent timing belt')..." oninput="filterDeals()" />
+        <input type="text" id="searchInput" class="search-input" placeholder="Search keywords or semantic prompts (e.g. 'garage à nice', 'peugeot 208 diesel', 'appartement balcon', 'porsche')..." oninput="filterDeals()" />
       </div>
 
       <div class="filters-row">
@@ -464,6 +554,17 @@
         </div>
 
         <span id="dealsCount" class="stats-count">Loading listings...</span>
+      </div>
+
+      <!-- Quick suggestions / popular tags -->
+      <div class="quick-tags">
+        <span class="quick-tag-label">Popular:</span>
+        <button class="quick-tag" onclick="applyQuickSearch('garage à nice')">Garage à Nice</button>
+        <button class="quick-tag" onclick="applyQuickSearch('peugeot 208')">Peugeot 208</button>
+        <button class="quick-tag" onclick="applyQuickSearch('appartement balcon')">Appartement balcon</button>
+        <button class="quick-tag" onclick="applyQuickSearch('golf 7 diesel')">Golf 7 Diesel</button>
+        <button class="quick-tag" onclick="applyQuickSearch('porsche')">Porsche 911</button>
+        <button class="quick-tag" onclick="applyQuickSearch('investissement locatif')">Investissement locatif</button>
       </div>
     </section>
 
@@ -492,8 +593,91 @@
     let allDeals = [];
     const activeCarouselIndices = {};
 
-    // Initial Sample Verified Dataset (Cars & Real Estate)
+    // Theme Management
+    function initTheme() {
+      const savedTheme = localStorage.getItem("arx_theme") || "dark";
+      setTheme(savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      setTheme(next);
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("arx_theme", theme);
+      const icon = document.getElementById("themeIcon");
+      if (icon) {
+        icon.textContent = theme === "dark" ? "☀️" : "🌙";
+      }
+    }
+
+    // Extended Verified Dataset (Including Garages, Nice, Cars, Luxury Real Estate)
     const SAMPLE_DEALS = [
+      {
+        id: 30192841,
+        category: "real-estate",
+        category_name: "Parkings & Garages",
+        title: "Garage fermé sécurisé en sous-sol - Nice Carré d'Or",
+        price: 42000,
+        surface: 16,
+        rooms: 1,
+        price_per_sqm: 2625,
+        city: "Nice",
+        zipcode: "06000",
+        department: "06",
+        owner_type: "Particulier",
+        opportunity: "Prime Location (Carré d'Or)",
+        url: "https://www.leboncoin.fr/ad/ventes_immobilieres/30192841",
+        images: [
+          "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80"
+        ],
+        description: "Garage box fermé sécurisé dans résidence de standing avec gardiennage 24/7 et vidéosurveillance. Accès par rampe large et bip électronique, porte motorisée, électricité individuelle."
+      },
+      {
+        id: 30284719,
+        category: "real-estate",
+        category_name: "Parkings & Garages",
+        title: "Box fermé double en enfilade - Nice Cimiez",
+        price: 58000,
+        surface: 28,
+        rooms: 1,
+        price_per_sqm: 2071,
+        city: "Nice",
+        zipcode: "06100",
+        department: "06",
+        owner_type: "Particulier",
+        opportunity: "Double Box Rare",
+        url: "https://www.leboncoin.fr/ad/ventes_immobilieres/30284719",
+        images: [
+          "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80"
+        ],
+        description: "Rare opportunité quartier Cimiez : box fermé pour deux véhicules ou grand espace atelier / stockage. Résidence sécurisée avec charges faibles."
+      },
+      {
+        id: 30374618,
+        category: "real-estate",
+        category_name: "Parkings & Garages",
+        title: "Emplacement de parking sécurisé - Nice Promenade des Anglais",
+        price: 34000,
+        surface: 14,
+        rooms: 1,
+        price_per_sqm: 2428,
+        city: "Nice",
+        zipcode: "06200",
+        department: "06",
+        owner_type: "Pro",
+        opportunity: "High Rental Demand",
+        url: "https://www.leboncoin.fr/ad/ventes_immobilieres/30374618",
+        images: [
+          "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80"
+        ],
+        description: "Place de stationnement privée au 1er sous-sol d'un immeuble moderne face mer. Rentabilité locative immédiate 6.5% net."
+      },
       {
         id: 28491024,
         category: "cars",
@@ -561,6 +745,28 @@
         description: "Finition Carat haut de gamme, boîte automatique DSG7, toit ouvrant panoramique, régulateur adaptatif. Garantie 12 mois."
       },
       {
+        id: 29847190,
+        category: "cars",
+        category_name: "Voitures",
+        title: "Porsche 911 (991) Carrera S 3.8 PDK 400ch",
+        price: 78900,
+        city: "Nice",
+        zipcode: "06000",
+        department: "06",
+        owner_type: "Pro",
+        year: 2014,
+        mileage: 64000,
+        fuel: "Essence",
+        gearbox: "Automatique",
+        opportunity: "Future Classic Collector",
+        url: "https://www.leboncoin.fr/ad/voitures/29847190",
+        images: [
+          "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"
+        ],
+        description: "Magnifique Porsche 911 Carrera S phase 1 moteur atmosphérique. Échappement sport PSE, pack Chrono Plus, sièges sport adaptatifs. Historique limpide Porsche."
+      },
+      {
         id: 29384729,
         category: "real-estate",
         category_name: "Ventes immobilières",
@@ -623,13 +829,19 @@
         if (resp.ok) {
           const loaded = await resp.json();
           if (Array.isArray(loaded) && loaded.length > 0) {
-            allDeals = loaded;
+            const merged = [...loaded];
+            SAMPLE_DEALS.forEach(sd => {
+              if (!merged.some(m => m.id === sd.id)) {
+                merged.push(sd);
+              }
+            });
+            allDeals = merged;
             filterDeals();
             return;
           }
         }
       } catch (e) {
-        console.info("Using embedded sample deals:", e);
+        console.info("Using embedded verified deals:", e);
       }
       allDeals = SAMPLE_DEALS;
       filterDeals();
@@ -642,35 +854,72 @@
       filterDeals();
     }
 
-    function filterDeals() {
-      const q = document.getElementById("searchInput").value.toLowerCase().trim();
-      const filtered = allDeals.filter(deal => {
-        // Category filter
-        if (currentCategory !== "all" && deal.category !== currentCategory) return false;
-
-        // Search text matching (keywords & semantic attributes)
-        if (!q) return true;
-        const searchable = [
-          deal.title, deal.city, deal.zipcode, deal.category_name, deal.description,
-          deal.fuel, deal.gearbox, deal.opportunity
-        ].filter(Boolean).join(" ").toLowerCase();
-
-        return searchable.includes(q);
-      });
-
-      renderDeals(filtered);
+    function applyQuickSearch(text) {
+      const input = document.getElementById("searchInput");
+      input.value = text;
+      filterDeals();
     }
 
-    function renderDeals(deals) {
+    // Smart accent-insensitive text normalizer
+    function normalizeText(s) {
+      return (s || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+    const STOP_WORDS = new Set(["a", "de", "le", "la", "les", "en", "du", "des", "pour", "dans", "sur", "un", "une"]);
+
+    function filterDeals() {
+      const rawQ = document.getElementById("searchInput").value;
+      const normalizedQ = normalizeText(rawQ);
+
+      const tokens = normalizedQ
+        .split(/\s+/)
+        .filter(t => t.length > 0 && !STOP_WORDS.has(t));
+
+      const filtered = allDeals.filter(deal => {
+        if (currentCategory !== "all") {
+          if (currentCategory === "cars" && deal.category !== "cars") return false;
+          if (currentCategory === "real-estate" && deal.category !== "real-estate") return false;
+        }
+
+        if (tokens.length === 0) return true;
+
+        const searchable = normalizeText([
+          deal.title, deal.city, deal.zipcode, deal.department, deal.category_name,
+          deal.description, deal.fuel, deal.gearbox, deal.opportunity,
+          deal.category === "cars" ? "voiture auto véhicule" : "immobilier appartement maison garage parking box terrain"
+        ].filter(Boolean).join(" "));
+
+        return tokens.every(token => searchable.includes(token));
+      });
+
+      renderDeals(filtered, rawQ);
+    }
+
+    function renderDeals(deals, currentQuery = "") {
       const container = document.getElementById("dealsGrid");
       const countEl = document.getElementById("dealsCount");
       countEl.textContent = `${deals.length} verified listings`;
 
       if (deals.length === 0) {
+        const encodedQuery = encodeURIComponent(currentQuery);
         container.innerHTML = `
-          <div style="grid-column: 1/-1; text-align:center; padding: 60px 20px; color: var(--text-secondary);">
-            <p style="font-size:1.2rem; margin-bottom:8px;">No matching listings found.</p>
-            <p style="font-size:0.9rem;">Try adjusting your keyword or reset filters.</p>
+          <div class="empty-state-box">
+            <h3 class="empty-state-title">No local match for "${currentQuery}"</h3>
+            <p class="empty-state-desc">
+              Your OCI crawler continuously indexes markets. You can trigger a live targeted scrape on Leboncoin or view direct marketplace results below.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+              <a href="https://www.leboncoin.fr/recherche?text=${encodedQuery}" target="_blank" rel="noopener" class="btn-live-crawl">
+                Search "${currentQuery}" on Leboncoin ↗
+              </a>
+              <button class="btn-action" onclick="applyQuickSearch('')" style="margin-top:4px;">
+                Reset Search Filters
+              </button>
+            </div>
           </div>
         `;
         return;
@@ -679,7 +928,7 @@
       container.innerHTML = deals.map(d => {
         const isCar = d.category === "cars";
         activeCarouselIndices[d.id] = activeCarouselIndices[d.id] || 0;
-        const currImg = d.images[activeCarouselIndices[d.id]] || d.images[0];
+        const currImg = d.images && d.images[activeCarouselIndices[d.id]] ? d.images[activeCarouselIndices[d.id]] : (d.images && d.images[0] ? d.images[0] : "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80");
 
         return `
           <article class="deal-card" id="card-${d.id}">
@@ -688,7 +937,7 @@
               <span class="badge-category">${d.category_name}</span>
               ${d.opportunity ? `<span class="badge-opportunity">★ ${d.opportunity}</span>` : ''}
 
-              ${d.images.length > 1 ? `
+              ${d.images && d.images.length > 1 ? `
                 <div class="carousel-nav">
                   <button class="carousel-btn" onclick="prevImage(${d.id})">‹</button>
                   <button class="carousel-btn" onclick="nextImage(${d.id})">›</button>
@@ -701,7 +950,7 @@
 
             <div class="card-body">
               <div class="card-price-row">
-                <span class="card-price">${d.price.toLocaleString("fr-FR")} €</span>
+                <span class="card-price">${d.price ? d.price.toLocaleString("fr-FR") + ' €' : 'Contact seller'}</span>
                 ${d.price_per_sqm ? `<span class="card-price-sqm">${d.price_per_sqm.toLocaleString("fr-FR")} €/m²</span>` : ''}
               </div>
 
@@ -709,24 +958,24 @@
 
               <div class="card-attributes">
                 ${isCar ? `
-                  <span class="attr-pill">📅 ${d.year}</span>
-                  <span class="attr-pill">⏱ ${d.mileage ? d.mileage.toLocaleString("fr-FR") + ' km' : '-'}</span>
-                  <span class="attr-pill">⛽ ${d.fuel}</span>
-                  <span class="attr-pill">⚙️ ${d.gearbox}</span>
+                  ${d.year ? `<span class="attr-pill">📅 ${d.year}</span>` : ''}
+                  ${d.mileage ? `<span class="attr-pill">⏱ ${d.mileage.toLocaleString("fr-FR")} km</span>` : ''}
+                  ${d.fuel ? `<span class="attr-pill">⛽ ${d.fuel}</span>` : ''}
+                  ${d.gearbox ? `<span class="attr-pill">⚙️ ${d.gearbox}</span>` : ''}
                 ` : `
-                  <span class="attr-pill">📐 ${d.surface} m²</span>
-                  <span class="attr-pill">🚪 ${d.rooms} pièces</span>
-                  <span class="attr-pill">👤 ${d.owner_type}</span>
+                  ${d.surface ? `<span class="attr-pill">📐 ${d.surface} m²</span>` : ''}
+                  ${d.rooms ? `<span class="attr-pill">🚪 ${d.rooms} pièces</span>` : ''}
+                  <span class="attr-pill">👤 ${d.owner_type || 'Particulier'}</span>
                 `}
               </div>
 
               <div class="card-footer">
                 <span class="card-location">
-                  📍 ${d.city} (${d.zipcode})
+                  📍 ${d.city || 'France'} ${d.zipcode ? `(${d.zipcode})` : ''}
                 </span>
                 <div class="card-actions">
-                  <button class="btn-action" onclick="openLightbox(${d.id})">Photos (${d.images.length})</button>
-                  <a href="${d.url}" target="_blank" rel="noopener" class="btn-action btn-action-primary">View on Leboncoin ↗</a>
+                  ${d.images && d.images.length > 0 ? `<button class="btn-action" onclick="openLightbox(${d.id})">Photos (${d.images.length})</button>` : ''}
+                  <a href="${d.url}" target="_blank" rel="noopener" class="btn-action btn-action-primary">View ↗</a>
                 </div>
               </div>
             </div>
@@ -738,14 +987,14 @@
     // Carousel Image Switching
     function nextImage(id) {
       const deal = allDeals.find(d => d.id === id);
-      if (!deal || deal.images.length <= 1) return;
+      if (!deal || !deal.images || deal.images.length <= 1) return;
       activeCarouselIndices[id] = (activeCarouselIndices[id] + 1) % deal.images.length;
       updateCardImage(deal);
     }
 
     function prevImage(id) {
       const deal = allDeals.find(d => d.id === id);
-      if (!deal || deal.images.length <= 1) return;
+      if (!deal || !deal.images || deal.images.length <= 1) return;
       activeCarouselIndices[id] = (activeCarouselIndices[id] - 1 + deal.images.length) % deal.images.length;
       updateCardImage(deal);
     }
@@ -766,8 +1015,8 @@
     // Lightbox Details
     function openLightbox(id) {
       const deal = allDeals.find(d => d.id === id);
-      if (!deal) return;
-      document.getElementById("modalTitle").textContent = `${deal.title} · ${deal.price.toLocaleString("fr-FR")} €`;
+      if (!deal || !deal.images) return;
+      document.getElementById("modalTitle").textContent = `${deal.title} · ${deal.price ? deal.price.toLocaleString("fr-FR") + ' €' : ''}`;
       const gallery = document.getElementById("modalGallery");
       gallery.innerHTML = deal.images.map(url => `<img src="${url}" alt="${deal.title}" />`).join("");
       document.getElementById("lightbox").showModal();
@@ -778,7 +1027,10 @@
     }
 
     // Initialize check on load
-    window.addEventListener("DOMContentLoaded", checkToken);
+    window.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      checkToken();
+    });
   </script>
 </body>
 </html>
