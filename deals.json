@@ -1,0 +1,112 @@
+[
+  {
+    "id": 29384729,
+    "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/29384729",
+    "title": "Studio 26m² rénové par architecte - Investissement locatif",
+    "price": 115000.0,
+    "category_id": "9",
+    "category_name": "Ventes immobilières",
+    "publication_date": "2026-09-04",
+    "city": "Marseille",
+    "zipcode": "13006",
+    "department_name": "Bouches-du-Rhône",
+    "owner_type": "private",
+    "mileage": null,
+    "year": null,
+    "surface": 26.0,
+    "rooms": 1,
+    "price_per_sqm": 4423.08,
+    "attributes": {
+      "rooms": 1,
+      "square": 26
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 12:01:27.972736"
+  },
+  {
+    "id": 28849103,
+    "url": "https://www.leboncoin.fr/ad/voitures/28849103",
+    "title": "Volkswagen Golf 7 2.0 TDI 150 DSG7 Carat",
+    "price": 13800.0,
+    "category_id": "2",
+    "category_name": "Voitures",
+    "publication_date": "2026-09-03",
+    "city": "Nantes",
+    "zipcode": "44000",
+    "department_name": "Loire-Atlantique",
+    "owner_type": "pro",
+    "mileage": 82000,
+    "year": 2018,
+    "surface": null,
+    "rooms": null,
+    "price_per_sqm": null,
+    "attributes": {
+      "fuel": "Diesel",
+      "gearbox": "Automatique",
+      "mileage": 82000,
+      "regdate": 2018
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 12:01:27.972731"
+  },
+  {
+    "id": 29103841,
+    "url": "https://www.leboncoin.fr/ad/ventes_immobilieres/29103841",
+    "title": "Appartement 2 pièces 48m² avec grand balcon filant",
+    "price": 245000.0,
+    "category_id": "9",
+    "category_name": "Ventes immobilières",
+    "publication_date": "2026-09-02",
+    "city": "Lyon",
+    "zipcode": "69007",
+    "department_name": "Rhône",
+    "owner_type": "private",
+    "mileage": null,
+    "year": null,
+    "surface": 48.0,
+    "rooms": 2,
+    "price_per_sqm": 5104.17,
+    "attributes": {
+      "rooms": 2,
+      "square": 48
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 12:01:27.972724"
+  },
+  {
+    "id": 28491024,
+    "url": "https://www.leboncoin.fr/ad/voitures/28491024",
+    "title": "Peugeot 208 PureTech 100 S&S Allure (1ère main)",
+    "price": 11900.0,
+    "category_id": "2",
+    "category_name": "Voitures",
+    "publication_date": "2026-09-01",
+    "city": "Paris",
+    "zipcode": "75017",
+    "department_name": "Paris",
+    "owner_type": "private",
+    "mileage": 48500,
+    "year": 2020,
+    "surface": null,
+    "rooms": null,
+    "price_per_sqm": null,
+    "attributes": {
+      "fuel": "Essence",
+      "gearbox": "Manuelle",
+      "mileage": 48500,
+      "regdate": 2020
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+    ],
+    "scraped_at": "2026-09-06 12:01:27.972698"
+  }
+]
