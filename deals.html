@@ -617,7 +617,20 @@
     }
 
     // Dashboard Data & Rendering
-    function initDashboard() {
+    async function initDashboard() {
+      try {
+        const resp = await fetch("deals.json", { cache: "no-store" });
+        if (resp.ok) {
+          const loaded = await resp.json();
+          if (Array.isArray(loaded) && loaded.length > 0) {
+            allDeals = loaded;
+            filterDeals();
+            return;
+          }
+        }
+      } catch (e) {
+        console.info("Using embedded sample deals:", e);
+      }
       allDeals = SAMPLE_DEALS;
       filterDeals();
     }
