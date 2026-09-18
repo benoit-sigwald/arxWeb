@@ -10,22 +10,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-dark: #070b14;
-      --bg-card: #0d1527;
-      --bg-card-hover: #131f38;
-      --bg-subtle: #162442;
-      --border: #1e3156;
-      --border-bright: #2d487d;
-      --cyan: #00d2ff;
-      --cyan-glow: rgba(0, 210, 255, 0.25);
-      --purple: #8b5cf6;
-      --purple-glow: rgba(139, 92, 246, 0.25);
-      --gold: #f59e0b;
-      --emerald: #10b981;
-      --rose: #f43f5e;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg-body: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-highlight: #eef2ff;
+      --border: #e2e8f0;
+      --border-bright: #cbd5e1;
+      --border-focus: #6366f1;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --indigo: #6366f1;
+      --cyan: #0284c7;
+      --cyan-light: #f0f9ff;
+      --gold: #d97706;
+      --gold-light: #fffbeb;
+      --emerald: #059669;
+      --emerald-light: #ecfdf5;
+      --rose: #e11d48;
+      --text-main: #0f172a;
+      --text-muted: #475569;
       --text-dim: #64748b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -37,21 +47,22 @@
     }
 
     body {
-      background-color: var(--bg-dark);
+      background-color: var(--bg-body);
       color: var(--text-main);
       font-family: var(--font-main);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient background glowing grid */
+    /* Subtle geometric grid background */
     .bg-grid {
       position: fixed;
       inset: 0;
       background-image: 
-        linear-gradient(to right, rgba(30, 49, 86, 0.2) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(30, 49, 86, 0.2) 1px, transparent 1px);
-      background-size: 40px 40px;
+        linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+      background-size: 48px 48px;
       pointer-events: none;
       z-index: 0;
     }
@@ -67,7 +78,7 @@
     /* Top Navigation */
     header {
       border-bottom: 1px solid var(--border);
-      background: rgba(7, 11, 20, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
@@ -84,7 +95,7 @@
     .brand-logos {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       text-decoration: none;
     }
 
@@ -93,32 +104,36 @@
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-bright);
+      background: #0f172a;
       border-radius: 9999px;
       font-size: 13px;
       font-weight: 700;
-      color: #fff;
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
     }
 
     .brand-pill .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan);
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
     }
 
     .partner-tag {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 500;
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .partner-tag span {
+      color: var(--primary);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       list-style: none;
     }
 
@@ -126,37 +141,38 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
+      font-weight: 600;
+      transition: color 0.15s;
     }
 
     .nav-links a:hover, .nav-links a.active {
-      color: var(--cyan);
+      color: var(--primary);
     }
 
     .btn-cta {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      background: linear-gradient(135deg, var(--cyan), #0088ff);
-      color: #050811;
+      padding: 9px 18px;
+      background: var(--primary);
+      color: #ffffff;
       font-weight: 700;
       font-size: 13px;
       border-radius: 8px;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+      transition: all 0.2s;
     }
 
     .btn-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+      transform: translateY(-1px);
     }
 
     /* Hero Section */
     .hero {
-      padding: 80px 0 60px;
+      padding: 70px 0 50px;
       text-align: center;
       position: relative;
     }
@@ -166,28 +182,26 @@
       align-items: center;
       gap: 8px;
       padding: 6px 16px;
-      background: rgba(0, 210, 255, 0.1);
-      border: 1px solid rgba(0, 210, 255, 0.3);
+      background: var(--primary-light);
+      border: 1px solid #c7d2fe;
       border-radius: 9999px;
-      color: var(--cyan);
+      color: var(--primary);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 46px;
       font-weight: 800;
       line-height: 1.15;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #0f172a;
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, var(--cyan) 0%, #a855f7 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, #0284c7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -211,10 +225,17 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
       text-align: left;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .metric-card::after {
@@ -223,43 +244,44 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--cyan));
     }
 
     .metric-val {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
-      color: #fff;
+      color: #0f172a;
       font-family: var(--font-mono);
     }
 
     .metric-val span {
-      color: var(--cyan);
+      color: var(--primary);
     }
 
     .metric-lbl {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--text-dim);
+      font-weight: 600;
       margin-top: 4px;
     }
 
     /* Section Styling */
     section {
       padding: 60px 0;
-      border-bottom: 1px solid rgba(30, 49, 86, 0.5);
+      border-bottom: 1px solid var(--border);
     }
 
     .section-head {
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .section-tag {
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cyan);
+      letter-spacing: 0.08em;
+      color: var(--primary);
       margin-bottom: 8px;
       display: block;
     }
@@ -267,18 +289,18 @@
     .section-title {
       font-size: 32px;
       font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.01em;
+      color: #0f172a;
+      letter-spacing: -0.015em;
     }
 
     .section-desc {
       font-size: 16px;
       color: var(--text-muted);
       margin-top: 8px;
-      max-width: 720px;
+      max-width: 760px;
     }
 
-    /* Timeline & 8-Activity Delivery Grid */
+    /* Timeline & 4-6 Weeks Cards */
     .timeline-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -301,9 +323,12 @@
     .week-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 24px;
-      position: relative;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .week-badge {
@@ -311,18 +336,19 @@
       align-items: center;
       padding: 4px 10px;
       background: var(--bg-subtle);
-      border: 1px solid var(--border-bright);
+      border: 1px solid var(--border);
       border-radius: 6px;
       font-size: 12px;
       font-weight: 700;
-      color: var(--cyan);
+      color: var(--text-main);
       margin-bottom: 16px;
+      width: fit-content;
     }
 
     .week-title {
       font-size: 18px;
       font-weight: 700;
-      color: #fff;
+      color: #0f172a;
       margin-bottom: 12px;
     }
 
@@ -333,25 +359,26 @@
     }
 
     .week-items li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: flex-start;
       gap: 8px;
     }
 
     .week-items li i {
-      color: var(--cyan);
+      color: var(--emerald);
       margin-top: 4px;
-      font-size: 11px;
+      font-size: 12px;
     }
 
-    /* 8 Activity Matrix Table */
+    /* Tables */
     .table-container {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow-x: auto;
-      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 20px;
     }
 
     table {
@@ -362,11 +389,11 @@
     }
 
     th {
-      background: var(--bg-subtle);
-      color: var(--text-main);
+      background: #f8fafc;
+      color: #334155;
       padding: 16px 20px;
       font-weight: 700;
-      border-bottom: 1px solid var(--border-bright);
+      border-bottom: 1px solid var(--border);
       white-space: nowrap;
     }
 
@@ -382,17 +409,18 @@
     }
 
     tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: #f8fafc;
     }
 
     .tag-act {
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
-      color: var(--cyan);
-      background: rgba(0, 210, 255, 0.1);
-      padding: 2px 8px;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 8px;
       border-radius: 4px;
+      border: 1px solid #c7d2fe;
       display: inline-block;
     }
 
@@ -406,13 +434,14 @@
     .gov-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 24px;
-      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .gov-card:hover {
-      border-color: var(--border-bright);
+      box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
 
@@ -420,12 +449,12 @@
       width: 44px;
       height: 44px;
       border-radius: 10px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-bright);
+      background: var(--primary-light);
+      border: 1px solid #c7d2fe;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--cyan);
+      color: var(--primary);
       font-size: 18px;
       margin-bottom: 16px;
     }
@@ -433,7 +462,7 @@
     .gov-title {
       font-size: 16px;
       font-weight: 700;
-      color: #fff;
+      color: #0f172a;
       margin-bottom: 8px;
     }
 
@@ -448,8 +477,8 @@
       padding-top: 12px;
       border-top: 1px solid var(--border);
       font-size: 12px;
-      color: var(--cyan);
-      font-weight: 600;
+      color: var(--primary);
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -457,26 +486,27 @@
 
     /* 3AIm Mathematical Formula Banner */
     .formula-box {
-      background: linear-gradient(135deg, #0f1b33, #0b1224);
-      border: 1px solid var(--border-bright);
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 32px;
       margin: 30px 0;
-      position: relative;
+      box-shadow: var(--shadow-md);
     }
 
     .formula-expression {
       font-family: var(--font-mono);
-      font-size: 20px;
-      color: var(--cyan);
-      background: rgba(0, 0, 0, 0.4);
+      font-size: 18px;
+      color: var(--primary);
+      background: #f8fafc;
       padding: 16px 24px;
       border-radius: 10px;
-      border: 1px solid rgba(0, 210, 255, 0.2);
+      border: 1px solid var(--border);
       margin: 16px 0;
       display: inline-block;
       overflow-x: auto;
       max-width: 100%;
+      font-weight: 600;
     }
 
     .formula-weights {
@@ -487,34 +517,35 @@
     }
 
     .weight-item {
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
+      border-radius: 10px;
+      padding: 16px;
     }
 
     .weight-pct {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 800;
       font-family: var(--font-mono);
     }
 
     .weight-name {
       font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 2px;
+      color: #0f172a;
+      font-weight: 700;
+      margin-top: 4px;
     }
 
-    /* 3AIm Interactive Simulator */
+    /* 3AIm Interactive Simulator (Light Mode) */
     .simulator-container {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-bright);
+      gap: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-xl);
     }
 
     @media (max-width: 960px) {
@@ -527,13 +558,13 @@
       display: flex;
       flex-direction: column;
       height: 680px;
-      background: #080d1a;
+      background: #ffffff;
       border-right: 1px solid var(--border);
     }
 
     .sim-header {
       padding: 16px 20px;
-      background: var(--bg-subtle);
+      background: #f8fafc;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -546,7 +577,7 @@
       gap: 10px;
       font-size: 14px;
       font-weight: 700;
-      color: #fff;
+      color: #0f172a;
     }
 
     .sim-status {
@@ -555,12 +586,16 @@
       gap: 6px;
       font-size: 12px;
       color: var(--emerald);
-      font-weight: 600;
+      font-weight: 700;
+      background: var(--emerald-light);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid #a7f3d0;
     }
 
     .sim-status .blink {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: var(--emerald);
       border-radius: 50%;
       animation: pulse 1.5s infinite;
@@ -579,6 +614,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      background: #ffffff;
     }
 
     .chat-bubble {
@@ -591,16 +627,16 @@
 
     .chat-bubble.bot {
       align-self: flex-start;
-      background: var(--bg-subtle);
+      background: #f1f5f9;
       border: 1px solid var(--border);
-      color: var(--text-main);
+      color: #0f172a;
       border-bottom-left-radius: 2px;
     }
 
     .chat-bubble.bot .bot-tag {
       font-size: 11px;
-      color: var(--cyan);
-      font-weight: 700;
+      color: var(--primary);
+      font-weight: 800;
       margin-bottom: 4px;
       display: block;
       text-transform: uppercase;
@@ -609,22 +645,15 @@
 
     .chat-bubble.user {
       align-self: flex-end;
-      background: linear-gradient(135deg, #1e3a8a, #0284c7);
-      color: #fff;
+      background: var(--primary);
+      color: #ffffff;
       border-bottom-right-radius: 2px;
-    }
-
-    .chat-bubble.guard-alert {
-      align-self: flex-start;
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fde68a;
-      font-size: 13px;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);
     }
 
     .sim-chat-input-bar {
       padding: 16px 20px;
-      background: var(--bg-card);
+      background: #f8fafc;
       border-top: 1px solid var(--border);
       display: flex;
       flex-direction: column;
@@ -639,22 +668,22 @@
     }
 
     .preset-chip {
-      background: var(--bg-subtle);
+      background: #ffffff;
       border: 1px solid var(--border);
-      color: var(--text-muted);
+      color: #334155;
       font-size: 12px;
+      font-weight: 600;
       padding: 6px 12px;
       border-radius: 9999px;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
 
     .preset-chip:hover {
-      background: var(--cyan);
-      color: #000;
-      border-color: var(--cyan);
-      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: #c7d2fe;
     }
 
     .chat-input-wrapper {
@@ -664,40 +693,40 @@
 
     .chat-input-wrapper input {
       flex: 1;
-      background: #050914;
-      border: 1px solid var(--border-bright);
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px 16px;
-      color: #fff;
+      color: #0f172a;
       font-family: var(--font-main);
       font-size: 14px;
       outline: none;
     }
 
     .chat-input-wrapper input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
     }
 
     .chat-input-wrapper button {
-      background: var(--cyan);
-      color: #050811;
+      background: var(--primary);
+      color: #ffffff;
       border: none;
-      padding: 0 18px;
+      padding: 0 20px;
       border-radius: 8px;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.15s;
     }
 
     .chat-input-wrapper button:hover {
-      background: #38bdf8;
+      background: var(--primary-hover);
     }
 
-    /* Live Dossier Pane */
+    /* Live Dossier Pane (Light Mode) */
     .sim-dossier-pane {
-      padding: 20px;
-      background: var(--bg-card);
+      padding: 24px;
+      background: #f8fafc;
       overflow-y: auto;
       height: 680px;
       display: flex;
@@ -715,26 +744,27 @@
 
     .dossier-title {
       font-size: 15px;
-      font-weight: 700;
-      color: #fff;
+      font-weight: 800;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .live-score-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-bright);
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
+      padding: 18px;
       text-align: center;
+      box-shadow: var(--shadow-sm);
     }
 
     .score-big {
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 800;
       font-family: var(--font-mono);
-      color: var(--cyan);
+      color: var(--primary);
     }
 
     .score-breakdown {
@@ -746,55 +776,61 @@
     }
 
     .score-subitem {
-      background: rgba(0, 0, 0, 0.25);
+      background: #f8fafc;
+      border: 1px solid var(--border);
       padding: 8px 10px;
       border-radius: 6px;
       font-size: 12px;
     }
 
     .score-subitem .sub-name {
-      color: var(--text-muted);
+      color: var(--text-dim);
+      font-weight: 600;
     }
 
     .score-subitem .sub-val {
       font-family: var(--font-mono);
       font-weight: 700;
-      color: #fff;
+      color: #0f172a;
     }
 
     .dossier-section {
-      background: rgba(255, 255, 255, 0.02);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
     }
 
     .dossier-section h4 {
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--cyan);
-      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 800;
     }
 
     .dossier-field {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 13px;
     }
 
     .dossier-field .label {
       color: var(--text-dim);
       font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
       display: block;
+      margin-bottom: 2px;
     }
 
     .dossier-field .val {
-      color: var(--text-main);
-      font-weight: 500;
+      color: #0f172a;
+      font-weight: 600;
     }
 
     .guard-meter {
@@ -804,12 +840,13 @@
       font-size: 12px;
       color: var(--emerald);
       margin-top: 6px;
+      font-weight: 700;
     }
 
     .guard-bar {
       flex: 1;
       height: 6px;
-      background: rgba(255, 255, 255, 0.1);
+      background: #e2e8f0;
       border-radius: 3px;
       overflow: hidden;
     }
@@ -822,38 +859,41 @@
 
     /* JSON Dump View */
     .code-box {
-      background: #050811;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 24px;
       position: relative;
       font-family: var(--font-mono);
       font-size: 13px;
       color: #38bdf8;
       overflow-x: auto;
-      max-height: 450px;
+      max-height: 480px;
+      box-shadow: var(--shadow-lg);
     }
 
     .copy-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-bright);
-      color: var(--text-muted);
-      padding: 4px 10px;
+      top: 14px;
+      right: 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 6px 12px;
       border-radius: 6px;
       font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
       font-family: var(--font-main);
+      transition: all 0.15s;
     }
 
     .copy-btn:hover {
-      color: #fff;
-      border-color: var(--cyan);
+      background: var(--primary);
+      border-color: var(--primary);
     }
 
-    /* Hardware Sizing Calculator */
+    /* Hardware Sizing */
     .sizing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -863,31 +903,36 @@
     .sizing-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .sizing-card.featured {
-      border-color: var(--cyan);
-      box-shadow: 0 0 20px var(--cyan-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2), var(--shadow-md);
     }
 
     .sizing-badge {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       padding: 3px 8px;
       border-radius: 4px;
-      background: rgba(0, 210, 255, 0.15);
-      color: var(--cyan);
+      background: var(--primary-light);
+      color: var(--primary);
       display: inline-block;
       margin-bottom: 12px;
+      width: fit-content;
     }
 
     .sizing-card h3 {
       font-size: 20px;
-      font-weight: 700;
-      color: #fff;
+      font-weight: 800;
+      color: #0f172a;
       margin-bottom: 8px;
     }
 
@@ -900,22 +945,22 @@
 
     .sizing-spec-list li {
       padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
     }
 
     .sizing-spec-list li span:last-child {
-      color: #fff;
+      color: #0f172a;
       font-family: var(--font-mono);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* Footer */
     footer {
       padding: 50px 0 30px;
       border-top: 1px solid var(--border);
-      background: #04070e;
+      background: #f8fafc;
       text-align: center;
       font-size: 14px;
       color: var(--text-dim);
@@ -931,11 +976,12 @@
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s;
+      font-weight: 600;
+      transition: color 0.15s;
     }
 
     .footer-links a:hover {
-      color: var(--cyan);
+      color: var(--primary);
     }
   </style>
 </head>
@@ -951,7 +997,7 @@
           <div class="dot"></div>
           <span>ARX CONSULTING</span>
         </div>
-        <span class="partner-tag">&times; 3Point.ai &times; Cisco &times; Lenovo</span>
+        <span class="partner-tag">&times; <span>3Point.ai</span> &times; Cisco &times; Lenovo</span>
       </a>
 
       <ul class="nav-links">
@@ -1025,10 +1071,10 @@
           <div class="week-badge">Weeks 1 - 2</div>
           <h3 class="week-title">Ingestion & Discovery</h3>
           <ul class="week-items">
-            <li><i class="fa-solid fa-check"></i> Cisco/Lenovo account nomination & alignment</li>
-            <li><i class="fa-solid fa-check"></i> 3AIm platform onboarding for key stakeholders</li>
-            <li><i class="fa-solid fa-check"></i> Autonomous 6-stage use case discovery</li>
-            <li><i class="fa-solid fa-check"></i> Initial Truthfulness Guard validation</li>
+            <li><i class="fa-solid fa-circle-check"></i> Cisco/Lenovo account nomination & alignment</li>
+            <li><i class="fa-solid fa-circle-check"></i> 3AIm platform onboarding for key stakeholders</li>
+            <li><i class="fa-solid fa-circle-check"></i> Autonomous 6-stage use case discovery</li>
+            <li><i class="fa-solid fa-circle-check"></i> Initial Truthfulness Guard validation</li>
           </ul>
         </div>
 
@@ -1036,10 +1082,10 @@
           <div class="week-badge">Weeks 3 - 4</div>
           <h3 class="week-title">Deep-Dive Workshops</h3>
           <ul class="week-items">
-            <li><i class="fa-solid fa-check"></i> Data readiness & lineage verification</li>
-            <li><i class="fa-solid fa-check"></i> Technical feasibility & architecture mapping</li>
-            <li><i class="fa-solid fa-check"></i> Financial ROI & lost-value quantification</li>
-            <li><i class="fa-solid fa-check"></i> Security, compliance & sovereign guardrails</li>
+            <li><i class="fa-solid fa-circle-check"></i> Data readiness & lineage verification</li>
+            <li><i class="fa-solid fa-circle-check"></i> Technical feasibility & architecture mapping</li>
+            <li><i class="fa-solid fa-circle-check"></i> Financial ROI & lost-value quantification</li>
+            <li><i class="fa-solid fa-circle-check"></i> Security, compliance & sovereign guardrails</li>
           </ul>
         </div>
 
@@ -1047,21 +1093,21 @@
           <div class="week-badge">Weeks 5 - 6</div>
           <h3 class="week-title">Sizing & Executive Readout</h3>
           <ul class="week-items">
-            <li><i class="fa-solid fa-check"></i> Mathematical multi-criteria prioritization</li>
-            <li><i class="fa-solid fa-check"></i> Cisco AI POD & Lenovo hardware BOM sizing</li>
-            <li><i class="fa-solid fa-check"></i> Board-ready executive business case</li>
-            <li><i class="fa-solid fa-check"></i> 20-day PoV transition roadmap (~&euro;20k)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Mathematical multi-criteria prioritization</li>
+            <li><i class="fa-solid fa-circle-check"></i> Cisco AI POD & Lenovo hardware BOM sizing</li>
+            <li><i class="fa-solid fa-circle-check"></i> Board-ready executive business case</li>
+            <li><i class="fa-solid fa-circle-check"></i> 20-day PoV transition roadmap (~&euro;20k)</li>
           </ul>
         </div>
 
-        <div class="week-card" style="border-color: var(--cyan);">
-          <div class="week-badge" style="background: var(--cyan); color: #000;">Week 6+ Execution</div>
+        <div class="week-card" style="border-color: var(--primary); background: #fdfefe;">
+          <div class="week-badge" style="background: var(--primary); color: #fff; border-color: var(--primary);">Week 6+ Execution</div>
           <h3 class="week-title">20-Day PoV / Production</h3>
           <ul class="week-items">
-            <li><i class="fa-solid fa-rocket" style="color: var(--cyan);"></i> Rapid proof-of-value build (~&euro;20k)</li>
-            <li><i class="fa-solid fa-rocket" style="color: var(--cyan);"></i> Hardware staging on Cisco/Lenovo infra</li>
-            <li><i class="fa-solid fa-rocket" style="color: var(--cyan);"></i> Benchmark latency, throughput & accuracy</li>
-            <li><i class="fa-solid fa-rocket" style="color: var(--cyan);"></i> Full enterprise production rollout</li>
+            <li><i class="fa-solid fa-rocket" style="color: var(--primary);"></i> Rapid proof-of-value build (~&euro;20k)</li>
+            <li><i class="fa-solid fa-rocket" style="color: var(--primary);"></i> Hardware staging on Cisco/Lenovo infra</li>
+            <li><i class="fa-solid fa-rocket" style="color: var(--primary);"></i> Benchmark latency, throughput & accuracy</li>
+            <li><i class="fa-solid fa-rocket" style="color: var(--primary);"></i> Full enterprise production rollout</li>
           </ul>
         </div>
       </div>
@@ -1084,37 +1130,37 @@
           </thead>
           <tbody>
             <tr>
-              <td style="font-weight: 700; color: #fff;">1. Lead AI Architect</td>
+              <td style="font-weight: 700; color: #0f172a;">1. Lead AI Architect</td>
               <td>Overall AI architecture, model selection (LLMs, SLMs, vision), inference pipelines</td>
               <td>Target AI Architecture Blueprint, Model Selection & Inference Specs</td>
               <td>100% (Full Assessment)</td>
             </tr>
             <tr>
-              <td style="font-weight: 700; color: #fff;">2. Enterprise Data Engineer</td>
+              <td style="font-weight: 700; color: #0f172a;">2. Enterprise Data Engineer</td>
               <td>Data readiness audit, feature store, vector DB pipelines, ETL & lineage</td>
               <td>Data Readiness Scorecard, Ingestion Pipeline Specs</td>
               <td>100% (Full Assessment)</td>
             </tr>
             <tr>
-              <td style="font-weight: 700; color: #fff;">3. Infrastructure & Sizing Lead</td>
+              <td style="font-weight: 700; color: #0f172a;">3. Infrastructure & Sizing Lead</td>
               <td>Cisco AI POD, Lenovo ThinkSystem SR675/SR685a sizing, 800G Nexus networking</td>
               <td>Hardware BOM, Power/Cooling Specs, CapEx/OpEx TCO Model</td>
               <td>100% (Full Assessment)</td>
             </tr>
             <tr>
-              <td style="font-weight: 700; color: #fff;">4. Senior MLOps Engineer</td>
+              <td style="font-weight: 700; color: #0f172a;">4. Senior MLOps Engineer</td>
               <td>CI/CD for ML, container orchestration, GPU scheduling, observability</td>
               <td>MLOps Deployment Pattern, Model Governance Framework</td>
               <td>100% (Full Assessment)</td>
             </tr>
             <tr>
-              <td style="font-weight: 700; color: #fff;">5. Domain Industry Specialist</td>
+              <td style="font-weight: 700; color: #0f172a;">5. Domain Industry Specialist</td>
               <td>Sector-specific compliance, workflow validation, financial impact modeling</td>
               <td>Business Case & ROI Valuation Model, Risk Matrix</td>
               <td>100% (Full Assessment)</td>
             </tr>
             <tr>
-              <td style="font-weight: 700; color: #fff;">6. Delivery Lead / PM</td>
+              <td style="font-weight: 700; color: #0f172a;">6. Delivery Lead / PM</td>
               <td>Customer governance, steering committee alignment, sprint execution</td>
               <td>Assessment Executive Readout, 20-Day PoV Charter</td>
               <td>100% (Full Assessment)</td>
@@ -1150,56 +1196,56 @@
           <tbody>
             <tr>
               <td><span class="tag-act">ACT-01</span></td>
-              <td style="font-weight: 700; color: #fff;">Pre-Kickoff & Account Nomination</td>
+              <td style="font-weight: 700; color: #0f172a;">Pre-Kickoff & Account Nomination</td>
               <td>Cisco/Lenovo Sponsor, 3Point Lead</td>
               <td>Account CRM data, strategic priorities</td>
               <td>Target account qualification & sponsor endorsement</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-02</span></td>
-              <td style="font-weight: 700; color: #fff;">Executive Kickoff & Alignment</td>
+              <td style="font-weight: 700; color: #0f172a;">Executive Kickoff & Alignment</td>
               <td>Steering Committee, C-Level Sponsor, 6-FTE Squad</td>
               <td>Assessment charter, scope boundary document</td>
               <td>Validated assessment scope, timeline & participant sign-off</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-03</span></td>
-              <td style="font-weight: 700; color: #fff;">3AIm Autonomous Discovery</td>
+              <td style="font-weight: 700; color: #0f172a;">3AIm Autonomous Discovery</td>
               <td>Group 1 (Domain Owners), Group 2 (IT/Data)</td>
               <td><strong>3AIm Intake Platform</strong> (6-stage chat)</td>
               <td>Raw ingested use cases, initial truthfulness score & dossier</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-04</span></td>
-              <td style="font-weight: 700; color: #fff;">Technical & Data Deep-Dive</td>
+              <td style="font-weight: 700; color: #0f172a;">Technical & Data Deep-Dive</td>
               <td>Data Engineers, Security Leads, Architects</td>
               <td>Data catalog, schemas, compliance rules</td>
               <td>Data readiness audit, privacy & sovereign boundaries</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-05</span></td>
-              <td style="font-weight: 700; color: #fff;">Mathematical Scoring & Ranking</td>
+              <td style="font-weight: 700; color: #0f172a;">Mathematical Scoring & Ranking</td>
               <td>6-FTE Squad, Business Owners</td>
               <td>3AIm 4-pillar weighting engine</td>
               <td>Prioritized Use Case Matrix (Impact vs Feasibility)</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-06</span></td>
-              <td style="font-weight: 700; color: #fff;">Cisco & Lenovo Infrastructure Sizing</td>
+              <td style="font-weight: 700; color: #0f172a;">Cisco & Lenovo Infrastructure Sizing</td>
               <td>Infra Lead, Cisco/Lenovo Hardware Architects</td>
               <td>Model FLOPS, token throughput, context size</td>
               <td>Validated BOM: Cisco AI POD / Lenovo ThinkSystem & Nexus 800G</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-07</span></td>
-              <td style="font-weight: 700; color: #fff;">Executive Report & Readout</td>
+              <td style="font-weight: 700; color: #0f172a;">Executive Report & Readout</td>
               <td>Executive Sponsor, Steering Group, Cisco/Lenovo</td>
               <td>Comprehensive Assessment Report & Financial Model</td>
               <td>Board-ready AI roadmap, CapEx/OpEx investment approval</td>
             </tr>
             <tr>
               <td><span class="tag-act">ACT-08</span></td>
-              <td style="font-weight: 700; color: #fff;">20-Day PoV Transition & Deployment</td>
+              <td style="font-weight: 700; color: #0f172a;">20-Day PoV Transition & Deployment</td>
               <td>Delivery Squad & Client Technical Team</td>
               <td>PoV Charter (~&euro;20k scope), hardware staging</td>
               <td>Working prototype in staging, benchmark metrics & rollout plan</td>
@@ -1281,7 +1327,7 @@
       </div>
 
       <div class="formula-box">
-        <h3 style="color: #fff; font-size: 18px;">Overall Realisation Priority Score (\( S \))</h3>
+        <h3 style="color: #0f172a; font-size: 18px; font-weight: 700;">Overall Realisation Priority Score (S)</h3>
         <div class="formula-expression">
           Score = (0.35 &times; Impact) + (0.22 &times; DataReadiness) + (0.22 &times; Feasibility) + (0.21 &times; Confidence)
         </div>
@@ -1291,24 +1337,24 @@
 
         <div class="formula-weights">
           <div class="weight-item">
-            <div class="weight-pct" style="color: var(--cyan);">35%</div>
+            <div class="weight-pct" style="color: var(--primary);">35%</div>
             <div class="weight-name">Business & Financial Impact</div>
-            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Revenue gain, cost takeout, loss avoidance</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Revenue gain, cost takeout, loss avoidance</div>
           </div>
           <div class="weight-item">
-            <div class="weight-pct" style="color: var(--purple);">22%</div>
+            <div class="weight-pct" style="color: #7c3aed;">22%</div>
             <div class="weight-name">Data & Org Readiness</div>
-            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Lineage, hygiene, API access, permissions</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Lineage, hygiene, API access, permissions</div>
           </div>
           <div class="weight-item">
             <div class="weight-pct" style="color: var(--emerald);">22%</div>
             <div class="weight-name">Technical Feasibility</div>
-            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Model maturity, infra fit, compute requirements</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Model maturity, infra fit, compute requirements</div>
           </div>
           <div class="weight-item">
             <div class="weight-pct" style="color: var(--gold);">21%</div>
             <div class="weight-name">Truthfulness & Evidence</div>
-            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Factual backing, absence of unverified claims</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Factual backing, absence of unverified claims</div>
           </div>
         </div>
       </div>
@@ -1322,7 +1368,7 @@
         <span class="section-tag">Interactive Prototype Demo</span>
         <h2 class="section-title">3AIm Autonomous Intake Simulator</h2>
         <p class="section-desc">
-          Live recreation of the <strong>3AIm Prototype (`https://3aim-task-001.prototypes.3point.ai/`)</strong>. Experience how conversational discovery builds real-time structured dossiers with Truthfulness Guard verification.
+          Live recreation of the <strong>3AIm Prototype (`https://3aim-task-001.prototypes.3point.ai/`)</strong> in clean light mode. Experience how conversational discovery builds real-time structured dossiers with Truthfulness Guard verification.
         </p>
       </div>
 
@@ -1331,7 +1377,7 @@
         <div class="sim-chat-pane">
           <div class="sim-header">
             <div class="sim-header-title">
-              <i class="fa-solid fa-robot" style="color: var(--cyan);"></i>
+              <i class="fa-solid fa-robot" style="color: var(--primary);"></i>
               <span>3AIm Discovery Bot &mdash; Session #TK-802</span>
             </div>
             <div class="sim-status">
@@ -1367,14 +1413,14 @@
         <div class="sim-dossier-pane">
           <div class="dossier-header">
             <div class="dossier-title">
-              <i class="fa-solid fa-clipboard-check" style="color: var(--cyan);"></i>
+              <i class="fa-solid fa-clipboard-check" style="color: var(--primary);"></i>
               <span>Live Use Case Dossier</span>
             </div>
             <span class="tag-act" id="dossierStage">Stage 1/6</span>
           </div>
 
           <div class="live-score-card">
-            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Calculated Realisation Score</div>
+            <div style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Calculated Realisation Score</div>
             <div class="score-big" id="overallScore">3.85 <span>/ 5.0</span></div>
             <div class="guard-meter">
               <span>Truthfulness Confidence:</span>
@@ -1556,7 +1602,7 @@
         </div>
 
         <div class="sizing-card featured">
-          <span class="sizing-badge" style="background: var(--cyan); color: #000;">Recommended Enterprise</span>
+          <span class="sizing-badge" style="background: var(--primary); color: #fff;">Recommended Enterprise</span>
           <h3>Cisco AI POD &bull; Scale-Up</h3>
           <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
             Standard enterprise blueprint for multi-model RAG, fine-tuning, and agent orchestration.
