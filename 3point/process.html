@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3AIm — Help shape the AI priorities.</title>
+  <title>3AIm — AI Use-Case Assessment & Roadmap Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* 3AIm Exact Design System */
     :root {
       --bg-page: #f8fafc;
       --bg-card: #ffffff;
@@ -20,24 +19,25 @@
       --border: #e2e8f0;
       --border-focus: #d97706;
       --text-main: #0f172a;
-      --text-muted: #64748b;
+      --text-muted: #475569;
       --text-dim: #94a3b8;
       --gold: #f59e0b;
       --gold-dark: #d97706;
       --gold-bg: rgba(245, 158, 11, 0.1);
       --gold-border: rgba(245, 158, 11, 0.3);
-      --cyan: #06b6d4;
-      --cyan-bg: #ecfeff;
-      --emerald: #10b981;
+      --cyan: #0284c7;
+      --cyan-bg: #f0f9ff;
+      --emerald: #059669;
       --emerald-bg: #ecfdf5;
-      --rose: #f43f5e;
+      --rose: #e11d48;
       --rose-bg: #fff1f2;
       --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
       --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
 
-    /* Dark Mode Theme Support via Toggle */
     html.dark-theme {
       --bg-page: #0d1117;
       --bg-card: #161b22;
@@ -52,6 +52,9 @@
       --text-dim: #6e7681;
       --gold-bg: rgba(245, 158, 11, 0.15);
       --gold-border: rgba(245, 158, 11, 0.4);
+      --cyan-bg: rgba(2, 132, 199, 0.15);
+      --emerald-bg: rgba(5, 150, 105, 0.15);
+      --rose-bg: rgba(225, 29, 72, 0.15);
       --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
     }
 
@@ -75,17 +78,26 @@
 
     /* Top Navigation Header */
     header {
-      padding: 18px 32px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-top {
+      padding: 14px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: transparent;
+      border-bottom: 1px solid var(--border);
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       text-decoration: none;
       font-size: 22px;
       font-weight: 900;
@@ -110,10 +122,22 @@
     .brand-bars span:nth-child(2) { height: 15px; }
     .brand-bars span:nth-child(3) { height: 18px; }
 
+    .brand-tagline {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      background: var(--bg-subtle);
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-left: 8px;
+    }
+
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .badge-single-use {
@@ -121,7 +145,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 9999px;
       background: var(--gold-bg);
       border: 1px solid var(--gold-border);
@@ -168,18 +192,76 @@
       transform: translateX(18px);
     }
 
-    /* Main Container */
+    /* Sub Navigation Tabs Bar */
+    .header-nav-tabs {
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      background: var(--bg-card);
+      overflow-x: auto;
+      gap: 6px;
+    }
+
+    .tab-link {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab-link:hover {
+      color: var(--gold-dark);
+    }
+
+    html.dark-theme .tab-link:hover {
+      color: var(--gold);
+    }
+
+    .tab-link.active {
+      color: var(--gold-dark);
+      border-bottom-color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    html.dark-theme .tab-link.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* Main Content Container */
     main {
-      max-width: 1240px;
+      max-width: 1280px;
       width: 100%;
       margin: 0 auto;
-      padding: 10px 24px 60px;
+      padding: 28px 24px 60px;
       flex: 1;
+    }
+
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Hero Section */
     .hero {
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
@@ -203,7 +285,7 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
-      margin: 32px 0 28px;
+      margin: 28px 0;
       padding: 0 10px;
     }
 
@@ -289,7 +371,7 @@
       }
     }
 
-    /* Left: Chat Box */
+    /* Left: Chat Card */
     .chat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -409,6 +491,31 @@
       font-weight: 500;
     }
 
+    .chat-chips-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chat-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .chat-chip:hover {
+      background: var(--gold-bg);
+      border-color: var(--gold-border);
+      color: var(--gold-dark);
+    }
+
     .chat-footer {
       padding: 16px 20px;
       border-top: 1px solid var(--border);
@@ -453,7 +560,6 @@
       align-items: center;
       justify-content: center;
       font-size: 13px;
-      transition: background 0.15s;
     }
 
     .btn-send:hover {
@@ -493,7 +599,7 @@
       box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       height: 640px;
       overflow-y: auto;
     }
@@ -622,20 +728,19 @@
       margin-top: auto;
     }
 
-    /* TOP PRIORITY / INSIGHTS DRAWER VIEW */
-    .top-priority-panel {
-      display: none;
+    /* TOP PRIORITY / DASHBOARD VIEW */
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .top-priority-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 36px;
       box-shadow: var(--shadow-card);
-      margin-top: 24px;
-    }
-
-    .top-priority-panel.active {
-      display: block;
-      animation: fadeIn 0.25s ease-in-out;
     }
 
     .badge-rank1 {
@@ -791,7 +896,6 @@
       color: var(--text-muted);
     }
 
-    /* Financial ROI Headline */
     .financial-headline-row {
       display: flex;
       align-items: flex-start;
@@ -845,7 +949,6 @@
       transform: translateY(-1px);
     }
 
-    /* Expandable Show the Working */
     .working-drawer {
       margin-top: 28px;
       padding: 24px;
@@ -913,6 +1016,77 @@
       line-height: 1;
     }
 
+    /* Ranked Table */
+    .table-container-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    table.data-table th {
+      background: var(--bg-subtle);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    table.data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      vertical-align: middle;
+    }
+
+    table.data-table tr:hover td {
+      background: var(--bg-subtle);
+    }
+
+    table.data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tier-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    .tier-do-now {
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid rgba(5, 150, 105, 0.3);
+    }
+
+    .tier-do-next {
+      background: var(--gold-bg);
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-border);
+    }
+
+    html.dark-theme .tier-do-next {
+      color: var(--gold);
+    }
+
+    .tier-later {
+      background: var(--bg-subtle);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
     /* Stakeholder Coverage Section */
     .coverage-card {
       background: var(--bg-card);
@@ -920,7 +1094,6 @@
       border-radius: 16px;
       padding: 28px;
       box-shadow: var(--shadow-card);
-      margin-top: 24px;
     }
 
     .coverage-head h3 {
@@ -994,6 +1167,81 @@
       font-weight: 700;
     }
 
+    /* Roadmap Waves Grid */
+    .wave-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .wave-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wave-column {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .wave-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wave-col-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wave-item {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.15s;
+    }
+
+    .wave-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .wave-item-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .wave-item-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .wave-item-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
     /* Footer */
     footer {
       padding: 24px;
@@ -1001,6 +1249,7 @@
       font-size: 12px;
       color: var(--text-dim);
       border-top: 1px solid var(--border);
+      background: var(--bg-card);
       margin-top: auto;
     }
   </style>
@@ -1009,428 +1258,693 @@
 
   <!-- Top Navigation Header -->
   <header>
-    <a href="#" class="brand-logo" onclick="location.reload()">
-      <div class="brand-bars">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <span>3AIm</span>
-    </a>
+    <div class="header-top">
+      <a href="#" class="brand-logo" onclick="navigateTo('interview')">
+        <div class="brand-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>3AIm</span>
+        <span class="brand-tagline">3Point.ai &times; Cisco &times; Lenovo</span>
+      </a>
 
-    <div class="header-right">
-      <div class="badge-single-use">Single-Use Link</div>
-      <div class="lang-dropdown">
-        <i class="fa-solid fa-globe"></i>
-        <span>English</span>
-      </div>
-      <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Light / Dark Mode">
-        <div class="theme-toggle-knob"></div>
+      <div class="header-right">
+        <div class="badge-single-use">Single-Use Link</div>
+        <div class="lang-dropdown">
+          <i class="fa-solid fa-globe"></i>
+          <span>English</span>
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Light / Dark Mode">
+          <div class="theme-toggle-knob"></div>
+        </div>
       </div>
     </div>
+
+    <!-- Product Sub Tabs -->
+    <nav class="header-nav-tabs">
+      <a class="tab-link active" id="tab-interview" onclick="navigateTo('interview')">
+        <i class="fa-solid fa-comments"></i>
+        <span>Phase 1 Interview</span>
+      </a>
+      <a class="tab-link" id="tab-dashboard" onclick="navigateTo('dashboard')">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Dashboard & Rank #1</span>
+      </a>
+      <a class="tab-link" id="tab-validation" onclick="navigateTo('validation')">
+        <i class="fa-solid fa-list-check"></i>
+        <span>Phase 2 Validation</span>
+      </a>
+      <a class="tab-link" id="tab-roadmap" onclick="navigateTo('roadmap')">
+        <i class="fa-solid fa-route"></i>
+        <span>Roadmap & Waves</span>
+      </a>
+      <a class="tab-link" id="tab-coverage" onclick="navigateTo('coverage')">
+        <i class="fa-solid fa-table-cells"></i>
+        <span>Stakeholder Coverage</span>
+      </a>
+    </nav>
   </header>
 
   <main>
-    <!-- Hero Title -->
-    <div class="hero">
-      <h1>Help shape the AI priorities.</h1>
-      <p>
-        A few minutes of your time. Your input is scored independently and blind — no stakeholder's voice outweighs the evidence — and your name and email go to the study team so they can follow up on your ideas.
-      </p>
+    <!-- PAGE 1: PHASE 1 INTERVIEW -->
+    <div class="page-section active" id="sec-interview">
+      <div class="hero">
+        <h1>Help shape the AI priorities.</h1>
+        <p>
+          A few minutes of your time. Your input is scored independently and blind — no stakeholder's voice outweighs the evidence — and your name and email go to the study team so they can follow up on your ideas.
+        </p>
+      </div>
+
+      <!-- 6-Stage Stepper -->
+      <div class="stepper">
+        <div class="step-node active" id="step-node-1" onclick="jumpStep(1)">
+          <div class="step-dot"></div>
+          <span class="step-label">Profile</span>
+        </div>
+        <div class="step-node" id="step-node-2" onclick="jumpStep(2)">
+          <div class="step-dot"></div>
+          <span class="step-label">Use Case</span>
+        </div>
+        <div class="step-node" id="step-node-3" onclick="jumpStep(3)">
+          <div class="step-dot"></div>
+          <span class="step-label">Ratings</span>
+        </div>
+        <div class="step-node" id="step-node-4" onclick="jumpStep(4)">
+          <div class="step-dot"></div>
+          <span class="step-label">Evidence</span>
+        </div>
+        <div class="step-node" id="step-node-5" onclick="jumpStep(5)">
+          <div class="step-dot"></div>
+          <span class="step-label">Value</span>
+        </div>
+        <div class="step-node" id="step-node-6" onclick="jumpStep(6)">
+          <div class="step-dot"></div>
+          <span class="step-label">Goals & Context</span>
+        </div>
+      </div>
+
+      <!-- Split 2-Column Interface -->
+      <div class="workspace-grid">
+        <!-- Left: Chat Card -->
+        <div class="chat-card">
+          <div class="chat-header">
+            <div class="interviewer-info">
+              <div class="avatar-sparkle">✨</div>
+              <div>
+                <div class="interviewer-title">Aim — 3AIm interviewer</div>
+                <div class="interviewer-sub"><span class="dot"></span> Live interview</div>
+              </div>
+            </div>
+            <div class="badge-single-use">Single-Use Link</div>
+          </div>
+
+          <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot">
+              <div class="msg-avatar">✨</div>
+              <div class="msg-bubble">
+                Hello! I'll guide you through this in a few quick questions — it usually takes about 20 minutes, and you'll review everything I've captured before anything is submitted.
+              </div>
+            </div>
+            <div class="chat-msg bot">
+              <div class="msg-avatar">✨</div>
+              <div class="msg-bubble">
+                Before we begin — what's your role and business unit? <i class="fa-solid fa-circle-info" style="color: var(--text-dim); margin-left: 4px;"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-footer">
+            <div class="input-box-wrapper">
+              <input type="text" id="userMsgInput" placeholder="Type your answer..." onkeypress="handleInputKey(event)">
+              <button class="btn-send" onclick="submitMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div class="chat-bottom-meta">
+              <button class="btn-finish-review" onclick="navigateTo('dashboard')">Finish & review &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Captured So Far Card -->
+        <div class="dossier-card">
+          <div class="dossier-head-row">
+            <div class="captured-label">
+              <span>• CAPTURED SO FAR</span>
+              <span class="captured-count" id="stepCountBadge">0/6</span>
+            </div>
+            <div class="truth-guard-tag active">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Truthfulness guard</span>
+            </div>
+          </div>
+
+          <!-- 2x2 Meta Fields -->
+          <div class="grid-2x2">
+            <div class="field-block">
+              <span class="field-label">Role / Title *</span>
+              <span class="field-val" id="valRole">Head of Operations</span>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Function</span>
+              <span class="field-val" id="valFunction">Operations</span>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Seniority</span>
+              <span class="field-val" id="valSeniority">Head of Department</span>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Region</span>
+              <span class="field-val" id="valRegion">UK & EMEA</span>
+            </div>
+          </div>
+
+          <!-- Use Case -->
+          <div class="field-block">
+            <span class="section-divider-label"><i class="fa-regular fa-lightbulb"></i> Use Case</span>
+            <span class="field-val italic-dim" id="valUseCase">e.g. Automate invoice matching</span>
+          </div>
+
+          <!-- Anchored Ratings -->
+          <div class="field-block">
+            <span class="section-divider-label"><i class="fa-solid fa-chart-simple"></i> Anchored Ratings</span>
+            
+            <div class="ratings-row">
+              <span>Expected impact</span>
+              <div class="rating-boxes">
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+              </div>
+            </div>
+            <div class="ratings-row">
+              <span>Data readiness</span>
+              <div class="rating-boxes">
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box"></span>
+              </div>
+            </div>
+            <div class="ratings-row">
+              <span>Feasibility</span>
+              <div class="rating-boxes">
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box"></span>
+                <span class="rating-box"></span>
+              </div>
+            </div>
+            <div class="ratings-row">
+              <span>Your confidence</span>
+              <div class="rating-boxes">
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box filled"></span>
+                <span class="rating-box"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Evidence -->
+          <div class="field-block">
+            <span class="section-divider-label"><i class="fa-regular fa-file-lines"></i> Evidence</span>
+            <span class="field-val italic-dim" id="valEvidence">What you've seen that makes it real</span>
+          </div>
+
+          <!-- Value Rationale -->
+          <div class="field-block">
+            <span class="section-divider-label"><i class="fa-solid fa-coins"></i> Value Rationale</span>
+            <span class="field-val italic-dim" id="valRationale">Which levers create the value, and why</span>
+          </div>
+
+          <!-- Size of the Prize -->
+          <div class="field-block">
+            <span class="section-divider-label"><i class="fa-solid fa-arrow-trend-up"></i> Size of the Prize</span>
+            <span class="field-val italic-dim" id="valSize">Rough annual value — a range is fine</span>
+          </div>
+
+          <div class="dossier-note">
+            Updates live as you talk. Nothing is submitted until you review and confirm it on the next screen.
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- 6-Stage Stepper -->
-    <div class="stepper">
-      <div class="step-node active" id="step-node-1" onclick="jumpStep(1)">
-        <div class="step-dot"></div>
-        <span class="step-label">Profile</span>
-      </div>
-      <div class="step-node" id="step-node-2" onclick="jumpStep(2)">
-        <div class="step-dot"></div>
-        <span class="step-label">Use Case</span>
-      </div>
-      <div class="step-node" id="step-node-3" onclick="jumpStep(3)">
-        <div class="step-dot"></div>
-        <span class="step-label">Ratings</span>
-      </div>
-      <div class="step-node" id="step-node-4" onclick="jumpStep(4)">
-        <div class="step-dot"></div>
-        <span class="step-label">Evidence</span>
-      </div>
-      <div class="step-node" id="step-node-5" onclick="jumpStep(5)">
-        <div class="step-dot"></div>
-        <span class="step-label">Value</span>
-      </div>
-      <div class="step-node" id="step-node-6" onclick="jumpStep(6)">
-        <div class="step-dot"></div>
-        <span class="step-label">Goals & Context</span>
+    <!-- PAGE 2: DASHBOARD & RANK #1 -->
+    <div class="page-section" id="sec-dashboard">
+      <div class="dashboard-container">
+        <!-- Rank #1 Card -->
+        <div class="top-priority-card">
+          <div class="badge-rank1">• TOP PRIORITY · RANK #1</div>
+
+          <div class="priority-hero-row">
+            <div class="priority-info">
+              <h2>Nightly trunk load planning</h2>
+              <div class="priority-sub">Operations · Do now</div>
+
+              <div class="priority-problem-text">
+                <strong>Problem</strong> Every night we run around 380 trunks between our 12 depots and the Lutterworth hub, and too many run part-empty. Average fill is 68% against an 80% target. My four planners build the plan in Excel from depot pre-advice that's wrong on about 15% of lanes, so we either send extra trailers 'just in case' or scramble for subbies at 11pm. With fuel and driver pay both up, this is the biggest cost leak I own.
+                <br><br>
+                Forecast the real pallet volume on each depot-to-hub lane by early evening and suggest a consolidated trunk plan, so my planners can cut part-empty trailers and last-minute subcontract bookings. Why: ~380 trunks/night, avg trailer fill 68% vs 80% target. Trunk cost ~£420/run, ~£40m/yr. Depot pre-advice wrong on ~15% of lanes by 18:00; plan built in Excel by 4 planners. Hub scan data is clean back to 2022.
+              </div>
+
+              <div class="tag-row">
+                <span class="tag-pill tag-target"><i class="fa-regular fa-clock"></i> Target: Within 12 months</span>
+                <span class="tag-pill tag-urgency">! Cost of inaction is high — act now</span>
+              </div>
+
+              <div class="financial-headline-row">
+                <div class="fin-metric">
+                  <span class="fin-val">£1.1M</span>
+                  <span class="fin-label">Adjusted annual value / year — set in review <i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="fin-metric">
+                  <span class="fin-val">9 mo</span>
+                  <span class="fin-label">Payback · £800K build <i class="fa-solid fa-circle-info"></i></span>
+                </div>
+              </div>
+
+              <button class="btn-view-insights" onclick="toggleWorkingSection()">
+                <span>View insights</span>
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+            </div>
+
+            <!-- Donut Gauges -->
+            <div class="gauge-group">
+              <div class="gauge-card">
+                <div class="gauge-ring gold">
+                  <div class="gauge-inner">100%</div>
+                </div>
+                <span class="gauge-label">Impact</span>
+              </div>
+
+              <div class="gauge-card">
+                <div class="gauge-ring cyan">
+                  <div class="gauge-inner">50%</div>
+                </div>
+                <span class="gauge-label">Readiness</span>
+              </div>
+
+              <div class="gauge-card">
+                <div class="gauge-ring yellow">
+                  <div class="gauge-inner">73%</div>
+                </div>
+                <span class="gauge-label">Confidence</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expandable Show the Working -->
+          <div class="working-drawer" id="workingSection">
+            <div class="working-toggle-title">
+              <i class="fa-solid fa-chevron-down"></i>
+              <span>Why this ranking — show the working</span>
+            </div>
+
+            <div class="working-grid-3col">
+              <div>
+                <div class="col-work-title">Evidence</div>
+                <ul class="col-work-list">
+                  <li>Problem: "Every night we run around 380 trunks between our 12 depots and the Lutterworth hub, and too many run part-empty. Average fill is 68% against"</li>
+                  <li>1 stakeholder proposed this</li>
+                  <li>Mean impact 5/5 · readiness 4/5 · feasibility 3/5</li>
+                  <li>"Forecast the real pallet volume on each depot-to-hub lane by early evening and suggest a consolidated trunk plan, so my"</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="col-work-title">Assumptions</div>
+                <ul class="col-work-list">
+                  <li>Annual value adjusted by the consultant team in review (the model alone would say £7.8M)</li>
+                  <li>Single response — confidence weighted down accordingly</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="col-work-title">Risks</div>
+                <ul class="col-work-list">
+                  <li>No material risks flagged by the adversarial check</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);">
+              <div class="col-work-title">Stated Value — The respondents' own size of the prize</div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">"£1.6m per year"</p>
+
+              <div class="col-work-title">Value Rationale — The levers respondents pointed to</div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                "Trunking is our biggest variable cost, so even a few points of fill take out whole trailer runs. Better forecasting also cuts the premium we pay for short-notice subbies."
+              </p>
+
+              <div class="tag-row">
+                <span class="tag-pill" style="background: var(--cyan-bg); color: var(--cyan); border: 1px solid #cffafe;">Financial: Cost savings</span>
+                <span class="tag-pill" style="background: var(--emerald-bg); color: var(--emerald); border: 1px solid #d1fae5;">Process: Optimised resource allocation</span>
+                <span class="tag-pill" style="background: #eff6ff; color: #3b82f6; border: 1px solid #dbeafe;">Timeframe: Within 12 months</span>
+                <span class="tag-pill" style="background: var(--rose-bg); color: var(--rose); border: 1px solid #ffe4e6;">Cost of inaction: High</span>
+              </div>
+
+              <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 10px;">
+                <strong>Customer impact:</strong> No direct customer impact<br>
+                <strong>Why:</strong> Driver pay went up 7% this year and diesel is still volatile, so every empty trailer costs more each quarter. If we don't sort fill, it comes straight off margin.<br>
+                <strong>Milestones:</strong> Yes, the budget cycle. I have to commit to a trunking cost reduction in the FY2027/28 budget round in January 2027.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Shortlist Table -->
+        <div class="table-container-card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Use Case</th>
+                <th>Function</th>
+                <th>Impact</th>
+                <th>Readiness</th>
+                <th>Confidence</th>
+                <th>Priority Score</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-dark);">#01</td>
+                <td style="font-weight: 700; color: var(--text-main);">Nightly trunk load planning</td>
+                <td>Operations</td>
+                <td>5.0 / 5.0</td>
+                <td>4.0 / 5.0</td>
+                <td>73%</td>
+                <td style="font-family: var(--font-mono); font-weight: 800; color: var(--gold-dark);">4.35</td>
+                <td><span class="tier-badge tier-do-now">Do now</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-dark);">#02</td>
+                <td style="font-weight: 700; color: var(--text-main);">Automated Claims Adjudication & Triage</td>
+                <td>Customer / Claims</td>
+                <td>4.6 / 5.0</td>
+                <td>4.0 / 5.0</td>
+                <td>96%</td>
+                <td style="font-family: var(--font-mono); font-weight: 800; color: var(--gold-dark);">4.22</td>
+                <td><span class="tier-badge tier-do-now">Do now</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-dark);">#03</td>
+                <td style="font-weight: 700; color: var(--text-main);">Customer Churn & Retention Model</td>
+                <td>Commercial</td>
+                <td>4.4 / 5.0</td>
+                <td>3.6 / 5.0</td>
+                <td>91%</td>
+                <td style="font-family: var(--font-mono); font-weight: 800; color: var(--gold-dark);">3.95</td>
+                <td><span class="tier-badge tier-do-next">Do next</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-dark);">#04</td>
+                <td style="font-weight: 700; color: var(--text-main);">Supply Chain Dynamic Inventory Routing</td>
+                <td>Supply chain</td>
+                <td>4.1 / 5.0</td>
+                <td>3.5 / 5.0</td>
+                <td>88%</td>
+                <td style="font-family: var(--font-mono); font-weight: 800; color: var(--gold-dark);">3.78</td>
+                <td><span class="tier-badge tier-do-next">Do next</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-dark);">#05</td>
+                <td style="font-weight: 700; color: var(--text-main);">Autonomous Internal IT Helpdesk Agent</td>
+                <td>Data & IT</td>
+                <td>3.6 / 5.0</td>
+                <td>4.5 / 5.0</td>
+                <td>90%</td>
+                <td style="font-family: var(--font-mono); font-weight: 800; color: var(--gold-dark);">3.65</td>
+                <td><span class="tier-badge tier-later">Later</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- Split 2-Column Interface -->
-    <div class="workspace-grid">
-      <!-- Left: Chat Card -->
-      <div class="chat-card">
+    <!-- PAGE 3: PHASE 2 VALIDATION -->
+    <div class="page-section" id="sec-validation">
+      <div class="hero">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--gold-dark); letter-spacing: 0.08em; margin-bottom: 4px;">Phase 2 &bull; Validation</div>
+        <h1>Validate the priorities</h1>
+        <p>
+          Your team has been asked to validate the shortlisted AI use cases — a realistic cost and expected value for each, the data & technical readiness, and any governance or ethics considerations. This sharpens the business case and sequencing.
+        </p>
+      </div>
+
+      <div class="chat-card" style="max-width: 880px; margin: 0 auto; height: 580px;">
         <div class="chat-header">
           <div class="interviewer-info">
             <div class="avatar-sparkle">✨</div>
             <div>
-              <div class="interviewer-title">Aim — 3AIm interviewer</div>
-              <div class="interviewer-sub"><span class="dot"></span> Live interview</div>
+              <div class="interviewer-title">Phase 2 validation</div>
+              <div class="interviewer-sub">A quick guided validation of each use case</div>
             </div>
           </div>
-          <div class="badge-single-use">Single-Use Link</div>
         </div>
 
-        <div class="chat-body" id="chatBody">
+        <div class="chat-body" id="valChatBody">
           <div class="chat-msg bot">
             <div class="msg-avatar">✨</div>
             <div class="msg-bubble">
-              Hello! I'll guide you through this in a few quick questions — it usually takes about 20 minutes, and you'll review everything I've captured before anything is submitted.
+              I'll quickly validate each prioritised use case with you — a realistic cost and value, the data & technical readiness, and any governance or risks. Short answers are fine; tap a chip or type.
             </div>
           </div>
           <div class="chat-msg bot">
             <div class="msg-avatar">✨</div>
             <div class="msg-bubble">
-              Before we begin — what's your role and business unit? <i class="fa-solid fa-circle-info" style="color: var(--text-dim); margin-left: 4px;"></i>
+              Roughly, what's the one-off build cost to deliver <strong>Manual Request Triage</strong>?
+              <div class="chat-chips-row">
+                <button class="chat-chip" onclick="handleValChip('Skip')">Skip</button>
+                <button class="chat-chip" onclick="handleValChip('What does this mean?')">What does this mean?</button>
+                <button class="chat-chip" onclick="handleValChip('Help me calculate')">Help me calculate</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="chat-footer">
           <div class="input-box-wrapper">
-            <input type="text" id="userMsgInput" placeholder="Type your answer..." onkeypress="handleInputKey(event)">
-            <button class="btn-send" onclick="submitMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            <input type="text" id="valInput" placeholder="Type your answer..." onkeypress="handleValKey(event)">
+            <button class="btn-send" onclick="submitValMessage()"><i class="fa-solid fa-paper-plane"></i></button>
           </div>
           <div class="chat-bottom-meta">
-            <button class="btn-finish-review" onclick="togglePriorityDrawer()">Finish & review &rarr;</button>
+            <button class="btn-finish-review" onclick="navigateTo('roadmap')">Finish & review &rarr;</button>
           </div>
-        </div>
-      </div>
-
-      <!-- Right: Captured So Far Card -->
-      <div class="dossier-card">
-        <div class="dossier-head-row">
-          <div class="captured-label">
-            <span>• CAPTURED SO FAR</span>
-            <span class="captured-count" id="stepCountBadge">0/6</span>
-          </div>
-          <div class="truth-guard-tag active">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>Truthfulness guard</span>
-          </div>
-        </div>
-
-        <!-- 2x2 Meta Fields -->
-        <div class="grid-2x2">
-          <div class="field-block">
-            <span class="field-label">Role / Title *</span>
-            <span class="field-val" id="valRole">Head of Operations</span>
-          </div>
-          <div class="field-block">
-            <span class="field-label">Function</span>
-            <span class="field-val" id="valFunction">Operations</span>
-          </div>
-          <div class="field-block">
-            <span class="field-label">Seniority</span>
-            <span class="field-val" id="valSeniority">Head of Department</span>
-          </div>
-          <div class="field-block">
-            <span class="field-label">Region</span>
-            <span class="field-val" id="valRegion">UK & EMEA</span>
-          </div>
-        </div>
-
-        <!-- Use Case -->
-        <div class="field-block">
-          <span class="section-divider-label"><i class="fa-regular fa-lightbulb"></i> Use Case</span>
-          <span class="field-val italic-dim" id="valUseCase">e.g. Automate invoice matching</span>
-        </div>
-
-        <!-- Anchored Ratings -->
-        <div class="field-block">
-          <span class="section-divider-label"><i class="fa-solid fa-chart-simple"></i> Anchored Ratings</span>
-          
-          <div class="ratings-row">
-            <span>Expected impact</span>
-            <div class="rating-boxes">
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-            </div>
-          </div>
-          <div class="ratings-row">
-            <span>Data readiness</span>
-            <div class="rating-boxes">
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box"></span>
-            </div>
-          </div>
-          <div class="ratings-row">
-            <span>Feasibility</span>
-            <div class="rating-boxes">
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box"></span>
-              <span class="rating-box"></span>
-            </div>
-          </div>
-          <div class="ratings-row">
-            <span>Your confidence</span>
-            <div class="rating-boxes">
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box filled"></span>
-              <span class="rating-box"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Evidence -->
-        <div class="field-block">
-          <span class="section-divider-label"><i class="fa-regular fa-file-lines"></i> Evidence</span>
-          <span class="field-val italic-dim" id="valEvidence">What you've seen that makes it real</span>
-        </div>
-
-        <!-- Value Rationale -->
-        <div class="field-block">
-          <span class="section-divider-label"><i class="fa-solid fa-coins"></i> Value Rationale</span>
-          <span class="field-val italic-dim" id="valRationale">Which levers create the value, and why</span>
-        </div>
-
-        <!-- Size of the Prize -->
-        <div class="field-block">
-          <span class="section-divider-label"><i class="fa-solid fa-arrow-trend-up"></i> Size of the Prize</span>
-          <span class="field-val italic-dim" id="valSize">Rough annual value — a range is fine</span>
-        </div>
-
-        <div class="dossier-note">
-          Updates live as you talk. Nothing is submitted until you review and confirm it on the next screen.
         </div>
       </div>
     </div>
 
-    <!-- TOP PRIORITY / RESULTS PANEL -->
-    <div class="top-priority-panel" id="priorityDrawer">
-      <div class="badge-rank1">• TOP PRIORITY · RANK #1</div>
-
-      <div class="priority-hero-row">
-        <div class="priority-info">
-          <h2>Nightly trunk load planning</h2>
-          <div class="priority-sub">Operations · Do now</div>
-
-          <div class="priority-problem-text">
-            <strong>Problem</strong> Every night we run around 380 trunks between our 12 depots and the Lutterworth hub, and too many run part-empty. Average fill is 68% against an 80% target. My four planners build the plan in Excel from depot pre-advice that's wrong on about 15% of lanes, so we either send extra trailers 'just in case' or scramble for subbies at 11pm. With fuel and driver pay both up, this is the biggest cost leak I own.
-            <br><br>
-            Forecast the real pallet volume on each depot-to-hub lane by early evening and suggest a consolidated trunk plan, so my planners can cut part-empty trailers and last-minute subcontract bookings. Why: ~380 trunks/night, avg trailer fill 68% vs 80% target. Trunk cost ~£420/run, ~£40m/yr. Depot pre-advice wrong on ~15% of lanes by 18:00; plan built in Excel by 4 planners. Hub scan data is clean back to 2022.
-          </div>
-
-          <div class="tag-row">
-            <span class="tag-pill tag-target"><i class="fa-regular fa-clock"></i> Target: Within 12 months</span>
-            <span class="tag-pill tag-urgency">! Cost of inaction is high — act now</span>
-          </div>
-
-          <div class="financial-headline-row">
-            <div class="fin-metric">
-              <span class="fin-val">£1.1M</span>
-              <span class="fin-label">Adjusted annual value / year — set in review <i class="fa-solid fa-circle-info"></i></span>
-            </div>
-            <div class="fin-metric">
-              <span class="fin-val">9 mo</span>
-              <span class="fin-label">Payback · £800K build <i class="fa-solid fa-circle-info"></i></span>
-            </div>
-          </div>
-
-          <button class="btn-view-insights" onclick="toggleWorkingSection()">
-            <span>View insights</span>
-            <i class="fa-solid fa-arrow-down"></i>
-          </button>
-        </div>
-
-        <!-- Donut Gauges -->
-        <div class="gauge-group">
-          <div class="gauge-card">
-            <div class="gauge-ring gold">
-              <div class="gauge-inner">100%</div>
-            </div>
-            <span class="gauge-label">Impact</span>
-          </div>
-
-          <div class="gauge-card">
-            <div class="gauge-ring cyan">
-              <div class="gauge-inner">50%</div>
-            </div>
-            <span class="gauge-label">Readiness</span>
-          </div>
-
-          <div class="gauge-card">
-            <div class="gauge-ring yellow">
-              <div class="gauge-inner">73%</div>
-            </div>
-            <span class="gauge-label">Confidence</span>
-          </div>
-        </div>
+    <!-- PAGE 4: ROADMAP & WAVES -->
+    <div class="page-section" id="sec-roadmap">
+      <div class="hero">
+        <h1>AI Realisation Roadmap & Waves</h1>
+        <p>Prioritised implementation timeline derived from blind evidence-backed scoring.</p>
       </div>
 
-      <!-- Expandable Show the Working -->
-      <div class="working-drawer" id="workingSection">
-        <div class="working-toggle-title">
-          <i class="fa-solid fa-chevron-down"></i>
-          <span>Why this ranking — show the working</span>
-        </div>
-
-        <div class="working-grid-3col">
-          <div>
-            <div class="col-work-title">Evidence</div>
-            <ul class="col-work-list">
-              <li>Problem: "Every night we run around 380 trunks between our 12 depots and the Lutterworth hub, and too many run part-empty. Average fill is 68% against"</li>
-              <li>1 stakeholder proposed this</li>
-              <li>Mean impact 5/5 · readiness 4/5 · feasibility 3/5</li>
-              <li>"Forecast the real pallet volume on each depot-to-hub lane by early evening and suggest a consolidated trunk plan, so my"</li>
-            </ul>
+      <div class="wave-grid">
+        <!-- Wave 1: Do Now -->
+        <div class="wave-column">
+          <div class="wave-col-header">
+            <div class="wave-col-title">
+              <i class="fa-solid fa-bolt" style="color: var(--emerald);"></i>
+              <span>Wave 1 &bull; Do Now (0-3 Months)</span>
+            </div>
+            <span class="tier-badge tier-do-now">20-Day PoV</span>
           </div>
 
-          <div>
-            <div class="col-work-title">Assumptions</div>
-            <ul class="col-work-list">
-              <li>Annual value adjusted by the consultant team in review (the model alone would say £7.8M)</li>
-              <li>Single response — confidence weighted down accordingly</li>
-            </ul>
+          <div class="wave-item">
+            <div class="wave-item-title">Nightly trunk load planning</div>
+            <div class="wave-item-desc">Forecast depot-to-hub lane volumes to cut part-empty trailers and short-notice subbies.</div>
+            <div class="wave-item-meta">
+              <span>Value: £1.1M/yr</span>
+              <strong style="color: var(--gold-dark);">Score: 4.35</strong>
+            </div>
           </div>
 
-          <div>
-            <div class="col-work-title">Risks</div>
-            <ul class="col-work-list">
-              <li>No material risks flagged by the adversarial check</li>
-            </ul>
+          <div class="wave-item">
+            <div class="wave-item-title">Automated Claims Adjudication & Triage</div>
+            <div class="wave-item-desc">Multimodal document processing and fraud anomaly detection for motor and health claims.</div>
+            <div class="wave-item-meta">
+              <span>Value: £2.4M/yr</span>
+              <strong style="color: var(--gold-dark);">Score: 4.22</strong>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);">
-          <div class="col-work-title">Stated Value — The respondents' own size of the prize</div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">"£1.6m per year"</p>
-
-          <div class="col-work-title">Value Rationale — The levers respondents pointed to</div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            "Trunking is our biggest variable cost, so even a few points of fill take out whole trailer runs. Better forecasting also cuts the premium we pay for short-notice subbies."
-          </p>
-
-          <div class="tag-row">
-            <span class="tag-pill" style="background: var(--cyan-bg); color: var(--cyan); border: 1px solid #cffafe;">Financial: Cost savings</span>
-            <span class="tag-pill" style="background: var(--emerald-bg); color: var(--emerald); border: 1px solid #d1fae5;">Process: Optimised resource allocation</span>
-            <span class="tag-pill" style="background: #eff6ff; color: #3b82f6; border: 1px solid #dbeafe;">Timeframe: Within 12 months</span>
-            <span class="tag-pill" style="background: var(--rose-bg); color: var(--rose); border: 1px solid #ffe4e6;">Cost of inaction: High</span>
+        <!-- Wave 2: Do Next -->
+        <div class="wave-column">
+          <div class="wave-col-header">
+            <div class="wave-col-title">
+              <i class="fa-solid fa-arrow-trend-up" style="color: var(--gold-dark);"></i>
+              <span>Wave 2 &bull; Do Next (3-6 Months)</span>
+            </div>
+            <span class="tier-badge tier-do-next">Scale-Up</span>
           </div>
 
-          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 10px;">
-            <strong>Customer impact:</strong> No direct customer impact<br>
-            <strong>Why:</strong> Driver pay went up 7% this year and diesel is still volatile, so every empty trailer costs more each quarter. If we don't sort fill, it comes straight off margin.<br>
-            <strong>Milestones:</strong> Yes, the budget cycle. I have to commit to a trunking cost reduction in the FY2027/28 budget round in January 2027.
-          </p>
+          <div class="wave-item">
+            <div class="wave-item-title">Customer Churn & Proactive Retention</div>
+            <div class="wave-item-desc">Predictive churn warning model combined with automated commercial offer bundling.</div>
+            <div class="wave-item-meta">
+              <span>Value: £4.2M ARR</span>
+              <strong style="color: var(--gold-dark);">Score: 3.95</strong>
+            </div>
+          </div>
+
+          <div class="wave-item">
+            <div class="wave-item-title">Supply Chain Dynamic Inventory Routing</div>
+            <div class="wave-item-desc">Multi-echelon inventory balancing across distribution network nodes.</div>
+            <div class="wave-item-meta">
+              <span>Value: £1.6M/yr</span>
+              <strong style="color: var(--gold-dark);">Score: 3.78</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wave 3: Later -->
+        <div class="wave-column">
+          <div class="wave-col-header">
+            <div class="wave-col-title">
+              <i class="fa-regular fa-clock" style="color: var(--text-dim);"></i>
+              <span>Wave 3 &bull; Later (6-12 Months)</span>
+            </div>
+            <span class="tier-badge tier-later">Foundation</span>
+          </div>
+
+          <div class="wave-item">
+            <div class="wave-item-title">Autonomous Internal IT Helpdesk Agent</div>
+            <div class="wave-item-desc">Tier-1 automated ticket resolution, credential provisioning and system diagnosis.</div>
+            <div class="wave-item-meta">
+              <span>Value: £620k/yr</span>
+              <strong style="color: var(--gold-dark);">Score: 3.65</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Stakeholder Coverage Matrix -->
-    <div class="coverage-card">
-      <div class="coverage-head">
-        <h3>Stakeholder coverage</h3>
-        <p>Responses by function &times; seniority</p>
+    <!-- PAGE 5: STAKEHOLDER COVERAGE -->
+    <div class="page-section" id="sec-coverage">
+      <div class="hero">
+        <h1>Stakeholder Coverage Matrix</h1>
+        <p>Participant responses mapped across functional departments and organizational seniority levels.</p>
       </div>
 
-      <div class="coverage-table-wrapper">
-        <table class="coverage-table">
-          <thead>
-            <tr>
-              <th style="text-align: left;">Function</th>
-              <th>C-Suite</th>
-              <th>EVP / SVP</th>
-              <th>VP</th>
-              <th>Director</th>
-              <th>Head of Dept</th>
-              <th>Senior Mgr</th>
-              <th>Manager</th>
-              <th>Team Lead</th>
-              <th>Senior Spec</th>
-              <th>Analyst</th>
-              <th>Not Stated</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="row-label">Finance</td>
-              <td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Operations</td>
-              <td></td><td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Supply chain</td>
-              <td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Customer</td>
-              <td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Commercial</td>
-              <td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Marketing</td>
-              <td></td><td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Legal</td>
-              <td></td><td></td>
-              <td class="filled-gold">1</td>
-              <td class="filled-gold">1</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label text-danger">Data & IT</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-              <td class="row-label">Not stated</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-              <td class="filled-blue">4</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="coverage-card">
+        <div class="coverage-head">
+          <h3>Stakeholder coverage</h3>
+          <p>Responses by function &times; seniority</p>
+        </div>
+
+        <div class="coverage-table-wrapper">
+          <table class="coverage-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Function</th>
+                <th>C-Suite</th>
+                <th>EVP / SVP</th>
+                <th>VP</th>
+                <th>Director</th>
+                <th>Head of Dept</th>
+                <th>Senior Mgr</th>
+                <th>Manager</th>
+                <th>Team Lead</th>
+                <th>Senior Spec</th>
+                <th>Analyst</th>
+                <th>Not Stated</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-label">Finance</td>
+                <td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Operations</td>
+                <td></td><td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Supply chain</td>
+                <td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Customer</td>
+                <td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Commercial</td>
+                <td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Marketing</td>
+                <td></td><td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Legal</td>
+                <td></td><td></td>
+                <td class="filled-gold">1</td>
+                <td class="filled-gold">1</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label text-danger">Data & IT</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="row-label">Not stated</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="filled-blue">4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </main>
 
   <!-- Global Footer -->
   <footer>
-    <p>3AIm &bull; 3Point AI Realisation Platform &bull; Cisco &bull; Lenovo &bull; ARX Consulting</p>
+    <p>3AIm &bull; 3Point AI Realisation Assessment Platform &bull; Cisco Systems &bull; Lenovo &bull; ARX Consulting</p>
   </footer>
 
-  <!-- Interactive State Engine -->
+  <!-- Interactive Logic -->
   <script>
-    let step = 1;
+    let currentStep = 1;
+
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('active'));
+
+      const targetSection = document.getElementById(`sec-${pageId}`);
+      const targetTab = document.getElementById(`tab-${pageId}`);
+
+      if (targetSection) targetSection.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function toggleTheme() {
       const html = document.documentElement;
@@ -1444,22 +1958,22 @@
     }
 
     function jumpStep(s) {
-      step = s;
+      currentStep = s;
       updateStepperUI();
     }
 
     function updateStepperUI() {
       for (let i = 1; i <= 6; i++) {
         const node = document.getElementById(`step-node-${i}`);
-        if (i < step) {
+        if (i < currentStep) {
           node.className = 'step-node completed';
-        } else if (i === step) {
+        } else if (i === currentStep) {
           node.className = 'step-node active';
         } else {
           node.className = 'step-node';
         }
       }
-      document.getElementById('stepCountBadge').textContent = `${step-1}/6`;
+      document.getElementById('stepCountBadge').textContent = `${currentStep-1}/6`;
     }
 
     function handleInputKey(e) {
@@ -1498,37 +2012,31 @@
     }
 
     function advanceBotTurn(userTxt) {
-      step++;
-      if (step > 6) step = 6;
+      currentStep++;
+      if (currentStep > 6) currentStep = 6;
       updateStepperUI();
 
-      if (step === 2) {
+      if (currentStep === 2) {
         document.getElementById('valRole').textContent = userTxt;
         document.getElementById('valUseCase').textContent = "Nightly trunk load planning across depots";
         document.getElementById('valUseCase').classList.remove('italic-dim');
         appendBotBubble("Got it. Now describe the core <strong>Use Case problem</strong> you want AI to solve. What is the current bottleneck?");
-      } else if (step === 3) {
+      } else if (currentStep === 3) {
         document.getElementById('valEvidence').textContent = "380 trunks run nightly. 68% fill vs 80% target. Excel plan 15% inaccurate.";
         document.getElementById('valEvidence').classList.remove('italic-dim');
         appendBotBubble("Thank you. On a scale of 1 to 5, how would you rate your team's <strong>Expected Impact</strong> and <strong>Data Readiness</strong>?");
-      } else if (step === 4) {
+      } else if (currentStep === 4) {
         document.getElementById('valRationale').textContent = "Better volume forecasting cuts empty trailer runs & subbie premiums.";
         document.getElementById('valRationale').classList.remove('italic-dim');
         appendBotBubble("What supporting <strong>evidence or system logs</strong> do you have to validate this?");
-      } else if (step === 5) {
+      } else if (currentStep === 5) {
         document.getElementById('valSize').textContent = "£1.6m per year";
         document.getElementById('valSize').classList.remove('italic-dim');
         appendBotBubble("What is the estimated <strong>annual financial value / size of the prize</strong>?");
-      } else if (step === 6) {
-        appendBotBubble("All data captured! <strong>Truthfulness Guard verified at 94%</strong>. Click <strong>Finish & review</strong> below to view the Top Priority ranking.");
-        togglePriorityDrawer();
+      } else if (currentStep === 6) {
+        appendBotBubble("All data captured! <strong>Truthfulness Guard verified at 94%</strong>. Click <strong>Finish & review</strong> to view the Top Priority ranking.");
+        setTimeout(() => navigateTo('dashboard'), 1500);
       }
-    }
-
-    function togglePriorityDrawer() {
-      const drawer = document.getElementById('priorityDrawer');
-      drawer.classList.add('active');
-      drawer.scrollIntoView({ behavior: 'smooth' });
     }
 
     function toggleWorkingSection() {
@@ -1538,6 +2046,54 @@
       } else {
         sec.style.display = 'none';
       }
+    }
+
+    function handleValKey(e) {
+      if (e.key === 'Enter') submitValMessage();
+    }
+
+    function handleValChip(txt) {
+      appendValUser(txt);
+      setTimeout(() => {
+        if (txt === 'Help me calculate') {
+          appendValBot("Based on similar deployments with 4 FTEs and Cisco/Lenovo staging, typical build is estimated at <strong>£80,000–£120,000</strong> over 6 weeks.");
+        } else if (txt === 'What does this mean?') {
+          appendValBot("Build cost includes initial development, data pipelines and integration testing before production handover.");
+        } else {
+          appendValBot("Skipped. Let's move to expected annual value realization.");
+        }
+      }, 400);
+    }
+
+    function submitValMessage() {
+      const input = document.getElementById('valInput');
+      const txt = input.value.trim();
+      if (!txt) return;
+
+      appendValUser(txt);
+      input.value = '';
+
+      setTimeout(() => {
+        appendValBot("Captured build estimate: <strong>" + txt + "</strong>. Moving to operational run cost validation.");
+      }, 500);
+    }
+
+    function appendValUser(txt) {
+      const body = document.getElementById('valChatBody');
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg user';
+      msg.innerHTML = `<div class="msg-bubble">${txt}</div>`;
+      body.appendChild(msg);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function appendValBot(txt) {
+      const body = document.getElementById('valChatBody');
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg bot';
+      msg.innerHTML = `<div class="msg-avatar">✨</div><div class="msg-bubble">${txt}</div>`;
+      body.appendChild(msg);
+      body.scrollTop = body.scrollHeight;
     }
   </script>
 </body>
