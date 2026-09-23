@@ -653,12 +653,12 @@ if(REDUCED){
   document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
 }
 
-/* Défilement automatique, une section toutes les 15 s, en boucle.
+/* Défilement automatique, une section toutes les 10 s, en boucle.
    Conçu pour un écran de stand. Toute interaction met en pause 45 s. */
 (function(){
   if(REDUCED) return;
 
-  const INTERVAL = 15000;    // 15 s par section
+  const INTERVAL = 10000;    // 10 s par section
   const RESUME   = 45000;    // reprise 45 s apres une interaction
   const stops = [document.getElementById("top"), ...document.querySelectorAll("section")];
   if(stops.length < 2) return;
