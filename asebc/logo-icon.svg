@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="100%" height="100%">
+  <defs>
+    <linearGradient id="appleBlueIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0071e3">
+        <animate attributeName="stop-color" values="#0071e3;#0077ed;#2997ff;#0071e3" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#0051a8">
+        <animate attributeName="stop-color" values="#0051a8;#0071e3;#003d80;#0051a8" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <linearGradient id="appleGoldIcon" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9f0a">
+        <animate attributeName="stop-color" values="#ff9f0a;#ffd60a;#ff9f0a" dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#30d158">
+        <animate attributeName="stop-color" values="#30d158;#34c759;#30d158" dur="6s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <filter id="appleGlowIcon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes pulseIcon {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.12); opacity: 1; filter: drop-shadow(0 0 10px rgba(0, 113, 227, 0.7)); }
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+    .icon-wing {
+      animation: floatIcon 5s ease-in-out infinite;
+      transform-origin: 90px 90px;
+    }
+    .core-orb {
+      animation: pulseIcon 4s ease-in-out infinite;
+      transform-origin: 126px 66px;
+    }
+  </style>
+
+  <!-- iOS App Icon Squircle Background -->
+  <rect width="180" height="180" rx="42" fill="#000000" />
+  <rect width="180" height="180" rx="42" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+
+  <!-- Ambient light -->
+  <circle cx="90" cy="90" r="70" fill="#0071e3" opacity="0.15" />
+
+  <!-- Emblem Marks -->
+  <g transform="translate(10, 8)">
+    <path class="icon-wing" d="M 52 118 C 34 98, 34 64, 60 48 C 72 40, 86 44, 90 56 C 94 66, 84 76, 74 84 C 60 92, 60 110, 78 120 C 82 124, 78 134, 70 134 C 62 134, 56 128, 52 118 Z" 
+          fill="url(#appleBlueIcon)" filter="url(#appleGlowIcon)" />
+
+    <path d="M 78 132 C 94 136, 118 122, 126 102 C 136 78, 126 56, 106 50 C 98 46, 90 52, 92 62 C 94 72, 104 80, 108 92 C 112 108, 98 118, 84 122 C 80 123, 76 130, 78 132 Z" 
+          fill="url(#appleGoldIcon)" filter="url(#appleGlowIcon)" />
+
+    <!-- Radiant Catalyst Center -->
+    <g class="core-orb">
+      <circle cx="120" cy="68" r="9" fill="#ffffff" />
+      <circle cx="120" cy="68" r="16" fill="none" stroke="#0071e3" stroke-width="2" opacity="0.6"/>
+    </g>
+
+    <!-- Upward Momentum Vector -->
+    <path d="M 72 96 L 82 86 L 92 96" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 82 88 L 82 112" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+  </g>
+</svg>
