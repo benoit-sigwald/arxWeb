@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI as a Service — Benoît Sigwald | Arx Consulting</title>
+<meta name="description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
+<link rel="canonical" href="https://arx-consulting.com/Arx-AI-as-a-Service.html" />
+<link rel="alternate" hreflang="en" href="https://arx-consulting.com/Arx-AI-as-a-Service.html" />
+<link rel="alternate" hreflang="fr" href="https://arx-consulting.com/Arx-AI-as-a-Service-fr.html" />
+<link rel="alternate" hreflang="x-default" href="https://arx-consulting.com/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Arx Consulting" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://arx-consulting.com/Arx-AI-as-a-Service.html" />
+<meta property="og:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta property="og:description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
+<meta property="og:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta name="twitter:description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
+<meta name="twitter:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
+<meta name="author" content="Benoît Sigwald" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+<script>
+/* Calendly charge a la demande (survol/clic) — evite 2 requetes tierces bloquantes */
+window.arxCalendly=(function(){var loading=false,ready=false,queued=false;
+var URL='https://calendly.com/arx-capital-eu/30min';
+function open(){if(window.Calendly){Calendly.initPopupWidget({url:URL});}else{queued=true;}}
+function load(cb){if(ready){cb&&cb();return;}if(loading){return;}loading=true;
+var c=document.createElement('link');c.rel='stylesheet';c.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(c);
+var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';
+s.onload=function(){ready=true;if(queued||cb){queued=false;open();}};document.head.appendChild(s);}
+document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('a[href*="calendly.com"]');if(t)load();},{passive:true});
+return function(){if(ready){open();}else{queued=true;load();}};})();
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"><img src="assets/logo.webp" alt="Arx Consulting" width="240" height="264" decoding="async"><b>ARX <span>Consulting</span></b></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="realisations.html">Case studies</a></li>
+      <li><a href="Arx-AI-as-a-Service.html">AI as a Service</a></li>
+      <li><a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="approche.html">About me</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="lang-switch" href="Arx-AI-as-a-Service-fr.html">FR</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container" style="display:block">
+    <span class="kicker">Blueprint & Production Case Study</span>
+    <h1>AI as a Service :<br /><em>50+ microservices & Sovereign AI gateways operated end to end.</em></h1>
+    <p class="lede">
+      A complete production blueprint: how I built and operate my entire AI as a Service stack — Sovereign AI routers,
+      FastMCP cluster, PostgreSQL 18 with pgvector semantic embeddings, automated CI/CD, and encrypted off-host backups on a single sovereign ARM server.
+    </p>
+  </div>
+</header>
+
+<div class="stats-band">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><b>50+</b><span>microservices 24/7 in production</span></div>
+      <div class="stat"><b>4 / 24</b><span>ARM cores / GB RAM (Always Free)</span></div>
+      <div class="stat"><b>PG18</b><span>pgvector semantic search & RAG</span></div>
+      <div class="stat"><b>8 MCP</b><span>FastMCP Sovereign AI & Quant gateways</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="story">
+  <div class="container">
+    <h2>Why, and how</h2>
+    <p class="sub">The goal: centralize everything on one free server, without giving up the developer experience of Vercel or Render.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>1 · Foundation</h3>
+        <p>Ubuntu 24.04 on an OCI Ampere A1 (ARM64). Two firewall layers — OCI Security List + instance iptables — DuckDNS subdomains with a cron-based IP updater.</p>
+      </div>
+      <div class="card">
+        <h3>2 · The platform</h3>
+        <p>Coolify as a self-hosted PaaS: builds from GitHub, deploys Docker containers, manages env vars and cron. Traefik terminates HTTPS with automatic Let's Encrypt certificates.</p>
+      </div>
+      <div class="card">
+        <h3>3 · The workloads</h3>
+        <p>MCP servers, web services and API servers, each in its own container, routed by hostname and path. Test and prod environments, deployed by git push (Coolify webhook).</p>
+      </div>
+      <div class="card">
+        <h3>4 · The data</h3>
+        <p>Self-hosted PostgreSQL/PostgREST (same API syntax as Supabase — zero code change) plus an Oracle DB. 500+ rows migrated with full-text search intact; automated backups to OCI Object Storage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diagrams">
+  <div class="container">
+    <h2>Architecture diagrams</h2>
+    <p class="sub">The complete picture, from migration flow to service layer.</p>
+
+    <div class="diagram">
+      <h3>1 · High-level platform view</h3>
+      <p>The consolidated architecture: GitHub source of truth, dual-layer security edge, OCI Always Free ARM64 compute, FastMCP services, PostgreSQL data layer, and Sovereign AI integration.</p>
+      <img src="assets/01-platform-overview.webp?v=20261008e" alt="High-level OCI AIaaS platform architecture diagram" width="2000" height="1125" decoding="async" fetchpriority="high" srcset="assets/01-platform-overview-800.webp?v=20261008e 800w, assets/01-platform-overview.webp?v=20261008e 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>2 · OCI applications and service map</h3>
+      <p>The complete microservices topology: Traefik TLS routing, web applications (CapGrowth, Mailer, Tracker, Linki, Blackstone), FastMCP cluster (Mistral, Einstein, Saul, Omni, Auto), and PostgreSQL 18 with vector search.</p>
+      <img src="assets/02-oci-service-map.webp?v=20261008e" alt="OCI applications, MCP services, data and operations diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/02-oci-service-map-800.webp?v=20261008e 800w, assets/02-oci-service-map.webp?v=20261008e 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>3 · Mistral Free-mode & Sovereign AI router</h3>
+      <p>The intelligent AI request pipeline: FastMCP TokenGuard authorization, capacity tracking, 24-hour LRU caching, rate limit protection, and automatic fallback to OCI Generative AI Sovereign Cloud.</p>
+      <img src="assets/03-mistral-free-mode.webp?v=20261008e" alt="Mistral Studio Free-mode request, capacity and router flow diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/03-mistral-free-mode-800.webp?v=20261008e 800w, assets/03-mistral-free-mode.webp?v=20261008e 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>4 · Delivery, synchronization and disaster recovery</h3>
+      <p>The automated operational loop: GitHub verified delivery, Coolify automated builds, dual-layer health monitoring, daily encrypted volume backups, and tested disaster-recovery restore.</p>
+      <img src="assets/04-delivery-and-recovery.webp?v=20261008e" alt="Delivery, synchronization and disaster recovery flow diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/04-delivery-and-recovery-800.webp?v=20261008e 800w, assets/04-delivery-and-recovery.webp?v=20261008e 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+  </div>
+</section>
+
+<section id="platform-services">
+  <div class="container">
+    <h2>Platform services, one by one</h2>
+    <p class="sub">The building blocks behind every deployed app: the deployment plane, the data layer, object storage and backups.</p>
+
+    <div class="diagram">
+      <h3>Coolify — deployment plane</h3>
+      <p>Builds from GitHub on every push, deploys Docker 27 containers with rolling zero-downtime swaps, manages environment variables and scheduled cron jobs — all driven through its REST API.</p>
+      <img src="assets/svc-coolify.webp?v=20261008f" alt="Coolify deployment plane diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/svc-coolify-660.webp?v=20261008f 660w, assets/svc-coolify.webp?v=20261008f 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>Data layer — PostgreSQL 18 + pgvector + PostgREST + Oracle ATP</h3>
+      <p>A self-hosted, Supabase-compatible data API with pgvector semantic AI embeddings and PostgREST OpenAPI, alongside Oracle ATP 23ai. Zero-loss migration with instant schema introspection.</p>
+      <img src="assets/svc-data-layer.webp?v=20261008f" alt="Arx data layer diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/svc-data-layer-660.webp?v=20261008f 660w, assets/svc-data-layer.webp?v=20261008f 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>MinIO — S3-compatible object storage</h3>
+      <p>High-throughput S3-compatible object storage with presigned URLs for application assets, protected behind Traefik TLS and isolated Docker bridge networking.</p>
+      <img src="assets/svc-minio.webp?v=20261008f" alt="MinIO S3 storage diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/svc-minio-660.webp?v=20261008f 660w, assets/svc-minio.webp?v=20261008f 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+
+    <div class="diagram">
+      <h3>Backups — automated, off-container</h3>
+      <p>Daily 03:00 UTC encrypted snapshots (AES-256) shipped off-host to OCI Object Storage bucket, with automated SHA256 integrity verification and disaster recovery drill validation.</p>
+      <img src="assets/svc-backups.webp?v=20261008f" alt="Backups architecture diagram" loading="lazy" width="2000" height="1125" decoding="async" srcset="assets/svc-backups-660.webp?v=20261008f 660w, assets/svc-backups.webp?v=20261008f 2000w" sizes="(max-width: 820px) 92vw, 1000px">
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <h2>The stack</h2>
+    <table>
+      <thead><tr><th>Component</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 GB RAM, Ubuntu 24.04 — Oracle free tier</td></tr>
+        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime for 50+ microservices & containers</td></tr>
+        <tr><td style="color:var(--text)">Coolify</td><td>Self-hosted PaaS: build, deploy, env, cron, REST API</td></tr>
+        <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, automatic Let's Encrypt HTTPS, host/path routing</td></tr>
+        <tr><td style="color:var(--text)">Mistral AI FastMCP Router</td><td>Sovereign European AI tier on OCI Ampere: local FastMCP gateway with Codestral & Mistral-Small, rate-limiting, and 24h LRU caching</td></tr>
+        <tr><td style="color:var(--text)">ARX FastMCP Cluster</td><td>8 specialized MCP servers (Blackstone quant execution, Einstein deep research, Saul legal, Omni profiling, Auto, Prisme)</td></tr>
+        <tr><td style="color:var(--text)">PostgreSQL 18 + pgvector</td><td>Self-hosted data layer with AI semantic vector embeddings and PostgREST API</td></tr>
+        <tr><td style="color:var(--text)">n8n + Redis + ntfy</td><td>Self-hosted workflow automation, asynchronous task queues, and instant push alerts</td></tr>
+        <tr><td style="color:var(--text)">MinIO</td><td>S3-compatible object storage</td></tr>
+        <tr><td style="color:var(--text)">OCI Object Storage</td><td>Automated off-container backups, disaster-recovery restore tested</td></tr>
+        <tr><td style="color:var(--text)">DuckDNS</td><td>Free DNS with cron-based IP updates</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="container">
+    <span class="sec-num">04 — Implementation &amp; Replication</span>
+    <h2>Replication Blueprint &amp; Full Deployment Checklist</h2>
+    <p class="sub">A complete step-by-step checklist and actionable engineering plan to replicate this sovereign, zero-waste AI as a Service platform from scratch.</p>
+
+    <div class="checklist-grid" style="display:grid;gap:24px;margin-top:32px;">
+      
+      <!-- Phase 1 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 1</span>
+          <h3 style="margin:0;font-size:1.2rem;">Sovereign Infrastructure &amp; Perimeter Hardening</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Provision bare compute, configure two-layer firewall isolation, and establish dynamic DNS routing.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>OCI Compute Provisioning</b></td>
+              <td>Provision OCI Ampere A1 Compute instance (4 OCPU ARM64, 24 GB RAM, 200 GB NVMe storage) on Ubuntu 24.04 LTS.</td>
+              <td class="ok"><code>lscpu</code> &amp; <code>free -m</code></td>
+            </tr>
+            <tr>
+              <td><b>2-Layer Firewall Hardening</b></td>
+              <td>Configure OCI VCN Ingress Security Rules (ports 80, 443, 22) + Linux Host UFW. Deny all direct database/internal port exposure.</td>
+              <td class="ok"><code>ufw status verbose</code></td>
+            </tr>
+            <tr>
+              <td><b>Dynamic DNS Automation</b></td>
+              <td>Deploy systemd cron job updating DuckDNS / custom domain API every 5 minutes with WAN IP synchronization.</td>
+              <td class="ok"><code>systemctl status duckdns</code></td>
+            </tr>
+            <tr>
+              <td><b>Docker Engine 27 &amp; Compose</b></td>
+              <td>Install Docker CE 27.x + Docker Compose plugin from official Docker APT repositories; configure log rotation daemon.json.</td>
+              <td class="ok"><code>docker --version</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 2</span>
+          <h3 style="margin:0;font-size:1.2rem;">PaaS Orchestration &amp; Edge Ingress Plane</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy self-hosted application control plane, edge TLS termination, and automated Git CI/CD pipelines.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Coolify PaaS Installation</b></td>
+              <td>Execute automated installer: <code>curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash</code>. Configure root admin credentials.</td>
+              <td class="ok">HTTP 200 on port 8000</td>
+            </tr>
+            <tr>
+              <td><b>Traefik Ingress &amp; TLS</b></td>
+              <td>Configure Traefik v3 reverse proxy with Let's Encrypt ACME HTTP-01 / DNS-01 auto-renewal and HTTP &rarr; HTTPS redirection.</td>
+              <td class="ok">A+ SSL Labs rating</td>
+            </tr>
+            <tr>
+              <td><b>GitHub Webhook CI/CD</b></td>
+              <td>Connect GitHub personal access token / Deploy Keys. Configure webhook endpoints for automatic zero-downtime rolling deploys.</td>
+              <td class="ok">Automated push deploy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 3</span>
+          <h3 style="margin:0;font-size:1.2rem;">Enterprise Data Layer &amp; Semantic Vector Engine</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Self-host high-performance PostgreSQL 18 with AI vector search, PostgREST instant APIs, and Redis caching.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>PostgreSQL 18 + pgvector</b></td>
+              <td>Deploy PostgreSQL 18 container; compile/enable <code>pgvector</code> extension for 1536-dim embedding indexation (HNSW/IVFFlat).</td>
+              <td class="ok"><code>CREATE EXTENSION vector;</code></td>
+            </tr>
+            <tr>
+              <td><b>PostgREST OpenAPI Layer</b></td>
+              <td>Deploy PostgREST container connected to Postgres internal network for instant Supabase-compatible REST APIs with JWT auth.</td>
+              <td class="ok"><code>curl /rpc/...</code> OpenAPI</td>
+            </tr>
+            <tr>
+              <td><b>Dual Redis Caching &amp; Queues</b></td>
+              <td>Deploy Redis 7 Alpine containers for MCP response caching, session token storage, and asynchronous task coordination.</td>
+              <td class="ok"><code>redis-cli ping</code> &amp; PONG</td>
+            </tr>
+            <tr>
+              <td><b>Oracle ATP 23ai Integration</b></td>
+              <td>Configure Oracle Autonomous Transaction Processing (ATP 23ai) mutual TLS wallet connection for institutional quant storage.</td>
+              <td class="ok">mTLS wallet handshake</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 4 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 4</span>
+          <h3 style="margin:0;font-size:1.2rem;">Sovereign AI Router &amp; FastMCP Cluster</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy intelligent multi-model routing gateway with TokenGuard protection and specialized domain MCP microservices.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Mistral FastMCP Router</b></td>
+              <td>Deploy sovereign AI routing gateway running Codestral &amp; Mistral-Small with 24-hour LRU semantic cache and zero-waste rate-limiting.</td>
+              <td class="ok"><code>/health</code> &amp; cache hit 200</td>
+            </tr>
+            <tr>
+              <td><b>TokenGuard &amp; Quota Shield</b></td>
+              <td>Implement per-key rate-limiting (RPS/TPM), automated failover to OCI Sovereign Cloud, and surgical token usage metrics.</td>
+              <td class="ok">429 circuit-breaker test</td>
+            </tr>
+            <tr>
+              <td><b>Domain FastMCP Cluster</b></td>
+              <td>Deploy domain MCP servers over HTTP/SSE: Blackstone (Quant Execution), Einstein (Deep Web Research), Saul (Legal), Omni (Profiling).</td>
+              <td class="ok">8/8 MCP SSE handshakes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 5 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 5</span>
+          <h3 style="margin:0;font-size:1.2rem;">Workflow Automation, S3 Storage &amp; Backup Loop</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy event-driven pipelines, self-hosted object storage, and automated off-host disaster recovery backups.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>MinIO S3 Object Storage</b></td>
+              <td>Deploy MinIO instance behind Traefik TLS with presigned expiring URLs for document extraction artifacts and assets.</td>
+              <td class="ok">S3 PutObject / GetObject</td>
+            </tr>
+            <tr>
+              <td><b>n8n Automation &amp; ntfy Push</b></td>
+              <td>Deploy n8n workflow engine connected to PostgreSQL and FastMCP triggers; configure ntfy push broker for real-time mobile alerts.</td>
+              <td class="ok">Webhook push trigger</td>
+            </tr>
+            <tr>
+              <td><b>Automated Off-Host Backups</b></td>
+              <td>Schedule daily 03:00 UTC encrypted (AES-256) volume snapshots shipped to OCI Object Storage with 30-day retention policy.</td>
+              <td class="ok">Daily S3 bucket checksum</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 6 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 6</span>
+          <h3 style="margin:0;font-size:1.2rem;">Validation Drills &amp; Production Go-Live</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Execute rigorous end-to-end stress testing, cold disaster recovery drills, and client integration.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Disaster Recovery Drill</b></td>
+              <td>Execute simulated cold restore from OCI Object Storage bucket onto an isolated standby container; verify 100% data integrity.</td>
+              <td class="ok">Zero data loss validated</td>
+            </tr>
+            <tr>
+              <td><b>Latency &amp; Load Benchmarking</b></td>
+              <td>Run concurrent load test (k6 / wrk) across Traefik, PostgREST and FastMCP endpoints. Validate sub-20ms P95 API response times.</td>
+              <td class="ok">P95 &lt; 20ms under load</td>
+            </tr>
+            <tr>
+              <td><b>Client &amp; Agent Integration</b></td>
+              <td>Connect Antigravity IDE, Claude Code, and autonomous agents via secure API keys; enable 24/7 autonomous operations.</td>
+              <td class="ok">Full autonomous execution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img class="flogo" src="assets/logo.webp" alt="" width="240" height="264" loading="lazy" decoding="async">
+    <div>
+      <strong>Benoît Sigwald</strong> ·
+      <a href="mailto:benoit.p.g.sigwald@gmail.com">benoit.p.g.sigwald@gmail.com</a> ·
+      <a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">github.com/benoit-sigwald</a>
+    </div>
+    <div><a href="index.html">← Back to home</a> · <a href="mentions-legales.html">Legal &amp; privacy</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle'), n = document.querySelector('nav');
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  n.querySelectorAll('ul a').forEach(function(a){
+    a.addEventListener('click', function(){ n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+</script>
+<script defer src="/gate/t.js" data-site="arxcapital">
+  // Official Instant Calendly Popup Interceptor
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="calendly.com"]');
+    if (link) {
+      e.preventDefault();
+      try {
+        var p = JSON.stringify({site:'arxcapital', page:'/cta:calendly', ref:location.pathname, lang:navigator.language||'', screen:screen.width+'x'+screen.height});
+        if (navigator.sendBeacon) navigator.sendBeacon('https://arx-apps.duckdns.org/gate/t', p);
+      } catch(err){}
+      window.arxCalendly();
+    }
+  });
+</script>
+</body>
+</html>
