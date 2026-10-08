@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OCI Migration — Benoît Sigwald | Arx Consulting</title>
-<meta name="description" content="How I migrated my entire tech stack onto an ARM server I operate end to end: Coolify, Docker, Traefik, PostgREST, MinIO — automatic HTTPS, backups and tested disaster recovery." />
+<title>AI as a Service — Benoît Sigwald | Arx Consulting</title>
+<meta name="description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
 <link rel="canonical" href="https://arx-consulting.com/oci-migration.html" />
 <link rel="alternate" hreflang="en" href="https://arx-consulting.com/oci-migration.html" />
 <link rel="alternate" hreflang="fr" href="https://arx-consulting.com/oci-migration-fr.html" />
@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="Arx Consulting" />
 <meta property="og:locale" content="en_GB" />
 <meta property="og:url" content="https://arx-consulting.com/oci-migration.html" />
-<meta property="og:title" content="OCI Migration — Benoît Sigwald | Arx Consulting" />
-<meta property="og:description" content="How I migrated my entire tech stack onto an ARM server I operate end to end: Coolify, Docker, Traefik, PostgREST, MinIO — automatic HTTPS, backups and tested disaster recovery." />
+<meta property="og:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta property="og:description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
 <meta property="og:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="OCI Migration — Benoît Sigwald | Arx Consulting" />
-<meta name="twitter:description" content="How I migrated my entire tech stack onto an ARM server I operate end to end: Coolify, Docker, Traefik, PostgREST, MinIO — automatic HTTPS, backups and tested disaster recovery." />
+<meta name="twitter:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta name="twitter:description" content="A complete production blueprint to build, deploy, and operate a Sovereign AI as a Service platform on OCI Ampere: FastMCP cluster, Mistral AI router, PostgreSQL 18 with pgvector, and automated CI/CD." />
 <meta name="twitter:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,7 +48,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     <ul>
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="realisations.html">Case studies</a></li>
-      <li><a href="oci-migration.html">OCI migration</a></li>
+      <li><a href="oci-migration.html">AI as a Service</a></li>
       <li><a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="approche.html">About me</a></li>
       <li><a href="index.html#contact">Contact</a></li>
@@ -59,13 +59,11 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <header class="hero">
   <div class="container" style="display:block">
-    <span class="kicker">Case study · Built with Claude Code & Antigravity</span>
-    <h1>The OCI migration:<br /><em>50+ microservices & Sovereign AI gateways I run end to end.</em></h1>
+    <span class="kicker">Blueprint & Production Case Study</span>
+    <h1>AI as a Service :<br /><em>50+ microservices & Sovereign AI gateways operated end to end.</em></h1>
     <p class="lede">
-      In one month, hands-on with AI pairs, I moved my entire stack — websites, apps,
-      FastMCP servers, PostgreSQL 18 with pgvector, and Sovereign AI routers — off Vercel, Render and Supabase onto a single ARM server I operate
-      end to end: automatic HTTPS, git push-to-deploy, automated backups and a tested
-      disaster-recovery restore.
+      A complete production blueprint: how I built and operate my entire AI as a Service stack — Sovereign AI routers,
+      FastMCP cluster, PostgreSQL 18 with pgvector semantic embeddings, automated CI/CD, and encrypted off-host backups on a single sovereign ARM server.
     </p>
   </div>
 </header>
@@ -192,20 +190,197 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <section id="phases">
   <div class="container">
-    <h2>Migration phases</h2>
-    <p class="sub">Cutover strategy: 100% production consolidation achieved across all data, workflow, and AI layers.</p>
-    <table>
-      <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>0</td><td>Foundation — Docker, 2-layer firewall, DNS + cron</td><td class="ok">✅ Done</td></tr>
-        <tr><td>1</td><td>Coolify platform + admin + REST API</td><td class="ok">✅ Done</td></tr>
-        <tr><td>2</td><td>First app migrated from local (Node)</td><td class="ok">✅ Done</td></tr>
-        <tr><td>3</td><td>Einstein MCP server migrated from Vercel</td><td class="ok">✅ Done</td></tr>
-        <tr><td>4</td><td>Render services, background workers & n8n workflows</td><td class="ok">✅ Done</td></tr>
-        <tr><td>5</td><td>Postgres self-hosting (PG18 + pgvector) + backups, off Supabase</td><td class="ok">✅ Done</td></tr>
-        <tr><td>6</td><td>Mistral AI Sovereign Router & FastMCP Cluster (Blackstone, Saul, Omni)</td><td class="ok">✅ Done</td></tr>
-      </tbody>
-    </table>
+    <span class="sec-num">04 — Implementation &amp; Replication</span>
+    <h2>Replication Blueprint &amp; Full Deployment Checklist</h2>
+    <p class="sub">A complete step-by-step checklist and actionable engineering plan to replicate this sovereign, zero-waste AI as a Service platform from scratch.</p>
+
+    <div class="checklist-grid" style="display:grid;gap:24px;margin-top:32px;">
+      
+      <!-- Phase 1 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 1</span>
+          <h3 style="margin:0;font-size:1.2rem;">Sovereign Infrastructure &amp; Perimeter Hardening</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Provision bare compute, configure two-layer firewall isolation, and establish dynamic DNS routing.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>OCI Compute Provisioning</b></td>
+              <td>Provision OCI Ampere A1 Compute instance (4 OCPU ARM64, 24 GB RAM, 200 GB NVMe storage) on Ubuntu 24.04 LTS.</td>
+              <td class="ok"><code>lscpu</code> &amp; <code>free -m</code></td>
+            </tr>
+            <tr>
+              <td><b>2-Layer Firewall Hardening</b></td>
+              <td>Configure OCI VCN Ingress Security Rules (ports 80, 443, 22) + Linux Host UFW. Deny all direct database/internal port exposure.</td>
+              <td class="ok"><code>ufw status verbose</code></td>
+            </tr>
+            <tr>
+              <td><b>Dynamic DNS Automation</b></td>
+              <td>Deploy systemd cron job updating DuckDNS / custom domain API every 5 minutes with WAN IP synchronization.</td>
+              <td class="ok"><code>systemctl status duckdns</code></td>
+            </tr>
+            <tr>
+              <td><b>Docker Engine 27 &amp; Compose</b></td>
+              <td>Install Docker CE 27.x + Docker Compose plugin from official Docker APT repositories; configure log rotation daemon.json.</td>
+              <td class="ok"><code>docker --version</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 2</span>
+          <h3 style="margin:0;font-size:1.2rem;">PaaS Orchestration &amp; Edge Ingress Plane</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy self-hosted application control plane, edge TLS termination, and automated Git CI/CD pipelines.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Coolify PaaS Installation</b></td>
+              <td>Execute automated installer: <code>curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash</code>. Configure root admin credentials.</td>
+              <td class="ok">HTTP 200 on port 8000</td>
+            </tr>
+            <tr>
+              <td><b>Traefik Ingress &amp; TLS</b></td>
+              <td>Configure Traefik v3 reverse proxy with Let's Encrypt ACME HTTP-01 / DNS-01 auto-renewal and HTTP &rarr; HTTPS redirection.</td>
+              <td class="ok">A+ SSL Labs rating</td>
+            </tr>
+            <tr>
+              <td><b>GitHub Webhook CI/CD</b></td>
+              <td>Connect GitHub personal access token / Deploy Keys. Configure webhook endpoints for automatic zero-downtime rolling deploys.</td>
+              <td class="ok">Automated push deploy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 3</span>
+          <h3 style="margin:0;font-size:1.2rem;">Enterprise Data Layer &amp; Semantic Vector Engine</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Self-host high-performance PostgreSQL 18 with AI vector search, PostgREST instant APIs, and Redis caching.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>PostgreSQL 18 + pgvector</b></td>
+              <td>Deploy PostgreSQL 18 container; compile/enable <code>pgvector</code> extension for 1536-dim embedding indexation (HNSW/IVFFlat).</td>
+              <td class="ok"><code>CREATE EXTENSION vector;</code></td>
+            </tr>
+            <tr>
+              <td><b>PostgREST OpenAPI Layer</b></td>
+              <td>Deploy PostgREST container connected to Postgres internal network for instant Supabase-compatible REST APIs with JWT auth.</td>
+              <td class="ok"><code>curl /rpc/...</code> OpenAPI</td>
+            </tr>
+            <tr>
+              <td><b>Dual Redis Caching &amp; Queues</b></td>
+              <td>Deploy Redis 7 Alpine containers for MCP response caching, session token storage, and asynchronous task coordination.</td>
+              <td class="ok"><code>redis-cli ping</code> &amp; PONG</td>
+            </tr>
+            <tr>
+              <td><b>Oracle ATP 23ai Integration</b></td>
+              <td>Configure Oracle Autonomous Transaction Processing (ATP 23ai) mutual TLS wallet connection for institutional quant storage.</td>
+              <td class="ok">mTLS wallet handshake</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 4 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 4</span>
+          <h3 style="margin:0;font-size:1.2rem;">Sovereign AI Router &amp; FastMCP Cluster</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy intelligent multi-model routing gateway with TokenGuard protection and specialized domain MCP microservices.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Mistral FastMCP Router</b></td>
+              <td>Deploy sovereign AI routing gateway running Codestral &amp; Mistral-Small with 24-hour LRU semantic cache and zero-waste rate-limiting.</td>
+              <td class="ok"><code>/health</code> &amp; cache hit 200</td>
+            </tr>
+            <tr>
+              <td><b>TokenGuard &amp; Quota Shield</b></td>
+              <td>Implement per-key rate-limiting (RPS/TPM), automated failover to OCI Sovereign Cloud, and surgical token usage metrics.</td>
+              <td class="ok">429 circuit-breaker test</td>
+            </tr>
+            <tr>
+              <td><b>Domain FastMCP Cluster</b></td>
+              <td>Deploy domain MCP servers over HTTP/SSE: Blackstone (Quant Execution), Einstein (Deep Web Research), Saul (Legal), Omni (Profiling).</td>
+              <td class="ok">8/8 MCP SSE handshakes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 5 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 5</span>
+          <h3 style="margin:0;font-size:1.2rem;">Workflow Automation, S3 Storage &amp; Backup Loop</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Deploy event-driven pipelines, self-hosted object storage, and automated off-host disaster recovery backups.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>MinIO S3 Object Storage</b></td>
+              <td>Deploy MinIO instance behind Traefik TLS with presigned expiring URLs for document extraction artifacts and assets.</td>
+              <td class="ok">S3 PutObject / GetObject</td>
+            </tr>
+            <tr>
+              <td><b>n8n Automation &amp; ntfy Push</b></td>
+              <td>Deploy n8n workflow engine connected to PostgreSQL and FastMCP triggers; configure ntfy push broker for real-time mobile alerts.</td>
+              <td class="ok">Webhook push trigger</td>
+            </tr>
+            <tr>
+              <td><b>Automated Off-Host Backups</b></td>
+              <td>Schedule daily 03:00 UTC encrypted (AES-256) volume snapshots shipped to OCI Object Storage with 30-day retention policy.</td>
+              <td class="ok">Daily S3 bucket checksum</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 6 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 6</span>
+          <h3 style="margin:0;font-size:1.2rem;">Validation Drills &amp; Production Go-Live</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Execute rigorous end-to-end stress testing, cold disaster recovery drills, and client integration.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Task / Component</th><th>Execution Details &amp; Technical Specification</th><th style="width:18%">Verification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Disaster Recovery Drill</b></td>
+              <td>Execute simulated cold restore from OCI Object Storage bucket onto an isolated standby container; verify 100% data integrity.</td>
+              <td class="ok">Zero data loss validated</td>
+            </tr>
+            <tr>
+              <td><b>Latency &amp; Load Benchmarking</b></td>
+              <td>Run concurrent load test (k6 / wrk) across Traefik, PostgREST and FastMCP endpoints. Validate sub-20ms P95 API response times.</td>
+              <td class="ok">P95 &lt; 20ms under load</td>
+            </tr>
+            <tr>
+              <td><b>Client &amp; Agent Integration</b></td>
+              <td>Connect Antigravity IDE, Claude Code, and autonomous agents via secure API keys; enable 24/7 autonomous operations.</td>
+              <td class="ok">Full autonomous execution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 </section>
 

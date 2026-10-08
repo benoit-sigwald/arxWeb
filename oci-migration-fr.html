@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Migration OCI — Benoît Sigwald | Arx Consulting</title>
-<meta name="description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
+<title>AI as a Service — Benoît Sigwald | Arx Consulting</title>
+<meta name="description" content="Guide de réplication et blueprint de production pour déployer une plateforme d'IA Souveraine (AI as a Service) sur OCI Ampere : cluster FastMCP, routeur Mistral AI, PostgreSQL 18 avec pgvector et CI/CD automatisé." />
 <link rel="canonical" href="https://arx-consulting.com/oci-migration-fr.html" />
 <link rel="alternate" hreflang="fr" href="https://arx-consulting.com/oci-migration-fr.html" />
 <link rel="alternate" hreflang="en" href="https://arx-consulting.com/oci-migration.html" />
@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="Arx Consulting" />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:url" content="https://arx-consulting.com/oci-migration-fr.html" />
-<meta property="og:title" content="Migration OCI — Benoît Sigwald | Arx Consulting" />
-<meta property="og:description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
+<meta property="og:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta property="og:description" content="Guide de réplication et blueprint de production pour déployer une plateforme d'IA Souveraine (AI as a Service) sur OCI Ampere : cluster FastMCP, routeur Mistral AI, PostgreSQL 18 avec pgvector et CI/CD automatisé." />
 <meta property="og:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Migration OCI — Benoît Sigwald | Arx Consulting" />
-<meta name="twitter:description" content="Comment j'ai migré toute ma stack technique sur un serveur ARM que j'exploite de bout en bout : Coolify, Docker, Traefik, PostgREST, MinIO — HTTPS automatique, sauvegardes et reprise après sinistre testée." />
+<meta name="twitter:title" content="AI as a Service — Benoît Sigwald | Arx Consulting" />
+<meta name="twitter:description" content="Guide de réplication et blueprint de production pour déployer une plateforme d'IA Souveraine (AI as a Service) sur OCI Ampere : cluster FastMCP, routeur Mistral AI, PostgreSQL 18 avec pgvector et CI/CD automatisé." />
 <meta name="twitter:image" content="https://arx-consulting.com/assets/og-oci-migration-en.jpg" />
 <meta name="author" content="Benoît Sigwald" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,7 +48,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
     <ul>
       <li><a href="tarifs-fr.html">Tarifs</a></li>
       <li><a href="realisations-fr.html">Réalisations</a></li>
-      <li><a href="oci-migration-fr.html">Migration OCI</a></li>
+      <li><a href="oci-migration-fr.html">AI as a Service</a></li>
       <li><a href="https://github.com/benoit-sigwald" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="approche-fr.html">Qui je suis</a></li>
       <li><a href="index-fr.html#contact">Contact</a></li>
@@ -59,13 +59,11 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <header class="hero">
   <div class="container" style="display:block">
-    <span class="kicker">Étude de cas · Construit avec Claude Code & Antigravity</span>
-    <h1>La migration OCI :<br /><em>50+ microservices & passerelles d'IA Souveraine que j'exploite de bout en bout.</em></h1>
+    <span class="kicker">Blueprint &amp; Étude de cas de production</span>
+    <h1>AI as a Service :<br /><em>50+ microservices & passerelles d'IA Souveraine exploitées de bout en bout.</em></h1>
     <p class="lede">
-      En un mois, avec des binômes IA, j'ai déplacé toute ma stack — sites web, applications,
-      serveurs FastMCP, PostgreSQL 18 avec pgvector, et routeurs d'IA Souveraine — de Vercel, Render et Supabase vers un unique serveur ARM que
-      j'exploite de bout en bout : HTTPS automatique, déploiement par git push, sauvegardes
-      automatiques et reprise après sinistre testée.
+      Un blueprint de production complet : comment j'ai conçu et j'exploite l'intégralité de ma stack AI as a Service — routeurs d'IA Souveraine,
+      cluster FastMCP, PostgreSQL 18 avec embeddings sémantiques pgvector, CI/CD automatisé et sauvegardes chiffrées hors-site sur une instance cloud souveraine dédiée.
     </p>
   </div>
 </header>
@@ -196,21 +194,197 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <section id="phases">
   <div class="container">
-    <span class="sec-num">05 — Phases</span>
-    <h2>Les phases de migration</h2>
-    <p class="sub">Stratégie de bascule : consolidation de production à 100% accomplie sur les couches de données, de workflow et d'IA.</p>
-    <table>
-      <thead><tr><th>Phase</th><th>Périmètre</th><th>État</th></tr></thead>
-      <tbody>
-        <tr><td>0</td><td>Fondations — Docker, pare-feu 2 couches, DNS + cron</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>1</td><td>Plateforme Coolify + admin + API REST</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>2</td><td>Première app migrée depuis le local (Node)</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>3</td><td>Serveur MCP Einstein migré depuis Vercel</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>4</td><td>Services Render, workers d'arrière-plan & workflows n8n</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>5</td><td>Postgres auto-hébergé (PG18 + pgvector) + sauvegardes, sortie de Supabase</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>6</td><td>Routeur Mistral AI Souverain & Cluster FastMCP (Blackstone, Saul, Omni)</td><td class="ok">✅ Fait</td></tr>
-      </tbody>
-    </table>
+    <span class="sec-num">04 — Déploiement &amp; Réplication</span>
+    <h2>Guide de réplication &amp; Checklist de déploiement</h2>
+    <p class="sub">Le plan d'ingénierie complet et la checklist opérationnelle pour répliquer cette plateforme d'IA Souveraine (AI as a Service) de zéro.</p>
+
+    <div class="checklist-grid" style="display:grid;gap:24px;margin-top:32px;">
+      
+      <!-- Phase 1 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 1</span>
+          <h3 style="margin:0;font-size:1.2rem;">Infrastructure Souveraine &amp; Sécurisation Périmétrique</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Provisionnement de l'instance de calcul, configuration du pare-feu à double niveau et routage DNS dynamique.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Provisionnement OCI Ampere</b></td>
+              <td>Instance OCI Ampere A1 (4 OCPU ARM64, 24 Go RAM, 200 Go NVMe) sous Ubuntu 24.04 LTS.</td>
+              <td class="ok"><code>lscpu</code> &amp; <code>free -m</code></td>
+            </tr>
+            <tr>
+              <td><b>Pare-feu 2 Couches</b></td>
+              <td>Configuration des Security Lists VCN OCI (ports 80, 443, 22) + UFW hôte Linux. Blocage strict de tout port de base de données en direct.</td>
+              <td class="ok"><code>ufw status verbose</code></td>
+            </tr>
+            <tr>
+              <td><b>Automatisation DNS Dynamique</b></td>
+              <td>Tâche cron systemd mettant à jour l'API DuckDNS / domaine personnalisé toutes les 5 minutes avec synchronisation de l'IP WAN.</td>
+              <td class="ok"><code>systemctl status duckdns</code></td>
+            </tr>
+            <tr>
+              <td><b>Moteur Docker 27 &amp; Compose</b></td>
+              <td>Installation de Docker CE 27.x + plugin Compose officiel ; configuration du daemon.json pour la rotation des logs.</td>
+              <td class="ok"><code>docker --version</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 2</span>
+          <h3 style="margin:0;font-size:1.2rem;">Orchestration PaaS &amp; Plan d'Entrée Edge</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Déploiement du panneau de contrôle d'applications, terminaison TLS edge et pipelines Git CI/CD automatisés.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Installation PaaS Coolify</b></td>
+              <td>Script d'installation automatisé : <code>curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash</code>. Configuration des accès admin.</td>
+              <td class="ok">HTTP 200 sur port 8000</td>
+            </tr>
+            <tr>
+              <td><b>Passerelle Traefik &amp; TLS</b></td>
+              <td>Reverse proxy Traefik v3 avec auto-renouvellement Let's Encrypt HTTP-01 / DNS-01 et redirection automatique HTTP &rarr; HTTPS.</td>
+              <td class="ok">Score SSL Labs A+</td>
+            </tr>
+            <tr>
+              <td><b>CI/CD Webhooks GitHub</b></td>
+              <td>Connexion PAT / Deploy Keys GitHub. Configuration des webhooks pour déploiements continus à chaud sans coupure de service.</td>
+              <td class="ok">Push &rarr; Déploiement auto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 3</span>
+          <h3 style="margin:0;font-size:1.2rem;">Couche de Données Entreprise &amp; Moteur Vectoriel</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Auto-hébergement de PostgreSQL 18 avec recherche vectorielle IA, APIs instantanées PostgREST et cache Redis.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>PostgreSQL 18 + pgvector</b></td>
+              <td>Conteneur PostgreSQL 18 avec extension <code>pgvector</code> activée pour l'indexation sémantique 1536-dim (HNSW/IVFFlat).</td>
+              <td class="ok"><code>CREATE EXTENSION vector;</code></td>
+            </tr>
+            <tr>
+              <td><b>Couche OpenAPI PostgREST</b></td>
+              <td>Conteneur PostgREST relié au réseau privé Postgres pour générer instantanément une API REST compatible Supabase avec JWT.</td>
+              <td class="ok"><code>curl /rpc/...</code> OpenAPI</td>
+            </tr>
+            <tr>
+              <td><b>Cache Redis &amp; Files de Messages</b></td>
+              <td>Instances Redis 7 Alpine pour le cache de réponses MCP, le stockage de tokens de session et les tâches asynchrones.</td>
+              <td class="ok"><code>redis-cli ping</code> &amp; PONG</td>
+            </tr>
+            <tr>
+              <td><b>Intégration Oracle ATP 23ai</b></td>
+              <td>Connexion mTLS sécurisée via Oracle Wallet vers Oracle Autonomous Transaction Processing pour les calculs quantitatifs critiques.</td>
+              <td class="ok">Handshake wallet mTLS</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 4 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 4</span>
+          <h3 style="margin:0;font-size:1.2rem;">Routeur d'IA Souveraine &amp; Cluster FastMCP</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Passerelle de routage multi-modèles avec TokenGuard et microservices FastMCP métiers spécialisés.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Routeur FastMCP Mistral</b></td>
+              <td>Passerelle de routage souveraine exploitant Codestral &amp; Mistral-Small avec cache LRU 24h et régulation de débit anti-gaspillage.</td>
+              <td class="ok"><code>/health</code> &amp; cache hit 200</td>
+            </tr>
+            <tr>
+              <td><b>Bouclier TokenGuard &amp; Quotas</b></td>
+              <td>Limitation de débit par clé API (RPS/TPM), bascule automatique vers OCI Sovereign Cloud et métriques de consommation précises.</td>
+              <td class="ok">Test disjoncteur 429</td>
+            </tr>
+            <tr>
+              <td><b>Cluster FastMCP Métier</b></td>
+              <td>Déploiement des serveurs MCP HTTP/SSE : Blackstone (Trading Quant), Einstein (Recherche Web Profonde), Saul (Juridique), Omni (Profilage).</td>
+              <td class="ok">8/8 connexions MCP SSE</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 5 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 5</span>
+          <h3 style="margin:0;font-size:1.2rem;">Automatisation de Workflows, Stockage S3 &amp; Sauvegardes</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Pipelines événementiels, stockage objet auto-hébergé et sauvegardes hors-site chiffrées automatiques.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Stockage Objet MinIO S3</b></td>
+              <td>Instance MinIO sécurisée derrière Traefik TLS avec génération d'URLs pré-signées pour l'extraction de documents et artefacts.</td>
+              <td class="ok">S3 PutObject / GetObject</td>
+            </tr>
+            <tr>
+              <td><b>Automatisation n8n &amp; Push ntfy</b></td>
+              <td>Moteur de workflow n8n connecté aux triggers PostgreSQL et FastMCP ; alertes push mobiles en temps réel via ntfy.</td>
+              <td class="ok">Trigger webhook &amp; alerte</td>
+            </tr>
+            <tr>
+              <td><b>Sauvegardes Hors-Site Automatiques</b></td>
+              <td>Snapshots quotidiens chiffrés AES-256 à 03h00 UTC expédiés vers un bucket OCI Object Storage avec rétention 30 jours.</td>
+              <td class="ok">Checksum bucket S3 quotidien</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phase 6 -->
+      <div style="background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="background:var(--navy,#1e293b);color:#fff;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:6px;">PHASE 6</span>
+          <h3 style="margin:0;font-size:1.2rem;">Exercices de Validation &amp; Mise en Production</h3>
+        </div>
+        <p style="color:var(--muted,#64748b);font-size:0.92rem;margin-bottom:16px;">Tests de charge, simulation de sinistre avec restauration complète à froid et raccordement des clients IA.</p>
+        <table style="width:100%;margin:0;">
+          <thead><tr><th style="width:28%">Composant / Tâche</th><th>Spécifications Techniques &amp; Commandes</th><th style="width:18%">Vérification</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Exercice Reprise après Sinistre</b></td>
+              <td>Restauration à blanc depuis le bucket OCI Object Storage sur conteneur isolé ; validation de 100% de l'intégrité des tables.</td>
+              <td class="ok">Zéro perte de données validé</td>
+            </tr>
+            <tr>
+              <td><b>Benchmarks de Charge &amp; Latence</b></td>
+              <td>Tests de charge simultanée (k6 / wrk) sur Traefik, PostgREST et passerelles FastMCP. Validation de la latence P95 &lt; 20ms.</td>
+              <td class="ok">P95 &lt; 20ms sous charge</td>
+            </tr>
+            <tr>
+              <td><b>Raccordement Clients &amp; Agents</b></td>
+              <td>Connexion des IDEs Antigravity, Claude Code et agents autonomes via clés API sécurisées ; activation 24/7.</td>
+              <td class="ok">Exécution autonome continue</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 </section>
 
