@@ -59,11 +59,11 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <header class="hero">
   <div class="container" style="display:block">
-    <span class="kicker">Étude de cas · Construit avec Claude Code</span>
-    <h1>La migration OCI :<br /><em>12 services, une plateforme que j'exploite de bout en bout.</em></h1>
+    <span class="kicker">Étude de cas · Construit avec Claude Code & Antigravity</span>
+    <h1>La migration OCI :<br /><em>50+ microservices & passerelles d'IA Souveraine que j'exploite de bout en bout.</em></h1>
     <p class="lede">
-      En un mois, avec Claude Code en binôme, j'ai déplacé toute ma stack — sites web, applications,
-      serveurs MCP, bases de données — de Vercel, Render et Supabase vers un unique serveur ARM que
+      En un mois, avec des binômes IA, j'ai déplacé toute ma stack — sites web, applications,
+      serveurs FastMCP, PostgreSQL 18 avec pgvector, et routeurs d'IA Souveraine — de Vercel, Render et Supabase vers un unique serveur ARM que
       j'exploite de bout en bout : HTTPS automatique, déploiement par git push, sauvegardes
       automatiques et reprise après sinistre testée.
     </p>
@@ -73,10 +73,10 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 <div class="stats-band">
   <div class="container">
     <div class="stats">
-      <div class="stat"><b>24/7</b><span>en production, sauvegardé et restaurable</span></div>
+      <div class="stat"><b>50+</b><span>microservices 24/7 en production</span></div>
       <div class="stat"><b>4 / 24</b><span>cœurs ARM / Go de RAM (Always Free)</span></div>
-      <div class="stat"><b>500+</b><span>lignes de base migrées, zéro perte</span></div>
-      <div class="stat"><b>1 push</b><span>= 1 déploiement en production</span></div>
+      <div class="stat"><b>PG18</b><span>pgvector pour la recherche sémantique & RAG</span></div>
+      <div class="stat"><b>8 MCP</b><span>FastMCP pour l'IA Souveraine & le Quant</span></div>
     </div>
   </div>
 </div>
@@ -185,10 +185,13 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
       <thead><tr><th>Composant</th><th>Rôle</th></tr></thead>
       <tbody>
         <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 Go de RAM, Ubuntu 24.04 — offre gratuite Oracle</td></tr>
-        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime de toutes les charges applicatives</td></tr>
+        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime de plus de 50 microservices et conteneurs</td></tr>
         <tr><td style="color:var(--text)">Coolify</td><td>PaaS auto-hébergé : build, déploiement, env, cron, API REST</td></tr>
         <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, HTTPS Let's Encrypt automatique, routage hôte/chemin</td></tr>
-        <tr><td style="color:var(--text)">PostgreSQL + PostgREST</td><td>API de données auto-hébergée compatible Supabase, recherche plein texte française</td></tr>
+        <tr><td style="color:var(--text)">Routeur Mistral AI FastMCP</td><td>IA Souveraine Européenne sur OCI Ampere : passerelle FastMCP locale avec Codestral & Mistral-Small, rate-limiting et cache LRU 24h</td></tr>
+        <tr><td style="color:var(--text)">Cluster ARX FastMCP</td><td>8 serveurs MCP spécialisés (Blackstone quant execution, Einstein deep research, Saul legal, Omni profiling, Auto, Prisme)</td></tr>
+        <tr><td style="color:var(--text)">PostgreSQL 18 + pgvector</td><td>Couche de données auto-hébergée avec embeddings vectoriels sémantiques et API PostgREST</td></tr>
+        <tr><td style="color:var(--text)">n8n + Redis + ntfy</td><td>Automatisation de workflows, files de tâches asynchrones et notifications push instantanées</td></tr>
         <tr><td style="color:var(--text)">MinIO</td><td>Stockage objet compatible S3</td></tr>
         <tr><td style="color:var(--text)">OCI Object Storage</td><td>Sauvegardes automatiques hors conteneur, reprise après sinistre testée</td></tr>
         <tr><td style="color:var(--text)">DuckDNS</td><td>DNS gratuit avec mise à jour d'IP par cron</td></tr>
@@ -201,7 +204,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
   <div class="container">
     <span class="sec-num">05 — Phases</span>
     <h2>Les phases de migration</h2>
-    <p class="sub">Stratégie de bascule : l'ancien hébergeur reste actif en parallèle jusqu'à validation de la cible — aucune suppression avant validation en production, sauvegardes testées avant bascule finale.</p>
+    <p class="sub">Stratégie de bascule : consolidation de production à 100% accomplie sur les couches de données, de workflow et d'IA.</p>
     <table>
       <thead><tr><th>Phase</th><th>Périmètre</th><th>État</th></tr></thead>
       <tbody>
@@ -209,9 +212,9 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
         <tr><td>1</td><td>Plateforme Coolify + admin + API REST</td><td class="ok">✅ Fait</td></tr>
         <tr><td>2</td><td>Première app migrée depuis le local (Node)</td><td class="ok">✅ Fait</td></tr>
         <tr><td>3</td><td>Serveur MCP Einstein migré depuis Vercel</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>4</td><td>Services Render + tâches planifiées</td><td>⏳ En cours</td></tr>
-        <tr><td>5</td><td>Postgres auto-hébergé + sauvegardes, sortie de Supabase</td><td class="ok">✅ Fait</td></tr>
-        <tr><td>6</td><td>Ollama — petits modèles quantifiés ARM (optionnel)</td><td>⏳ Prévu</td></tr>
+        <tr><td>4</td><td>Services Render, workers d'arrière-plan & workflows n8n</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>5</td><td>Postgres auto-hébergé (PG18 + pgvector) + sauvegardes, sortie de Supabase</td><td class="ok">✅ Fait</td></tr>
+        <tr><td>6</td><td>Routeur Mistral AI Souverain & Cluster FastMCP (Blackstone, Saul, Omni)</td><td class="ok">✅ Fait</td></tr>
       </tbody>
     </table>
   </div>

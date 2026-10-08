@@ -59,11 +59,11 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 
 <header class="hero">
   <div class="container" style="display:block">
-    <span class="kicker">Case study · Built with Claude Code</span>
-    <h1>The OCI migration:<br /><em>12 services, one platform I run end to end.</em></h1>
+    <span class="kicker">Case study · Built with Claude Code & Antigravity</span>
+    <h1>The OCI migration:<br /><em>50+ microservices & Sovereign AI gateways I run end to end.</em></h1>
     <p class="lede">
-      In one month, hands-on with Claude Code as my pair, I moved my entire stack — websites, apps,
-      MCP servers, databases — off Vercel, Render and Supabase onto a single ARM server I operate
+      In one month, hands-on with AI pairs, I moved my entire stack — websites, apps,
+      FastMCP servers, PostgreSQL 18 with pgvector, and Sovereign AI routers — off Vercel, Render and Supabase onto a single ARM server I operate
       end to end: automatic HTTPS, git push-to-deploy, automated backups and a tested
       disaster-recovery restore.
     </p>
@@ -73,10 +73,10 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 <div class="stats-band">
   <div class="container">
     <div class="stats">
-      <div class="stat"><b>24/7</b><span>in production, backed up and recoverable</span></div>
+      <div class="stat"><b>50+</b><span>microservices 24/7 in production</span></div>
       <div class="stat"><b>4 / 24</b><span>ARM cores / GB RAM (Always Free)</span></div>
-      <div class="stat"><b>500+</b><span>DB rows migrated, zero loss</span></div>
-      <div class="stat"><b>1 push</b><span>= 1 production deployment</span></div>
+      <div class="stat"><b>PG18</b><span>pgvector semantic search & RAG</span></div>
+      <div class="stat"><b>8 MCP</b><span>FastMCP Sovereign AI & Quant gateways</span></div>
     </div>
   </div>
 </div>
@@ -181,10 +181,13 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
       <thead><tr><th>Component</th><th>Role</th></tr></thead>
       <tbody>
         <tr><td style="color:var(--text)">OCI Ampere A1 (ARM64)</td><td>4 OCPU, 24 GB RAM, Ubuntu 24.04 — Oracle free tier</td></tr>
-        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime for every workload</td></tr>
+        <tr><td style="color:var(--text)">Docker Engine</td><td>Runtime for 50+ microservices & containers</td></tr>
         <tr><td style="color:var(--text)">Coolify</td><td>Self-hosted PaaS: build, deploy, env, cron, REST API</td></tr>
         <tr><td style="color:var(--text)">Traefik</td><td>Reverse proxy, automatic Let's Encrypt HTTPS, host/path routing</td></tr>
-        <tr><td style="color:var(--text)">PostgreSQL + PostgREST</td><td>Self-hosted Supabase-compatible data API, French full-text search</td></tr>
+        <tr><td style="color:var(--text)">Mistral AI FastMCP Router</td><td>Sovereign European AI tier on OCI Ampere: local FastMCP gateway with Codestral & Mistral-Small, rate-limiting, and 24h LRU caching</td></tr>
+        <tr><td style="color:var(--text)">ARX FastMCP Cluster</td><td>8 specialized MCP servers (Blackstone quant execution, Einstein deep research, Saul legal, Omni profiling, Auto, Prisme)</td></tr>
+        <tr><td style="color:var(--text)">PostgreSQL 18 + pgvector</td><td>Self-hosted data layer with AI semantic vector embeddings and PostgREST API</td></tr>
+        <tr><td style="color:var(--text)">n8n + Redis + ntfy</td><td>Self-hosted workflow automation, asynchronous task queues, and instant push alerts</td></tr>
         <tr><td style="color:var(--text)">MinIO</td><td>S3-compatible object storage</td></tr>
         <tr><td style="color:var(--text)">OCI Object Storage</td><td>Automated off-container backups, disaster-recovery restore tested</td></tr>
         <tr><td style="color:var(--text)">DuckDNS</td><td>Free DNS with cron-based IP updates</td></tr>
@@ -196,7 +199,7 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
 <section id="phases">
   <div class="container">
     <h2>Migration phases</h2>
-    <p class="sub">Cutover strategy: the old host stays live in parallel until the target is validated — no deletion before production validation, backups tested before final cutover.</p>
+    <p class="sub">Cutover strategy: 100% production consolidation achieved across all data, workflow, and AI layers.</p>
     <table>
       <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
       <tbody>
@@ -204,9 +207,9 @@ return function(){if(ready){open();}else{queued=true;load();}};})();
         <tr><td>1</td><td>Coolify platform + admin + REST API</td><td class="ok">✅ Done</td></tr>
         <tr><td>2</td><td>First app migrated from local (Node)</td><td class="ok">✅ Done</td></tr>
         <tr><td>3</td><td>Einstein MCP server migrated from Vercel</td><td class="ok">✅ Done</td></tr>
-        <tr><td>4</td><td>Render services + scheduled jobs</td><td>⏳ In progress</td></tr>
-        <tr><td>5</td><td>Postgres self-hosting + backups, off Supabase</td><td class="ok">✅ Done</td></tr>
-        <tr><td>6</td><td>Ollama — small ARM-quantized models (optional)</td><td>⏳ Planned</td></tr>
+        <tr><td>4</td><td>Render services, background workers & n8n workflows</td><td class="ok">✅ Done</td></tr>
+        <tr><td>5</td><td>Postgres self-hosting (PG18 + pgvector) + backups, off Supabase</td><td class="ok">✅ Done</td></tr>
+        <tr><td>6</td><td>Mistral AI Sovereign Router & FastMCP Cluster (Blackstone, Saul, Omni)</td><td class="ok">✅ Done</td></tr>
       </tbody>
     </table>
   </div>
