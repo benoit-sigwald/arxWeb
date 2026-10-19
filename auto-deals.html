@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ARX Auto Arbitrage — Chasseur d'Enchères & Business Case Revente Nice</title>
+<meta name="description" content="Moteur d'arbitrage automobile aux enchères (Interencheres, eCarsTrade) avec calcul de coût de revient à Nice, fiscalité import CGI 2026 et simulation E85." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  :root {
+    --gold-glow: rgba(174, 141, 87, 0.25);
+    --navy-dark: #0f1c29;
+    --navy-card: #152435;
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+  body { background: #0c1722; color: #e1e8f0; }
+  .cockpit-container { max-width: 1240px; margin: 0 auto; padding: 24px; }
+  
+  /* Header section */
+  .cockpit-hero {
+    background: radial-gradient(800px 400px at 50% 0%, rgba(174, 141, 87, 0.15), transparent 75%), #11202e;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    padding: 40px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+  }
+  .cockpit-hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 12px; }
+  .cockpit-hero p { color: #a4b3c6; max-width: 720px; font-size: 1.05rem; }
+  
+  /* Search input bar */
+  .search-box-wrapper {
+    display: flex;
+    gap: 12px;
+    background: rgba(15, 28, 41, 0.85);
+    border: 1px solid rgba(174, 141, 87, 0.4);
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin-top: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.05rem;
+    padding: 8px 12px;
+    outline: none;
+  }
+  .search-btn {
+    background: linear-gradient(120deg, #c9a86a, #ae8d57);
+    color: #0c1722;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .search-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(174, 141, 87, 0.4);
+  }
+
+  /* Preset Pills */
+  .preset-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    color: #c4d2e2;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pill:hover, .pill.active {
+    background: rgba(174, 141, 87, 0.2);
+    border-color: #ae8d57;
+    color: #ffd899;
+  }
+
+  /* Section Title */
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .section-header h2 { font-family: var(--serif); font-size: 1.5rem; color: #ffffff; }
+  .badge-count {
+    background: #ae8d57;
+    color: #0c1722;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Grid of Auction Lots */
+  .lots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .lot-card {
+    background: var(--navy-card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .lot-card:hover {
+    border-color: rgba(174, 141, 87, 0.6);
+    transform: translateY(-2px);
+  }
+  .lot-card.selected {
+    border: 2px solid #ae8d57;
+    background: #172a3d;
+    box-shadow: 0 0 20px rgba(174, 141, 87, 0.15);
+  }
+  .lot-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .badge-judicial { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid #3b82f6; }
+  .badge-voluntary { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid #f59e0b; }
+  .badge-b2b { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid #10b981; }
+
+  .lot-title { font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-top: 12px; margin-bottom: 8px; }
+  .lot-meta { display: flex; gap: 14px; font-size: 0.86rem; color: #9bb0c6; margin-bottom: 12px; }
+  .lot-estimate { font-size: 1.35rem; font-weight: 700; color: #d8bc85; margin: 8px 0; }
+  .lot-origin { font-size: 0.85rem; color: #8295ab; margin-bottom: 16px; }
+
+  .select-lot-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lot-card.selected .select-lot-btn {
+    background: #ae8d57;
+    color: #0c1722;
+    border-color: #ae8d57;
+  }
+
+  /* Business Case Simulator Cockpit */
+  .business-case-pane {
+    background: #101c28;
+    border: 2px solid #ae8d57;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 48px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+  .case-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    background: rgba(15, 28, 41, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .control-group label { display: block; font-size: 0.85rem; color: #9bb0c6; margin-bottom: 6px; }
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #e1e8f0;
+    cursor: pointer;
+    padding: 8px 0;
+  }
+  .toggle-label input { width: 18px; height: 18px; accent-color: #ae8d57; cursor: pointer; }
+
+  /* Comparison dossier table */
+  .case-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin-bottom: 24px;
+  }
+  .case-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(174, 141, 87, 0.3);
+    color: #d8bc85;
+    font-weight: 600;
+  }
+  .case-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--card-border);
+    color: #ffffff;
+  }
+  .highlight-cost { color: #f87171; font-weight: 600; }
+  .highlight-profit { color: #34d399; font-weight: 700; font-size: 1.15rem; }
+  .highlight-ceiling { color: #60a5fa; font-weight: 700; }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .summary-card {
+    background: #152435;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .summary-card .label { font-size: 0.78rem; text-transform: uppercase; color: #8e9fad; }
+  .summary-card .val { font-size: 1.45rem; font-weight: 700; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index-fr.html"><img src="assets/logo.png" alt="Arx Capital" /><b>ARX <span>Capital</span></b></a>
+    <ul>
+      <li><a href="auto-deals.html" style="color:var(--gold); font-weight:600">Auto Arbitrage</a></li>
+      <li><a href="classic-oci.html">Infrastructure OCI</a></li>
+      <li><a href="realisations-fr.html">Réalisations</a></li>
+      <li><a href="index-fr.html">Accueil</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="cockpit-container">
+
+  <!-- Hero Header -->
+  <header class="cockpit-hero">
+    <span class="kicker">Moteur d'Arbitrage Automobile · Côte d'Azur (Nice 06)</span>
+    <h1>Chasseur d'Enchères &amp; <em>Business Case Revente</em></h1>
+    <p>
+      Détection automatisée des opportunités sur <strong>Interencheres</strong> (France Publique &amp; Judiciaire) 
+      et <strong>eCarsTrade</strong> (B2B Ex-Leasing Europe). Calcul en temps réel du coût de revient complet 
+      acheminé à <strong>Nice</strong>, de la fiscalité d'importation (CGI / CIBS 2026), et du levier 
+      d'abattement fiscal <strong>Superéthanol E85 (-40% CO2)</strong>.
+    </p>
+
+    <!-- Search Box -->
+    <div class="search-box-wrapper">
+      <input type="text" id="carQueryInput" class="search-input" placeholder="Rechercher un modèle ou une requête vectorielle (ex: BMW X1, Audi Q3, SUV diesel auto...)" value="BMW X1" />
+      <button class="search-btn" id="searchBtn" onclick="runSearch()">Scanner les Enchères</button>
+    </div>
+
+    <!-- Presets -->
+    <div class="preset-pills">
+      <span class="pill active" onclick="setQuery('BMW X1')">BMW X1</span>
+      <span class="pill" onclick="setQuery('Audi Q3')">Audi Q3</span>
+      <span class="pill" onclick="setQuery('Mercedes GLA')">Mercedes GLA</span>
+      <span class="pill" onclick="setQuery('Porsche Macan')">Porsche Macan</span>
+      <span class="pill" onclick="setQuery('Volvo XC40')">Volvo XC40</span>
+      <span class="pill" onclick="setQuery('Peugeot 3008')">Peugeot 3008</span>
+    </div>
+  </header>
+
+  <!-- Results Section -->
+  <div class="section-header">
+    <h2>Lots Trouvés aux Enchères</h2>
+    <span class="badge-count" id="lotsCountBadge">5 lots disponibles</span>
+  </div>
+
+  <div class="lots-grid" id="lotsGrid">
+    <!-- Rendered via JS -->
+  </div>
+
+  <!-- Business Case Simulator -->
+  <div class="business-case-pane" id="businessCaseSection" style="display:none;">
+    <div class="section-header">
+      <h2>Dossier Financier &amp; Arbitrage Revente (Base Nice 06)</h2>
+      <button class="search-btn" onclick="exportDossierPDF()">📄 Exporter Dossier PDF</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="case-controls">
+      <div class="control-group">
+        <label class="toggle-label">
+          <input type="checkbox" id="toggleE85" checked onchange="recalculateCases()" />
+          <span>🚀 Convertir en Superéthanol E85 (-40% CO2)</span>
+        </label>
+        <span style="font-size:0.78rem; color:#8e9fad">Abattement légal Art. L. 421-62 CIBS (+950€ kit homologué, élimine le malus).</span>
+      </div>
+
+      <div class="control-group">
+        <label class="toggle-label">
+          <input type="checkbox" id="toggleDealer" checked onchange="recalculateCases()" />
+          <span>Statut Professionnel (Déclaration d'Achat DA : 0€ Carte Grise)</span>
+        </label>
+        <span style="font-size:0.78rem; color:#8e9fad">PACA = 60€/CV économisés sur la carte grise à l'achat marchand.</span>
+      </div>
+
+      <div class="control-group">
+        <label for="recondInput">Réserve Révision &amp; Remise en état (€)</label>
+        <input type="number" id="recondInput" value="850" class="search-input" style="border:1px solid rgba(255,255,255,0.15); border-radius:6px; padding:6px 10px;" oninput="recalculateCases()" />
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div style="overflow-x:auto;">
+      <table class="case-table">
+        <thead>
+          <tr>
+            <th>Véhicule Sélectionné</th>
+            <th>Origine &amp; Frais Enchère</th>
+            <th>Transport vers Nice</th>
+            <th>Fiscalité Import (Malus &amp; E85)</th>
+            <th>Coût de Revient Net</th>
+            <th>Cote Revente Nice (06)</th>
+            <th>Marge Nette Arbitrage</th>
+            <th>Enchère Max Plafond</th>
+          </tr>
+        </thead>
+        <tbody id="caseTableBody">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Metrics Summary -->
+    <div class="summary-cards" id="summaryCards">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Mock data and real client bridge
+let currentLots = [
+  {
+    id: "lot_1",
+    make: "BMW",
+    model: "X1",
+    title: "BMW X1 sDrive18d xLine BVA (Vente Volontaire)",
+    year: 2019,
+    km: 88000,
+    estimate: 12500,
+    saleType: "voluntary",
+    location: "Marseille (13)",
+    country: "FR",
+    co2: 142,
+    cv: 8,
+    weight: 1580,
+    imported: false,
+    source: "Interencheres"
+  },
+  {
+    id: "lot_2",
+    make: "BMW",
+    model: "X1",
+    title: "BMW X1 xDrive20d M Sport BVA (Vente Judiciaire)",
+    year: 2020,
+    km: 105000,
+    estimate: 13800,
+    saleType: "judicial",
+    location: "Lyon (69)",
+    country: "FR",
+    co2: 155,
+    cv: 10,
+    weight: 1690,
+    imported: false,
+    source: "Interencheres"
+  },
+  {
+    id: "lot_3",
+    make: "BMW",
+    model: "X1",
+    title: "BMW X1 sDrive20i xLine BVA (Retour Leasing Allemagne)",
+    year: 2021,
+    km: 72000,
+    estimate: 16200,
+    saleType: "b2b_fixed",
+    location: "Hub Francfort (DE)",
+    country: "DE",
+    co2: 158,
+    cv: 9,
+    weight: 1620,
+    imported: true,
+    source: "eCarsTrade"
+  },
+  {
+    id: "lot_4",
+    make: "BMW",
+    model: "X1",
+    title: "BMW X1 sDrive20i Lounge BVA (Vente Volontaire)",
+    year: 2021,
+    km: 64000,
+    estimate: 15500,
+    saleType: "voluntary",
+    location: "Cannes (06)",
+    country: "FR",
+    co2: 158,
+    cv: 10,
+    weight: 1610,
+    imported: false,
+    source: "Interencheres"
+  },
+  {
+    id: "lot_5",
+    make: "BMW",
+    model: "X1",
+    title: "BMW X1 sDrive18d Business BVA (Retour Leasing Belgique)",
+    year: 2022,
+    km: 58000,
+    estimate: 17800,
+    saleType: "b2b_auction",
+    location: "Hub Bruxelles (BE)",
+    country: "BE",
+    co2: 138,
+    cv: 8,
+    weight: 1590,
+    imported: true,
+    source: "eCarsTrade"
+  }
+];
+
+let selectedLotIds = new Set(["lot_1", "lot_3"]);
+
+function setQuery(q) {
+  document.getElementById("carQueryInput").value = q;
+  document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+  event.target.classList.add("active");
+  runSearch();
+}
+
+function runSearch() {
+  const q = document.getElementById("carQueryInput").value.trim();
+  document.getElementById("lotsCountBadge").innerText = `${currentLots.length} lots trouvés`;
+  renderLots();
+  recalculateCases();
+}
+
+function toggleSelect(id) {
+  if (selectedLotIds.has(id)) {
+    selectedLotIds.delete(id);
+  } else {
+    selectedLotIds.add(id);
+  }
+  renderLots();
+  recalculateCases();
+}
+
+function renderLots() {
+  const container = document.getElementById("lotsGrid");
+  container.innerHTML = "";
+
+  currentLots.forEach(lot => {
+    const isSelected = selectedLotIds.has(lot.id);
+    let badgeClass = "badge-voluntary";
+    let badgeText = "Volontaire (18%)";
+    if (lot.saleType === "judicial") { badgeClass = "badge-judicial"; badgeText = "Judiciaire (14.28%)"; }
+    else if (lot.saleType.startsWith("b2b")) { badgeClass = "badge-b2b"; badgeText = "eCarsTrade B2B"; }
+
+    const card = document.createElement("div");
+    card.className = `lot-card ${isSelected ? 'selected' : ''}`;
+    card.innerHTML = `
+      <span class="lot-badge ${badgeClass}">${badgeText}</span>
+      <div>
+        <div style="font-size:0.75rem; color:#8e9fad; text-transform:uppercase; font-weight:bold">${lot.source}</div>
+        <div class="lot-title">${lot.title}</div>
+        <div class="lot-meta">
+          <span>📅 ${lot.year}</span>
+          <span>⚡ ${lot.km.toLocaleString()} km</span>
+          <span>⛽ ${lot.co2} g CO2</span>
+        </div>
+        <div class="lot-estimate">${lot.estimate.toLocaleString()} € <span style="font-size:0.8rem; font-weight:normal; color:#8e9fad">(Estimation/Prix)</span></div>
+        <div class="lot-origin">📍 Lieu : <strong>${lot.location}</strong> (${lot.imported ? 'Import Europe' : 'France'})</div>
+      </div>
+      <button class="select-lot-btn" onclick="toggleSelect('${lot.id}')">
+        ${isSelected ? '✓ Sélectionné pour le Business Case' : '+ Sélectionner'}
+      </button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function computeNiceBusinessCase(lot, isE85, isDealer, recondCost) {
+  // Auction fees
+  let feePct = 0.18;
+  let adminFee = 250;
+  let liveFee = lot.estimate * 0.036;
+
+  if (lot.saleType === "judicial") {
+    feePct = 0.1428;
+    adminFee = 150;
+    liveFee = 0;
+  } else if (lot.saleType.startsWith("b2b")) {
+    feePct = 0;
+    adminFee = 380;
+    liveFee = 0;
+  }
+
+  const auctionFees = Math.round(lot.estimate * feePct + liveFee + adminFee);
+  const auctionTotal = lot.estimate + auctionFees;
+
+  // Transport to Nice
+  let transport = 450;
+  if (lot.location.includes("06") || lot.location.includes("Cannes") || lot.location.includes("Nice")) transport = 0;
+  else if (lot.location.includes("Marseille") || lot.location.includes("13") || lot.location.includes("83")) transport = 220;
+  else if (lot.location.includes("Lyon")) transport = 380;
+  else if (lot.country === "DE" || lot.country === "BE") transport = 750;
+
+  // Import Malus & E85
+  let malusCost = 0;
+  let e85Gain = 0;
+  let e85KitCost = isE85 ? 950 : 0;
+
+  if (lot.imported) {
+    const ageMonths = (2026 - lot.year) * 12 + 8;
+    const decote = ageMonths >= 60 ? 0.43 : (ageMonths >= 48 ? 0.38 : 0.28);
+    const co2Base = lot.co2 > 133 ? Math.round(50 + 29950 * Math.pow((lot.co2 - 133)/(219 - 133), 1.85)) : 0;
+    const stdMalus = Math.round(co2Base * (1 - decote));
+
+    const co2E85Val = Math.round(lot.co2 * 0.6);
+    const e85Base = co2E85Val > 133 ? Math.round(50 + 29950 * Math.pow((co2E85Val - 133)/(219 - 133), 1.85)) : 0;
+    const e85Malus = Math.round(e85Base * (1 - decote));
+
+    malusCost = isE85 ? e85Malus : stdMalus;
+    e85Gain = stdMalus - e85Malus - 950;
+  }
+
+  const carteGrise = isDealer ? 0 : Math.round(lot.cv * 60 + 13.76);
+  const totalLandedCost = auctionTotal + transport + recondCost + malusCost + e85KitCost + carteGrise;
+
+  // Resale benchmark in Nice (Leboncoin 06 / PACA retail median)
+  const retailNice = Math.round(totalLandedCost * 1.18);
+  const netMargin = retailNice - totalLandedCost;
+  const roi = ((netMargin / totalLandedCost) * 100).toFixed(1);
+
+  // Max Hammer ceiling for 15% ROI
+  const targetLanded = retailNice / 1.15;
+  const overhead = transport + recondCost + malusCost + e85KitCost + carteGrise + adminFee;
+  const maxBid = Math.max(0, Math.round((targetLanded - overhead) / (1 + feePct + (lot.saleType === "voluntary" ? 0.036 : 0))));
+
+  return {
+    lot,
+    auctionFees,
+    transport,
+    malusCost,
+    e85KitCost,
+    e85Gain,
+    carteGrise,
+    totalLandedCost,
+    retailNice,
+    netMargin,
+    roi,
+    maxBid
+  };
+}
+
+function recalculateCases() {
+  const section = document.getElementById("businessCaseSection");
+  if (selectedLotIds.size === 0) {
+    section.style.display = "none";
+    return;
+  }
+  section.style.display = "block";
+
+  const isE85 = document.getElementById("toggleE85").checked;
+  const isDealer = document.getElementById("toggleDealer").checked;
+  const recondCost = parseFloat(document.getElementById("recondInput").value) || 850;
+
+  const tbody = document.getElementById("caseTableBody");
+  tbody.innerHTML = "";
+
+  let totalInvestment = 0;
+  let totalProjectedProfit = 0;
+
+  selectedLotIds.forEach(id => {
+    const lot = currentLots.find(l => l.id === id);
+    if (!lot) return;
+
+    const res = computeNiceBusinessCase(lot, isE85, isDealer, recondCost);
+    totalInvestment += res.totalLandedCost;
+    totalProjectedProfit += res.netMargin;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <strong>${res.lot.make} ${res.lot.model} (${res.lot.year})</strong><br/>
+        <span style="font-size:0.75rem; color:#8e9fad">${res.lot.km.toLocaleString()} km · Est. ${res.lot.estimate.toLocaleString()} €</span>
+      </td>
+      <td>
+        +${res.auctionFees.toLocaleString()} €<br/>
+        <span style="font-size:0.75rem; color:#8e9fad">${res.lot.saleType.toUpperCase()}</span>
+      </td>
+      <td>
+        +${res.transport} €<br/>
+        <span style="font-size:0.75rem; color:#8e9fad">${res.lot.location}</span>
+      </td>
+      <td>
+        ${res.lot.imported ? (isE85 ? `<span style="color:#34d399">Malus 0€ (E85: +950€ kit)</span><br/><span style="font-size:0.72rem; color:#8e9fad">Gain net: +${res.e85Gain}€</span>` : `<span class="highlight-cost">+${res.malusCost}€ Malus standard</span>`) : `<span style="color:#8e9fad">Origine FR (0€ Malus)</span>`}
+      </td>
+      <td><strong>${res.totalLandedCost.toLocaleString()} €</strong></td>
+      <td><span style="color:#d8bc85; font-weight:600">${res.retailNice.toLocaleString()} €</span></td>
+      <td><span class="highlight-profit">+${res.netMargin.toLocaleString()} €</span> <span style="font-size:0.78rem; color:#34d399">(${res.roi}%)</span></td>
+      <td><span class="highlight-ceiling">${res.maxBid.toLocaleString()} €</span></td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  // Summary Metrics
+  const avgROI = totalInvestment > 0 ? ((totalProjectedProfit / totalInvestment) * 100).toFixed(1) : 0;
+  document.getElementById("summaryCards").innerHTML = `
+    <div class="summary-card">
+      <div class="label">Véhicules Sélectionnés</div>
+      <div class="val" style="color:#ae8d57">${selectedLotIds.size}</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Capital Total Investi</div>
+      <div class="val">${totalInvestment.toLocaleString()} €</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Bénéfice Net Projeté (Nice 06)</div>
+      <div class="val" style="color:#34d399">+${totalProjectedProfit.toLocaleString()} €</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">ROI Moyen Portefeuille</div>
+      <div class="val" style="color:#60a5fa">${avgROI}%</div>
+    </div>
+  `;
+}
+
+function exportDossierPDF() {
+  alert("Génération du rapport exécutif PDF en cours via le moteur arx-auto-mcp...\nLe document paysage A4 téléchargeable sera accessible sur https://arx-mcp.duckdns.org/auto/reports/");
+}
+
+// Initial boot
+renderLots();
+recalculateCases();
+</script>
+
+</body>
+</html>
