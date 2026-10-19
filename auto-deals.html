@@ -218,25 +218,61 @@
   }
   .toggle-label input { width: 18px; height: 18px; accent-color: #ae8d57; cursor: pointer; }
 
-  /* Comparison dossier table */
-  .case-table {
+  /* Comparison dossier table & Dark Theme Unification */
+  table,
+  .case-table,
+  table.case-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.92rem;
     margin-bottom: 24px;
+    background: #152435 !important;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--card-border) !important;
   }
-  .case-table th {
+  .case-table thead,
+  table thead {
+    background: #111d2c !important;
+  }
+  .case-table th,
+  table th {
     text-align: left;
-    padding: 12px 14px;
-    border-bottom: 1px solid rgba(174, 141, 87, 0.3);
-    color: #d8bc85;
-    font-weight: 600;
-  }
-  .case-table td {
     padding: 14px 14px;
-    border-bottom: 1px solid var(--card-border);
-    color: #ffffff;
+    background: #111d2c !important;
+    border-bottom: 1px solid rgba(174, 141, 87, 0.3) !important;
+    color: #d8bc85 !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .case-table tbody,
+  table tbody {
+    background: #152435 !important;
+  }
+  .case-table tr,
+  table tr {
+    background: #152435 !important;
+    transition: background 0.15s ease;
+  }
+  .case-table tr:hover,
+  table tr:hover {
+    background: #182a3d !important;
+  }
+  .case-table td,
+  table td {
+    padding: 14px 14px;
+    background: transparent !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    color: #ffffff !important;
     vertical-align: middle;
+  }
+  .case-table-wrapper {
+    background: #152435;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    overflow-x: auto;
   }
   .highlight-cost { color: #f87171; font-weight: 600; }
   .highlight-profit {
@@ -470,7 +506,7 @@
     </div>
 
     <!-- Comparison Table -->
-    <div style="overflow-x:auto;">
+    <div class="case-table-wrapper" style="overflow-x:auto;">
       <table class="case-table">
         <thead>
           <tr>
