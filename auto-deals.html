@@ -129,21 +129,42 @@
     background: #172a3d;
     box-shadow: 0 0 20px rgba(174, 141, 87, 0.15);
   }
+  .lot-image-wrapper {
+    width: 100%;
+    height: 190px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    position: relative;
+    background: #0a131c;
+  }
+  .lot-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .lot-card:hover .lot-image-wrapper img {
+    transform: scale(1.05);
+  }
   .lot-badge {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 10px;
+    right: 10px;
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 6px;
+    backdrop-filter: blur(8px);
+    z-index: 2;
   }
-  .badge-judicial { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid #3b82f6; }
-  .badge-voluntary { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid #f59e0b; }
-  .badge-b2b { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid #10b981; }
+  .badge-judicial { background: rgba(59, 130, 246, 0.85); color: #ffffff; border: 1px solid #60a5fa; }
+  .badge-voluntary { background: rgba(245, 158, 11, 0.85); color: #0c1722; border: 1px solid #fbbf24; font-weight:800; }
+  .badge-b2b { background: rgba(16, 185, 129, 0.85); color: #ffffff; border: 1px solid #34d399; }
 
-  .lot-title { font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-top: 12px; margin-bottom: 8px; }
+  .lot-title { font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
   .lot-meta { display: flex; gap: 14px; font-size: 0.86rem; color: #9bb0c6; margin-bottom: 12px; }
   .lot-estimate { font-size: 1.35rem; font-weight: 700; color: #d8bc85; margin: 8px 0; }
   .lot-origin { font-size: 0.85rem; color: #8295ab; margin-bottom: 16px; }
@@ -369,7 +390,8 @@ let currentLots = [
     cv: 8,
     weight: 1580,
     imported: false,
-    source: "Interencheres"
+    source: "Interencheres",
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=720&q=80"
   },
   {
     id: "lot_2",
@@ -386,7 +408,8 @@ let currentLots = [
     cv: 10,
     weight: 1690,
     imported: false,
-    source: "Interencheres"
+    source: "Interencheres",
+    image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=720&q=80"
   },
   {
     id: "lot_3",
@@ -403,7 +426,8 @@ let currentLots = [
     cv: 9,
     weight: 1620,
     imported: true,
-    source: "eCarsTrade"
+    source: "eCarsTrade",
+    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=720&q=80"
   },
   {
     id: "lot_4",
@@ -420,7 +444,8 @@ let currentLots = [
     cv: 10,
     weight: 1610,
     imported: false,
-    source: "Interencheres"
+    source: "Interencheres",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=720&q=80"
   },
   {
     id: "lot_5",
@@ -437,7 +462,8 @@ let currentLots = [
     cv: 8,
     weight: 1590,
     imported: true,
-    source: "eCarsTrade"
+    source: "eCarsTrade",
+    image: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=720&q=80"
   }
 ];
 
@@ -481,7 +507,10 @@ function renderLots() {
     const card = document.createElement("div");
     card.className = `lot-card ${isSelected ? 'selected' : ''}`;
     card.innerHTML = `
-      <span class="lot-badge ${badgeClass}">${badgeText}</span>
+      <div class="lot-image-wrapper">
+        <img src="${lot.image}" alt="${lot.title}" loading="lazy" />
+        <span class="lot-badge ${badgeClass}">${badgeText}</span>
+      </div>
       <div>
         <div style="font-size:0.75rem; color:#8e9fad; text-transform:uppercase; font-weight:bold">${lot.source}</div>
         <div class="lot-title">${lot.title}</div>
@@ -604,8 +633,13 @@ function recalculateCases() {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>
-        <strong>${res.lot.make} ${res.lot.model} (${res.lot.year})</strong><br/>
-        <span style="font-size:0.75rem; color:#8e9fad">${res.lot.km.toLocaleString()} km · Est. ${res.lot.estimate.toLocaleString()} €</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="${res.lot.image}" style="width:56px; height:38px; border-radius:6px; object-fit:cover; border:1px solid rgba(255,255,255,0.15);" alt="" />
+          <div>
+            <strong>${res.lot.make} ${res.lot.model} (${res.lot.year})</strong><br/>
+            <span style="font-size:0.75rem; color:#8e9fad">${res.lot.km.toLocaleString()} km · Est. ${res.lot.estimate.toLocaleString()} €</span>
+          </div>
+        </div>
       </td>
       <td>
         +${res.auctionFees.toLocaleString()} €<br/>
