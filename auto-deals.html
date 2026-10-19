@@ -569,7 +569,7 @@ const auctionDatabase = [
     imported: false,
     source: "Alcopa Auction Marseille",
     sourceUrl: "https://www.alcopa-auction.fr/recherche?typeVehicule=vp&marque=BMW&modele=X1",
-    image: "https://photos.static.alcopa-auction.net/photos/2610/26100500631/internalCropped/VOLVO_S60_bb038b2fb3b396f3885eb98a.jpg",
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80",
     description: "Vente aux enchères physiques & live. Climatisation auto bi-zone, Hayon électrique, GPS Business, Jantes alu 18\". CT valide sans contre-visite."
   },
   {
@@ -593,7 +593,7 @@ const auctionDatabase = [
     imported: false,
     source: "Interencheres Lyon",
     sourceUrl: "https://www.interencheres.com/vehicules",
-    image: "https://photos.static.alcopa-auction.net/photos/2609/26092900387/internalCropped/TESLA_MODEL_Y_5d058859c77b6a0fc405aa25.jpg",
+    image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80",
     description: "Vente judiciaire (frais légaux réduits 14.28%). Pack M intérieur/extérieur, Toit ouvrant panoramique, Sièges cuir sport, Caméra de recul."
   },
   {
@@ -617,7 +617,7 @@ const auctionDatabase = [
     imported: true,
     source: "eCarsTrade DE",
     sourceUrl: "https://fr.ecarstrade.com/search",
-    image: "https://photos.static.alcopa-auction.net/photos/2609/26092400300/internalCropped/PEUGEOT_3008_f2ac2920f0dd5b1795f83df4.jpg",
+    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80",
     description: "Ex-leasing bancaire certifié. Carnet 100% concession BMW Allemagne. Rapport DEKRA complet, zéro choc structurel, éligible abattement E85."
   },
 
@@ -693,7 +693,7 @@ const auctionDatabase = [
     imported: true,
     source: "eCarsTrade BE",
     sourceUrl: "https://fr.ecarstrade.com/search",
-    image: "https://photos.static.alcopa-auction.net/photos/2610/26100800408/internalCropped/RENAULT_ESPACE_VI_1ab4cb8d5134c5530d26c344.jpg",
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80",
     description: "Break Touring familial premium. Affichage tête haute (HUD), Live Cockpit Pro, Hayon électrique, Sièges chauffants mémoire."
   },
 
@@ -1213,12 +1213,12 @@ function openMarginBreakdownModal(lotId) {
         <strong>${res.lot.estimate.toLocaleString()} €</strong>
       </div>
       <div class="cost-line">
-        <span>Frais d'adjudication de la salle de vente (${res.feePct}% TTC) :</span>
+        <span>Frais d'adjudication de la salle (${res.feePct > 0 ? res.feePct + '% TTC' : 'Forfait fixe B2B'} - ${res.lot.saleType === 'judicial' ? 'Barème légal judiciaire Art. R444-55' : (res.lot.saleType.startsWith('b2b') ? 'Plateforme B2B eCarsTrade Europe' : 'Vente Volontaire standard Alcopa/Interencheres')}) :</span>
         <strong>+${res.auctionPctFee.toLocaleString()} €</strong>
       </div>
       ${res.liveFee > 0 ? `
       <div class="cost-line">
-        <span>Frais de retransmission Live enchères (+3.6% TTC) :</span>
+        <span>Frais de retransmission Live enchères (+3.6% TTC Interencheres Live) :</span>
         <strong>+${res.liveFee.toLocaleString()} €</strong>
       </div>` : ''}
       <div class="cost-line">
@@ -1235,21 +1235,21 @@ function openMarginBreakdownModal(lotId) {
       </div>
       ${res.lot.imported ? `
       <div class="cost-line">
-        <span>Malus écologique d'importation CGI 2026 (${res.lot.co2} g/km, décote âge -${res.decotePct}%) :</span>
+        <span>Malus écologique d'importation CGI 2026 (${res.lot.co2} g/km, décote âge officielle -${res.decotePct}%) :</span>
         <strong>+${res.malusCost.toLocaleString()} €</strong>
       </div>
       ${res.e85KitCost > 0 ? `
       <div class="cost-line">
-        <span>Boîtier homologué Superéthanol E85 (Pose + Homologation -40% CO2) :</span>
-        <strong style="color:#34d399">+${res.e85KitCost.toLocaleString()} € (Économie malus: -${(res.stdMalus - res.malusCost).toLocaleString()} €)</strong>
+        <span>Boîtier homologué Superéthanol E85 (Pose + Homologation Art. L. 421-62 CIBS -40% CO2) :</span>
+        <strong style="color:#34d399">+${res.e85KitCost.toLocaleString()} € (Économie malus brut: -${(res.stdMalus - res.malusCost).toLocaleString()} €)</strong>
       </div>` : ''}` : `
       <div class="cost-line">
         <span>Fiscalité d'importation (Véhicule d'origine française) :</span>
-        <span style="color:#8e9fad">0 € (Exonéré de malus)</span>
+        <span style="color:#8e9fad">0 € (Exonéré de malus à l'immatriculation française)</span>
       </div>`}
       <div class="cost-line">
         <span>Carte Grise Régionale PACA (${res.lot.cv} CV × 60 €) :</span>
-        <span>${res.carteGrise > 0 ? `+${res.carteGrise.toLocaleString()} €` : `<strong style="color:#34d399">0 € (Statut Marchand - Déclaration d'Achat DA)</strong>`}</span>
+        <span>${res.carteGrise > 0 ? `+${res.carteGrise.toLocaleString()} €` : `<strong style="color:#34d399">0 € (Statut Marchand DA - Déclaration d'Achat exonérée)</strong>`}</span>
       </div>
 
       <div class="cost-line total">
