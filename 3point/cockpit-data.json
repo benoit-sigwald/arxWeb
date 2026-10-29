@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T17:24:38",
+  "updated_at": "2026-10-29T17:50:58",
   "drive_root": "G:\\My Drive\\3point.ia",
   "active_jobs": {},
   "customers": [
@@ -227,10 +227,12 @@
       "canonical_id": "propaganda",
       "folder": "G:\\My Drive\\3point.ia\\Customers\\propaganda",
       "report_dir": "G:\\My Drive\\3point.ia\\Customers\\propaganda\\output",
-      "resource_count": 2,
+      "resource_count": 4,
       "resources": [
         "Agentic IT - 3p and Cisco branding.docx",
-        "Netgentic-3p-branding Cisco Branding.docx"
+        "Netgentic-3p-branding Cisco Branding.docx",
+        "NVIDIA STATUS REPORT TEMPLATE.docx",
+        "SWA - NVIDIA STATUS REPORT.docx"
       ],
       "has_draft": false,
       "has_docx": false,
@@ -325,6 +327,35 @@
       "needs_input_count": 0,
       "blocking_issues_count": 4,
       "review_summary": "This is a strong, well-evidenced draft written against template v1. Benefits rest on SSC-ICT's own estimates, and the conservative basis is stated openly. The appendices are unusually complete: architecture, sizing, stakeholders, KPIs and a vendor list with commercial status. The",
+      "gaps_path": null
+    },
+    {
+      "customer": "Swedbank",
+      "canonical_id": "swedbank",
+      "folder": "G:\\My Drive\\3point.ia\\Customers\\Swedbank",
+      "report_dir": "G:\\My Drive\\3point.ia\\Customers\\Swedbank\\output",
+      "resource_count": 11,
+      "resources": [
+        "Call 1 - Cisco Prep Call Swedbank.xlsx",
+        "Swedbank AI Introduction Webinar Slides.pdf",
+        "Swedbank AI Introduction Webinar Slides.pptx",
+        "Swedbank AI Use Cases.csv",
+        "Swedbank Contact Details.xlsx",
+        "Swedbank Frame Workshop agenda.docx",
+        "Swedbank Frame Workshop agenda.pdf",
+        "Swedbank Phase 1 Workshop Agenda.docx",
+        "Swedbank Phase 1 Workshop Agenda.pdf",
+        "Swedbank Sponsor Slides.pptx",
+        "Swedbank Workshops Plan.xlsx"
+      ],
+      "has_draft": false,
+      "has_docx": false,
+      "has_pdf": false,
+      "has_review": false,
+      "review_path": null,
+      "needs_input_count": 0,
+      "blocking_issues_count": 0,
+      "review_summary": "",
       "gaps_path": null
     },
     {
