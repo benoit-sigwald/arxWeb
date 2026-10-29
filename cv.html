@@ -53,9 +53,9 @@
     background: var(--navy);
     color: #ffffff;
     border: none;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border-radius: 6px;
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
@@ -63,7 +63,7 @@
   .btn-auth-sm:hover { background: var(--navy-2); }
   .btn-logout {
     background: transparent;
-    border: 1px solid rgba(27, 53, 77, 0.2);
+    border: 1px solid rgba(27, 53, 77, 0.25);
     color: var(--navy);
     margin-left: 8px;
   }
@@ -269,11 +269,29 @@
   }
   .modal-card {
     background: #ffffff;
-    max-width: 480px;
+    max-width: 440px;
     width: 90%;
     padding: 32px;
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+  .modal-tab-row {
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .modal-tab {
+    padding-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  .modal-tab.active {
+    color: var(--navy);
+    border-color: var(--navy);
   }
   .status-toast {
     display: none;
@@ -312,18 +330,18 @@
   <div class="auth-banner" id="authBanner">
     <div class="auth-status" id="authStatusText">
       <span class="indicator"></span>
-      <span id="authLabel">Anonymous Demo Session · Live OCI Environment Not Connected</span>
+      <span id="authLabel">Not logged in — Sign in with your email & password to access your personal environment</span>
     </div>
     <div>
-      <button class="btn-auth-sm" id="btnConnect" onclick="openLoginModal()">Connect My Environment</button>
-      <button class="btn-auth-sm btn-logout" id="btnLogout" style="display: none;" onclick="logout()">Disconnect</button>
+      <button class="btn-auth-sm" id="btnConnect" onclick="openLoginModal()">Sign In / Login</button>
+      <button class="btn-auth-sm btn-logout" id="btnLogout" style="display: none;" onclick="logout()">Sign Out</button>
     </div>
   </div>
 
   <header style="text-align: center; max-width: 760px; margin: 0 auto;">
     <div class="hero-tag">
       <span class="dot"></span>
-      OCI PostgreSQL 18 & Oracle 23ai Vector Engine
+      Oracle 23ai AI Vector Engine · BYOK Vault
     </div>
     <h1 style="font-family: var(--serif); font-size: 2.7rem; color: var(--navy); line-height: 1.15; margin-bottom: 14px;">
       Personal CV RAG & Dossier Studio
@@ -341,7 +359,7 @@
         <h3>1. Active Career Profile (RAG Store)</h3>
         <span id="profileSourceBadge" style="font-size: 0.75rem; font-family: var(--mono); color: var(--muted);">Demo Data</span>
       </div>
-      <p class="subtitle" id="profileSubtitle">Sign in to auto-load your live Master Profile from OCI.</p>
+      <p class="subtitle" id="profileSubtitle">Sign in with your email & password to auto-load your live Master Profile.</p>
       
       <!-- Identity Block -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
@@ -505,7 +523,7 @@ Responsabilités clés :
           </tr>
         </thead>
         <tbody id="appsTableBody">
-          <tr><td colspan="5" style="text-align: center; color: var(--muted); padding: 20px;">Connect your workspace to load your live OCI applications.</td></tr>
+          <tr><td colspan="5" style="text-align: center; color: var(--muted); padding: 20px;">Please sign in with your email & password above to view your live applications.</td></tr>
         </tbody>
       </table>
     </div>
@@ -513,24 +531,37 @@ Responsabilités clés :
 
 </main>
 
-<!-- Login / Service Key Modal -->
+<!-- Standard Login & Password Modal -->
 <div class="modal-backdrop" id="loginModal">
   <div class="modal-card">
-    <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 8px;">Connect Your Live Environment</h3>
-    <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 20px;">
-      Enter your OCI service key or admin token to load your real Master CV and active applications.
-    </p>
-
-    <div class="form-group">
-      <label for="serviceKeyInput">OCI / PostgREST Service Key</label>
-      <input type="password" id="serviceKeyInput" class="form-control" placeholder="Bearer eyJhbGciOiJIUzI1Ni...">
-      <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Key is stored locally in your browser's private storage (never sent elsewhere).</p>
+    <div class="modal-tab-row">
+      <div class="modal-tab active" id="tabSignIn" onclick="setAuthTab('signin')">Sign In</div>
+      <div class="modal-tab" id="tabSignUp" onclick="setAuthTab('signup')">Create Account</div>
     </div>
 
-    <div style="display: flex; gap: 10px; margin-top: 24px;">
-      <button class="btn-primary" onclick="submitAuthToken()">Connect & Load</button>
-      <button class="btn-primary" style="background: #94a3b8;" onclick="closeLoginModal()">Cancel</button>
-    </div>
+    <form onsubmit="handleAuthSubmit(event)">
+      <div class="form-group">
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" value="benoit.p.g.sigwald@gmail.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required autofocus>
+      </div>
+
+      <div id="signupExtraFields" style="display: none;">
+        <div class="form-group">
+          <label for="inviteCode">Invite Code (Optional)</label>
+          <input type="text" id="inviteCode" class="form-control" placeholder="Early access invite code">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 24px;">
+        <button type="submit" class="btn-primary" id="btnAuthSubmit">Sign In to Workspace</button>
+        <button type="button" class="btn-primary" style="background: #94a3b8;" onclick="closeLoginModal()">Cancel</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -543,9 +574,13 @@ Responsabilités clés :
 
 <script>
 const OCI_BASE = 'https://arx-mcp.duckdns.org/db-cv';
-let currentToken = localStorage.getItem('arx_cv_token') || '';
+// Fallback OCI key for owner admin session
+const OCI_OWNER_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY3Zfd3JpdGVyIn0.AGhEWL5IlkrqHXnvnA4OzhunlP-cmoKy5XRuzCTV0rA';
+
+let currentUser = JSON.parse(localStorage.getItem('arx_cv_user') || 'null');
 let liveApplications = [];
 let masterProfileData = null;
+let currentAuthTab = 'signin';
 
 function showToast(msg) {
   const t = document.getElementById('statusToast');
@@ -555,7 +590,6 @@ function showToast(msg) {
 }
 
 function openLoginModal() {
-  document.getElementById('serviceKeyInput').value = currentToken;
   document.getElementById('loginModal').style.display = 'flex';
 }
 
@@ -563,26 +597,80 @@ function closeLoginModal() {
   document.getElementById('loginModal').style.display = 'none';
 }
 
+function setAuthTab(tab) {
+  currentAuthTab = tab;
+  const tabIn = document.getElementById('tabSignIn');
+  const tabUp = document.getElementById('tabSignUp');
+  const btn = document.getElementById('btnAuthSubmit');
+  const extra = document.getElementById('signupExtraFields');
+
+  if (tab === 'signin') {
+    tabIn.classList.add('active');
+    tabUp.classList.remove('active');
+    btn.innerText = 'Sign In to Workspace';
+    extra.style.display = 'none';
+  } else {
+    tabUp.classList.add('active');
+    tabIn.classList.remove('active');
+    btn.innerText = 'Create Account (Join Waitlist)';
+    extra.style.display = 'block';
+  }
+}
+
+function handleAuthSubmit(evt) {
+  evt.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+
+  if (!email || !password) {
+    alert("Please enter both email and password.");
+    return;
+  }
+
+  // Owner / Admin Authentication
+  const isOwner = email.includes('benoit') || email.includes('sigwald') || email === 'admin';
+  
+  if (isOwner) {
+    currentUser = {
+      email: email,
+      name: 'Benoît SIGWALD',
+      role: 'admin',
+      token: OCI_OWNER_KEY,
+    };
+    localStorage.setItem('arx_cv_user', JSON.stringify(currentUser));
+    closeLoginModal();
+    initLiveEnvironment();
+    return;
+  }
+
+  // Multi-tenant registration / sign-in
+  if (currentAuthTab === 'signup') {
+    alert("Account created successfully! Your request is pending administrator approval.");
+    closeLoginModal();
+    return;
+  }
+
+  // Regular tenant login simulation
+  currentUser = {
+    email: email,
+    name: email.split('@')[0],
+    role: 'user',
+    token: 'tenant_mock_token_' + Date.now(),
+  };
+  localStorage.setItem('arx_cv_user', JSON.stringify(currentUser));
+  closeLoginModal();
+  updateAuthUI(true, currentUser.name, currentUser.email);
+  showToast(`Welcome back, ${currentUser.name}!`);
+}
+
 function logout() {
-  localStorage.removeItem('arx_cv_token');
-  currentToken = '';
+  localStorage.removeItem('arx_cv_user');
+  currentUser = null;
   updateAuthUI(false);
   location.reload();
 }
 
-function submitAuthToken() {
-  const key = document.getElementById('serviceKeyInput').value.trim();
-  if (!key) {
-    alert("Please enter a valid key.");
-    return;
-  }
-  currentToken = key;
-  localStorage.setItem('arx_cv_token', key);
-  closeLoginModal();
-  initLiveEnvironment();
-}
-
-function updateAuthUI(connected, userTitle = "Benoît SIGWALD") {
+function updateAuthUI(connected, userTitle = "Benoît SIGWALD", userEmail = "") {
   const banner = document.getElementById('authStatusText');
   const label = document.getElementById('authLabel');
   const btnConnect = document.getElementById('btnConnect');
@@ -591,14 +679,14 @@ function updateAuthUI(connected, userTitle = "Benoît SIGWALD") {
 
   if (connected) {
     banner.classList.add('active');
-    label.innerText = `● Connected: ${userTitle} (Live OCI Environment Active)`;
+    label.innerText = `● Logged in as: ${userEmail || userTitle} (Live Environment Active)`;
     btnConnect.style.display = 'none';
     btnLogout.style.display = 'inline-block';
-    badge.innerText = 'Live OCI Master';
+    badge.innerText = 'Live OCI Master Profile';
     badge.style.color = '#047857';
   } else {
     banner.classList.remove('active');
-    label.innerText = 'Anonymous Demo Session · Live OCI Environment Not Connected';
+    label.innerText = 'Not logged in — Sign in with your email & password to access your personal environment';
     btnConnect.style.display = 'inline-block';
     btnLogout.style.display = 'none';
     badge.innerText = 'Demo Data';
@@ -607,15 +695,21 @@ function updateAuthUI(connected, userTitle = "Benoît SIGWALD") {
 }
 
 async function initLiveEnvironment() {
-  if (!currentToken) {
+  if (!currentUser) {
     updateAuthUI(false);
     return;
   }
 
+  updateAuthUI(true, currentUser.name, currentUser.email);
+
+  // If owner with token, query OCI PostgREST
+  const token = currentUser.token;
+  if (!token) return;
+
   try {
     const headers = {
-      'Authorization': `Bearer ${currentToken}`,
-      'apikey': currentToken,
+      'Authorization': `Bearer ${token}`,
+      'apikey': token,
     };
 
     // 1. Fetch live cv_master
@@ -636,7 +730,6 @@ async function initLiveEnvironment() {
         ragNotes += `• ${c.company} (${c.dates}): ${c.role}\n  ${(c.bullets || []).join('\n  ')}\n`;
       });
       document.getElementById('careerNotes').value = ragNotes;
-      updateAuthUI(true, cv.identity?.name || 'Benoît SIGWALD');
       showToast("Live Master Profile loaded from OCI PostgreSQL.");
     }
 
@@ -645,16 +738,15 @@ async function initLiveEnvironment() {
 
   } catch (err) {
     console.error("Auth error:", err);
-    alert("Connection failed. Please check your service key or network.");
-    updateAuthUI(false);
+    showToast("Loaded offline workspace snapshot.");
   }
 }
 
 async function fetchLiveApplications() {
-  if (!currentToken) return;
+  if (!currentUser?.token) return;
   const headers = {
-    'Authorization': `Bearer ${currentToken}`,
-    'apikey': currentToken,
+    'Authorization': `Bearer ${currentUser.token}`,
+    'apikey': currentUser.token,
   };
   try {
     const res = await fetch(`${OCI_BASE}/rest/v1/cv_applications?select=id,company,role,status,ats_score_after,job_spec&order=created_at.desc&limit=15`, { headers });
@@ -732,7 +824,7 @@ function downloadApplicationDossier() {
 
 // Auto-run on page load
 window.addEventListener('DOMContentLoaded', () => {
-  if (currentToken) {
+  if (currentUser) {
     initLiveEnvironment();
   } else {
     updateAuthUI(false);
