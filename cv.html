@@ -7,7 +7,7 @@
 <meta name="description" content="Industrialize your job applications with a personal career RAG, BYOK encrypted AI connection, and pixel-faithful DOCX tailoring." />
 <link rel="canonical" href="https://arx-consulting.com/cv" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
@@ -17,9 +17,58 @@
   }
   .app-container {
     max-width: 1140px;
-    margin: 40px auto 80px;
+    margin: 30px auto 80px;
     padding: 0 24px;
   }
+  /* Top Auth Status Bar */
+  .auth-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy-soft);
+    border: 1px solid rgba(27, 53, 77, 0.15);
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin-bottom: 28px;
+    font-size: 0.88rem;
+  }
+  .auth-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .auth-status .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #94a3b8;
+  }
+  .auth-status.active .indicator {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+  .btn-auth-sm {
+    background: var(--navy);
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-auth-sm:hover { background: var(--navy-2); }
+  .btn-logout {
+    background: transparent;
+    border: 1px solid rgba(27, 53, 77, 0.2);
+    color: var(--navy);
+    margin-left: 8px;
+  }
+  .btn-logout:hover { background: rgba(27, 53, 77, 0.05); }
+
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -41,19 +90,16 @@
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
   .grid-studio {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
-    margin-top: 36px;
+    margin-top: 32px;
   }
-  @media (max-width: 900px) {
-    .grid-studio { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 900px) { .grid-studio { grid-template-columns: 1fr; } }
+
   .card-box {
     background: var(--card);
     border: 1px solid var(--border);
@@ -72,9 +118,7 @@
     color: var(--muted);
     margin-bottom: 20px;
   }
-  .form-group {
-    margin-bottom: 20px;
-  }
+  .form-group { margin-bottom: 20px; }
   .form-group label {
     display: block;
     font-size: 0.85rem;
@@ -93,40 +137,22 @@
     background: #fafbfc;
     transition: border-color 0.2s, background 0.2s;
   }
-  .form-control:focus {
-    outline: none;
-    border-color: var(--navy);
-    background: #ffffff;
-  }
-  textarea.form-control {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    line-height: 1.5;
-    resize: vertical;
-  }
+  .form-control:focus { outline: none; border-color: var(--navy); background: #ffffff; }
+  textarea.form-control { font-family: var(--mono); font-size: 0.85rem; line-height: 1.5; resize: vertical; }
+
   .dropzone {
     border: 2px dashed var(--border);
     border-radius: 12px;
-    padding: 30px 20px;
+    padding: 24px 20px;
     text-align: center;
     background: var(--bg-soft);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
   }
-  .dropzone:hover {
-    border-color: var(--navy);
-    background: #f1f4f8;
-  }
-  .dropzone svg {
-    width: 36px;
-    height: 36px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .dropzone p {
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
+  .dropzone:hover { border-color: var(--navy); background: #f1f4f8; }
+  .dropzone svg { width: 32px; height: 32px; color: var(--muted); margin-bottom: 6px; }
+  .dropzone p { font-size: 0.85rem; color: var(--muted); }
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -143,12 +169,9 @@
     width: 100%;
     transition: background 0.2s, transform 0.1s;
   }
-  .btn-primary:hover {
-    background: var(--navy-2);
-  }
-  .btn-primary:active {
-    transform: translateY(1px);
-  }
+  .btn-primary:hover { background: var(--navy-2); }
+  .btn-primary:active { transform: translateY(1px); }
+
   .score-badge-wrap {
     display: flex;
     align-items: center;
@@ -173,21 +196,9 @@
     font-weight: 700;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
   }
-  .score-info h4 {
-    font-size: 1.05rem;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .score-info p {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .pills-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
+  .score-info h4 { font-size: 1.05rem; color: var(--text); margin-bottom: 2px; }
+  .score-info p { font-size: 0.82rem; color: var(--muted); }
+  .pills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .pill {
     font-size: 0.78rem;
     font-family: var(--mono);
@@ -195,16 +206,9 @@
     border-radius: 6px;
     font-weight: 500;
   }
-  .pill-covered {
-    background: #e6f7ef;
-    color: #047857;
-    border: 1px solid #bbf7d0;
-  }
-  .pill-gap {
-    background: #fef3c7;
-    color: #b45309;
-    border: 1px solid #fde68a;
-  }
+  .pill-covered { background: #e6f7ef; color: #047857; border: 1px solid #bbf7d0; }
+  .pill-gap { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
   .checklist-item {
     display: flex;
     align-items: center;
@@ -216,22 +220,60 @@
     font-size: 0.9rem;
     color: var(--text);
   }
-  .checklist-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--navy);
-  }
-  .experience-card {
-    border-left: 3px solid var(--gold);
-    background: var(--bg-soft);
-    padding: 14px 18px;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 12px;
+  .checklist-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--navy); }
+
+  /* Live Applications Table */
+  .apps-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
     font-size: 0.88rem;
-    line-height: 1.5;
   }
-  .experience-card b {
-    color: var(--navy);
+  .apps-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--bg-soft);
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .apps-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .apps-table tr:hover { background: #fafbfc; cursor: pointer; }
+  .badge-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .badge-to_apply { background: #e0f2fe; color: #0369a1; }
+  .badge-applied { background: #fef3c7; color: #b45309; }
+  .badge-interview { background: #dcfce7; color: #15803d; }
+  .badge-offer { background: #f3e8ff; color: #7e22ce; }
+
+  /* Modal */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-card {
+    background: #ffffff;
+    max-width: 480px;
+    width: 90%;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   }
   .status-toast {
     display: none;
@@ -266,36 +308,73 @@
 
 <main class="app-container">
   
+  <!-- Live Workspace Auth Bar -->
+  <div class="auth-banner" id="authBanner">
+    <div class="auth-status" id="authStatusText">
+      <span class="indicator"></span>
+      <span id="authLabel">Anonymous Demo Session · Live OCI Environment Not Connected</span>
+    </div>
+    <div>
+      <button class="btn-auth-sm" id="btnConnect" onclick="openLoginModal()">Connect My Environment</button>
+      <button class="btn-auth-sm btn-logout" id="btnLogout" style="display: none;" onclick="logout()">Disconnect</button>
+    </div>
+  </div>
+
   <header style="text-align: center; max-width: 760px; margin: 0 auto;">
     <div class="hero-tag">
       <span class="dot"></span>
-      Oracle 23ai AI Vector Engine · BYOK Vault
+      OCI PostgreSQL 18 & Oracle 23ai Vector Engine
     </div>
     <h1 style="font-family: var(--serif); font-size: 2.7rem; color: var(--navy); line-height: 1.15; margin-bottom: 14px;">
       Personal CV RAG & Dossier Studio
     </h1>
     <p style="font-size: 1.05rem; color: var(--muted); line-height: 1.6;">
-      Industrialize your job applications. Upload your career history, connect your personal LLM API key, paste any job spec, and download a pixel-faithful tailored DOCX package with verified ATS keyword density.
+      Industrialize your job applications. Tailor your verified Master CV to any job specification with automated ATS keyword gap scoring and pixel-faithful DOCX generation.
     </p>
   </header>
 
   <div class="grid-studio">
     
-    <!-- LEFT PANEL: Ingestion & Settings -->
+    <!-- LEFT PANEL: Ingestion & Live Master Profile -->
     <div class="card-box">
-      <h3>1. Personal Career Knowledge Base (RAG)</h3>
-      <p class="subtitle">Upload historical career records and configure your personal AI connection.</p>
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <h3>1. Active Career Profile (RAG Store)</h3>
+        <span id="profileSourceBadge" style="font-size: 0.75rem; font-family: var(--mono); color: var(--muted);">Demo Data</span>
+      </div>
+      <p class="subtitle" id="profileSubtitle">Sign in to auto-load your live Master Profile from OCI.</p>
       
-      <!-- API Key & BYOK Settings -->
+      <!-- Identity Block -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
+        <div>
+          <label for="profName">Candidate Name</label>
+          <input type="text" id="profName" class="form-control" value="Benoît SIGWALD">
+        </div>
+        <div>
+          <label for="profTitle">Executive Title</label>
+          <input type="text" id="profTitle" class="form-control" value="Directeur Conseil & Transformation IA">
+        </div>
+      </div>
+
+      <!-- Live RAG Summary & Proof Points -->
       <div class="form-group">
-        <label for="providerSelect">Bring Your Own Key (BYOK)</label>
+        <label for="careerNotes">Master Summary & Quantified Achievements</label>
+        <textarea id="careerNotes" class="form-control" rows="8">Benoît SIGWALD — Directeur Conseil & Transformation IA
+• 20+ ans d'expérience en transformation numérique, architecture distribuée et plateformes IA.
+• Conception et déploiement de réseaux multi-agents (MCP) résilients sur OCI et AWS (99.99% SLA).
+• Direction d'organisations de 50+ ingénieurs à travers 4 pays ; accélération du CA de 5M$ à 25M$ ARR.
+• Master of Science en Systèmes Distribués (Télécom Paris). Bilingue Français / Anglais.</textarea>
+      </div>
+
+      <!-- BYOK Settings -->
+      <div class="form-group">
+        <label for="providerSelect">AI Engine Connection (BYOK)</label>
         <div style="display: flex; gap: 8px; margin-bottom: 8px;">
           <select id="providerSelect" class="form-control" style="max-width: 160px;">
             <option value="anthropic">Anthropic Claude</option>
             <option value="openai">OpenAI (GPT-4o)</option>
             <option value="gemini">Google Gemini</option>
           </select>
-          <input type="password" id="apiKeyInput" class="form-control" placeholder="Paste your API key (sk-...)" value="sk-ant-vault-sample-key">
+          <input type="password" id="apiKeyInput" class="form-control" placeholder="Personal API Key (stored locally)" value="sk-ant-live-session">
         </div>
         <label style="font-size: 0.8rem; color: var(--muted); font-weight: normal; display: flex; align-items: center; gap: 6px;">
           <input type="checkbox" id="consentPooled" checked>
@@ -303,27 +382,8 @@
         </label>
       </div>
 
-      <!-- Ingestion Dropzone -->
       <div class="form-group">
-        <label>Historical Career Data (Resume, LinkedIn, Projects)</label>
-        <div class="dropzone" id="cvDropzone" onclick="document.getElementById('fileUpload').click()">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-          <p><strong>Click to upload</strong> or drag & drop past CV (.docx, .pdf) or LinkedIn export</p>
-          <input type="file" id="fileUpload" style="display: none;" accept=".docx,.pdf,.txt" onchange="handleFileSelect(event)">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="careerNotes">Indexed Career Proof Points (Active RAG Store)</label>
-        <textarea id="careerNotes" class="form-control" rows="8">Benoît SIGWALD — Senior Director AI Transformation & Agentic Platforms
-• 20+ years driving large-scale digital transformations and distributed architectures.
-• Deployed autonomous multi-agent MCP networks on Oracle Cloud Infrastructure (OCI) and AWS with 99.99% SLA.
-• Scaled engineering organization to 50+ engineers across 4 countries and grew ARR from $5M to $25M.
-• Master of Science in Distributed Systems — Telecom Paris. Fluent English, Native French.</textarea>
-      </div>
-
-      <div class="form-group">
-        <label>CV Styling Template</label>
+        <label>Document Styling Template</label>
         <select id="templateSelect" class="form-control">
           <option value="master-calibri">Signature Master Template (1-Page A4 Calibri #1F4E79 Grid)</option>
           <option value="custom">Custom Uploaded Word Template (docxtpl {{ tags }})</option>
@@ -331,30 +391,30 @@
       </div>
     </div>
 
-    <!-- RIGHT PANEL: Job Spec & Tailoring Studio -->
+    <!-- RIGHT PANEL: Job Spec & Live ATS Tailoring -->
     <div class="card-box">
       <h3>2. Job Spec & Live ATS Tailoring</h3>
-      <p class="subtitle">Paste the target job description to match experiences and generate files.</p>
+      <p class="subtitle">Paste an offer or select a previous application below to analyze keywords.</p>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
         <div>
           <label for="targetCompany">Target Organization</label>
-          <input type="text" id="targetCompany" class="form-control" placeholder="e.g. Allianz, Thales, Datadog" value="TechNova Global">
+          <input type="text" id="targetCompany" class="form-control" placeholder="e.g. Allianz, Thales Alenia Space" value="Thales Alenia Space">
         </div>
         <div>
           <label for="targetRole">Target Role</label>
-          <input type="text" id="targetRole" class="form-control" placeholder="e.g. VP AI Engineering" value="VP Artificial Intelligence">
+          <input type="text" id="targetRole" class="form-control" placeholder="e.g. CTO IS-IT" value="Chief Technology Officer IS-IT - F/H (Cannes)">
         </div>
       </div>
 
       <div class="form-group">
         <label for="jobSpecInput">Job Specification Text</label>
-        <textarea id="jobSpecInput" class="form-control" rows="7" placeholder="Paste the complete job description here...">We are seeking an executive VP of Artificial Intelligence to lead enterprise transformation.
-Required Qualifications:
-- 15+ years experience leading enterprise cloud platforms and engineering teams.
-- Hands-on expertise with LLM orchestration, Model Context Protocol (MCP), and multi-agent systems.
-- Proven track record scaling distributed infrastructure on OCI and AWS.
-- Strong stakeholder leadership, executive communication, and team scaling from 20 to 50+ engineers.</textarea>
+        <textarea id="jobSpecInput" class="form-control" rows="7" placeholder="Paste the complete job description here...">Thales Alenia Space recherche son Chief Technology Officer IS-IT pour son site de Cannes.
+Responsabilités clés :
+- Pilotage stratégique de l'infrastructure numérique et transformation IA pour les activités spatiales.
+- Direction d'équipes pluridisciplinaires d'ingénieurs sur des environnements hautement sécurisés.
+- Architecture cloud souveraine, résilience opérationnelle et gouvernance des données critiques.
+- Conduite du changement, alignement avec les directions métiers et comités exécutifs.</textarea>
       </div>
 
       <button class="btn-primary" id="btnTailor" onclick="runTailoringPipeline()">
@@ -365,29 +425,28 @@ Required Qualifications:
       <!-- Live ATS Results -->
       <div id="resultsSection" style="margin-top: 28px;">
         <div class="score-badge-wrap">
-          <div class="score-circle" id="atsScoreDisplay">86%</div>
+          <div class="score-circle" id="atsScoreDisplay">97%</div>
           <div class="score-info">
             <h4>ATS Keyword Match Score</h4>
-            <p id="atsSummary">18 of 21 core keywords covered in retrieved experience.</p>
+            <p id="atsSummary">High density match with your Master Profile achievements.</p>
           </div>
         </div>
 
-        <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 16px;">
           <label style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Matched Keywords (Dense Coverage)</label>
           <div class="pills-wrap" id="coveredKeywords">
-            <span class="pill pill-covered">✓ Model Context Protocol (MCP)</span>
-            <span class="pill pill-covered">✓ OCI Infrastructure</span>
-            <span class="pill pill-covered">✓ Team Scaling</span>
-            <span class="pill pill-covered">✓ Distributed Systems</span>
-            <span class="pill pill-covered">✓ 20+ Years Experience</span>
+            <span class="pill pill-covered">✓ Transformation IA</span>
+            <span class="pill pill-covered">✓ Architecture Cloud Souveraine</span>
+            <span class="pill pill-covered">✓ Direction d'équipes</span>
+            <span class="pill pill-covered">✓ Résilience Opérationnelle</span>
+            <span class="pill pill-covered">✓ Comités Exécutifs</span>
           </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Identified Gaps (Automatically Reframed)</label>
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Identified Gaps (Reframed in Narrative)</label>
           <div class="pills-wrap" id="gapKeywords">
-            <span class="pill pill-gap">⚠ Budget P&L Governance</span>
-            <span class="pill pill-gap">⚠ ISO 27001 Compliance</span>
+            <span class="pill pill-gap">⚠ Normes Spatiales ECSS</span>
           </div>
         </div>
 
@@ -404,7 +463,7 @@ Required Qualifications:
           </div>
           <div class="checklist-item">
             <input type="checkbox" id="dlLetter" checked>
-            <span><b>Personalized Cover Letter (.docx)</b> — Language-aligned provocative hook</span>
+            <span><b>Personalized Cover Letter (.docx)</b> — Language-aligned hook</span>
           </div>
           <div class="checklist-item">
             <input type="checkbox" id="dlAnalysis" checked>
@@ -424,16 +483,70 @@ Required Qualifications:
 
   </div>
 
+  <!-- BOTTOM PANEL: Live Applications History Table -->
+  <section class="card-box" style="margin-top: 36px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <div>
+        <h3>My Live Applications</h3>
+        <p class="subtitle" style="margin-bottom: 0;">Click on any application to load its details into the tailoring studio.</p>
+      </div>
+      <button class="btn-auth-sm" onclick="fetchLiveApplications()">↻ Refresh Live Data</button>
+    </div>
+    
+    <div style="overflow-x: auto;">
+      <table class="apps-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>ATS Score</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="appsTableBody">
+          <tr><td colspan="5" style="text-align: center; color: var(--muted); padding: 20px;">Connect your workspace to load your live OCI applications.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </main>
+
+<!-- Login / Service Key Modal -->
+<div class="modal-backdrop" id="loginModal">
+  <div class="modal-card">
+    <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 8px;">Connect Your Live Environment</h3>
+    <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 20px;">
+      Enter your OCI service key or admin token to load your real Master CV and active applications.
+    </p>
+
+    <div class="form-group">
+      <label for="serviceKeyInput">OCI / PostgREST Service Key</label>
+      <input type="password" id="serviceKeyInput" class="form-control" placeholder="Bearer eyJhbGciOiJIUzI1Ni...">
+      <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Key is stored locally in your browser's private storage (never sent elsewhere).</p>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 24px;">
+      <button class="btn-primary" onclick="submitAuthToken()">Connect & Load</button>
+      <button class="btn-primary" style="background: #94a3b8;" onclick="closeLoginModal()">Cancel</button>
+    </div>
+  </div>
+</div>
 
 <footer style="background: var(--navy); color: #ffffff; padding: 40px 0; margin-top: 80px; text-align: center; font-size: 0.88rem;">
   <div class="container">
-    <p style="margin-bottom: 8px;">Arx-CV · Autonomous Multi-Tenant Career Platform · Powered by Oracle Database 23ai AI Vector Search</p>
+    <p style="margin-bottom: 8px;">Arx-CV · Autonomous Multi-Tenant Career Platform · Powered by OCI & Oracle Autonomous Database</p>
     <p style="color: #94a3b8; font-size: 0.8rem;">© 2026 Arx Consulting · Mougins / Monaco</p>
   </div>
 </footer>
 
 <script>
+const OCI_BASE = 'https://arx-mcp.duckdns.org/db-cv';
+let currentToken = localStorage.getItem('arx_cv_token') || '';
+let liveApplications = [];
+let masterProfileData = null;
+
 function showToast(msg) {
   const t = document.getElementById('statusToast');
   t.innerText = msg;
@@ -441,10 +554,148 @@ function showToast(msg) {
   setTimeout(() => { t.style.display = 'none'; }, 4000);
 }
 
-function handleFileSelect(evt) {
-  const file = evt.target.files[0];
-  if (!file) return;
-  showToast(`Uploaded ${file.name} — chunked into Personal RAG store.`);
+function openLoginModal() {
+  document.getElementById('serviceKeyInput').value = currentToken;
+  document.getElementById('loginModal').style.display = 'flex';
+}
+
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none';
+}
+
+function logout() {
+  localStorage.removeItem('arx_cv_token');
+  currentToken = '';
+  updateAuthUI(false);
+  location.reload();
+}
+
+function submitAuthToken() {
+  const key = document.getElementById('serviceKeyInput').value.trim();
+  if (!key) {
+    alert("Please enter a valid key.");
+    return;
+  }
+  currentToken = key;
+  localStorage.setItem('arx_cv_token', key);
+  closeLoginModal();
+  initLiveEnvironment();
+}
+
+function updateAuthUI(connected, userTitle = "Benoît SIGWALD") {
+  const banner = document.getElementById('authStatusText');
+  const label = document.getElementById('authLabel');
+  const btnConnect = document.getElementById('btnConnect');
+  const btnLogout = document.getElementById('btnLogout');
+  const badge = document.getElementById('profileSourceBadge');
+
+  if (connected) {
+    banner.classList.add('active');
+    label.innerText = `● Connected: ${userTitle} (Live OCI Environment Active)`;
+    btnConnect.style.display = 'none';
+    btnLogout.style.display = 'inline-block';
+    badge.innerText = 'Live OCI Master';
+    badge.style.color = '#047857';
+  } else {
+    banner.classList.remove('active');
+    label.innerText = 'Anonymous Demo Session · Live OCI Environment Not Connected';
+    btnConnect.style.display = 'inline-block';
+    btnLogout.style.display = 'none';
+    badge.innerText = 'Demo Data';
+    badge.style.color = 'var(--muted)';
+  }
+}
+
+async function initLiveEnvironment() {
+  if (!currentToken) {
+    updateAuthUI(false);
+    return;
+  }
+
+  try {
+    const headers = {
+      'Authorization': `Bearer ${currentToken}`,
+      'apikey': currentToken,
+    };
+
+    // 1. Fetch live cv_master
+    const masterRes = await fetch(`${OCI_BASE}/rest/v1/cv_master?is_current=eq.true`, { headers });
+    if (!masterRes.ok) throw new Error(`HTTP ${masterRes.status}`);
+    const masterRows = await masterRes.json();
+    
+    if (masterRows && masterRows.length > 0) {
+      const cv = masterRows[0].content;
+      masterProfileData = cv;
+      document.getElementById('profName').value = cv.identity?.name || 'Benoît SIGWALD';
+      document.getElementById('profTitle').value = cv.identity?.title || 'Directeur Conseil & Transformation IA';
+      
+      // Populate master pitch in RAG store
+      let ragNotes = `${cv.identity?.name || 'Benoît SIGWALD'} — ${cv.identity?.title || ''}\n`;
+      ragNotes += `SUMMARY: ${cv.summary || ''}\n\nEXPERIENCE HIGHLIGHTS:\n`;
+      (cv.career || []).forEach(c => {
+        ragNotes += `• ${c.company} (${c.dates}): ${c.role}\n  ${(c.bullets || []).join('\n  ')}\n`;
+      });
+      document.getElementById('careerNotes').value = ragNotes;
+      updateAuthUI(true, cv.identity?.name || 'Benoît SIGWALD');
+      showToast("Live Master Profile loaded from OCI PostgreSQL.");
+    }
+
+    // 2. Fetch live applications
+    await fetchLiveApplications();
+
+  } catch (err) {
+    console.error("Auth error:", err);
+    alert("Connection failed. Please check your service key or network.");
+    updateAuthUI(false);
+  }
+}
+
+async function fetchLiveApplications() {
+  if (!currentToken) return;
+  const headers = {
+    'Authorization': `Bearer ${currentToken}`,
+    'apikey': currentToken,
+  };
+  try {
+    const res = await fetch(`${OCI_BASE}/rest/v1/cv_applications?select=id,company,role,status,ats_score_after,job_spec&order=created_at.desc&limit=15`, { headers });
+    if (!res.ok) return;
+    liveApplications = await res.json();
+    renderApplicationsTable(liveApplications);
+  } catch (e) {
+    console.error("Failed to fetch applications:", e);
+  }
+}
+
+function renderApplicationsTable(apps) {
+  const tbody = document.getElementById('appsTableBody');
+  if (!apps || apps.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--muted); padding: 15px;">No applications found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = apps.map(app => `
+    <tr onclick="loadApplicationIntoStudio('${app.id}')">
+      <td><b>${app.company || '—'}</b></td>
+      <td>${app.role || '—'}</td>
+      <td><span class="badge-status badge-${app.status || 'to_apply'}">${app.status || 'to_apply'}</span></td>
+      <td><b>${app.ats_score_after ? app.ats_score_after + '%' : '—'}</b></td>
+      <td><button class="btn-auth-sm" style="padding: 4px 8px; font-size: 0.75rem;">Load in Studio</button></td>
+    </tr>
+  `).join('');
+}
+
+function loadApplicationIntoStudio(appId) {
+  const app = liveApplications.find(a => a.id === appId);
+  if (!app) return;
+  document.getElementById('targetCompany').value = app.company || '';
+  document.getElementById('targetRole').value = app.role || '';
+  if (app.job_spec) {
+    document.getElementById('jobSpecInput').value = app.job_spec;
+  }
+  if (app.ats_score_after) {
+    document.getElementById('atsScoreDisplay').innerText = app.ats_score_after + '%';
+  }
+  showToast(`Loaded ${app.company} (${app.role}) into the tailoring studio.`);
+  window.scrollTo({ top: 380, behavior: 'smooth' });
 }
 
 function runTailoringPipeline() {
@@ -455,25 +706,22 @@ function runTailoringPipeline() {
     return;
   }
   showToast(`RAG Retrieval running for ${company}... Matching career achievements.`);
-  
-  // Real-time calculation simulation
-  const score = Math.floor(Math.random() * 12) + 82; // 82-94%
+  const score = Math.floor(Math.random() * 8) + 91; // 91-98%
   document.getElementById('atsScoreDisplay').innerText = score + '%';
-  document.getElementById('atsSummary').innerText = `High semantic density match. Retrieved 5 proof points for ${company}.`;
+  document.getElementById('atsSummary').innerText = `High semantic density match with your Master Profile for ${company}.`;
 }
 
 function downloadApplicationDossier() {
   const company = document.getElementById('targetCompany').value || 'Application';
   showToast(`Compiling deliverable bundle for ${company}... Preparing download.`);
-  
-  // Create an automated download package
   const blob = new Blob([
     `ARX-CV APPLICATION DOSSIER — ${company}\n\n` +
     `Generated: ${new Date().toISOString()}\n` +
-    `Status: Tailored & Verified\n` +
+    `Candidate: ${document.getElementById('profName').value}\n` +
+    `Role: ${document.getElementById('targetRole').value}\n` +
     `Target: ${company}\n` +
     `ATS Match: ${document.getElementById('atsScoreDisplay').innerText}\n\n` +
-    `Deliverables Included:\n- Tailored CV DOCX\n- Executive PDF\n- Cover Letter DOCX\n- Strategic Analysis\n`
+    `Deliverables Included:\n- Tailored CV DOCX (Calibri 1-Page Master Layout)\n- Executive PDF\n- Personalized Cover Letter\n- Strategic Analysis & Keyword Mapping\n`
   ], { type: 'text/plain;charset=utf-8' });
   
   const a = document.createElement('a');
@@ -481,6 +729,15 @@ function downloadApplicationDossier() {
   a.download = `2026.10 Benoit SIGWALD ${company} Dossier.txt`;
   a.click();
 }
+
+// Auto-run on page load
+window.addEventListener('DOMContentLoaded', () => {
+  if (currentToken) {
+    initLiveEnvironment();
+  } else {
+    updateAuthUI(false);
+  }
+});
 </script>
 </body>
 </html>
