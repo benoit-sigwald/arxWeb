@@ -1,41 +1,88 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
   <title>3Point × Cisco — Final Report &amp; Compliance Review Cockpit</title>
+  <script>
+    // FOUC prevention per modern-web-guidance
+    const storedTheme = localStorage.getItem("color-scheme") ?? (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.querySelector('meta[name="color-scheme"]').content = storedTheme;
+    if (storedTheme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
-    :root { color-scheme: dark; }
-    body { background: #090d16; color: #e2e8f0; font-family: Inter, system-ui, -apple-system, sans-serif; }
-    .prose-md h1 { font-size: 1.4rem; font-weight: 700; margin: 0.75rem 0; color: #f8fafc; }
-    .prose-md h2 { font-size: 1.15rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: #38bdf8; border-bottom: 1px solid #1e293b; padding-bottom: 0.25rem; }
-    .prose-md h3 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.4rem; color: #e2e8f0; }
-    .prose-md p, .prose-md li { font-size: 0.85rem; line-height: 1.55; color: #cbd5e1; margin-bottom: 0.5rem; }
+    :root {
+      color-scheme: light dark;
+      &:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; }
+      &:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
+    }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; transition: background-color 0.2s ease, color 0.2s ease; }
+    .prose-md h1 { font-size: 1.4rem; font-weight: 700; margin: 0.75rem 0; }
+    .prose-md h2 { font-size: 1.15rem; font-weight: 700; margin: 1.25rem 0 0.5rem; border-bottom-width: 1px; padding-bottom: 0.25rem; }
+    .prose-md h3 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.4rem; }
+    .prose-md p, .prose-md li { font-size: 0.85rem; line-height: 1.55; margin-bottom: 0.5rem; }
     .prose-md ul { list-style: disc; padding-left: 1.25rem; }
     .prose-md table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.78rem; }
-    .prose-md th { background: #1e293b; color: #f8fafc; text-align: left; padding: 0.45rem 0.6rem; border: 1px solid #334155; }
-    .prose-md td { padding: 0.4rem 0.6rem; border: 1px solid #1e293b; vertical-align: top; color: #cbd5e1; }
-    .prose-md blockquote { border-left: 3px solid #10b981; background: rgba(16, 185, 129, 0.08); padding: 0.5rem 0.75rem; margin: 0.6rem 0; border-radius: 0 0.375rem 0.375rem 0; }
+    .prose-md th { text-align: left; padding: 0.45rem 0.6rem; border-width: 1px; }
+    .prose-md td { padding: 0.4rem 0.6rem; border-width: 1px; vertical-align: top; }
+    .prose-md blockquote { border-left-width: 3px; padding: 0.5rem 0.75rem; margin: 0.6rem 0; border-radius: 0 0.375rem 0.375rem 0; }
+
+    /* Dark Mode Prose */
+    .dark .prose-md h1 { color: #f8fafc; }
+    .dark .prose-md h2 { color: #38bdf8; border-color: #1e293b; }
+    .dark .prose-md h3 { color: #e2e8f0; }
+    .dark .prose-md p, .dark .prose-md li { color: #cbd5e1; }
+    .dark .prose-md th { background: #1e293b; color: #f8fafc; border-color: #334155; }
+    .dark .prose-md td { border-color: #1e293b; color: #cbd5e1; }
+    .dark .prose-md blockquote { border-color: #10b981; background: rgba(16, 185, 129, 0.08); }
+
+    /* Light Mode Prose */
+    html:not(.dark) .prose-md h1 { color: #0f172a; }
+    html:not(.dark) .prose-md h2 { color: #0284c7; border-color: #e2e8f0; }
+    html:not(.dark) .prose-md h3 { color: #1e293b; }
+    html:not(.dark) .prose-md p, html:not(.dark) .prose-md li { color: #334155; }
+    html:not(.dark) .prose-md th { background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; }
+    html:not(.dark) .prose-md td { border-color: #e2e8f0; color: #334155; }
+    html:not(.dark) .prose-md blockquote { border-color: #059669; background: rgba(16, 185, 129, 0.06); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-[#090d16] dark:text-slate-200">
   <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-20 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+  <header class="border-b border-slate-200 bg-white/90 dark:border-slate-800 dark:bg-slate-950/90 backdrop-blur sticky top-0 z-20 px-6 py-4 flex flex-wrap items-center justify-between gap-4 transition-colors">
     <div class="flex items-center gap-3">
       <div class="w-3 h-8 rounded bg-emerald-500"></div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">3Point × Cisco · ARX Automation</span>
-          <span id="conn-badge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Checking API...</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold">3Point × Cisco · ARX Automation</span>
+          <span id="conn-badge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Checking API...</span>
         </div>
-        <h1 class="text-xl font-bold tracking-tight text-white">Final Report &amp; Compliance Review Cockpit</h1>
+        <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Final Report &amp; Compliance Review Cockpit</h1>
       </div>
     </div>
     <div class="flex items-center gap-2">
-      <button onclick="openNewCustomerModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition">+ Init Customer</button>
-      <button onclick="refreshCockpit()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition">Refresh Telemetry</button>
+      <!-- Dark/Light Theme Toggle -->
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle theme" class="p-2 rounded-lg border border-slate-300 bg-slate-100 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center">
+        <!-- Sun icon (for dark mode -> switch to light) -->
+        <svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <!-- Moon icon (for light mode -> switch to dark) -->
+        <svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <button onclick="openNewCustomerModal()" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-medium dark:text-slate-200 dark:border-slate-700 transition">+ Init Customer</button>
+      <button onclick="refreshCockpit()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition shadow-sm">Refresh Telemetry</button>
     </div>
   </header>
 
@@ -44,35 +91,35 @@
     <!-- Left Sidebar: Customer Workspaces -->
     <section class="lg:col-span-4 space-y-4">
       <div class="flex items-center justify-between">
-        <h2 class="text-xs font-mono uppercase tracking-wider text-slate-400">Customer Workspaces (<span id="cust-count">0</span>)</h2>
-        <span class="text-[11px] font-mono text-slate-500">G:\My Drive\3point.ia\Customers</span>
+        <h2 class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Customer Workspaces (<span id="cust-count">0</span>)</h2>
+        <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500">G:\My Drive\3point.ia\Customers</span>
       </div>
       <div id="customer-list" class="space-y-2.5 max-h-[78vh] overflow-y-auto pr-1"></div>
     </section>
 
     <!-- Right Panel: Selected Customer Detail & Artifact Viewer -->
-    <section class="lg:col-span-8 flex flex-col rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden">
-      <div id="detail-header" class="p-5 border-b border-slate-800 bg-slate-900 flex flex-wrap items-center justify-between gap-4">
+    <section class="lg:col-span-8 flex flex-col rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/60 shadow-sm overflow-hidden transition-colors">
+      <div id="detail-header" class="p-5 border-b border-slate-200 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-900 flex flex-wrap items-center justify-between gap-4 transition-colors">
         <div>
-          <h2 id="sel-title" class="text-lg font-bold text-white">Select a customer</h2>
-          <p id="sel-subtitle" class="text-xs font-mono text-slate-400 mt-0.5">—</p>
+          <h2 id="sel-title" class="text-lg font-bold text-slate-900 dark:text-white">Select a customer</h2>
+          <p id="sel-subtitle" class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">—</p>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button onclick="triggerRun('draft')" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-semibold text-white transition">1. Generate Draft</button>
-          <button onclick="triggerRun('review')" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-semibold text-white transition">2. Run Compliance Review</button>
-          <button onclick="triggerRun('full')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition">⚡ Full Closed-Loop</button>
-          <button onclick="triggerRun('check')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-mono text-slate-200 transition">Deterministic Check</button>
+          <button onclick="triggerRun('draft')" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-semibold text-white transition shadow-sm">1. Generate Draft</button>
+          <button onclick="triggerRun('review')" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-semibold text-white transition shadow-sm">2. Run Compliance Review</button>
+          <button onclick="triggerRun('full')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition shadow-sm">⚡ Full Closed-Loop</button>
+          <button onclick="triggerRun('check')" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-mono dark:text-slate-200 transition">Deterministic Check</button>
         </div>
       </div>
 
       <!-- Artifact Tabs -->
-      <div class="flex border-b border-slate-800 bg-slate-950/60 px-4 gap-2 overflow-x-auto text-xs font-mono">
-        <button onclick="selectTab('compliance_report.md')" id="tab-compliance_report.md" class="py-2.5 px-3 border-b-2 border-emerald-500 text-emerald-400 font-semibold">Compliance Review</button>
-        <button onclick="selectTab('gaps.md')" id="tab-gaps.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">[NEEDS INPUT] Gaps</button>
-        <button onclick="selectTab('run_log.md')" id="tab-run_log.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Run Log &amp; P&amp;L</button>
-        <button onclick="selectTab('final_report.md')" id="tab-final_report.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Final Report (MD)</button>
-        <button onclick="selectTab('sources.md')" id="tab-sources.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Provenance (sources.md)</button>
-        <button onclick="selectTab('resources')" id="tab-resources" class="py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Discovered Inputs</button>
+      <div class="flex border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-950/60 px-4 gap-2 overflow-x-auto text-xs font-mono transition-colors">
+        <button onclick="selectTab('compliance_report.md')" id="tab-compliance_report.md" class="py-2.5 px-3 border-b-2 border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 font-semibold">Compliance Review</button>
+        <button onclick="selectTab('gaps.md')" id="tab-gaps.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">[NEEDS INPUT] Gaps</button>
+        <button onclick="selectTab('run_log.md')" id="tab-run_log.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">Run Log &amp; P&amp;L</button>
+        <button onclick="selectTab('final_report.md')" id="tab-final_report.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">Final Report (MD)</button>
+        <button onclick="selectTab('sources.md')" id="tab-sources.md" class="py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">Provenance (sources.md)</button>
+        <button onclick="selectTab('resources')" id="tab-resources" class="py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">Discovered Inputs</button>
       </div>
 
       <!-- Content Area -->
@@ -82,18 +129,32 @@
     </section>
   </main>
 
-  <!-- Native Dialog for New Customer -->
-  <dialog id="new-cust-dialog" closedby="any" aria-labelledby="new-cust-title" class="rounded-xl bg-slate-900 border border-slate-700 text-slate-100 p-6 backdrop:bg-black/60 w-full max-w-md">
+  <!-- Native Dialog for New Customer with Light Dismiss per modern-web-guidance -->
+  <dialog id="new-cust-dialog" closedby="any" aria-labelledby="new-cust-title" class="rounded-xl border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 p-6 backdrop:bg-black/50 shadow-xl w-full max-w-md">
     <h3 id="new-cust-title" class="text-base font-bold">Initialize New 3Point Customer</h3>
-    <p class="text-xs text-slate-400 mt-1">Creates <code class="font-mono text-emerald-400">G:\My Drive\3point.ia\Customers\&lt;Name&gt;\</code> and links matching 3AIm survey spreadsheets.</p>
-    <input id="new-cust-input" type="text" placeholder="e.g. Specsavers" class="mt-4 w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-emerald-500" />
+    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Creates <code class="font-mono text-emerald-600 dark:text-emerald-400">G:\My Drive\3point.ia\Customers\&lt;Name&gt;\</code> and links matching 3AIm survey spreadsheets.</p>
+    <input id="new-cust-input" type="text" placeholder="e.g. Specsavers" class="mt-4 w-full px-3 py-2 rounded-lg border border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500" />
     <div class="mt-4 flex justify-end gap-2">
-      <button onclick="document.getElementById('new-cust-dialog').close()" class="px-3 py-1.5 rounded bg-slate-800 text-xs">Cancel</button>
+      <button onclick="document.getElementById('new-cust-dialog').close()" class="px-3 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-xs font-medium">Cancel</button>
       <button onclick="submitNewCustomer()" class="px-3 py-1.5 rounded bg-emerald-600 text-xs font-semibold text-white">Create Workspace</button>
     </div>
   </dialog>
 
   <script>
+    // Theme toggle logic adhering to modern-web-guidance
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const nextTheme = isDark ? "light" : "dark";
+      document.querySelector('meta[name="color-scheme"]').content = nextTheme;
+      localStorage.setItem("color-scheme", nextTheme);
+      if (nextTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+
+    // Light-dismiss dialog fallback
     const custDialog = document.getElementById("new-cust-dialog");
     if (!("closedBy" in HTMLDialogElement.prototype)) {
       custDialog.addEventListener("click", (event) => {
@@ -108,6 +169,7 @@
         if (!isDialogContent) custDialog.close();
       });
     }
+
     const API_BASE = "http://127.0.0.1:8765";
     let STATE = { customers: [], artifacts: {}, active_jobs: {} };
     let SELECTED_CUSTOMER = null;
@@ -122,12 +184,12 @@
           STATE = await r.json();
           API_ONLINE = true;
           badge.textContent = "● Live API (127.0.0.1:8765)";
-          badge.className = "text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800";
+          badge.className = "text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-950 dark:text-emerald-400 dark:border-emerald-800";
         }
       } catch (_) {
         API_ONLINE = false;
         badge.textContent = "○ Snapshot Mode (cockpit-data.json)";
-        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800";
+        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800";
         try {
           const r2 = await fetch("./cockpit-data.json");
           if (r2.ok) STATE = await r2.json();
@@ -135,7 +197,7 @@
       }
       renderCustomers();
       if (!SELECTED_CUSTOMER && STATE.customers.length) {
-        selectCustomer(STATE.customers.find(c => c.customer === "SSC-ICT")?.customer || STATE.customers[0].customer);
+        selectCustomer(STATE.customers.find(c => c.customer === "ADIB EGYPT")?.customer || STATE.customers[0].customer);
       } else if (SELECTED_CUSTOMER) {
         renderDetail();
       }
@@ -149,19 +211,23 @@
         const job = (STATE.active_jobs || {})[c.customer];
         return `
           <div onclick="selectCustomer('${c.customer.replace(/'/g, "\\'")}')"
-               class="cursor-pointer rounded-xl p-3.5 border transition ${active ? 'border-emerald-500 bg-slate-800/90' : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'}">
+               class="cursor-pointer rounded-xl p-3.5 border transition ${
+                 active 
+                   ? 'border-emerald-500 bg-emerald-50/50 dark:bg-slate-800/90 shadow-sm' 
+                   : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-slate-700'
+               }">
             <div class="flex items-center justify-between gap-2">
-              <span class="font-bold text-sm text-white">${c.customer}</span>
+              <span class="font-bold text-sm text-slate-900 dark:text-white">${c.customer}</span>
               <div class="flex gap-1.5 text-[10px] font-mono">
-                ${c.has_draft ? '<span class="px-1.5 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800">Draft</span>' : ''}
-                ${c.has_review ? `<span class="px-1.5 py-0.5 rounded ${c.blocking_issues_count > 0 ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">Review (${c.blocking_issues_count} B#)</span>` : ''}
+                ${c.has_draft ? '<span class="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-300 dark:bg-sky-950 dark:text-sky-300 dark:border-sky-800">Draft</span>' : ''}
+                ${c.has_review ? `<span class="px-1.5 py-0.5 rounded ${c.blocking_issues_count > 0 ? 'bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800' : 'bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800'}">Review (${c.blocking_issues_count} B#)</span>` : ''}
               </div>
             </div>
-            <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400">
+            <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
               <span>Inputs: ${c.resource_count} file(s)</span>
               <span>Gaps: ${c.needs_input_count}</span>
             </div>
-            ${job ? `<div class="mt-1.5 text-[10px] font-mono text-emerald-400">${job}</div>` : ''}
+            ${job ? `<div class="mt-1.5 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">${job}</div>` : ''}
           </div>
         `;
       }).join("");
@@ -179,9 +245,9 @@
         const el = document.getElementById(`tab-${t}`);
         if (!el) return;
         if (t === tab) {
-          el.className = "py-2.5 px-3 border-b-2 border-emerald-500 text-emerald-400 font-semibold";
+          el.className = "py-2.5 px-3 border-b-2 border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 font-semibold";
         } else {
-          el.className = "py-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200";
+          el.className = "py-2.5 px-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200";
         }
       });
       renderDetail();
@@ -198,7 +264,7 @@
         view.innerHTML = `
           <h3>Discovered Input Files (${c.resources.length})</h3>
           <ul>${c.resources.map(r => `<li class="font-mono text-xs">${r}</li>`).join("") || "<li>No input files found yet.</li>"}</ul>
-          <p class="mt-4 text-xs text-slate-400">Output folder: <code class="font-mono text-emerald-400">${c.report_dir}</code></p>
+          <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Output folder: <code class="font-mono text-emerald-600 dark:text-emerald-400">${c.report_dir}</code></p>
         `;
         return;
       }
@@ -214,7 +280,7 @@
         } catch (_) {}
       }
       if (!md) {
-        view.innerHTML = `<div class="p-4 rounded-lg border border-slate-800 bg-slate-950 text-xs font-mono text-slate-400">Artifact <strong>${SELECTED_TAB}</strong> has not been generated yet for <strong>${c.customer}</strong>. Click one of the execution buttons above to generate it.</div>`;
+        view.innerHTML = `<div class="p-4 rounded-lg border border-slate-200 bg-slate-100 text-slate-600 dark:border-slate-800 dark:bg-slate-950 text-xs font-mono dark:text-slate-400">Artifact <strong>${SELECTED_TAB}</strong> has not been generated yet for <strong>${c.customer}</strong>. Click one of the execution buttons above to generate it.</div>`;
         return;
       }
       view.innerHTML = marked.parse(md);
