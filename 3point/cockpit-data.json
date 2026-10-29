@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T18:35:52",
+  "updated_at": "2026-10-29T18:38:52",
   "drive_root": "G:\\My Drive\\3point.ia",
   "active_jobs": {},
   "customers": [
@@ -334,7 +334,7 @@
       "canonical_id": "swedbank",
       "folder": "G:\\My Drive\\3point.ia\\Customers\\Swedbank",
       "report_dir": "G:\\My Drive\\3point.ia\\Customers\\Swedbank\\output",
-      "resource_count": 11,
+      "resource_count": 12,
       "resources": [
         "Call 1 - Cisco Prep Call Swedbank.xlsx",
         "Swedbank AI Introduction Webinar Slides.pdf",
@@ -346,6 +346,7 @@
         "Swedbank Phase 1 Workshop Agenda.docx",
         "Swedbank Phase 1 Workshop Agenda.pdf",
         "Swedbank Sponsor Slides.pptx",
+        "Swedbank UC 1.xlsx",
         "Swedbank Workshops Plan.xlsx"
       ],
       "has_draft": true,
